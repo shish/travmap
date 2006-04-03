@@ -1,0 +1,51 @@
+key=Chiave
+instructions=Instructions
+link to image=Link to image
+loading=Loading...
+
+roman=Romano
+gaul=Gallo
+teuton=Teutone
+
+north=^
+east=&lt;
+south=V
+west=&gt;
+zoom in=+
+zoom out=-
+
+server=Server
+alliance=Alleanza(e)
+player=Giocatore(i)
+lines=Linee di collegamento nel grafico
+group by=Raggruppa per
+zoom=Zoom
+case sensitive=Sensibile alle maiuscole
+dot size=Grandezza del Puntino nel grafico
+min population=Popolazione Minima
+max population=Popolazione Massima
+order by=Ordinato per
+colour by=Colore
+output format=Formato di uscita
+show map=Mostra la mappa
+layout=Layout
+spread=Legenda divisa sui quadranti
+caption=Titolo legenda
+shrinkwrap=Shrinkwrap
+
+advanced options=Opzioni avanzate
+output options=Opzioni Output
+language options=Language Options
+
+default=Default
+distance from zoom target=Distanza dal punto di zoom
+population=Popolazione
+race=Razza
+
+help1=Separa i nomi delle alleanze o dei giocatori con una virgola; Le virgolette possono essere usate per racchiudere il testo assieme ad eventuali virgole o spazi, Esempio -- A, B, "C,D,E", F
+help2=Zoom = "asse x, asse y, fattore di zoom (1, 2, 1.1 ecc.)" oppure "nome villaggio, fattore di zoom"
+help3=Nomi di alleanze, giocatori e villaggi sono tutti sensibili alle maiuscole (case sensetive), se rispettate questa regola la ricerca sarà *MOLTO* più veloce
+help4=Players and alliances with non-standard characters in their names can use their IDs rather than their names, eg "id:123"
+
+report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Segnala</a> qualunque bug che non dovesse venire risolto poco dopo la sua comparsa
+credit=<a href="http://shish.is-a-geek.net/trac/travmap/browser/lang">Tradotto</a> da Warp9

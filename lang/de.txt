@@ -1,0 +1,51 @@
+key=Schlüssel
+instructions=Instructions
+link to image=Link to image
+loading=Loading...
+
+roman=Römer
+gaul=Gallier
+teuton=Germane
+
+north=^
+east=&lt;
+south=V
+west=&gt;
+zoom in=+
+zoom out=-
+
+server=Server
+alliance=Allianz
+player=Spieler
+lines=Linien
+group by=Gruppen
+zoom=Zoom
+case sensitive=Case Sensitive
+dot size=Punktgröße
+min population=Min Bevölkerung
+max population=Max Bevölkerung
+order by=Sortieren nach
+colour by=Farben
+output format=Ausgabeformat
+show map=Karte anzeigen
+layout=Layout
+spread=Spread
+caption=Caption
+shrinkwrap=Shrinkwrap
+
+advanced options=Erweiterte Optionen
+output options=Output Optionen
+language options=Language Options
+
+default=Default
+distance from zoom target=Abstand vom Zoomobjekt
+population=Bevölkerung
+race=Rasse
+
+help1=Mehrere Allianzen und Spieler durch Kommas trennen
+help2=Zoom = "x,y,Zoomfaktor" oder "Dorfname,Zoomfactor"
+help3=Allianzen, Spieler, und Dorfer sind alle case sensetive, da es die Berechnungen *sehr* beschleunigt
+help4=Bei Spielern und Allianzen mit Sonderzeichen in ihren Namen kann man statt des Namens auch ihre ID benutzen, z.B. "id:123"
+
+report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Berichten</a> Sie alle Fehler, die nicht innerhalb weniger Minuten nach ihrem auftreten behoben sind.
+credit=<a href="http://shish.is-a-geek.net/trac/travmap/browser/lang">Übersetzt</a> mit Hilfe von Mayhem (und Zweiundachtzig)

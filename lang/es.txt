@@ -1,0 +1,51 @@
+key=Clave
+instructions=Instructions
+link to image=Link to image
+loading=Loading...
+
+roman=Romano
+gaul=Galo
+teuton=Teuton
+
+north=^
+east=&lt;
+south=V
+west=&gt;
+zoom in=+
+zoom out=-
+
+server=Servidor
+alliance=Alianza
+player=Jugador
+lines=Lineas
+group by=Grupos
+zoom=Aumento
+case sensitive=Sensible a Mayusculas
+dot size=Tamaño del Punto
+min population=Poblacion Minima
+max population=Poblacion Maxima
+order by=Ordenar Por
+colour by=Colorear Por
+output format=Formato de Salida
+show map=Mostrar Mapa
+layout=Layout
+spread=Spread
+caption=Caption
+shrinkwrap=Shrinkwrap
+
+advanced options=Opciones Avanzadas
+output options=Opciones de Salida
+language options=Language Options
+
+default=Por defecto
+distance from zoom target=Distancia al objetivo del zoom
+population=Poblacion
+race=Raza
+
+help1=Separarar multiples alianzas y jugadores con comas
+help2=Zoom = "x,y,factor de aumento(Ej: 50x)" or "nombre del pueblo,factor de aumento(Ej: 50x)"
+help3=Alianza, jugador, y pueblo al que hacer zoom son sensibles a las mayusculas, porque asi se calcula *MUCHO* mas rapido
+help4=Jugadores y Alianzas que no tengan caracteres standard en los nombres pueden usar sus IDs en lugar de sus nombres, Ej "id:123"
+
+report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Avisame</a> de cualquier fallo que no sea arreglado a los pocos minutos de aparecer.
+credit=Traducido por <a href='http://telemako.da.ru'>Telemako</a>

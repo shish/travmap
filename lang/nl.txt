@@ -1,0 +1,54 @@
+key=Legenda
+instructions=Instructies
+link to image=Link naar plaatje
+loading=Loading...
+
+roman=Romein
+gaul=Galliër
+teuton=Germaan
+
+north=Noord
+east=Oost
+south=Zuid
+west=West
+zoom in=+
+zoom out=-
+
+server=Server
+alliance=Alliantie(s)
+player=Speler(s)
+lines=Lijnen
+group by=Groepeer op
+zoom=Zoom
+case sensitive=Hoofdlettergevoelig
+dot size=Puntgrootte
+min population=Min Bevolking
+max population=Max Bevolking
+order by=Sorteren op
+colour by=Kleuren op
+output format=Uitvoerformaat
+show map=Kaart tonen
+layout=Layout
+spread=Verspreiden
+caption=Label
+shrinkwrap=Best passend
+
+advanced options=Geavanceerde Opties
+output options=Uitvoer Opties
+language options=Taal Opties
+
+default=Standaard
+distance from zoom target=Afstand naar zoom punt
+population=Bevolking
+race=Ras
+
+help1=Scheid meerdere allianties of spelers door middel van komma's
+help2=Zoom = "x,y,zoom factor" of "Naam van het dorp,zoom factor"
+help3=Alliantie, speler en dorp om op in te zoomen zijn allemaal hoofdlettergevoelig, aangezien dat een *STUK* sneller is
+help4=Spelers en allianties met niet-standaard tekens in hun naam kunnen vervangen worden door hun IDs, bijvoorbeeld "id:123"
+
+report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Rapporteer</a> fouten die niet enkele minuten na ontdekking verholpen zijn.
+credit=<a href="http://shish.is-a-geek.net/trac/travmap/browser/lang">Vertaald</a> door SH4D3H en Nilis.
+
+notice=Mijn excuses voor de downtime. Ik host dit zelf en m'n modem ging kapot...Aangezien deze dienst veel <a href="http://shish.is-a-geek.net/misc/stats/graphs/allcpu.php?rrd=aru&time=year">processortijd</a> vreet (vast op 100% op de piekuren, dat vertraagt zoveel dat ik een "loading" scherm heb toegevoegd...) en zo'n grote database gebruikt dat de harde schijven het erg zwaar hebben (zie <a href="http://shish.is-a-geek.net/misc/stats/history.php?rrd=aru_travmap&function=range">laad tijden</a> -- elke tijd langer dan 5 seconden houdt in dat meerdere aanvragen vechten om de harde schijf). Met een groei <a href="http://shish.is-a-geek.net/misc/stats/history.php?rrd=browsers_travmap&function=browser">die niet lijkt af te nemen</a> overweeg ik serieus om externe hosting te kopen (dreamhost lijkt de grootste kanshebber op dit moment); alleen is dat nogal duur voor iemand zonder baan (voltijd student...). Daarom ben ik ook van plan advertenties of iets dergelijks aan deze ruimte toe te voegen (deze helpruimte, welke verdwijnt zodra je een kaart bekijkt. Ik ga google advertenties gebruiken, tenzij iemand iets beters weet). Vragen / opmerkingen / gulle giften zijn welkom ;) -- <a href="mailto:webmaster@shish.is-a-geek.net">webmaster@shish.is-a-geek.net</a>
+

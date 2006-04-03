@@ -1,0 +1,53 @@
+key=Key
+instructions=Instructions
+link to image=Link to image
+loading=Loading...
+
+roman=Roman
+gaul=Gaul
+teuton=Teuton
+
+north=^
+east=&lt;
+south=V
+west=&gt;
+zoom in=+
+zoom out=-
+
+server=Server
+alliance=Alliance(s)
+player=Player(s)
+lines=Lines
+group by=Group By
+zoom=Zoom
+case sensitive=Case Sensitive
+dot size=Dot Size
+min population=Min Population
+max population=Max Population
+order by=Order By
+colour by=Colour By
+output format=Output Format
+show map=Show Map
+layout=Layout
+spread=Spread
+caption=Caption
+shrinkwrap=Shrinkwrap
+
+advanced options=Advanced Options
+output options=Output Options
+language options=Language Options
+
+default=Default
+distance from zoom target=Dist from zoom target
+population=Population
+race=Race
+
+help1=Separate multiple alliances and players with commas; quotes can be used to keep commas and spaces intact, eg -- A, B, "C,D,E", F
+help2=Zoom = "x,y,zoom factor" or "village name,zoom factor"
+help3=Alliance, player, and town to zoom in on are all case sensetive, as it makes things a *LOT* faster
+help4=Players and alliances with non-standard characters in their names can use their IDs rather than their names, eg "id:123"
+
+report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Report</a> any bugs that aren't fixed within a couple of minutes of them appearing.
+credit=Shish and Babelfish are both horrible translators, <a href="http://shish.is-a-geek.net/trac/travmap/browser/lang">please help!</a>
+
+notice=Sorry for the downtime, I'm self-hosted and my modem broke while I was out... Seeing as this service is eating a load of <a href="http://shish.is-a-geek.net/misc/stats/graphs/allcpu.php?rrd=aru&time=year">CPU time</a> (being jammed at 100% for the most popular hour, it's slowed down so much I added a "loading" screen...), and uses such big databases it's killing the disks (note <a href="http://shish.is-a-geek.net/misc/stats/history.php?rrd=aru_travmap&function=range">load times</a> -- any time over 5 seconds normally means that several requests are fighting over the disk at once). With growth <a href="http://shish.is-a-geek.net/misc/stats/history.php?rrd=browsers_travmap&function=browser">showing no sign of slowing down</a>, I'm seriously considering buying external hosting (dreamhost look best so far); however that's expensive for someone with no job (full time education...). Hence, I'm also planning on adding an advertisement or something in this space (ie, the help space, which is hidden once a map is viewed. Using google ads, unless someone suggests better). Any questions / comments / generous donations appreicated ;) -- <a href="mailto:webmaster@shish.is-a-geek.net">webmaster@shish.is-a-geek.net</a>

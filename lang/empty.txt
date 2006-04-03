@@ -1,0 +1,51 @@
+key=
+instructions=
+link to image=
+loading=
+
+roman=
+gaul=
+teuton=
+
+north=
+east=
+south=
+west=
+zoom in=
+zoom out=
+
+server=
+alliance=
+player=
+lines=
+group by=
+zoom=
+case sensitive=
+dot size=
+min population=
+max population=
+order by=
+colour by=
+output format=
+show map=
+layout=
+spread=
+caption=
+shrinkwrap=
+
+advanced options=
+output options=
+language options=
+
+default=
+distance from zoom target=
+population=
+race=
+
+help1=
+help2=
+help3=
+help4=
+
+report bugs=
+credit=

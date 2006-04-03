@@ -1,0 +1,44 @@
+BODY {
+	background: #EEE;
+	font-family: "Arial", sans-serif;
+	font-size: 14px;
+}
+H1, H3 {
+	border: 1px solid black;
+	background: #DDD;
+	text-align: center;
+}
+H1 {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding: 2px;
+}
+H3 {
+	margin-top: 32px;
+	padding: 1px;
+}
+TD {
+	width: 175px;
+	vertical-align: top;
+	text-align: center;
+}
+TD INPUT[type="submit"] {width: 95%;}
+TD INPUT[type="text"] {width: 95%;}
+TD SELECT {width: 95%;}
+
+#map {
+	width: 768px;
+	height: 512px;
+}
+#footer {
+	clear: both;
+	padding-top: 8px;
+	font-size: 0.7em;
+	text-align: center;
+}
+
+*[onclick] {cursor: pointer;}
+IMG {border: none;}
+FORM {margin: 0px;}
+.left {text-align: left; width: 500px; margin: auto;}
+
