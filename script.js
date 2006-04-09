@@ -59,6 +59,8 @@ function toggle(name) {
 }
 
 function updatepart(name) {
+	if(!byId(name)) return; /* there's no langopts in new index.php */
+
 	if(get_cookie("travmap_"+name)) {
 		displayparts[name] = get_cookie("travmap_"+name);
 	}
