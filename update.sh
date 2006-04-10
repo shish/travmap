@@ -98,6 +98,8 @@ update s8.travian.fr map
 update s1.travian.it map
 update s2.travian.it map
 update s3.travian.it map
+update s4.travian.it map
+update s5.travian.it map
 
 update www.travian.org karte
 update www.travian.at  karte
