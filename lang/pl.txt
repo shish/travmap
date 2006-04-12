@@ -37,15 +37,15 @@ advanced options=Opcje Zaawansowane
 output options=Opcje Output
 language options=Language Options
 
-default=Default
-distance from zoom target=Dist from zoom target
+default=Domyslne
+distance from zoom target=Odleglosc od celu
 population=Populacja
 race=Plemiona
 
-help1=Separate multiple alliances and players with commas
-help2=Zoom = "x,y,zoom factor" or "village name,zoom factor"
-help3=Alliance, player, and town to zoom in on are all case sensetive, as it makes things a *LOT* faster
+help1=Oddzielaj koalicje i graczy przecinkami
+help2=Powiekszenie = "x,y,wartosc powiekszenia" lub "nazwa wioski,wsp. powiekszenia"
+help3=Pamietaj ze wielkosc liter MA ZNACZENIE!
 help4=Players and alliances with non-standard characters in their names can use their IDs rather than their names, eg "id:123"
 
-report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Report</a> any bugs that aren't fixed within a couple of minutes of them appearing.
+report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Raportuj</a> jesli jakis blad nie zostal naprawiony w ciagu kilku minut od pojawienia.
 credit=<a href="http://shish.is-a-geek.net/trac/travmap/browser/lang">Translated</a> by Dyzdyz
