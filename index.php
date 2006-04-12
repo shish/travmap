@@ -142,6 +142,7 @@ $baseurl = preg_replace("#[^/]+$#", "", $baseurl);
 	<p><?=$words['help2'];?>
 	<p><?=$words['help3'];?>
 	<p><?=$words['help4'];?>
+	<p><?=$words['help5'];?>
 	
 	<p><?=$words['notice'];?>
 </div>
