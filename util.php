@@ -94,10 +94,10 @@ function getMatches($db, $col, $name) {
 	/* no matching characters = no point matching */
 	/* if(strpos($name, "%") === false && strpos($name, "_") === false) return "'$name'"; */
 
-	$result = sqlite_query($db, "SELECT $col FROM x_world WHERE $col LIKE '$name' GROUP BY $col;");
+	$result = sql_query($db, "SELECT $col FROM x_world WHERE $col LIKE '$name' GROUP BY $col;");
 	$ret = "";
 	$n = 0;
-	while($row = sqlite_fetch_array($result)) {
+	while($row = sql_fetch_row($result)) {
 		$c = $row[$col];
 		if($n++) $ret .= ", ";
 		$ret .= "'$c'";
@@ -110,10 +110,10 @@ function getMatches($db, $col, $name) {
  * look up a name by it's associated ID number; useful
  * for players and guilds with dodgy names
  */
-function id2name($db, $idcol, $namecol, $id) {
+function id2name($db, $idcol, $namecol, $id, $table) {
 	if(!is_numeric($id)) return;
-	$result = sqlite_query($db, "SELECT $namecol FROM x_world WHERE $idcol=$id LIMIT 1;");
-	$row = sqlite_fetch_array($result);
+	$result = sql_query($db, "SELECT $namecol FROM $table WHERE $idcol=$id LIMIT 1;");
+	$row = sql_fetch_row($result);
 	return "'$row[$namecol]'";
 }
 

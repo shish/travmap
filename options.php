@@ -35,6 +35,7 @@ $racol = getBool("racol") || ($colby == "race");
 $lines = getBool("lines");
 $casen = getBool("casen");
 $azoom = getBool("azoom");
+$newdb = True; # getBool("newdb");
 
 $dotsize = getFloat("dotsize", 1);
 
@@ -74,9 +75,9 @@ if($zoom) {
 		}
 	}
 	else {
-		$zp = trim(sqlite_escape_string($za[0]));
+		$zp = trim(sql_escape_string($za[0]));
 		$cmp = $casen ? "=" : "LIKE";
-		$za2 = sqlite_fetch_array(sqlite_query($db, "SELECT x,y,town_name FROM x_world WHERE town_name $cmp '$zp' LIMIT 1"));
+		$za2 = sql_fetch_array(sql_query($db, "SELECT x,y,town_name FROM x_world WHERE town_name $cmp '$zp' LIMIT 1"));
 		$zx = $za2['x'];
 		$zy = $za2['y'];
 		

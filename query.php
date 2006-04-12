@@ -23,32 +23,33 @@ if(!is_null($alliance) && !is_null($player)) {
  * Build the query
  * o)  single table is considerably (3-4 times) faster than joins :-/
  */
+$table = $newdb ? str_replace(".", "_", $server) : "x_world";
 $query = "
 	SELECT x, y, x-y AS diag, population, race, owner_name as user_name, guild_name, guild_id, owner_id
-	FROM x_world
+	FROM $table
 	WHERE 1=1 
 ";
 
 if(!is_null($alliance)) {
-	$alliances = quotesplit(",", sqlite_escape_string($alliance));
+	$alliances = quotesplit(",", sql_escape_string($alliance));
 	$query .= ($anp ? "AND (guild_name IN(" : "AND guild_name IN(");
 	$n = 0;
 	foreach($alliances as $alliance) {
 		$alliance = trim($alliance);
 		if($n++) $query .= ", ";
-		if(strncmp($alliance, "id:", 3) == 0) $query .= id2name($db, "guild_id", "guild_name", substr($alliance, 3));
+		if(strncmp($alliance, "id:", 3) == 0) $query .= id2name($db, "guild_id", "guild_name", substr($alliance, 3), $table);
 		else $query .= getMatches($db, "guild_name", $alliance);
 	}
 	$query .= ") ";
 }
 if(!is_null($player)) {
-	$players = quotesplit(",", sqlite_escape_string($player));
+	$players = quotesplit(",", sql_escape_string($player));
 	$query .= ($anp ? "OR owner_name IN(" : "AND owner_name IN(");
 	$n = 0;
 	foreach($players as $player) {
 		$player = trim($player);
 		if($n++) $query .= ", ";
-		if(strncmp($player, "id:", 3) == 0) $query .= id2name($db, "owner_id", "owner_name", substr($player, 3));
+		if(strncmp($player, "id:", 3) == 0) $query .= id2name($db, "owner_id", "owner_name", substr($player, 3), $table);
 		else $query .= getMatches($db, "owner_name", $player);
 	}
 	$query .= ") ";

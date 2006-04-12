@@ -16,9 +16,9 @@ $entities = Array();
 /*
  * query db for villages, group by owning entity
  */
-$result = sqlite_query($db, $query);
+$result = sql_query($query);
 
-while($row = sqlite_fetch_array($result)) {
+while($row = sql_fetch_row($result)) {
 	$user_name = $row["user_name"];
 	$guild_name = $row["guild_name"];
 	$race_id = $row["race"];
