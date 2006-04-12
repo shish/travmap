@@ -112,8 +112,7 @@ function getMatches($db, $col, $name) {
  */
 function id2name($db, $idcol, $namecol, $id, $table) {
 	if(!is_numeric($id)) return;
-	$result = sql_query($db, "SELECT $namecol FROM $table WHERE $idcol=$id LIMIT 1;");
-	$row = sql_fetch_row($result);
+	$row = sql_fetch_row(sql_query("SELECT $namecol FROM $table WHERE $idcol=$id LIMIT 1;"));
 	return "'$row[$namecol]'";
 }
 
