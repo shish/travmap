@@ -1,53 +1,15 @@
 <?php
 require_once "localise.php";
 require_once "version.php";
+require_once "database.php";
+
+$dbs = Array();
+$res = sql_query("SHOW TABLES");
+while($row = mysql_fetch_row($res)) {$dbs[] = str_replace("_", ".", $row[0]);}
 
 $serveropts = "";
-# $dbs = glob("db/*.db");
-$dbs = Array(
-"s1.travian.com",
-"s2.travian.com",
-"s3.travian.com",
-"s4.travian.com",
-"s5.travian.com",
-
-"s1.travian.fr",
-"s2.travian.fr",
-"s3.travian.fr",
-"s4.travian.fr",
-"s5.travian.fr",
-"s6.travian.fr",
-"s7.travian.fr",
-"s8.travian.fr",
-
-"s1.travian.it",
-"s2.travian.it",
-"s3.travian.it",
-"s4.travian.it",
-"s5.travian.it",
-
-"www.travian.org",
-"www.travian.at ",
-
-"s1.travian.net",
-"s2.travian.net",
-
-"s1.travian.nl",
-"s2.travian.nl",
-
-"welt1.travian.de",
-"welt2.travian.de",
-"welt3.travian.de",
-);
 usort($dbs, "wwwcmp");
-#foreach($dbs as $filename) {
-#	$db = preg_replace("/^db\/(.+)\.db$/", '\1', $filename);
-#	if($db == $default) $serveropts .= "<option value='$db' selected>$db</option>\n";
-#	else $serveropts .= "<option value='$db'>$db</option>\n";
-#}
-foreach($dbs as $db) {
-	$serveropts .= "<option value='$db'>$db</option>\n";
-}
+foreach($dbs as $db) {$serveropts .= "<option value='$db'>$db</option>\n";}
 
 /* sort first by country, then by server */
 function wwwcmp($a, $b) {
