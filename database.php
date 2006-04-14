@@ -8,8 +8,9 @@
 require_once "options.php";
 
 if($newdb) {
-	mysql_connect("localhost", "travmap", "dsfkgavs");
-	mysql_select_db("travmap");
+	require_once "config.php";
+	mysql_connect($mysql_host, $mysql_user, $mysql_pas);
+	mysql_select_db($mysql_db);
 	function sql_fetch_row($result) {return mysql_fetch_assoc($result);}
 	function sql_escape_string($text) {return mysql_escape_string($text);}
 	function sql_query($query) {return mysql_query($query);}
