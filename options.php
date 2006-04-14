@@ -42,6 +42,7 @@ $dotsize = getFloat("dotsize", 1);
 $maxpop = getInt("maxpop", null);
 $minpop = getInt("minpop", null);
 
+$table = $newdb ? str_replace(".", "_", $server) : "x_world";
 
 require_once "database.php";
 
@@ -77,7 +78,7 @@ if($zoom) {
 	else {
 		$zp = trim(sql_escape_string($za[0]));
 		$cmp = $casen ? "=" : "LIKE";
-		$za2 = sql_fetch_array(sql_query($db, "SELECT x,y,town_name FROM x_world WHERE town_name $cmp '$zp' LIMIT 1"));
+		$za2 = sql_fetch_array(sql_query("SELECT x,y,town_name FROM $table WHERE town_name $cmp '$zp' LIMIT 1"));
 		$zx = $za2['x'];
 		$zy = $za2['y'];
 		

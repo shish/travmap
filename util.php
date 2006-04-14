@@ -76,8 +76,8 @@ function quotesplit($splitter=",", $string) {
  * query, and return them in a form suitable for putting in an IN(...)
  * statement
  */
-function getMatches($db, $col, $name) {
-	global $casen;
+function getMatches($col, $name) {
+	global $casen, $table;
 
 	if($casen) return "'$name'";
 
@@ -94,7 +94,7 @@ function getMatches($db, $col, $name) {
 	/* no matching characters = no point matching */
 	/* if(strpos($name, "%") === false && strpos($name, "_") === false) return "'$name'"; */
 
-	$result = sql_query($db, "SELECT $col FROM x_world WHERE $col LIKE '$name' GROUP BY $col;");
+	$result = sql_query("SELECT $col FROM $table WHERE $col LIKE '$name' GROUP BY $col;");
 	$ret = "";
 	$n = 0;
 	while($row = sql_fetch_row($result)) {
@@ -110,7 +110,7 @@ function getMatches($db, $col, $name) {
  * look up a name by it's associated ID number; useful
  * for players and guilds with dodgy names
  */
-function id2name($db, $idcol, $namecol, $id, $table) {
+function id2name($idcol, $namecol, $id, $table) {
 	if(!is_numeric($id)) return;
 	$row = sql_fetch_row(sql_query("SELECT $namecol FROM $table WHERE $idcol=$id LIMIT 1;"));
 	return "'$row[$namecol]'";

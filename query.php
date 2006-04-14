@@ -23,7 +23,6 @@ if(!is_null($alliance) && !is_null($player)) {
  * Build the query
  * o)  single table is considerably (3-4 times) faster than joins :-/
  */
-$table = $newdb ? str_replace(".", "_", $server) : "x_world";
 $query = "
 	SELECT x, y, x-y AS diag, population, race, owner_name as user_name, guild_name, guild_id, owner_id
 	FROM $table
@@ -37,8 +36,8 @@ if(!is_null($alliance)) {
 	foreach($alliances as $alliance) {
 		$alliance = trim($alliance);
 		if($n++) $query .= ", ";
-		if(strncmp($alliance, "id:", 3) == 0) $query .= id2name($db, "guild_id", "guild_name", substr($alliance, 3), $table);
-		else $query .= getMatches($db, "guild_name", $alliance);
+		if(strncmp($alliance, "id:", 3) == 0) $query .= id2name("guild_id", "guild_name", substr($alliance, 3), $table);
+		else $query .= getMatches("guild_name", $alliance);
 	}
 	$query .= ") ";
 }
@@ -49,8 +48,8 @@ if(!is_null($player)) {
 	foreach($players as $player) {
 		$player = trim($player);
 		if($n++) $query .= ", ";
-		if(strncmp($player, "id:", 3) == 0) $query .= id2name($db, "owner_id", "owner_name", substr($player, 3), $table);
-		else $query .= getMatches($db, "owner_name", $player);
+		if(strncmp($player, "id:", 3) == 0) $query .= id2name("owner_id", "owner_name", substr($player, 3), $table);
+		else $query .= getMatches("owner_name", $player);
 	}
 	$query .= ") ";
 }
