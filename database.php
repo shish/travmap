@@ -9,7 +9,7 @@ require_once "options.php";
 
 if($newdb) {
 	require_once "config.php";
-	mysql_connect($mysql_host, $mysql_user, $mysql_pas);
+	mysql_connect($mysql_host, $mysql_user, $mysql_pass);
 	mysql_select_db($mysql_db);
 	function sql_fetch_row($result) {return mysql_fetch_assoc($result);}
 	function sql_escape_string($text) {return mysql_escape_string($text);}
