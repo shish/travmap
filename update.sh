@@ -57,8 +57,8 @@ if [ ! -d cache ] ; then
 	chmod -R 777 cache
 fi
 
-foreach update_text.sh
-foreach update_mysql.sh
+foreach ./update_text.sh
+foreach ./update_mysql.sh
 # foreach update_sqlite.sh
 
 for n in cache/* ; do rm -f $n/* ; done
