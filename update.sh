@@ -1,14 +1,12 @@
 #!/bin/sh
 
 #
-# update.	(c) Shish 2006
+# update.sh (c) Shish 2006
 #
-#
+# calls the database specific update scripts
 #
 
-BASEDIR=/home/www/shish.is-a-geek.net/htdocs/projects/travmap
-
-cd $BASEDIR
+cd `dirname $0`
 
 function foreach() {
 	sh $1 s1.travian.com map
