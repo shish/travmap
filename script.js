@@ -33,7 +33,7 @@ function updateMap() {
 		}
 		else {
 			if(elements[i].name && elements[i].value != "") {
-				url += elements[i].name +"="+ elements[i].value +"&";
+				url += elements[i].name +"="+ encodeURIComponent(elements[i].value) +"&";
 			}
 		}
 	}
@@ -41,7 +41,7 @@ function updateMap() {
 	byId("map").style.display = "block";
 	byId("map").src = "loading.php";
 	byId("map").src = "map.php?"+url;
-	byId("link").value = encodeURI(baseurl+"map.php?"+url);
+	byId("link").value = baseurl+"map.php?"+url;
 }
 
 function help() {
