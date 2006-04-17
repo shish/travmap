@@ -160,7 +160,8 @@ $baseurl = preg_replace("#[^/]+$#", "", $baseurl);
 	<a href="?lang=es">Español</a> |
 	<a href="?lang=nl">Nederlands</a> |
 	<a href="?lang=pl">Polski</a> |
-	<a href="?lang=it">Italiano</a>
+	<a href="?lang=it">Italiano</a> |
+	<a href="?lang=ca">Catalan</a>
 	<br><small><?=$words['credit'];?></small>
 </small>
 				</td>

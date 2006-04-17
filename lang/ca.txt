@@ -1,0 +1,52 @@
+key=Clau
+instructions=Instruccions
+link to image=Enllaç a la imatge
+loading=Carregant...
+
+roman=Romà
+gaul=Gal
+teuton=Teutó
+
+north=^
+east=&lt;
+south=V
+west=&gt;
+zoom in=+
+zoom out=-
+
+server=Servidor
+alliance=Aliança
+player=Jugador
+lines=Línies
+group by=Grups
+zoom=Ampliació
+case sensitive=Sensible a Majúscules
+dot size=Tamany del punt
+min population=Població Mínima
+max population=Població Maxima
+order by=Ordenar Per
+colour by=Pintar punts Per
+output format=Format de Sortida
+show map=Ensenyar el Mapa
+layout=Disposició
+spread=Separat
+caption=Títol
+shrinkwrap=Ajustar ampliació automaticament
+
+advanced options=Opcions Avançades
+output options=Opcions de Sortida
+language options=Opcions del llenguatge
+
+default=Per Defecte
+distance from zoom target=Distància al centre del zoom
+population=Habitants
+race=Raça
+
+help1=Separa diferents aliançes i jugadors amb una coma
+help2=Zoom = "x,y,factor d'augment (ex: 50x)" o "nom de la vila,factor d'augment(ex: 2x)"
+help3=L'aliança, els jugadors i les viles tenen en compte les mejúscules, perquè aixins es calcula mooolt més rápid. Que lo sepas.
+help4=Els jugadors o/i aliançes que tinguin carácters no estandards en el nom, poden posar la seva ID en comptes del nom. Ex:" id:6969 " 
+help5=Us animem a usar els Links.. Mentres que cada mapa triga una mica al ser generat per primera vegada cada dia, aleshores es queda en la caché, i no comporta practicament res de treball de procesador ni d'ample de banda per ésser reenviat.
+
+report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Avisa'm</a> de qualsevol errada que trovis, si fa uns quants minuts que dura.
+credit=Maravellosament traduit per Dakaisar.
