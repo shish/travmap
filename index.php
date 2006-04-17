@@ -3,20 +3,27 @@ require_once "localise.php";
 require_once "version.php";
 require_once "database.php";
 
-$dbs = Array();
-$res = sql_query("SHOW TABLES");
-while($row = mysql_fetch_row($res)) {$dbs[] = str_replace("_", ".", $row[0]);}
-
-$serveropts = "";
-usort($dbs, "wwwcmp");
-foreach($dbs as $db) {$serveropts .= "<option value='$db'>$db</option>\n";}
-
 /* sort first by country, then by server */
 function wwwcmp($a, $b) {
 	$as = explode(".", $a);
 	$bs = explode(".", $b);
 	if(strcmp($as[2], $bs[2]) != 0) return strcmp($as[2], $bs[2]);
 	else return strcmp($as[0], $bs[0]);
+}
+
+if(file_exists("cache/servers.txt")) {
+	$serveropts = file_get_contents("cache/servers.txt");
+}
+else {
+	$dbs = Array();
+	$res = sql_query("SHOW TABLES");
+	while($row = mysql_fetch_row($res)) {$dbs[] = str_replace("_", ".", $row[0]);}
+
+	$serveropts = "";
+	usort($dbs, "wwwcmp");
+	foreach($dbs as $db) {$serveropts .= "<option value='$db'>$db</option>\n";}
+
+	file_put_contents("cache/servers.txt", $serveropts);
 }
 
 $baseurl = $_SERVER['SCRIPT_URI'];

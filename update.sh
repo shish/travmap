@@ -60,4 +60,5 @@ foreach ./update_mysql.sh
 # foreach update_sqlite.sh
 
 for n in cache/* ; do rm -f $n/* ; done
+rm -f cache/servers.txt
 
