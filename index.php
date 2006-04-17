@@ -45,7 +45,6 @@ $baseurl = preg_replace("#[^/]+$#", "", $baseurl);
 <h1>TravMap <?=$version;?></h1>
 
 <small><a href="#" onclick="help(); return false;" style="display: block; margin: 8px;">Instructions</a></small>
-<small><a href="old_index.php" style="display: block; margin: 8px;">Old Index</a></small>
 
 <hr>
 <!--

@@ -51,4 +51,4 @@ help5=Hotlinking is encouraged -- while each map takes a while to be generated t
 report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Report</a> any bugs that aren't fixed within a couple of minutes of them appearing.
 credit=Shish and Babelfish are both horrible translators, <a href="http://shish.is-a-geek.net/trac/travmap/browser/trunk/lang">please help!</a>
 
-notice=New server is on the way, meanwhile I'm trying a new database -- hopefully things are faster now~ Any questions / comments to <a href="mailto:webmaster@shish.is-a-geek.net">webmaster@shish.is-a-geek.net</a>
+notice=This is the new server, test away~ Looks like I may be using this web address for a while - I'll be back to my shish.is-a-geek.net as soon as possible, but I don't know when that'll be... <a href="mailto:webmaster@shish.is-a-geek.net">webmaster@shish.is-a-geek.net</a>
