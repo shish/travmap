@@ -30,6 +30,20 @@ TD SELECT {width: 95%;}
 	width: 768px;
 	height: 512px;
 }
+#inst {
+	display: block;
+	font-size: 0.9em;
+	width: 768px;
+	height: 512px;
+}
+#inst P {
+	text-align: justify;
+	width: 400px;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	margin-left: auto;
+	margin-right: auto;
+}
 #footer {
 	clear: both;
 	padding-top: 8px;

@@ -147,17 +147,22 @@ $baseurl = "http://shish.is-a-geek.net/projects/travmap/";
 		<br><a href="#" onclick="toggle('output'); return false;"><?=$words['output options'];?></a>
 	</div>
 </form>
-	<p>&nbsp;<p>&nbsp;<p><small><small><?=$words['report bugs'];?></small></small>
 				</td>
 				<td style="width: 768px;">
-<div id="inst" style="height: 512px; width: 512px; margin: auto;">
+<div id="inst">
 	<p><?=$words['help1'];?>
 	<p><?=$words['help2'];?>
 	<p><?=$words['help3'];?>
 	<p><?=$words['help4'];?>
 	<p><?=$words['help5'];?>
-	
+
+	<hr style="width: 400px">
+
 	<p><?=$words['notice'];?>
+	
+	<p><?=$words['report bugs'];?>
+
+	<p style="text-align: center;"><a href="mailto:webmaster@shish.is-a-geek.net">webmaster@shish.is-a-geek.net</a>
 </div>
 
 <img id="map" src="loading.php" alt="map image" style="display: none;">
