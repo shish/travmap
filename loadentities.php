@@ -26,7 +26,7 @@ if(!$using_data_cache) {
 
 while($row = sql_fetch_row($result)) {
 	if($_GET["debug"] == "on") 
-	if($using_data_cache) {
+	if(!$using_data_cache) {
 		sqlite_query($dbh, "INSERT INTO 
 			$table(x, y, diag, population, race, user_name, guild_name, guild_id, owner_id)
 			VALUES({$row[x]}, {$row[y]}, {$row[diag]}, {$row[population]}, {$row[race]},
