@@ -21,6 +21,7 @@ $dbh = null;
 if(!$using_data_cache) {
 	require_once "options.php";
 	$dbh = sqlite_open($datacache);
+	sqlite_query($dbh, "BEGIN TRANSACTION");
 	sqlite_query($dbh, "CREATE TABLE $table(x, y, population, race, owner_name, guild_name, guild_id, owner_id)");
 }
 
@@ -58,5 +59,8 @@ while($row = sql_fetch_row($result)) {
 	$entities[$entity_name]['villages'][$entities[$entity_name]['count']]['population'] = $row['population'];
 	$entities[$entity_name]['villages'][$entities[$entity_name]['count']]['x'] = $row['x'];
 	$entities[$entity_name]['villages'][$entities[$entity_name]['count']]['y'] = $row['y'];
+}
+if(!$using_data_cache) {
+	sqlite_query($dbh, "END TRANSACTION");
 }
 ?>
