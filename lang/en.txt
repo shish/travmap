@@ -41,6 +41,7 @@ default=Default
 distance from zoom target=Dist from zoom target
 population=Population
 race=Race
+town=Town
 
 help1=Separate multiple alliances and players with commas; quotes can be used to keep commas and spaces intact, eg -- A, B, "C,D,E", F
 help2=Zoom = "x,y,zoom factor" or "village name,zoom factor"

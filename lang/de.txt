@@ -41,6 +41,7 @@ default=Default
 distance from zoom target=Abstand vom Zoomobjekt
 population=Bevölkerung
 race=Rasse
+town=Town
 
 help1=Mehrere Allianzen und Spieler durch Kommas trennen
 help2=Zoom = "x,y,Zoomfaktor" oder "Dorfname,Zoomfactor"

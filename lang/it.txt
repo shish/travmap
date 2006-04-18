@@ -41,6 +41,7 @@ default=Default
 distance from zoom target=Distanza dal punto di zoom
 population=Popolazione
 race=Razza
+town=Town
 
 help1=Separa i nomi delle alleanze o dei giocatori con una virgola; Le virgolette possono essere usate per racchiudere il testo assieme ad eventuali virgole o spazi, Esempio -- A, B, "C,D,E", F
 help2=Zoom = "asse x, asse y, fattore di zoom (1, 2, 1.1 ecc.)" oppure "nome villaggio, fattore di zoom"

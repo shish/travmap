@@ -41,6 +41,7 @@ default=Standaard
 distance from zoom target=Afstand naar zoom punt
 population=Bevolking
 race=Ras
+town=Town
 
 help1=Scheid meerdere allianties of spelers door middel van komma's
 help2=Zoom = "x,y,zoom factor" of "Naam van het dorp,zoom factor"

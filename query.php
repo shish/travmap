@@ -24,7 +24,10 @@ if(!is_null($alliance) && !is_null($player)) {
  * o)  single table is considerably (3-4 times) faster than joins :-/
  */
 $query = "
-	SELECT x, y, x-y AS diag, population, race, owner_name, guild_name, guild_id, owner_id
+	SELECT x, y, x-y AS diag, population, race, 
+		owner_name, owner_id,
+		guild_name, guild_id, 
+		town_name, town_id
 	FROM $table
 	WHERE 1=1 
 ";

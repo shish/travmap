@@ -41,6 +41,7 @@ default=Per Defecte
 distance from zoom target=Distància al centre del zoom
 population=Habitants
 race=Raça
+town=Town
 
 help1=Separa diferents aliançes i jugadors amb una coma
 help2=Zoom = "x,y,factor d'augment (ex: 50x)" o "nom de la vila,factor d'augment(ex: 2x)"

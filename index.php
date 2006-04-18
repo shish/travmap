@@ -89,6 +89,7 @@ $baseurl = "http://shish.is-a-geek.net/projects/travmap/";
 				<option value="player"><?=$words['player'];?></option>
 				<option value="alliance"><?=$words['alliance'];?></option>
 				<option value="race"><?=$words['race'];?></option>
+				<option value="town"><?=$words['town'];?></option>
 			</select>
 		<br><?=$words['colour by'];?>
 		<br>

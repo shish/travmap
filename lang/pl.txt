@@ -41,6 +41,7 @@ default=Domyslne
 distance from zoom target=Odleglosc od celu
 population=Populacja
 race=Plemiona
+town=Town
 
 help1=Oddzielaj koalicje i graczy przecinkami
 help2=Powiekszenie = "x,y,wartosc powiekszenia" lub "nazwa wioski,wsp. powiekszenia"

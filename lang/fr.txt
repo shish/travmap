@@ -41,6 +41,7 @@ default=Defaut
 distance from zoom target=Dist de la Cible Zoomée
 population=Population
 race=Peuple
+town=Town
 
 help1=Séparer les alliances multiples et les joueurs par une virgule; des virgules peuvent etre utilisées pour guarder les tirets et les espaces intacts, ex: -- A, B, "C,D,E", F
 help2=Zoom = "x,y,facteur de zoom" ou "nom du village, facteur de zoom"

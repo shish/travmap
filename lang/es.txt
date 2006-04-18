@@ -41,6 +41,7 @@ default=Por defecto
 distance from zoom target=Distancia al objetivo del zoom
 population=Poblacion
 race=Raza
+town=Town
 
 help1=Separarar multiples alianzas y jugadores con comas
 help2=Zoom = "x,y,factor de aumento(Ej: 50x)" or "nombre del pueblo,factor de aumento(Ej: 50x)"

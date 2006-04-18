@@ -41,6 +41,7 @@ default=
 distance from zoom target=
 population=
 race=
+town=
 
 help1=
 help2=
