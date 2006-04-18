@@ -11,7 +11,9 @@ function wwwcmp($a, $b) {
 }
 
 if(file_exists("cache/servers.txt")) {
-	$serveropts = file_get_contents("cache/servers.txt");
+	$fp = fopen("cache/servers.txt", "r");
+	while($tmp = fgets($fp)) {$serveropts .= $tmp;}
+	fclose($fp);
 }
 else {
 	# only connect if not using cache
@@ -24,7 +26,9 @@ else {
 	usort($dbs, "wwwcmp");
 	foreach($dbs as $db) {$serveropts .= "<option value='$db'>$db</option>\n";}
 
-	file_put_contents("cache/servers.txt", $serveropts);
+	$fp = fopen("cache/servers.txt", "w");
+	fputs($fp, $serveropts);
+	fclose($fp);
 }
 
 $baseurl = $_SERVER['SCRIPT_URI'];
