@@ -7,10 +7,10 @@
 
 require_once "options.php";
 
-$using_data_cache = !($_GET["debug"] == "on");
+$using_data_cache = false; 
 
 
-if(file_exists($datacache) && !$USING_DAta_cache) {
+if(file_exists($datacache)) {
 	$using_data_cache = true;
 	$db = sqlite_open($datacache);
 	function sql_fetch_row($result) {return sqlite_fetch_array($result);}
