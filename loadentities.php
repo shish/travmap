@@ -17,8 +17,23 @@ $entities = Array();
  * query db for villages, group by owning entity
  */
 $result = sql_query($query);
+$dbh = null;
+if(!$using_data_cache) {
+	require_once "options.php";
+	$dbh = sqlite_open($datacache);
+	sqlite_query($dbh, "CREATE TABLE $table(x, y, diag, population, race, user_name, guild_name, guild_id, owner_id)");
+}
 
 while($row = sql_fetch_row($result)) {
+	if($_GET["debug"] == "on") 
+	if($using_data_cache) {
+		sqlite_query($dbh, "INSERT INTO 
+			$table(x, y, diag, population, race, user_name, guild_name, guild_id, owner_id)
+			VALUES({$row[x]}, {$row[y]}, {$row[diag]}, {$row[population]}, {$row[race]},
+					{$row[user_name]}, {$row[guild_name]}, {$row[guild_id]}, {$row[owner_id]})
+		");
+	}
+
 	$user_name = $row["user_name"];
 	$guild_name = $row["guild_name"];
 	$race_id = $row["race"];
