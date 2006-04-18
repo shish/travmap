@@ -9,6 +9,7 @@ require_once "imageinit.php";
 require_once "libaima.php";
 
 
+if($_GET["debug"] != "on")
 switch($_GET["format"]) {
 	case "PNG": case "png": default:
 		header("Content-type: image/png");
