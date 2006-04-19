@@ -39,7 +39,7 @@ function updateMap() {
 	}
 	byId("inst").style.display = "none";
 	byId("map").style.display = "block";
-	byId("map").src = "loading.php";
+	byId("map").src = "loading.png";
 	byId("map").src = "map.php?"+url;
 	byId("link").value = baseurl+"map.php?"+url;
 }
