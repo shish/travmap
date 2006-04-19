@@ -18,4 +18,12 @@ if(!cache_is_hit()) {
 }
 
 timer_save();
+
+$fp = fopen("cachelog.txt", 'a');
+fwrite($fp, sprintf("icache:%s dcache:%s // %16s // %s\n", 
+	cache_is_hit() ? "y" : "n", 
+	$using_data_cache ? "y" : "n",
+	$_SERVER["REMOTE_ADDR"],
+	$_SERVER["QUERY_STRING"]));
+fclose($fp); 
 ?>
