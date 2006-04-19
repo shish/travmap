@@ -6,7 +6,7 @@
  */
 
 
-$cachehit = 0;
+$cachehit = false;
 $cachename = "";
 
 function cache_start($cachedir="./cache") {
@@ -33,13 +33,13 @@ function cache_start($cachedir="./cache") {
 		if($if_modified_since == $gmdate_mod) {
 			header("HTTP/1.0 304 Not Modified");
 			header("Content-type: image/$format");
-			$cachehit = 1;
+			$cachehit = true;
 		}
 		else if($file = @file_get_contents($cachename)) {
 			header("Content-type: image/$format");
 			header("Last-Modified: $gmdate_mod");
 			print $file;
-			$cachehit = 1;
+			$cachehit = true;
 		}
 	}
 }
