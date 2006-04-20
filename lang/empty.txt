@@ -48,5 +48,6 @@ help2=
 help3=
 help4=
 
+servertime=
 report bugs=
 credit=

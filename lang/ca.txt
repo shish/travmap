@@ -49,5 +49,6 @@ help3=L'aliança, els jugadors i les viles tenen en compte les mejúscules, perq
 help4=Els jugadors o/i aliançes que tinguin carácters no estandards en el nom, poden posar la seva ID en comptes del nom. Ex:" id:6969 " 
 help5=Us animem a usar els Links.. Mentres que cada mapa triga una mica al ser generat per primera vegada cada dia, aleshores es queda en la caché, i no comporta practicament res de treball de procesador ni d'ample de banda per ésser reenviat.
 
+servertime=Maps are updated at 1:30AM, the current time is
 report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Avisa'm</a> de qualsevol errada que trovis, si fa uns quants minuts que dura.
 credit=Maravellosament traduit per Dakaisar.

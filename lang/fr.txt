@@ -46,7 +46,8 @@ town=Town
 help1=Séparer les alliances multiples et les joueurs par une virgule; des virgules peuvent etre utilisées pour guarder les tirets et les espaces intacts, ex: -- A, B, "C,D,E", F
 help2=Zoom = "x,y,facteur de zoom" ou "nom du village, facteur de zoom"
 help3=Les cases Alliance, Joueur, Village et zoom sont des cases sensitives (à mémoire de texte), pour vous aidez à écrire plus vite.
-help4=Les joueurs et les alliances avec des charactères non-standards dans leurs noms peuvent utiliser leur IDs plutot que leurs noms, ex: "id:123"
+help4=Les joueurs et les alliances avec des charactères non-standards dans leurs noms peuvent utiliser leur IDs plutot que leurs noms, ex : "id:123"
 
+servertime=Maps are updated at 1:30AM, the current time is
 report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Reportez</a> les erreurs constatées et apportez vos idées...
 credit=<a href="http://shish.is-a-geek.net/trac/travmap/browser/trunk/lang">Traduit</a> avec l'aide de Sakumi et de Bouy

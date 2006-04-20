@@ -48,6 +48,7 @@ help2=Zoom = "x,y,zoom factor" of "Naam van het dorp,zoom factor"
 help3=Alliantie, speler en dorp om op in te zoomen zijn allemaal hoofdlettergevoelig, aangezien dat een *STUK* sneller is
 help4=Spelers en allianties met niet-standaard tekens in hun naam kunnen vervangen worden door hun IDs, bijvoorbeeld "id:123"
 
+servertime=Maps are updated at 1:30AM, the current time is
 report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Rapporteer</a> fouten die niet enkele minuten na ontdekking verholpen zijn.
 credit=<a href="http://shish.is-a-geek.net/trac/travmap/browser/trunk/lang">Vertaald</a> door SH4D3H en Nilis.
 

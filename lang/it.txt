@@ -48,5 +48,6 @@ help2=Zoom = "asse x, asse y, fattore di zoom (1, 2, 1.1 ecc.)" oppure "nome vil
 help3=Nomi di alleanze, giocatori e villaggi sono tutti sensibili alle maiuscole (case sensetive), se rispettate questa regola la ricerca sarà *MOLTO* più veloce
 help4=Players and alliances with non-standard characters in their names can use their IDs rather than their names, eg "id:123"
 
+servertime=Maps are updated at 1:30AM, the current time is
 report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Segnala</a> qualunque bug che non dovesse venire risolto poco dopo la sua comparsa
 credit=<a href="http://shish.is-a-geek.net/trac/travmap/browser/trunk/lang">Tradotto</a> da Warp9

@@ -48,5 +48,6 @@ help2=Powiekszenie = "x,y,wartosc powiekszenia" lub "nazwa wioski,wsp. powieksze
 help3=Pamietaj ze wielkosc liter MA ZNACZENIE!
 help4=Players and alliances with non-standard characters in their names can use their IDs rather than their names, eg "id:123"
 
+servertime=Maps are updated at 1:30AM, the current time is
 report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Raportuj</a> jesli jakis blad nie zostal naprawiony w ciagu kilku minut od pojawienia.
 credit=<a href="http://shish.is-a-geek.net/trac/travmap/browser/trunk/lang">Translated</a> by Dyzdyz

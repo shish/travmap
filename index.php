@@ -34,6 +34,8 @@ else {
 $baseurl = $_SERVER['SCRIPT_URI'];
 $baseurl = preg_replace("#[^/]+$#", "", $baseurl);
 $baseurl = "http://shish.is-a-geek.net/projects/travmap/";
+
+$servertime = date('g:iA');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
@@ -155,6 +157,8 @@ $baseurl = "http://shish.is-a-geek.net/projects/travmap/";
 	<p><?=$words['help3'];?>
 	<p><?=$words['help4'];?>
 	<p><?=$words['help5'];?>
+	
+	<p><?=$words['servertime'];?> <?=$servertime;?>
 
 	<hr style="width: 400px">
 
