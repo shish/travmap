@@ -142,6 +142,8 @@ $servertime = date('g:iA');
 				<!-- <option value="jpeg">JPEG</option> -->
 				<option value="svg">SVG</option>
 			</select>
+		<br><?=$words['new page'];?>
+		<br><input type="checkbox" name="newpage">
 	</div>
 	<div id="clickies">
 		<br><input type="submit" value="<?=$words['show map'];?>">

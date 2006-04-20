@@ -32,6 +32,7 @@ layout=Disposició
 spread=Separat
 caption=Títol
 shrinkwrap=Ajustar ampliació automaticament
+new page=Open in new page
 
 advanced options=Opcions Avançades
 output options=Opcions de Sortida

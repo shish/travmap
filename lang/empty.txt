@@ -32,6 +32,7 @@ layout=
 spread=
 caption=
 shrinkwrap=
+new page=
 
 advanced options=
 output options=

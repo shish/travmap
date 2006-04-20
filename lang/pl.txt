@@ -32,6 +32,7 @@ layout=Layout
 spread=Spread
 caption=Caption
 shrinkwrap=Shrinkwrap
+new page=Open in new page
 
 advanced options=Opcje Zaawansowane
 output options=Opcje Output

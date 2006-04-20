@@ -32,6 +32,7 @@ layout=Layout
 spread=Verspreiden
 caption=Label
 shrinkwrap=Best passend
+new page=Open in new page
 
 advanced options=Geavanceerde Opties
 output options=Uitvoer Opties

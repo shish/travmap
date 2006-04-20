@@ -32,6 +32,7 @@ layout=Mise en page
 spread=Déployer par Zones
 caption=Légende
 shrinkwrap=Shrinkwrap
+new page=Open in new page
 
 advanced options=Options Avançées
 output options=Options de Sortie
