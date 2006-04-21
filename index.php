@@ -33,7 +33,6 @@ else {
 
 $baseurl = $_SERVER['SCRIPT_URI'];
 $baseurl = preg_replace("#[^/]+$#", "", $baseurl);
-$baseurl = "http://shish.is-a-geek.net/projects/travmap/";
 
 $servertime = date('g:iA');
 ?>
@@ -171,7 +170,7 @@ $servertime = date('g:iA');
 	<p style="text-align: center;"><a href="mailto:webmaster@shish.is-a-geek.net">webmaster@shish.is-a-geek.net</a>
 </div>
 
-<img id="map" src="loading.php" alt="map image" style="display: none;">
+<img id="map" src="loading.png" alt="map image" style="display: none;">
 <br><?=$words['link to image'];?>: 
 <input type="text" id="link" style="width: 512px;">
 
