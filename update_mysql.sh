@@ -10,26 +10,24 @@ DBNAME=`echo $1 | sed 's/\./_/g'`
 
 . config.sh # mysql contact info
 
-if [ -f create_$DBNAME ] ; then
-	echo "
-		CREATE TABLE $DBNAME(
-			lochash int primary key, x int, y int, race int,
-			town_id  int, town_name  char(20),
-			owner_id int, owner_name char(16),
-			guild_id int, guild_name char(8),
-			population int
-		);
-		CREATE INDEX town_name ON $DBNAME(town_name);
-		CREATE INDEX owner_name ON $DBNAME(owner_name);
-		CREATE INDEX guild_name ON $DBNAME(guild_name);
-		CREATE INDEX owner_id ON $DBNAME(owner_id);
-		CREATE INDEX guild_id ON $DBNAME(guild_id);
-		CREATE INDEX x ON $DBNAME(x);
-		CREATE INDEX y ON $DBNAME(y);
-		CREATE INDEX race ON $DBNAME(race);
-		CREATE INDEX population ON $DBNAME(population);
-	" | mysql -u$MYSQL_USER -p$MYSQL_PASS -h $MYSQL_HOST $MYSQL_DB
-fi
+echo "
+	CREATE TABLE IF NOT EXISTS $DBNAME(
+		lochash MEDIUMINT UNSIGNED PRIMARY KEY, x SMALLINT, y SMALLINT, race TINYINT,
+		town_id  MEDIUMINT UNSIGNED, town_name  CHAR(20),
+		owner_id MEDIUMINT UNSIGNED, owner_name CHAR(16),
+		guild_id MEDIUMINT UNSIGNED, guild_name CHAR(8),
+		population MEDIUMINT,
+		INDEX(town_name),
+		INDEX(owner_name),
+		INDEX(guild_name),
+		INDEX(owner_id),
+		INDEX(guild_id),
+		INDEX(x),
+		INDEX(y),
+		INDEX(race),
+		INDEX(population)
+	);
+" | mysql -u$MYSQL_USER -p$MYSQL_PASS -h $MYSQL_HOST $MYSQL_DB
 
 if [ -s sql/$1.sql ] ; then
 	perl -ne "s/INSERT INTO \`x_world\` VALUES \(//; s/\);//; print;" < sql/$1.sql > sql/$DBNAME.txt
