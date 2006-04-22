@@ -12,11 +12,11 @@ DBNAME=`echo $1 | sed 's/\./_/g'`
 
 echo "
 	CREATE TABLE IF NOT EXISTS $DBNAME(
-		lochash MEDIUMINT UNSIGNED PRIMARY KEY, x SMALLINT, y SMALLINT, race TINYINT,
-		town_id  MEDIUMINT UNSIGNED, town_name  CHAR(20),
-		owner_id MEDIUMINT UNSIGNED, owner_name CHAR(16),
-		guild_id MEDIUMINT UNSIGNED, guild_name CHAR(8),
-		population MEDIUMINT,
+		lochash MEDIUMINT UNSIGNED PRIMARY KEY NOT NULL, x SMALLINT NOT NULL, y SMALLINT NOT NULL, race TINYINT NOT NULL,
+		town_id  MEDIUMINT UNSIGNED NOT NULL, town_name  CHAR(20) NOT NULL,
+		owner_id MEDIUMINT UNSIGNED NOT NULL, owner_name CHAR(16) NOT NULL,
+		guild_id MEDIUMINT UNSIGNED NOT NULL, guild_name CHAR(8) NOT NULL,
+		population MEDIUMINT NOT NULL,
 		INDEX(town_name),
 		INDEX(owner_name),
 		INDEX(guild_name),
