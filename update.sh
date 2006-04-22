@@ -23,6 +23,7 @@ function foreach() {
 	sh $1 s6.travian.fr map
 	sh $1 s7.travian.fr map
 	sh $1 s8.travian.fr map
+	sh $1 s9.travian.fr map
 
 	sh $1 s1.travian.it map
 	sh $1 s2.travian.it map
@@ -59,6 +60,6 @@ foreach ./update_text.sh
 foreach ./update_mysql.sh
 # foreach update_sqlite.sh
 
-for n in cache/* ; do rm -f $n/* ; done
 rm -f cache/servers.txt
+for n in cache/* ; do rm -f $n/* ; done
 
