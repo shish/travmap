@@ -38,9 +38,12 @@ if(!is_null($alliance)) {
 	$n = 0;
 	foreach($alliances as $alliance) {
 		$alliance = trim($alliance);
-		if($n++) $query .= ", ";
-		if(strncmp($alliance, "id:", 3) == 0) $query .= id2name("guild_id", "guild_name", substr($alliance, 3), $table);
-		else $query .= getMatches("guild_name", $alliance);
+		if(strncmp($alliance, "id:", 3) == 0) $items = id2name("guild_id", "guild_name", substr($alliance, 3), $table);
+		else $items = getMatches("guild_name", $alliance);
+		if(strlen($items) > 0) {
+			if($n++) $query .= ", ";
+			$query .= $items;
+		}
 	}
 	$query .= ") ";
 }
@@ -50,9 +53,12 @@ if(!is_null($player)) {
 	$n = 0;
 	foreach($players as $player) {
 		$player = trim($player);
-		if($n++) $query .= ", ";
-		if(strncmp($player, "id:", 3) == 0) $query .= id2name("owner_id", "owner_name", substr($player, 3), $table);
-		else $query .= getMatches("owner_name", $player);
+		if(strncmp($player, "id:", 3) == 0) $items = id2name("owner_id", "owner_name", substr($player, 3), $table);
+		else $items = getMatches("owner_name", $player);
+		if(strlen($items) > 0) {
+			if($n++) $query .= ", ";
+			$query .= $items;
+		}
 	}
 	$query .= ") ";
 }
