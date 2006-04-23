@@ -18,7 +18,7 @@ $entities = Array();
  */
 $result = sql_query($query);
 $dbh = null;
-if(!$using_data_cache) {
+if(!$using_data_cache && $datacache) {
 	require_once "options.php";
 	$dbh = sqlite_open($datacache);
 	sqlite_query($dbh, "BEGIN TRANSACTION");
@@ -32,7 +32,7 @@ if(!$using_data_cache) {
 }
 
 while($row = sql_fetch_row($result)) {
-	if(!$using_data_cache) {
+	if(!$using_data_cache && $datacache) {
 		sqlite_query($dbh, "INSERT INTO 
 			$table(
 				x, y, population, race, 
@@ -77,7 +77,7 @@ while($row = sql_fetch_row($result)) {
 	$entities[$entity_name]['villages'][$entities[$entity_name]['count']]['x'] = $row['x'];
 	$entities[$entity_name]['villages'][$entities[$entity_name]['count']]['y'] = $row['y'];
 }
-if(!$using_data_cache) {
+if($datacache && !$using_data_cache) {
 	sqlite_query($dbh, "END TRANSACTION");
 }
 ?>

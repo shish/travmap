@@ -35,18 +35,18 @@ $racol = getBool("racol") || ($colby == "race");
 $lines = getBool("lines");
 $casen = getBool("casen");
 $azoom = getBool("azoom");
-$newdb = True; # getBool("newdb");
+$nocache = getBool("nocache");
 
 $dotsize = getFloat("dotsize", 1);
 
 $maxpop = getInt("maxpop", null);
 $minpop = getInt("minpop", null);
 
-$table = $newdb ? str_replace(".", "_", $server) : "x_world";
+$table = str_replace(".", "_", $server);
 
 $datahash = md5("$server $alliance $player $zoom $caption $casen $maxpop $minpop");
 $datahash_initial = substr($datahash, 0, 2); 
-$datacache = "cache/$datahash_initial/$datahash.db";
+$datacache = $nocache ? false : "cache/$datahash_initial/$datahash.db";
 
 require_once "database.php";
 
