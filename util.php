@@ -94,13 +94,12 @@ function getMatches($col, $name) {
 	/* no matching characters = no point matching */
 	/* if(strpos($name, "%") === false && strpos($name, "_") === false) return "'$name'"; */
 
-	$result = sql_query("SELECT $col FROM $table WHERE $col LIKE '$name' GROUP BY $col;");
+	$result = sql_query("SELECT $col FROM $table WHERE $col LIKE '$name' GROUP BY $col");
 	$ret = "";
 	$n = 0;
 	while($row = sql_fetch_row($result)) {
-		$c = $row[$col];
 		if($n++) $ret .= ", ";
-		$ret .= "'$c'";
+		$ret .= "'{$row[$col]}'";
 	}
 	return $ret;
 }
