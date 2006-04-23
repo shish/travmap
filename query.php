@@ -45,6 +45,7 @@ if(!is_null($alliance)) {
 			$query .= $items;
 		}
 	}
+	if(preg_match("/\(/", $query)) $query .= "null";
 	$query .= ") ";
 }
 if(!is_null($player)) {
@@ -60,6 +61,7 @@ if(!is_null($player)) {
 			$query .= $items;
 		}
 	}
+	if(preg_match("/\(/", $query)) $query .= "null";
 	$query .= ") ";
 }
 if($anp) $query .= ") ";
