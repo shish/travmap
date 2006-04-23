@@ -45,7 +45,7 @@ $minpop = getInt("minpop", null);
 $table = $newdb ? str_replace(".", "_", $server) : "x_world";
 
 $datahash = md5("$server $alliance $player $zoom $caption $casen $maxpop $minpop");
-$datahash_initial = substr($datahash, 0, 1); 
+$datahash_initial = substr($datahash, 0, 2); 
 $datacache = "cache/$datahash_initial/$datahash.db";
 
 require_once "database.php";

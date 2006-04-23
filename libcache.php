@@ -23,7 +23,7 @@ function cache_start($cachedir="./cache") {
 
 	$nocache = $_GET['nocache'];
 	$hash = md5($_SERVER["QUERY_STRING"]);
-	$initial = substr($hash, 0, 1);
+	$initial = substr($hash, 0, 2);
 	$cachename = "$cachedir/$initial/$hash.$format";
 
 	if(file_exists($cachename) && !$nocache) {

@@ -50,9 +50,11 @@ function foreach() {
 if [ ! -d sql ] ; then mkdir sql ; fi
 if [ ! -d cache ] ; then
 	mkdir cache
-	cd cache
-	mkdir 0 1 2 3 4 5 6 7 8 9 a b c d e f
-	cd ..
+	zeroTo255=`seq -s " " -f %g 0 255`
+	zeroToFF=`for n in $zeroTo255 ; do printf "%2.2x " $n ; done`
+	for m in $zeroToFF ; do 
+		mkdir cache/$m
+	done
 	chmod -R 777 cache
 fi
 
