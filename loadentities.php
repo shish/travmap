@@ -21,14 +21,20 @@ $dbh = null;
 if(!$using_data_cache && $datacache) {
 	require_once "options.php";
 	$dbh = sqlite_open($datacache);
-	sqlite_query($dbh, "BEGIN TRANSACTION");
-	sqlite_query($dbh, 
-		"CREATE TABLE $table(
-			x, y, population, race,
-			owner_name, owner_id,
-			guild_name, guild_id,
-			town_name, town_id
-		)") or ($datacache = false);
+	if(@sqlite_query($dbh, "BEGIN TRANSACTION")) {
+		sqlite_query($dbh, 
+			"CREATE TABLE $table(
+				x, y, population, race,
+				owner_name, owner_id,
+				guild_name, guild_id,
+				town_name, town_id
+			)");
+	}
+	else {
+		sqlite_close($dbh);
+		unlink($datacache);
+		$datacache = false;
+	}
 }
 
 while($row = sql_fetch_row($result)) {
@@ -46,7 +52,7 @@ while($row = sql_fetch_row($result)) {
 				'{$row[guild_name]}', '{$row[guild_id]}',
 				'{$row[town_name]}', '{$row[town_id]}'
 			)
-		") or ($datacache = false);
+		");
 	}
 
 	$user_name = $row["owner_name"];
