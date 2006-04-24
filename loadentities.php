@@ -28,7 +28,7 @@ if(!$using_data_cache && $datacache) {
 			owner_name, owner_id,
 			guild_name, guild_id,
 			town_name, town_id
-		)");
+		)") or ($datacache = false);
 }
 
 while($row = sql_fetch_row($result)) {
@@ -46,7 +46,7 @@ while($row = sql_fetch_row($result)) {
 				'{$row[guild_name]}', '{$row[guild_id]}',
 				'{$row[town_name]}', '{$row[town_id]}'
 			)
-		");
+		") or ($datacache = false);
 	}
 
 	$user_name = $row["owner_name"];
