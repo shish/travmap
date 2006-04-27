@@ -16,10 +16,12 @@ if(file_exists("cache/servers.txt")) {
 	fclose($fp);
 }
 else {
-	# only connect if not using cache
-	require_once "database.php";
+	require_once "config.php";
+	mysql_pconnect($mysql_host, $mysql_user, $mysql_pass);
+	mysql_select_db($mysql_db);
+
 	$dbs = Array();
-	$res = sql_query("SHOW TABLES");
+	$res = mysql_query("SHOW TABLES");
 	while($row = mysql_fetch_row($res)) {$dbs[] = str_replace("_", ".", $row[0]);}
 
 	$serveropts = "";
