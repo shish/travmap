@@ -188,12 +188,14 @@ $servertime = date('g:iA');
 	<a href="?lang=fr">Français</a> |
 	<a href="?lang=de">Deutsh</a> |
 	<a href="?lang=es">Español</a> |
-	<a href="?lang=nl">Nederlands</a> |
+	<a href="?lang=nl">Nederlands</a>
+	<br>
 	<a href="?lang=pl">Polski</a> |
 	<a href="?lang=it">Italiano</a> |
 	<a href="?lang=ca">Catalan</a> |
 	<a href="?lang=pt">Portuguese</a>
-	<br><small><?=$words['credit'];?></small>
+	<br>
+	<small><?=$words['credit'];?></small>
 </small>
 				</td>
 			</tr>
