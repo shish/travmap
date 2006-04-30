@@ -1,0 +1,55 @@
+key=Chave
+instructions=Instruçőes
+link to image=Ligaçăo para a imagem
+loading=A Carregar...
+
+roman=Romanos
+gaul=Gauleses
+teuton=Germanos
+
+north=^
+east=&lt;
+south=V
+west=&gt;
+zoom in=+
+zoom out=-
+
+server=Servidor
+alliance=Aliança
+player=Jogador
+lines=Linhas
+group by=Agrupar por
+zoom=Zoom
+case sensitive=Sensível a Maiúsculas
+dot size=Tamanho do Ponto
+min population=Populaçăo Mínima
+max population=Populaçăo Máxima
+order by=Ordenar Por
+colour by=Colorir Por
+output format=Formato de Saída
+show map=Mostrar mapa
+layout=Disposiçăo
+spread=Distribuiçăo
+caption=Título
+shrinkwrap=Auto-dimensionar
+new page=Abrir em nova página
+
+advanced options=Opçőes Avançadas
+output options=Opçőes de Saída
+language options=Opçőes de Língua
+
+default=Por defeito
+distance from zoom target=Distância ao objecto do Zoom
+population=Populaçăo
+race=Raça
+town=Aldeia
+
+help1=Separar as multiplas alianças e jogadores com vírgulas; as aspas podem ser usadas para manter as virgulas e espaços intactos, ex.: -- A, B, "C,D,E", F
+help2=Zoom = "x,y,factor de aumento" ou "nome da aldeia,factor de aumento"
+help3=Tanto a Aliança como o Jogador ou a Aldeia às quais se aplicam o Zoom săo todos sensiveis a maiúsculas/minúsculas, fazendo com que seja *MUITO* mais rápido o cálculo
+help4=Jogadore e Alianças com caracteres năo standard nos seus nomes podem usar os IDs em vez dos nomes, ex.:"id:123"
+help5=Criar uma ligaçăo(Link) directa ao mapa é aconselhavel, pois cada mapa é gerado cada dia consumindo tempo ao servidor, sendo posteriormente guardado năo necessitando de tanto tempo para o reenvio.
+
+servertime=Os mapas săo actualizados às 1:30AM, actulamente săo
+report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Avisem-me</a> de qualquer falha que exista tăo depressa quanto possivel.
+credit=Traduzido por Miguel Pinto (dedicado á Li)
