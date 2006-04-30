@@ -6,7 +6,7 @@ require_once "version.php";
 function wwwcmp($a, $b) {
 	$as = explode(".", $a);
 	$bs = explode(".", $b);
-	if(strcmp($as[2], $bs[2]) != 0) return strcmp($as[2], $bs[2]);
+	if(strncmp($as[2], $bs[2], 2) != 0) return strncmp($as[2], $bs[2], 2);
 	else return strcmp($as[0], $bs[0]);
 }
 
