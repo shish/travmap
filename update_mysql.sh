@@ -31,7 +31,6 @@ echo "
 
 if [ -s sql/$1.sql ] ; then
 	perl -ne "s/INSERT INTO \`x_world\` VALUES \(//; s/\);//; print;" < sql/$1.sql > sql/$DBNAME.txt
-	# yes it's hardcoded. mysql is set local access only :P
 	mysqlimport \
 		-u$MYSQL_USER -p$MYSQL_PASS -h $MYSQL_HOST $MYSQL_DB \
 		--delete --local \
