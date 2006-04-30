@@ -20,13 +20,18 @@ else {
 	mysql_pconnect($mysql_host, $mysql_user, $mysql_pass);
 	mysql_select_db($mysql_db);
 
-	$dbs = Array();
+	$options = Array();
 	$res = mysql_query("SHOW TABLES");
-	while($row = mysql_fetch_row($res)) {$dbs[] = str_replace("_", ".", $row[0]);}
+	while($row = mysql_fetch_row($res)) {
+		$server = str_replace("_", ".", $row[0]);
+		$row2 = mysql_fetch_row(mysql_query("SELECT count(*) AS count FROM {$row[0]}"));
+		$disabled = $row2[0] < 1000 ? " disabled" : "";
+		$options[] = "<option value='$server'$disabled>$server</option>\n";
+	}
 
 	$serveropts = "";
-	usort($dbs, "wwwcmp");
-	foreach($dbs as $db) {$serveropts .= "<option value='$db'>$db</option>\n";}
+	usort($options, "wwwcmp");
+	foreach($options as $option) {$serveropts .= $option;}
 
 	$fp = fopen("cache/servers.txt", "w");
 	fputs($fp, $serveropts);
