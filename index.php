@@ -193,7 +193,8 @@ $servertime = date('g:iA');
 	<a href="?lang=pl">Polski</a> |
 	<a href="?lang=it">Italiano</a> |
 	<a href="?lang=ca">Catalan</a> |
-	<a href="?lang=pt">Portuguese</a>
+	<a href="?lang=pt">Portuguese</a> |
+	<a href="?lang=ro">Romanian</a>
 	<br>
 	<small><?=$words['credit'];?></small>
 </small>
