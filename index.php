@@ -83,7 +83,7 @@ else {
 		$n++;
 	}
 
-	$fp = fopen("cache/servers.txt", "w");
+	$fp = fopen("cache/langs.txt", "w");
 	fputs($fp, $langs);
 	fclose($fp);
 }
