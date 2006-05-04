@@ -1,3 +1,5 @@
+lang=Catalan
+
 key=Clau
 instructions=Instruccions
 link to image=Enllaç a la imatge

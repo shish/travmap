@@ -1,3 +1,5 @@
+lang=Portuguese
+
 key=Chave
 instructions=Instruçőes
 link to image=Ligaçăo para a imagem

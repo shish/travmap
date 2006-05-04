@@ -1,3 +1,5 @@
+lang=English
+
 key=Key
 instructions=Instructions
 link to image=Link to image

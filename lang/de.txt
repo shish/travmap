@@ -1,3 +1,5 @@
+lang=Deutsh
+
 key=Schlüssel
 instructions=Instructions
 link to image=Link to image

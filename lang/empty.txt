@@ -1,3 +1,5 @@
+lang=
+
 key=
 instructions=
 link to image=

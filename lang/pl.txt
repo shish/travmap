@@ -1,3 +1,5 @@
+lang=Polski
+
 key=Klucz
 instructions=Instructions
 link to image=Link to image

@@ -1,3 +1,5 @@
+lang=Romanian
+
 key=Cheie
 instructions=Instructiuni
 link to image=Link la imagine

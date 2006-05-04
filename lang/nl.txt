@@ -1,3 +1,5 @@
+lang=Nederlands
+
 key=Legenda
 instructions=Instructies
 link to image=Link naar plaatje

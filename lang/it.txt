@@ -1,3 +1,5 @@
+lang=Italiano
+
 key=Chiave
 instructions=Instructions
 link to image=Link to image

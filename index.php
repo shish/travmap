@@ -10,12 +10,21 @@ function wwwcmp($a, $b) {
 	else return strcmp($as[0], $bs[0]);
 }
 
+
+/*
+ * load the server list -- cached if possible, else
+ * look for the database's tables
+ */
 if(file_exists("cache/servers.txt")) {
 	$fp = fopen("cache/servers.txt", "r");
 	while($tmp = fgets($fp)) {$serveropts .= $tmp;}
 	fclose($fp);
 }
 else {
+	/*
+	 * Connect manually -- database.php uses data caching,
+	 * which can mess with things in some odd situations...
+	 */
 	require_once "config.php";
 	mysql_pconnect($mysql_host, $mysql_user, $mysql_pass);
 	mysql_select_db($mysql_db);
@@ -38,10 +47,46 @@ else {
 	fclose($fp);
 }
 
-$baseurl = $_SERVER['SCRIPT_URI'];
-$baseurl = preg_replace("#[^/]+$#", "", $baseurl);
 
+/*
+ * for the long link
+ */
+$baseurl = preg_replace("#[^/]+$#", "", $_SERVER['SCRIPT_URI']);
+
+
+/*
+ * for time until next update
+ */
 $servertime = date('g:iA');
+
+
+/*
+ * Scan each of the lanugage files
+ */
+$langs = "";
+if(file_exists("cache/langs.txt")) {
+	$fp = fopen("cache/langs.txt", "r");
+	while($tmp = fgets($fp)) {$langs .= $tmp;}
+	fclose($fp);
+}
+else {
+	$n = 0;
+	foreach(glob("lang/??.txt") as $flang) {
+		$code = preg_replace("#lang/(..).txt#", "\1", $flang);
+		$fp = fopen($flang, "r");
+		$lang = str_replace("lang=", "", trim(fgets($fp)));
+		fclose($fp);
+		if($n == 0) $langs = "";
+		else if(($n % 5) == 0) $langs .= "<br>\n";
+		else $langs .= " | ";
+		$langs .= "<a href='?lang=$code'>$lang</a>\n";
+		$n++;
+	}
+
+	$fp = fopen("cache/servers.txt", "w");
+	fputs($fp, $langs);
+	fclose($fp);
+}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
@@ -184,17 +229,7 @@ $servertime = date('g:iA');
 <hr>
 
 <p><small>
-	<a href="?lang=en">English</a> |
-	<a href="?lang=fr">Français</a> |
-	<a href="?lang=de">Deutsh</a> |
-	<a href="?lang=es">Español</a> |
-	<a href="?lang=nl">Nederlands</a>
-	<br>
-	<a href="?lang=pl">Polski</a> |
-	<a href="?lang=it">Italiano</a> |
-	<a href="?lang=ca">Catalan</a> |
-	<a href="?lang=pt">Portuguese</a> |
-	<a href="?lang=ro">Romanian</a>
+	<?=$langs;?>
 	<br>
 	<small><?=$words['credit'];?></small>
 </small>

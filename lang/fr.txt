@@ -1,3 +1,5 @@
+lang=Français
+
 key=Clé
 instructions=Instructions
 link to image=Lien vers l'image
