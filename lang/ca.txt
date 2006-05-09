@@ -47,9 +47,9 @@ race=Raça
 town=Town
 
 help1=Separa diferents aliançes i jugadors amb una coma
-help2=Zoom = "x,y,factor d'augment (ex: 50x)" o "nom de la vila,factor d'augment(ex: 2x)"
+help2=Zoom = <code>x,y,factor d'augment</code> (ex: 50x) o <code>nom de la vila,factor d'augment</code>
 help3=L'aliança, els jugadors i les viles tenen en compte les mejúscules, perquè aixins es calcula mooolt més rápid. Que lo sepas.
-help4=Els jugadors o/i aliançes que tinguin carácters no estandards en el nom, poden posar la seva ID en comptes del nom. Ex:" id:6969 " 
+help4=Els jugadors o/i aliançes que tinguin carácters no estandards en el nom, poden posar la seva ID en comptes del nom. Ex: <code>id:6969</code> 
 help5=Us animem a usar els Links.. Mentres que cada mapa triga una mica al ser generat per primera vegada cada dia, aleshores es queda en la caché, i no comporta practicament res de treball de procesador ni d'ample de banda per ésser reenviat.
 
 servertime=Maps are updated at 1:30AM, the current time is

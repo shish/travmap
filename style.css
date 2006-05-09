@@ -54,5 +54,6 @@ TD SELECT {width: 95%;}
 *[onclick] {cursor: pointer;}
 IMG {border: none;}
 FORM {margin: 0px;}
+CODE {font-size: 0.9em; background: #CCC;}
 .left {text-align: left; width: 500px; margin: auto;}
 

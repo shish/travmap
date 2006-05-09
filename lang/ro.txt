@@ -46,10 +46,10 @@ population=Populatie
 race=Rasa
 town=Oras
 
-help1=Separati mai multe aliante sau jucatori cu virgule; se pot folosi apostroafe pentru a pastra virgulele si spatiile intacte, ex -- A, B, "C,D,E", F
-help2=Zoom = "x,y,factor zoom" or "nume sat,factor zoom"
+help1=Separati mai multe aliante sau jucatori cu virgule; se pot folosi apostroafe pentru a pastra virgulele si spatiile intacte, ex -- <code>A, B, "C,D,E", F</code>
+help2=Zoom = <code>x,y,factor zoom</code> or <code>nume sat,factor zoom</code>
 help3=Allianta, jucatorul, si satul pentru zoom sunt toate case sensitive deoarece ajuta MULT la viteza
-help4=Pentru Jucatorii si aliantele cu caractere nestandard in denumiri se pot folosi ID-urile in loc de nume, ex "id:123"
+help4=Pentru Jucatorii si aliantele cu caractere nestandard in denumiri se pot folosi ID-urile in loc de nume, ex <code>id:123</code>
 help5=Link-uirea este incurajata -- desi fiecare harta dureaza pana este generata prima data in fiecare zi, ea este apoi salvata in chache si pentru reafisare nu se mai folosesc aproape deloc resurse de procesare sau banda.
 
 servertime=Hartile sunt actualizate la 1:30AM, timpul curent este
