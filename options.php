@@ -82,7 +82,7 @@ if($zoom) {
 	else {
 		$zp = trim(sql_escape_string($za[0]));
 		$cmp = $casen ? "=" : "LIKE";
-		$za2 = sql_fetch_array(sql_query("SELECT x,y,town_name FROM $table WHERE town_name $cmp '$zp' LIMIT 1"));
+		$za2 = sql_fetch_row(sql_query("SELECT x,y,town_name FROM $table WHERE town_name $cmp '$zp' LIMIT 1"));
 		$zx = $za2['x'];
 		$zy = $za2['y'];
 		
