@@ -25,6 +25,7 @@ function foreach() {
 	sh $1 s7.travian.fr map
 	sh $1 s8.travian.fr map
 	sh $1 s9.travian.fr map
+	sh $1 s10.travian.fr map
 
 	sh $1 s1.travian.it map
 	sh $1 s2.travian.it map
