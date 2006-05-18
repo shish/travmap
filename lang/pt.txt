@@ -48,7 +48,7 @@ town=Aldeia
 
 help1=Separar as multiplas alianças e jogadores com vírgulas; as aspas podem ser usadas para manter as virgulas e espaços intactos, ex.: -- <code>A, B, "C,D,E", F</code>
 help2=Zoom = <code>x,y,factor de aumento</code> ou <code>nome da aldeia,factor de aumento</code>
-help3=Tanto a Aliança como o Jogador ou a Aldeia às quais se aplicam o Zoom săo todos sensiveis a maiúsculas/minúsculas, fazendo com que seja *MUITO* mais rápido o cálculo
+help3=Tanto a Aliança como o Jogador ou a Aldeia às quais se aplicam o Zoom săo todos sensiveis a maiúsculas / minúsculas, fazendo com que seja *MUITO* mais rápido o cálculo
 help4=Jogadores e Alianças com caracteres năo standard nos seus nomes podem usar os IDs em vez dos nomes, ex.:<code>id:123</code>
 help5=Criar uma ligaçăo(Link) directa ao mapa é aconselhavel, pois cada mapa é gerado cada dia consumindo tempo ao servidor, sendo posteriormente guardado năo necessitando de tanto tempo para o reenvio.
 
