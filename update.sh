@@ -47,6 +47,7 @@ function foreach() {
 	sh $1 welt1.travian.de karte
 	sh $1 welt2.travian.de karte
 	sh $1 welt3.travian.de karte
+	sh $1 welt4.travian.de karte
 }
 
 
