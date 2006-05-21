@@ -131,9 +131,11 @@ else {
 		<br><?=$words['server'];?>
 		<br><select name="server"><?=$serveropts;?></select>
 		<br><?=$words['alliance'];?>
-		<br><input type="text" name="alliance" value="<?=$alliance;?>">
+		<br><input type="text" name="alliance">
 		<br><?=$words['player'];?>
 		<br><input type="text" name="player">
+		<br><?=$words['town'];?>
+		<br><input type="text" name="town">
 		<br><?=$words['lines'];?>
 		<br><input type="checkbox" name="lines">
 		<br><?=$words['group by'];?>

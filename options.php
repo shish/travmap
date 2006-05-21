@@ -15,6 +15,7 @@ require_once "localise.php"; # words[key]
 $server   = getString("server", "s2.travian.com");
 $alliance = getString("alliance", null);
 $player   = getString("player", null);
+$town     = getString("town", null);
 $order    = getString("order", "default");
 $zoom     = getString("zoom", null);
 $layout   = getString("layout", "default");
@@ -34,7 +35,7 @@ $minpop = getInt("minpop", null);
 
 $table = str_replace(".", "_", $server);
 
-$datahash = md5("$server $alliance $player $zoom $caption $casen $maxpop $minpop");
+$datahash = md5("$server $alliance $player $town $zoom $caption $casen $maxpop $minpop");
 $datahash_initial = substr($datahash, 0, 2); 
 $datacache = $nocache ? false : "cache/$datahash_initial/$datahash.db";
 

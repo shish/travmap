@@ -11,15 +11,6 @@ require_once "database.php"; # required for getMatches
 
 
 /*
- * whereas all the other things are AND, when the user specifies
- * alliance and player, they probably want AND (a OR p)
- */
-if(!is_null($alliance) && !is_null($player)) {
-	$anp = true;
-}
-
-
-/*
  * Build the query
  * o)  single table is considerably (3-4 times) faster than joins :-/
  */
@@ -32,9 +23,13 @@ $query = "
 	WHERE 1=1 
 ";
 
+if(!is_null($alliance) || !is_null($player) || !is_null($town)) {
+	$query .= "AND (";
+}
+
 if(!is_null($alliance)) {
 	$alliances = quotesplit(",", sql_escape_string($alliance));
-	$query .= ($anp ? "AND (guild_name IN(" : "AND guild_name IN(");
+	$query .= "guild_name IN(";
 	$n = 0;
 	foreach($alliances as $alliance) {
 		$alliance = trim($alliance);
@@ -46,11 +41,12 @@ if(!is_null($alliance)) {
 		}
 	}
 	if(preg_match('/\($/', $query)) $query .= "null";
-	$query .= ") ";
+	$query .= ")";
 }
 if(!is_null($player)) {
+	if(!is_null($alliance)) $query .= " OR ";
 	$players = quotesplit(",", sql_escape_string($player));
-	$query .= ($anp ? "OR owner_name IN(" : "AND owner_name IN(");
+	$query .= "owner_name IN(";
 	$n = 0;
 	foreach($players as $player) {
 		$player = trim($player);
@@ -62,9 +58,28 @@ if(!is_null($player)) {
 		}
 	}
 	if(preg_match('/\($/', $query)) $query .= "null";
+	$query .= ")";
+}
+if(!is_null($town)) {
+	if(!is_null($alliance) || !is_null($player)) $query .= " OR ";
+	$towns = quotesplit(",", sql_escape_string($town));
+	$query .= "town_name IN(";
+	$n = 0;
+	foreach($towns as $town) {
+		$town = trim($town);
+		if(strncmp($town, "id:", 3) == 0) $items = id2name("town_id", "town_name", substr($town, 3), $table);
+		else $items = getMatches("town_name", $town);
+		if(strlen($items) > 0) {
+			if($n++) $query .= ", ";
+			$query .= $items;
+		}
+	}
+	if(preg_match('/\($/', $query)) $query .= "null";
+	$query .= ")";
+}
+if(!is_null($alliance) || !is_null($player) || !is_null($town)) {
 	$query .= ") ";
 }
-if($anp) $query .= ") ";
 
 if($minpop) {
 	$query .= "AND population >= '$minpop' ";
@@ -97,4 +112,9 @@ switch($order) {
 }
 
 $query .= "LIMIT 2500 ";
+
+
+if($_GET["debug"] == "on") {
+	print "<p><b>Query:</b> $query";
+}
 ?>
