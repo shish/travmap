@@ -29,7 +29,7 @@ echo "
 	);
 " | mysql -u$MYSQL_USER -p$MYSQL_PASS -h $MYSQL_HOST $MYSQL_DB
 
-if [ -s sql/$1.sql ] ; then
+if [ `stat -c "%s" sql/$1.sql` -ge 524288 ] ; then
 	perl -ne "s/INSERT INTO \`x_world\` VALUES \(//; s/\);//; print;" < sql/$1.sql > sql/$DBNAME.txt
 	mysqlimport \
 		-u$MYSQL_USER -p$MYSQL_PASS -h $MYSQL_HOST $MYSQL_DB \
