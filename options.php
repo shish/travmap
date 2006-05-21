@@ -22,16 +22,6 @@ $caption  = getString("caption", $words["key"]);
 $groupby  = getString("groupby", "player");
 $colby    = getString("colby", $groupby);
 
-# deprecated in 0.4.7; leave during 0.5, remove by version 0.6
-if(getBool("algrp")) $groupby = "alliance";
-if(getBool("ragrp")) $groupby = "race";
-
-if(getBool("alcol")) $colby = "alliance";
-if(getBool("racol")) $colby = "race";
-
-$alcol = getBool("alcol") || ($colby == "alliance");
-$racol = getBool("racol") || ($colby == "race");
-
 $lines = getBool("lines");
 $casen = getBool("casen");
 $azoom = getBool("azoom");
