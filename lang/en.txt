@@ -17,8 +17,8 @@ zoom in=+
 zoom out=-
 
 server=Server
-alliance=Alliance(s)
-player=Player(s)
+alliance=Alliance
+player=Player
 lines=Lines
 group by=Group By
 zoom=Zoom
