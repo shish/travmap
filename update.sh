@@ -43,6 +43,7 @@ function foreach() {
 	sh $1 s1.travian.nl map
 	sh $1 s2.travian.nl map
 	sh $1 s3.travian.nl map
+	sh $1 speed.travian.nl map
 
 	sh $1 welt1.travian.de karte
 	sh $1 welt2.travian.de karte
