@@ -1,0 +1,57 @@
+lang=Dansk
+
+key=N&oslash;gle
+instructions=Instruktioner
+link to image=Link til billede
+loading=Henter...
+
+roman=Romer
+gaul=Gaul
+teuton=Teuton
+
+north=Nord
+east=&Oslash;st
+south=S&oslash;d
+west=Vest
+zoom in=Zoom ind
+zoom out=Zoom ud
+
+server=Server
+alliance=Alliance
+player=Spiller
+lines=Linier
+group by=Grupper efter
+zoom=Zoom
+case sensitive=Case sensitiv
+dot size=Prik st&oslash;rrelse
+min population=Min. antal indbyggere
+max population=Max. antal indbyggere
+order by=Sorter efter
+colour by=Farvelæg efter
+output format=Billede format
+show map=Vis kort
+layout=Layout
+spread=spred
+caption=Overskrift
+shrinkwrap=Kun omr&aring;de med data
+new page=Ny side
+
+advanced options=Advancerede instillinger
+output options=Visningsindstillinger
+language options=Sprogindstillinger
+
+default=Standard
+distance from zoom target=Afstand fra zoom objekt
+population=Indbyggere
+race=Race
+town=By
+
+help1=Adskil flere alliancer og spillere med kommaer; gåseøjn kan bruges til at søge på navne der indeholder mellemrum og kommaer, f.eks -- <code>A, B, "C,D,E", F</code>
+help2=Zoom = <code>x,y,zoom factor</code> eller <code>bynavn,zoom faktor</code>
+help3=Alliancer, spillere, og bynavne til zoom er alle case sensetive, da det gør søningen *MEGET* hurtigere
+help4=Hotlinking opfordres -- Da hver eneste kort genereres første gang hver dag og derefter ligges i cache'en, tager det næsten ingen processorkraft eller båndvidde at sende.
+
+servertime=servertid
+report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Report</a> any bugs that aren't fixed within a couple of minutes of them appearing. (Use <a href="http://shish.is-a-geek.net/trac/travmap/report/1">the bug tracker</a>, dealing with things via email gets disorganised)
+credit=Dansk oversættelse af <a href="mailto:polleman@thecrib.dk">Palle Polle Mikkelsen</a> - <a href="http://www.thecrib.dk">www.thecrib.dk</a>
+
