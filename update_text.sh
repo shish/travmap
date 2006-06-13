@@ -13,7 +13,7 @@ if [ -f sql/$1.sql ] ; then
 	NOW=`date +"%s"`
 	THEN=`stat -L -c %Y sql/$1.sql`
 	DIFF=`expr $NOW - $THEN`
-	if [ $DIFF -lt 14400 ] ; then # 14400 sec = 4 hour
+	if [ $DIFF -lt 43200 ] ; then # 43200 sec = 12 hour
 		exit
 	fi
 fi
