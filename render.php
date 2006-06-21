@@ -187,9 +187,9 @@ foreach($entities as $entity_name => $entity) {
 		aimacustom($im, "</a>");
 	}
 	
-	aimacustom($im, "<a xlink:href='http://$server/".$key['link']."'>");
+	aimacustom($im, "<a xlink:href='http://$server/".$entity['link']."'>");
 	# yes, we want this to only apply to aima, not gd
-	aimafilledrectangle($im, $key['x']+7, $key['y']-7, $key['x']+100, $key['y']+7, $white);
+	aimafilledrectangle($im, $entity['x']+7, $entity['y']-7, $entity['x']+90, $entity['y']+7, $white);
 	dot($im, $entity['dx'], $entity['dy'], $colour);
 	$imagestring($im, 3, $entity['x'], $entity['y']-6, ($count ? "$entity_name (".($count+1).")" : $entity_name), $colour);
 	aimacustom($im, "</a>");

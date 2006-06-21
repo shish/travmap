@@ -69,7 +69,18 @@ while($row = sql_fetch_row($result)) {
 	}
 
 	if(is_null($entities[$entity_name])) {
-		$entities[$entity_name]['link'] = $algrp ? "allianz.php?aid=".$row['guild_id'] : "spieler.php?uid=".$key['owner_id'];
+		switch($groupby) {
+			case "alliance":
+				$entities[$entity_name]['link'] = "allianz.php?aid=".$row['guild_id'];
+				break;
+			case "player":
+				$entities[$entity_name]['link'] = "spieler.php?uid=".$row['owner_id'];
+				break;
+// FIXME: we want lochash, not ID
+//			case "town":
+//				$entities[$entity_name]['link'] = "karte.php?d=".$row['town_id'];
+//				break;
+		}
 		$entities[$entity_name]['guild'] = $row["guild_name"];
 		$entities[$entity_name]['race_id'] = $row["race"];
 		$entities[$entity_name]['count'] = 0;
