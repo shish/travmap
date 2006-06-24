@@ -152,6 +152,7 @@ else {
 				<option value=""><?=$words['default'];?></option>
 				<option value="player"><?=$words['player'];?></option>
 				<option value="alliance"><?=$words['alliance'];?></option>
+				<option value="group"><?=$words['alliance'];?> 2</option>
 				<option value="race"><?=$words['race'];?></option>
 			</select>
 	</div>

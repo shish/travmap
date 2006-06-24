@@ -17,8 +17,9 @@ require_once "database.php"; # required for getMatches
 $query = "
 	SELECT x, y, x-y AS diag, population, race, 
 		owner_name, owner_id,
-		guild_name, guild_id, 
-		town_name, town_id
+		guild_name, guild_id,
+		town_name, town_id,
+		if(guild_name='', owner_name, guild_name) as guild_group
 	FROM $table
 	WHERE 1=1 
 ";

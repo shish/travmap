@@ -57,6 +57,7 @@ while($row = sql_fetch_row($result)) {
 
 	$user_name = $row["owner_name"];
 	$guild_name = $row["guild_name"];
+	$guild_group = $row["guild_group"];
 	$town_name = $row["town_name"];
 	$race_id = $row["race"];
 
@@ -64,6 +65,7 @@ while($row = sql_fetch_row($result)) {
 		default:
 		case "player":   $entity_name = $user_name;  break;
 		case "alliance": $entity_name = $guild_name; break;
+		case "group":    $entity_name = $guild_group; break;
 		case "race":     $entity_name = $race_id;    break;
 		case "town":     $entity_name = $town_name;  break;
 	}
