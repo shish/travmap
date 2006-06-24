@@ -51,7 +51,17 @@ function updateMap() {
 	else {
 		window.location = "map.php?"+url;
 	}
+
+	set_cookie("travmap_server", byId("server_select").selectedIndex);
 }
+
+function loadsettings() {
+	if(serverid = get_cookie("travmap_server")) {
+		byId("server_select").selectedIndex = serverid;
+	}
+}
+
+
 
 function help() {
 	byId("inst").style.display = "block";
@@ -79,27 +89,6 @@ function updatepart(name) {
 	}
 	else {
 		byId(name).style.display = "none";
-	}
-}
-
-
-function setsettings() {
-	es = document.forms[0].elements;
-	str = "";
-	for(i=0; i<es.length; i++) {
-		str += /*es[i].name+"::"+*/es[i].value+"//";
-	}
-	set_cookie("travmap_settings", str);
-	alert("settings saved (maybe, still working on this...)");
-}
-function loadsettings() {
-	str = get_cookie("travmap_settings");
-	if(str == false) return;
-
-	es = document.forms[0].elements;
-	list = str.split("//");
-	for(i=0; i<es.length; i++) {
-		es[i].value = list[i];
 	}
 }
 

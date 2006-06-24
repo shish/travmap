@@ -129,7 +129,7 @@ else {
 	<input type="hidden" name="lang" value="<?=$lang;?>">
 	<div id="basic">
 		<br><?=$words['server'];?>
-		<br><select name="server"><?=$serveropts;?></select>
+		<br><select id="server_select" name="server"><?=$serveropts;?></select>
 		<br><?=$words['alliance'];?>
 		<br><input type="text" name="alliance">
 		<br><?=$words['player'];?>
