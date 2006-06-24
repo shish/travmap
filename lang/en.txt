@@ -49,7 +49,7 @@ town=Town
 help1=Separate multiple alliances and players with commas; quotes can be used to keep commas and spaces intact, eg -- <code>A, B, "C,D,E", F</code>
 help2=Zoom = <code>x,y,zoom factor</code> or <code>village name,zoom factor</code>
 help3=Alliance, player, and town to zoom in on are all case sensetive, as it makes things a *LOT* faster
-help4=Players and alliances with non-standard characters in their names can use their IDs rather than their names, eg <code>id:123</code>
+help4=Players and alliances with non-standard characters in their names can use their IDs rather than their names, eg <code>id:123</code>. IDs can be seen in the links from <a href="links1.png">village</a> and <a href="links2.png">statistics</a> pages.
 help5=Hotlinking is encouraged -- while each map takes a while to be generated the first time each day, it's then cached, and takes practically no processing power or bandwidth to re-send.
 help6=Group by Alliance 2 = treat players with no alliance as all separate
 

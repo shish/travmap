@@ -49,8 +49,9 @@ town=Town
 help1=Separa i nomi delle alleanze o dei giocatori con una virgola; Le virgolette possono essere usate per racchiudere il testo assieme ad eventuali virgole o spazi, Esempio -- <code>A, B, "C,D,E", F</code>
 help2=Zoom = <code>asse x, asse y, fattore di zoom</code> (1, 2, 1.1 ecc.) oppure <code>nome villaggio, fattore di zoom</code>
 help3=Nomi di alleanze, giocatori e villaggi sono tutti sensibili alle maiuscole (case sensetive), se rispettate questa regola la ricerca sarà *MOLTO* più veloce
-help4=I giocatori e le alleanze con i caratteri non standard nei loro nomi possono usare le loro identificazioni piuttosto che i loro nomi, per esempio <code>id:123</code>
+help4=I giocatori e le alleanze con i caratteri non standard nei loro nomi possono usare le loro identificazioni piuttosto che i loro nomi, per esempio <code>id:123</code>. IDs can be seen in the links from <a href="links1.png">village</a> and <a href="links2.png">statistics</a> pages.
 help6=Group by Alliance 2 = treat players with no alliance as all separate
+
 
 servertime=Maps are updated at 1:30AM, the current time is
 report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Segnala</a> qualunque bug che non dovesse venire risolto poco dopo la sua comparsa
