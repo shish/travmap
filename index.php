@@ -143,6 +143,7 @@ else {
 			<select name="groupby">
 				<option value="player"><?=$words['player'];?></option>
 				<option value="alliance"><?=$words['alliance'];?></option>
+				<option value="group"><?=$words['alliance'];?> 2</option>
 				<option value="race"><?=$words['race'];?></option>
 				<option value="town"><?=$words['town'];?></option>
 			</select>
@@ -152,7 +153,6 @@ else {
 				<option value=""><?=$words['default'];?></option>
 				<option value="player"><?=$words['player'];?></option>
 				<option value="alliance"><?=$words['alliance'];?></option>
-				<option value="group"><?=$words['alliance'];?> 2</option>
 				<option value="race"><?=$words['race'];?></option>
 			</select>
 	</div>
@@ -213,6 +213,7 @@ else {
 	<p><?=$words['help3'];?>
 	<p><?=$words['help4'];?>
 	<p><?=$words['help5'];?>
+	<p><?=$words['help6'];?>
 	
 	<p><?=$words['servertime'];?> <?=$servertime;?>
 

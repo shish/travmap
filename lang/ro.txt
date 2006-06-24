@@ -51,6 +51,7 @@ help2=Zoom = <code>x,y,factor zoom</code> or <code>nume sat,factor zoom</code>
 help3=Allianta, jucatorul, si satul pentru zoom sunt toate case sensitive deoarece ajuta MULT la viteza
 help4=Pentru Jucatorii si aliantele cu caractere nestandard in denumiri se pot folosi ID-urile in loc de nume, ex <code>id:123</code>
 help5=Link-uirea este incurajata -- desi fiecare harta dureaza pana este generata prima data in fiecare zi, ea este apoi salvata in chache si pentru reafisare nu se mai folosesc aproape deloc resurse de procesare sau banda.
+help6=Group by Alliance 2 = treat players with no alliance as all separate
 
 servertime=Hartile sunt actualizate la 1:30AM, timpul curent este
 report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Raportati</a> orice erori ce nu sunt rezolvate la cel mult 2 minute de la prima aparitie (Folositi <a href="http://shish.is-a-geek.net/trac/travmap/report/1">bug tracker-ul</a>, adresarea problemelor pe email este dezorganizata)

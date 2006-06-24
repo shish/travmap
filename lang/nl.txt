@@ -50,6 +50,7 @@ help1=Scheid meerdere allianties of spelers door middel van komma's
 help2=Zoom = <code>x,y,zoom factor</code> of <code>Naam van het dorp,zoom factor</code>
 help3=Alliantie, speler en dorp om op in te zoomen zijn allemaal hoofdlettergevoelig, aangezien dat een *STUK* sneller is
 help4=Spelers en allianties met niet-standaard tekens in hun naam kunnen vervangen worden door hun IDs, bijvoorbeeld <code>id:123</code>
+help6=Group by Alliance 2 = treat players with no alliance as all separate
 
 servertime=Maps are updated at 1:30AM, the current time is
 report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Rapporteer</a> fouten die niet enkele minuten na ontdekking verholpen zijn.
