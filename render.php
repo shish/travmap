@@ -208,28 +208,28 @@ foreach($entities as $entity_name => $entity) {
 if($_GET["format"] == "svg") {
 	$base_query = preg_replace("/&amp;zoom=-?\d+,-?\d+,-?\d+/", "", str_replace("&", "&amp;", $_SERVER["QUERY_STRING"]));
 	
-	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=".($zx-100/$zz).",$zy,$zz'>");
+	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=".($zx-100/$zz).",$zy,$zz' xlink:title='west'>");
 	dot($im, $cx+230-9, $cy+230+0, $ct[($ca++)%count($ct)]);
 	aimacustom($im, "</a>");
 	
-	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,".($zy+100/$zz).",$zz'>");
+	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,".($zy+100/$zz).",$zz' xlink:title='north'>");
 	dot($im, $cx+230+0, $cy+230-9, $ct[($ca++)%count($ct)]);
 	aimacustom($im, "</a>");
 	
-	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,".($zy-100/$zz).",$zz'>");
+	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,".($zy-100/$zz).",$zz' xlink:title='south'>");
 	dot($im, $cx+230+0, $cy+230+9, $ct[($ca++)%count($ct)]);
 	aimacustom($im, "</a>");
 	
-	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=".($zx+100/$zz).",$zy,$zz'>");
+	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=".($zx+100/$zz).",$zy,$zz' xlink:title='east'>");
 	dot($im, $cx+230+9, $cy+230-0, $ct[($ca++)%count($ct)]);
 	aimacustom($im, "</a>");
 
 	
-	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,$zy,".($zz-2)."'>");
+	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,$zy,".($zz-2)."' xlink:title='zoom out'>");
 	dot($im, $cx+230+15, $cy+245, $ct[($ca++)%count($ct)]);
 	aimacustom($im, "</a>");
 	
-	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,$zy,".($zz+2)."'>");
+	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,$zy,".($zz+2)."' xlink:title='zoom in'>");
 	dot($im, $cx+230-15, $cy+245, $ct[($ca++)%count($ct)]);
 	aimacustom($im, "</a>");
 }
