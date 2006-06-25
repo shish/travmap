@@ -24,63 +24,51 @@ $query = "
 	WHERE 1=1 
 ";
 
-if(!is_null($alliance) || !is_null($player) || !is_null($town)) {
-	$query .= "AND (";
+
+/*
+ * input:
+ *   id:123, moo, flarg, "a,b,c", "id:42"
+ *
+ * output:
+ *   pre_name IN ("moo", "flarg", "a,b,c") OR pre_id IN (123, 42)
+ */
+function list2query($str, $pre) {
+	$names = Array();
+	$ids = Array();
+
+	$list = quotesplit(",", $str);
+	$list = array_map("sql_escape_string", $list);
+		
+	foreach($list as $al) {
+		if(strncmp($al, "id:", 3) == 0) $ids[] = substr($al, 3);
+		else $names[] = getMatches("{$pre}_name", $al);
+	}
+	
+	$q = "";
+
+	if(count($names) > 0) 
+		$q .= "{$pre}_name IN(".join(", ", $names).")";
+	if(count($names) > 0 && count($ids) > 0)
+		$q .= " OR ";
+	if(count($ids) > 0) 
+		$q .= "{$pre}_id IN(".join(", ", $ids).")";
+
+	return strlen($q) > 0 ? $q : false;
 }
 
-if(!is_null($alliance)) {
-	$alliances = quotesplit(",", sql_escape_string($alliance));
-	$query .= "guild_name IN(";
-	$n = 0;
-	foreach($alliances as $alliance) {
-		$alliance = trim($alliance);
-		if(strncmp($alliance, "id:", 3) == 0) $items = id2name("guild_id", "guild_name", substr($alliance, 3), $table);
-		else $items = getMatches("guild_name", $alliance);
-		if(strlen($items) > 0) {
-			if($n++) $query .= ", ";
-			$query .= $items;
-		}
-	}
-	if(preg_match('/\($/', $query)) $query .= "null";
-	$query .= ")";
-}
-if(!is_null($player)) {
-	if(!is_null($alliance)) $query .= " OR ";
-	$players = quotesplit(",", sql_escape_string($player));
-	$query .= "owner_name IN(";
-	$n = 0;
-	foreach($players as $player) {
-		$player = trim($player);
-		if(strncmp($player, "id:", 3) == 0) $items = id2name("owner_id", "owner_name", substr($player, 3), $table);
-		else $items = getMatches("owner_name", $player);
-		if(strlen($items) > 0) {
-			if($n++) $query .= ", ";
-			$query .= $items;
-		}
-	}
-	if(preg_match('/\($/', $query)) $query .= "null";
-	$query .= ")";
-}
-if(!is_null($town)) {
-	if(!is_null($alliance) || !is_null($player)) $query .= " OR ";
-	$towns = quotesplit(",", sql_escape_string($town));
-	$query .= "town_name IN(";
-	$n = 0;
-	foreach($towns as $town) {
-		$town = trim($town);
-		if(strncmp($town, "id:", 3) == 0) $items = id2name("town_id", "town_name", substr($town, 3), $table);
-		else $items = getMatches("town_name", $town);
-		if(strlen($items) > 0) {
-			if($n++) $query .= ", ";
-			$query .= $items;
-		}
-	}
-	if(preg_match('/\($/', $query)) $query .= "null";
-	$query .= ")";
-}
-if(!is_null($alliance) || !is_null($player) || !is_null($town)) {
-	$query .= ") ";
-}
+$alliance_query = list2query($alliance, "guild");
+$player_query = list2query($player, "owner");
+$town_query = list2query($town, "town");
+
+
+if($alliance_query || $player_query || $town_query) $query .= "AND (";
+$query .= $alliance_query;
+if($alliance_query && $player_query) $query .= " OR ";
+$query .= $player_query;
+if(($alliance_query || $player_query) && $town_query) $query .= " OR ";
+$query .= $town_query;
+if($alliance_query || $player_query || $town_query) $query .= ") ";
+
 
 if($minpop) {
 	$query .= "AND population >= '$minpop' ";
