@@ -181,7 +181,7 @@ else {
 				<option value="population"><?=$words['population'];?></option>
 				<option value="race"><?=$words['race'];?></option>
 				<option value="x">x</option>
-				<option value="y">y</option>
+				<option value="y">-y</option>
 			</select>
 		<br><?=$words['layout'];?>
 		<br>

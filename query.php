@@ -103,7 +103,7 @@ switch($order) {
 	case "race": $query .= "ORDER BY race "; break;
 	case "dist": $query .= "ORDER BY ((x-($zx))*(x-($zx))+(y-($zy))*(y-($zy))) "; break;
 	case "x": $query .= "ORDER BY x "; break;
-	case "y": $query .= "ORDER BY y "; break;
+	case "y": $query .= "ORDER BY -y "; break;
 
 	default:
 		if($colby == "alliance") $query .= "ORDER BY guild_id,diag ";
