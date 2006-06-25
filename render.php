@@ -186,11 +186,14 @@ foreach($entities as $entity_name => $entity) {
 		if($lines) $imageline($im, $entity['dx'], $entity['dy'], $vx, $vy, $colour);
 		
 		$name = $village['name'];
+		$owner = $village['owner'];
+		$guild = $village['guild'];
 		$x = $village['x'];
 		$y = $village['y'];
 		$pop = $village['population'];
 		$cohash = (256-$y)*512 + ($x+257);
-		aimacustom($im, "<a xlink:href='http://$server/karte.php?z=$cohash' xlink:title='$name ($x, $y) $pop'>");
+		$tip = htmlentities("$name ($x, $y), $pop, ($owner, $guild)");
+		aimacustom($im, "<a xlink:href='http://$server/karte.php?z=$cohash' xlink:title='$tip'>");
 		dot($im, $vx, $vy, $colour, (log($pop+1)+1)*$dotsize);
 		aimacustom($im, "</a>");
 	}

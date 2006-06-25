@@ -97,6 +97,8 @@ while($row = sql_fetch_row($result)) {
 	}
 
 	$entities[$entity_name]['villages'][$entities[$entity_name]['count']]['name'] = $row['town_name'];
+	$entities[$entity_name]['villages'][$entities[$entity_name]['count']]['owner'] = $row['owner_name'];
+	$entities[$entity_name]['villages'][$entities[$entity_name]['count']]['guild'] = $row['guild_name'];
 	$entities[$entity_name]['villages'][$entities[$entity_name]['count']]['population'] = $row['population'];
 	$entities[$entity_name]['villages'][$entities[$entity_name]['count']]['x'] = $row['x'];
 	$entities[$entity_name]['villages'][$entities[$entity_name]['count']]['y'] = $row['y'];
