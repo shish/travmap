@@ -34,6 +34,7 @@ function aimacreate($w, $h) {
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	>
 	<desc>SVG Image ($w x $h)</desc>
+	<title>SVG Image ($w x $h)</title>
 EOD
 );
 	return $im;
