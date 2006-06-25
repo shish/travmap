@@ -21,7 +21,7 @@ $minx = 512; $miny = 512; $maxx = -512; $maxy = -512;
 $kx = 530;
 
 
-/*
+/* autozoom {{{
  * figure out where to zoom, if auto
  */
 if($azoom) {
@@ -42,8 +42,9 @@ if($azoom) {
 	$bigdiff = (($maxx-$minx) > ($maxy-$miny)) ? ($maxx-$minx) : ($maxy-$miny);
 	$zz = (450/$bigdiff);
 }
+// }}}
 
-
+// key locations {{{
 /*
  * count keys in each area
  */
@@ -103,8 +104,9 @@ foreach($entities as $entity_name => $entity) {
 
 	$entities[$entity_name] = $entity;
 }
+// }}}
 
-
+// grid {{{
 /*
  * Draw grid
  */
@@ -151,8 +153,9 @@ else {
 	$imagerectangle($im, 515, 0, 767, 511, $black);
 	$imagestring($im, 3, 640-strlen($caption)*3.45, 10, $caption, $black);
 }
+// }}}
 
-
+// entities {{{
 /*
  * Draw each entity, it's villages, and it's key entry
  */
@@ -194,11 +197,9 @@ foreach($entities as $entity_name => $entity) {
 	$imagestring($im, 3, $entity['x'], $entity['y']-6, ($count ? "$entity_name (".($count+1).")" : $entity_name), $colour);
 	aimacustom($im, "</a>");
 }
+// }}}
 
-
-/*
- * navigator widget for SVG
- */
+// navigator widget for SVG {{{
 if($_GET["format"] == "svg") {
 	$base_query = preg_replace("/&amp;zoom=-?\d+,-?\d+,-?\d+/", "", str_replace("&", "&amp;", $_SERVER["QUERY_STRING"]));
 	
@@ -227,4 +228,5 @@ if($_GET["format"] == "svg") {
 	dot($im, $cx+230-15, $cy+245, $ct[($ca++)%count($ct)]);
 	aimacustom($im, "</a>");
 }
+// }}}
 ?>

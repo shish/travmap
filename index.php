@@ -2,6 +2,7 @@
 require_once "localise.php";
 require_once "version.php";
 
+// misc {{{
 /* sort first by country, then by server */
 function wwwcmp($a, $b) {
 	$as = explode(".", $a);
@@ -10,8 +11,20 @@ function wwwcmp($a, $b) {
 	else return strcmp($as[0], $bs[0]);
 }
 
+/*
+ * for the long link
+ */
+$baseurl = preg_replace("#[^/]+$#", "", $_SERVER['SCRIPT_URI']);
+
 
 /*
+ * for time until next update
+ */
+$servertime = date('g:iA');
+// }}}
+
+/* server list {{{
+*
  * load the server list -- cached if possible, else
  * look for the database's tables
  */
@@ -46,21 +59,10 @@ else {
 	fputs($fp, $serveropts);
 	fclose($fp);
 }
+// }}}
 
-
-/*
- * for the long link
- */
-$baseurl = preg_replace("#[^/]+$#", "", $_SERVER['SCRIPT_URI']);
-
-
-/*
- * for time until next update
- */
-$servertime = date('g:iA');
-
-
-/*
+/* language files {{{
+ *
  * Scan each of the lanugage files
  */
 $langs = "";
@@ -87,6 +89,9 @@ else {
 	fputs($fp, $langs);
 	fclose($fp);
 }
+// }}}
+
+// html template {{{
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
@@ -242,3 +247,6 @@ else {
 		</table>
 	</body>
 </html>
+<?php
+// }}}
+?>

@@ -10,6 +10,7 @@ require_once "options.php";
 require_once "database.php"; # required for getMatches
 
 
+// query start {{{
 /*
  * Build the query
  * o)  single table is considerably (3-4 times) faster than joins :-/
@@ -23,7 +24,9 @@ $query = "
 	FROM $table
 	WHERE 1=1 
 ";
+// }}}
 
+// lists -> SQL {{{
 
 /*
  * input:
@@ -69,14 +72,18 @@ if(($alliance_query || $player_query) && $town_query) $query .= " OR ";
 $query .= $town_query;
 if($alliance_query || $player_query || $town_query) $query .= ") ";
 
+// }}}
 
+// population {{{
 if($minpop) {
 	$query .= "AND population >= '$minpop' ";
 }
 if($maxpop) {
 	$query .= "AND population <= '$maxpop' ";
 }
+// }}}
 
+// location {{{
 if($zx != 0 || $zy != 0 || $zz != 1) {
 	$query .= "
 		AND x > (-256/$zz) + ($zx)
@@ -85,7 +92,9 @@ if($zx != 0 || $zy != 0 || $zz != 1) {
 		AND y > (-256/$zz) + ($zy)
 	";
 }
+// }}}
 
+// order {{{
 switch($order) {
 	case "population": $query .= "ORDER BY population DESC "; break;
 	case "race": $query .= "ORDER BY race "; break;
@@ -99,8 +108,11 @@ switch($order) {
 		else if($lines) $query .= "ORDER BY diag ";
 		break;
 }
+// }}}
 
+// limit {{{
 $query .= "LIMIT 2500 ";
+// }}}
 
 
 if($_GET["debug"] == "on") {

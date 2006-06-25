@@ -17,6 +17,9 @@ $entities = Array();
  * query db for villages, group by owning entity
  */
 $result = sql_query($query);
+
+
+// data cache {{{
 $dbh = null;
 if(!$using_data_cache && $datacache) {
 	require_once "options.php";
@@ -36,7 +39,9 @@ if(!$using_data_cache && $datacache) {
 		$datacache = false;
 	}
 }
+// }}}
 
+// load data {{{
 while($row = sql_fetch_row($result)) {
 	if(!$using_data_cache && $datacache) {
 		sqlite_query($dbh, "INSERT INTO 
@@ -99,4 +104,5 @@ while($row = sql_fetch_row($result)) {
 if($datacache && !$using_data_cache) {
 	sqlite_query($dbh, "END TRANSACTION");
 }
+// }}}
 ?>

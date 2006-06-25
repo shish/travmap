@@ -11,6 +11,8 @@ $colBuffs = Array("none");
 
 $aimaprogressive = false;
 
+// functions {{{
+
 function aimaoutput($im, $text) {
 	global $svgBuffs;
 	if($aimaprogressive) print $text;
@@ -105,15 +107,9 @@ function aimadestroy($im) {
 	global $svgBuffs;
 	$svgBuffs[$im] = null;
 }
+// }}}
 
-
-
-
-
-
-/*
- * Select renderer
- */
+// Select renderer {{{
 switch($_GET["format"]) {
 	case "SVG": case "svg":
 		$imagestring = "aimastring";
@@ -148,13 +144,9 @@ switch($_GET["format"]) {
 		$imagedestroy = "imagedestroy";
 		break;
 }
+// }}}
 
-
-
-
-
-
-
+// misc {{{
 /*
  * add a couple of custom functions to both renderers
  */
@@ -197,4 +189,5 @@ function aimacolorallocate_hsv($im, $H, $S, $V) {
 	$rgb = hsv2rgb($H, $S, $V);
 	return aimacolorallocate($im, $rgb[0], $rgb[1], $rgb[2]);
 }
+// }}}
 ?>

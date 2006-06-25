@@ -9,9 +9,7 @@ require_once "util.php";
 require_once "localise.php"; # words[key]
 # require_once "database.php"; # leave until after we've done $_GET["server"]...
 
-/*
- * GET options
- */
+// GET options {{{
 $server   = getString("server", "s2.travian.com");
 $alliance = getString("alliance", null);
 $player   = getString("player", null);
@@ -40,11 +38,9 @@ $datahash_initial = substr($datahash, 0, 2);
 $datacache = $nocache ? false : "cache/$datahash_initial/$datahash.db";
 
 require_once "database.php";
+// }}}
 
-
-/*
- * figure out where we are
- */
+// figure out where we are {{{
 if($layout == "spread") {
 	$cx = 768/2;
 	$cy = 256;
@@ -53,10 +49,9 @@ else {
 	$cx = 256;
 	$cy = 256;
 }
+// }}}
 
-
-/*
- * Figure out where to focus
+/* Figure out where to focus {{{
  *
  * z(a, x, y, p) = zoom (array, x, y, player)
  */
@@ -85,6 +80,6 @@ if($zoom) {
 else {
 	$zx = 0; $zy = 0; $zz = 1;
 }
-
+// }}}
 
 ?>
