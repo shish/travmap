@@ -27,6 +27,10 @@ function updateMap() {
 	url = "";
 	target="self";
 	for(i=0; i<elements.length; i++) {
+		if(elements[i].name == "format") {
+			if(elements[i].selectedIndex == 1) target="new";
+		}
+		
 		if(elements[i].type == "checkbox") {
 			if(elements[i].name == "newpage") {
 				if(elements[i].checked) target="new";
