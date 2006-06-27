@@ -25,17 +25,9 @@ window.onload = function(e) {
 function updateMap() {
 	elements = document.forms[0].elements;
 	url = "";
-	target="self";
 	for(i=0; i<elements.length; i++) {
-		if(elements[i].name == "format") {
-			if(elements[i].selectedIndex == 1) target="new";
-		}
-		
 		if(elements[i].type == "checkbox") {
-			if(elements[i].name == "newpage") {
-				if(elements[i].checked) target="new";
-			}
-			else if(elements[i].checked) {
+			if(elements[i].checked) {
 				url += elements[i].name +"=on&";
 			}
 		}
@@ -45,11 +37,16 @@ function updateMap() {
 			}
 		}
 	}
-	if(target == "self") {
+	if(byId("newpage_check").checked == false) {
 		byId("inst").style.display = "none";
 		byId("map").style.display = "block";
-		byId("map").src = "loading.png";
-		byId("map").src = "map.php?"+url;
+		if(byId("format_select").value == "svg") {
+			byId("map").innerHTML = ""+
+				"<object data='map.php?"+url+"' type='image/svg+xml' width='768' height='512'></object>";
+		}
+		else {
+			byId("map").innerHTML = "<img src='map.php?"+url+"' alt='map image'>";
+		}
 		byId("link").value = baseurl+"map.php?"+url;
 	}
 	else {

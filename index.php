@@ -196,13 +196,13 @@ else {
 			</select>
 		<br><?=$words['output format'];?>
 		<br>
-			<select name="format">
+			<select id="format_select" name="format">
 				<option value="png">PNG</option>
 				<!-- <option value="jpeg">JPEG</option> -->
 				<option value="svg">SVG</option>
 			</select>
 		<br><?=$words['new page'];?>
-		<br><input type="checkbox" name="newpage">
+		<br><input id="newpage_check" type="checkbox" name="newpage">
 	</div>
 	<div id="clickies">
 		<br><input type="submit" value="<?=$words['show map'];?>">
@@ -231,7 +231,7 @@ else {
 	<p style="text-align: center;"><a href="mailto:webmaster@shish.is-a-geek.net">webmaster@shish.is-a-geek.net</a>
 </div>
 
-<img id="map" src="loading.png" alt="map image" style="display: none;">
+<div id="map" style="display: none;"></div>
 <br><?=$words['link to image'];?>: 
 <input type="text" id="link" style="width: 512px;">
 
