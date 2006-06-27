@@ -161,6 +161,14 @@ else {
  */
 $cals = Array();
 
+function svgentities($text) {
+	$text = str_replace("<", "&lt;", $text);
+	$text = str_replace(">", "&gt;", $text);
+	$text = str_replace("'", "", $text);
+	$text = str_replace("\"", "", $text);
+	return $text;
+}
+
 foreach($entities as $entity_name => $entity) {
 	if(is_int($entity_name)) {
 		$entity_name = $races[$entity["race_id"]-1];
@@ -192,7 +200,7 @@ foreach($entities as $entity_name => $entity) {
 		$y = $village['y'];
 		$pop = $village['population'];
 		$cohash = (256-$y)*512 + ($x+257);
-		$tip = htmlentities("$name ($x, $y), $pop, ($owner, $guild)");
+		$tip = svgentities("$name ($x, $y), $pop, ($owner, $guild)");
 		aimacustom($im, "<a xlink:href='http://$server/karte.php?z=$cohash' xlink:title='$tip'>");
 		dot($im, $vx, $vy, $colour, (log($pop+1)+1)*$dotsize);
 		aimacustom($im, "</a>");
