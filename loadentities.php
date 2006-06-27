@@ -83,10 +83,9 @@ while($row = sql_fetch_row($result)) {
 			case "player":
 				$entities[$entity_name]['link'] = "spieler.php?uid=".$row['owner_id'];
 				break;
-// FIXME: we want lochash, not ID
-//			case "town":
-//				$entities[$entity_name]['link'] = "karte.php?d=".$row['town_id'];
-//				break;
+			case "town":
+				$entities[$entity_name]['link'] = "karte.php?d=". (($row['x']+257) + (256-$row['y'])*512);
+				break;
 		}
 		$entities[$entity_name]['guild'] = $row["guild_name"];
 		$entities[$entity_name]['race_id'] = $row["race"];
