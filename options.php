@@ -55,30 +55,79 @@ else {
  *
  * z(a, x, y, p) = zoom (array, x, y, player)
  */
-if($zoom) {
-	$za = split(",", $zoom);
+
+function town2xy($name) {
+	global $table;
+
+	$xy = Array();
 	
-	if(is_numeric($za[0])) {
-		switch(count($za)) {
-			case 3: $zx = (int)trim($za[0]); $zy = (int)trim($za[1]); $zz = (float)trim($za[2]); break;
-			case 2: $zx = (int)trim($za[0]); $zy = (int)trim($za[1]); $zz = 1; break;
-			case 1: $zx = 0; $zy = 0; $zz = (float)trim($za[0]); break;
-		}
+	$name = sql_escape_string($name);
+	if(strncmp($name, "id:", 3) == 0) {
+		$id = (int)substr($name, 3);
+		$za2 = sql_fetch_row(sql_query("SELECT x,y FROM $table WHERE town_id=$id LIMIT 1"));
 	}
 	else {
-		$zp = trim(sql_escape_string($za[0]));
 		$cmp = $casen ? "=" : "LIKE";
-		$za2 = sql_fetch_row(sql_query("SELECT x,y,town_name FROM $table WHERE town_name $cmp '$zp' LIMIT 1"));
-		$zx = $za2['x'];
-		$zy = $za2['y'];
-		
-		$zz = $za[1] ? (float)trim($za[1]) : 1;
+		$za2 = sql_fetch_row(sql_query("SELECT x,y FROM $table WHERE town_name $cmp '$name' LIMIT 1"));
+	}
+	if($zx < -256) $zx = -256;
+	$xy[0] = $za2['x'] ? $za2['x'] : 0;
+	$xy[1] = $za2['y'] ? $za2['y'] : 0;
+
+	return $xy;
+}
+
+$zx = 0; $zy = 0; $zz = 1;
+
+if($zoom) {
+	$za = array_map("trim", split(",", $zoom));
+	
+	switch(count($za)) {
+		case 3: 
+			// x, y, z
+			if(is_numeric($za[0])) {
+				$zx = (int)$za[0]; 
+				$zy = (int)$za[1];
+				$zz = (float)$za[2]; 
+			}
+			break;
+		case 2:
+			// x, y
+			if(is_numeric($za[0])) {
+				$zx = (int)$za[0];
+				$zy = (int)$za[1];
+				$zz = 1; 
+			}
+			// name, z
+			else {
+				$xy = town2xy($za[0]);
+				$zx = $xy[0];
+				$zy = $xy[1];
+				$zz = $za[1] ? (float)$za[1] : 1;
+			}
+			break;
+		case 1:
+			// z
+			if(is_numeric($za[0])) {
+				$zx = 0;
+				$zy = 0; 
+				$zz = (float)$za[0];
+			}
+			// name
+			else {
+				$xy = town2xy($za[0]);
+				$zx = $xy[0];
+				$zy = $xy[1];
+				$zz = 1;
+			}
+			break;
 	}
 
-	if($zz < 0.1) $zz = 0.1;
-}
-else {
-	$zx = 0; $zy = 0; $zz = 1;
+	if($zx < -256) $zx = -256;
+	if($zx >  256) $zx =  256;
+	if($zy < -256) $zy = -256;
+	if($zy >  256) $zy =  256;
+	if($zz <  0.1) $zz =  0.1;
 }
 // }}}
 
