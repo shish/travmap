@@ -39,6 +39,7 @@ function foreach() {
 	sh $1 s5.travian.it map
 	sh $1 s6.travian.it map
 	sh $1 s7.travian.it map
+	sh $1 s8.travian.it map
 
 	sh $1 www.travian.org karte
 	sh $1 www.travian.at  karte
