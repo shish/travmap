@@ -54,5 +54,5 @@ help5=Criar uma ligaçăo(Link) directa ao mapa é aconselhavel, pois cada mapa 
 help6=Group by Alliance 2 = treat players with no alliance as all separate
 
 servertime=Os mapas săo actualizados às 1:30AM, actulamente săo
-report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Avisem-me</a> de qualquer falha que exista tăo depressa quanto possivel.
+report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Avisem-me</a> de qualquer falha que exista tăo depressa quanto possivel.
 credit=Traduzido por Miguel Pinto (dedicado á Li)

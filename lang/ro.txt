@@ -54,7 +54,7 @@ help5=Link-uirea este incurajata -- desi fiecare harta dureaza pana este generat
 help6=Group by Alliance 2 = treat players with no alliance as all separate
 
 servertime=Hartile sunt actualizate la 1:30AM, timpul curent este
-report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Raportati</a> orice erori ce nu sunt rezolvate la cel mult 2 minute de la prima aparitie (Folositi <a href="http://shish.is-a-geek.net/trac/travmap/report/1">bug tracker-ul</a>, adresarea problemelor pe email este dezorganizata)
+report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Raportati</a> orice erori ce nu sunt rezolvate la cel mult 2 minute de la prima aparitie (Folositi <a href="http://trac.shishnet.org/travmap/report/1">bug tracker-ul</a>, adresarea problemelor pe email este dezorganizata)
 credit=Translation by Remix
 
 notice=

@@ -53,5 +53,5 @@ help4=Players and alliances with non-standard characters in their names can use 
 help6=Group by Alliance 2 = treat players with no alliance as all separate
 
 servertime=Maps are updated at 1:30AM, the current time is
-report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Raportuj</a> jesli jakis blad nie zostal naprawiony w ciagu kilku minut od pojawienia.
-credit=<a href="http://shish.is-a-geek.net/trac/travmap/browser/trunk/lang">Translated</a> by Dyzdyz
+report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Raportuj</a> jesli jakis blad nie zostal naprawiony w ciagu kilku minut od pojawienia.
+credit=<a href="http://trac.shishnet.org/travmap/browser/trunk/lang">Translated</a> by Dyzdyz

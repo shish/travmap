@@ -54,5 +54,5 @@ help6=Group by Alliance 2 = treat players with no alliance as all separate
 
 
 servertime=Les cartes sont mises à jours à 1:30AM, l'heure actuelle est
-report bugs=<a href="http://shish.is-a-geek.net/trac/travmap/report/1">Reportez</a> les erreurs constatées et apportez vos idées...
-credit=<a href="http://shish.is-a-geek.net/trac/travmap/browser/trunk/lang">Traduit</a> avec l'aide de Sakumi et de Bouy
+report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Reportez</a> les erreurs constatées et apportez vos idées...
+credit=<a href="http://trac.shishnet.org/travmap/browser/trunk/lang">Traduit</a> avec l'aide de Sakumi et de Bouy
