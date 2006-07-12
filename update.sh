@@ -46,6 +46,7 @@ function foreach() {
 
 	sh $1 s1.travian.net map
 	sh $1 s2.travian.net map
+	sh $1 s3.travian.net map
 
 	sh $1 s1.travian.nl map
 	sh $1 s2.travian.nl map
