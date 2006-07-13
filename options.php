@@ -51,7 +51,7 @@ else {
 }
 // }}}
 
-/* Figure out where to focus {{{
+/* figure out where to focus {{{
  *
  * z(a, x, y, p) = zoom (array, x, y, player)
  */
@@ -62,7 +62,7 @@ function town2xy($name) {
 	$xy = Array();
 	
 	$name = sql_escape_string($name);
-	if(strncmp($name, "id:", 3) == 0) {
+	if(preg_match("/^id:\d+$", $name)) {
 		$id = (int)substr($name, 3);
 		$za2 = sql_fetch_row(sql_query("SELECT x,y FROM $table WHERE town_id=$id LIMIT 1"));
 	}

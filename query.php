@@ -43,7 +43,7 @@ function list2query($str, $pre) {
 	$list = array_map("sql_escape_string", $list);
 		
 	foreach($list as $al) {
-		if(preg_match("/^id:\d+$/", $al, $matches)) $ids[] = substr($al, 3);
+		if(preg_match("/^id:\d+$/", $al)) $ids[] = substr($al, 3);
 		else {
 			$a = getMatches("{$pre}_name", $al);
 			if($a) $names[] = $a;
