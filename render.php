@@ -169,10 +169,8 @@ function svgentities($text) {
 	return $text;
 }
 
-foreach($entities as $entity_name => $entity) {
-	if(is_int($entity_name)) {
-		$entity_name = $races[$entity["race_id"]-1];
-	}
+foreach($entities as $entity_id => $entity) {
+	$entity_name = $entity["name"];
 
 	$count = $entity['count'];
 
