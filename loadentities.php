@@ -63,7 +63,7 @@ while($row = sql_fetch_row($result)) {
 	}
 
 	$user_name = $row["owner_name"];
-	$user_id = $row["user_id"];
+	$user_id = $row["owner_id"];
 	$guild_name = $row["guild_name"];
 	$guild_id = $row["guild_id"];
 	$guild_group = $row["guild_group"];
