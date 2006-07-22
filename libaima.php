@@ -22,8 +22,8 @@ function aimaoutput($im, $text) {
 function aimacreate($w, $h) {
 	global $svgBuffs, $svgSizes, $colBuffs;
 	$im = count($svgBuffs);
-	$svgSizes[$im][0] = $x;
-	$svgSizes[$im][1] = $y;
+	$svgSizes[$im][0] = $w;
+	$svgSizes[$im][1] = $h;
 	aimaoutput($im, <<<EOD
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
