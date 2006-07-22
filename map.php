@@ -7,6 +7,7 @@
 
 include "libtimer.php";
 include "libcache.php";
+include "liblogerr.php";
 
 timer_start();
 
