@@ -62,7 +62,7 @@ function town2xy($name) {
 	$xy = Array();
 	
 	$name = sql_escape_string($name);
-	if(preg_match("/^id:\d+$", $name)) {
+	if(preg_match("/^id:\d+$/", $name)) {
 		$id = (int)substr($name, 3);
 		$za2 = sql_fetch_row(sql_query("SELECT x,y FROM $table WHERE town_id=$id LIMIT 1"));
 	}
