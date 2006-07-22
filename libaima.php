@@ -52,6 +52,7 @@ function aimacustom($im, $text) {
 }
 
 function aimafill($im, $x, $y, $colid) {
+	global $svgSizes;
 	aimafilledrectangle($im, $x, $y, $svgSizes[$im][0], $svgSizes[$im][1], $colid);
 }
 
