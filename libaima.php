@@ -14,7 +14,7 @@ $aimaprogressive = false;
 // functions {{{
 
 function aimaoutput($im, $text) {
-	global $svgBuffs;
+	global $svgBuffs, $aimaprogressive;
 	if($aimaprogressive) print $text;
 	else $svgBuffs[$im] .= $text;
 }

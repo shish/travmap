@@ -10,16 +10,16 @@
  * because php randomly decided to treat "&foo=" as "" rather than null :-/
  */
 function getString($name, $default) {
-	return (!is_null($_GET[$name]) && strlen($_GET[$name]) > 0) ? $_GET[$name] : $default;
+	return (isset($_GET[$name]) && strlen($_GET[$name]) > 0) ? $_GET[$name] : $default;
 }
 function getFloat($name, $default) {
-	return (!is_null($_GET[$name]) && strlen($_GET[$name]) > 0) ? (float)$_GET[$name] : $default;
+	return (isset($_GET[$name]) && strlen($_GET[$name]) > 0) ? (float)$_GET[$name] : $default;
 }
 function getInt($name, $default) {
-	return (!is_null($_GET[$name])) ? (int)$_GET[$name] : $default;
+	return (isset($_GET[$name])) ? (int)$_GET[$name] : $default;
 }
 function getBool($name) {
-	return ($_GET[$name] == "on");
+	return (isset($_GET[$name]) && ($_GET[$name] == "on"));
 }
 
 

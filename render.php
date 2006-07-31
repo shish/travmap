@@ -160,6 +160,7 @@ else {
  * Draw each entity, it's villages, and it's key entry
  */
 $cals = Array();
+$ca = 0;
 
 function svgentities($text) {
 	$text = str_replace("<", "&lt;", $text);

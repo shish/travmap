@@ -54,10 +54,10 @@ while($row = sql_fetch_row($result)) {
 				town_name, town_id
 			)
 			VALUES(
-				'{$row[x]}', '{$row[y]}', '{$row[population]}', '{$row[race]}',
-				'{$row[owner_name]}', '{$row[owner_id]}',
-				'{$row[guild_name]}', '{$row[guild_id]}',
-				'{$row[town_name]}', '{$row[town_id]}'
+				'{$row["x"]}', '{$row["y"]}', '{$row["population"]}', '{$row["race"]}',
+				'{$row["owner_name"]}', '{$row["owner_id"]}',
+				'{$row["guild_name"]}', '{$row["guild_id"]}',
+				'{$row["town_name"]}', '{$row["town_id"]}'
 			)
 		");
 	}
@@ -81,7 +81,7 @@ while($row = sql_fetch_row($result)) {
 		case "town":     $entity_id = $town_id;     $entity_name = $town_name;   break;
 	}
 
-	if(is_null($entities[$entity_id])) {
+	if(!isset($entities[$entity_id])) {
 		switch($groupby) {
 			case "alliance":
 				$entities[$entity_id]['link'] = "allianz.php?aid=".$row['guild_id'];
