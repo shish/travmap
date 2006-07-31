@@ -34,6 +34,7 @@ function error_handler($errno, $errstr ,$errfile, $errline, $errcontext) {
 	}
 
 	$fp = fopen("error.log", "a");
+	$errfile = basename($errfile);
 	fputs($fp, "Error $errno ($type) at $errfile:$errline: $errstr\n");
 	fclose($fp);
 
