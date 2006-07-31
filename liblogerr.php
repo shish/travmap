@@ -5,7 +5,8 @@ function error_handler($errno, $errstr ,$errfile, $errline, $errcontext) {
 		case E_USER_NOTICE: 
 		case E_NOTICE: 
 			$halt_script = false;         
-			$type = "Notice"; 
+			$type = "Notice";
+			return;
 			break; 
 
 		case E_USER_WARNING: 
@@ -58,5 +59,5 @@ EOD;
 		exit;
 	}
 }
-set_error_handler("error_handler", E_ERROR);
+set_error_handler("error_handler");
 ?>
