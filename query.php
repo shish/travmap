@@ -10,7 +10,7 @@ require_once "options.php";
 require_once "database.php"; # required for getMatches
 
 
-// query start {{{
+ // query start {{{
 /*
  * Build the query
  * o)  single table is considerably (3-4 times) faster than joins :-/
@@ -80,12 +80,12 @@ if($alliance_query || $player_query || $town_query) $query .= ") ";
 
 // population {{{
 if($minpop) {
-	$query .= "AND population >= '$minpop' ";
+	$query .= "AND population >= $minpop ";
 }
 if($maxpop) {
-	$query .= "AND population <= '$maxpop' ";
+	$query .= "AND population <= $maxpop ";
 }
-// }}}
+//  }}}
 
 // location {{{
 // the cache only contains this data to start with
@@ -97,6 +97,12 @@ if(!$using_data_cache) {
 			AND y < ( 256/$zz) + ($zy)
 			AND y > (-256/$zz) + ($zy)
 		";
+	}
+	if($maxdist) {
+		$query .= "AND sqrt(pow(x-($zx), 2) + pow(y-($zy), 2)) <= $maxdist ";
+	}
+	if($mindist) {
+		$query .= "AND sqrt(pow(x-($zx), 2) + pow(y-($zy), 2)) >= $mindist ";
 	}
 }
 // }}}

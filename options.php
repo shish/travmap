@@ -28,12 +28,14 @@ $nocache = getBool("nocache");
 
 $dotsize = getFloat("dotsize", 1);
 
+$maxdist = getInt("maxdist", null);
+$mindist = getInt("mindist", null);
 $maxpop = getInt("maxpop", null);
 $minpop = getInt("minpop", null);
 
 $table = str_replace(".", "_", $server);
 
-$datahash = md5("$server $alliance $player $town $zoom $caption $casen $maxpop $minpop");
+$datahash = md5("$server $alliance $player $town $zoom $mindist $maxdist $caption $casen $maxpop $minpop");
 $datahash_initial = substr($datahash, 0, 2); 
 $datacache = $nocache ? false : "cache/$datahash_initial/$datahash.db";
 

@@ -164,6 +164,10 @@ else {
 	<div id="advanced" style="display: none;">
 		<br><?=$words['zoom'];?>
 		<br><input type="text" name="zoom">
+		<br><?=$words['min distance'];?>
+		<br><input type="text" name="mindist">
+		<br><?=$words['max distance'];?>
+		<br><input type="text" name="maxdist">
 		<br><?=$words['min population'];?>
 		<br><input type="text" name="minpop">
 		<br><?=$words['max population'];?>
