@@ -22,6 +22,7 @@ player=Jugador
 lines=Lineas
 group by=Grupos
 zoom=Aumento
+radius=Radius
 case sensitive=Sensible a Mayusculas
 dot size=Tamaño del Punto
 min population=Poblacion Minima

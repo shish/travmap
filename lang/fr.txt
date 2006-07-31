@@ -22,6 +22,7 @@ player=Joueur(s)
 lines=Lignes de ciblage
 group by=Grouper par
 zoom=Centrage et Zoom
+radius=Radius
 case sensitive=Case Sensitive
 dot size=Taille du Point village
 min population=Population Min

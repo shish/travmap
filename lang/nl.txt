@@ -22,6 +22,7 @@ player=Speler(s)
 lines=Lijnen
 group by=Groepeer op
 zoom=Zoom
+radius=Radius
 case sensitive=Hoofdlettergevoelig
 dot size=Puntgrootte
 min population=Min Bevolking

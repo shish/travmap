@@ -22,6 +22,7 @@ player=
 lines=
 group by=
 zoom=
+radius=
 case sensitive=
 dot size=
 min population=
