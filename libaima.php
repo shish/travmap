@@ -9,15 +9,11 @@ $svgBuffs = Array();
 $svgSizes = Array();
 $colBuffs = Array("none");
 
-$aimaprogressive = false;
-
 // functions {{{
 
 function aimaoutput($im, $text) {
-	global $svgBuffs, $aimaprogressive;
-	if(!is_int($im)) return;
-	if($aimaprogressive) print $text;
-	else $svgBuffs[$im] .= $text;
+	global $svgBuffs;
+	if(is_int($im)) $svgBuffs[$im] .= $text;
 }
 
 function aimacreate($w, $h) {
