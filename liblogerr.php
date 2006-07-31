@@ -33,7 +33,7 @@ function error_handler($errno, $errstr ,$errfile, $errline, $errcontext) {
 	}
 
 	$fp = fopen("error.log", "a");
-	fputs($fp, "Error $errno at $errfile:$errline: $errstr\n");
+	fputs($fp, "Error $errno ($type) at $errfile:$errline: $errstr\n");
 	fclose($fp);
 
 	if($halt_script) {
@@ -44,7 +44,7 @@ function error_handler($errno, $errstr ,$errfile, $errline, $errcontext) {
 	<body>
 		<b>Error report</b>
 		<br><b>Location:</b> $errfile:$errline
-		<br><b>Code:</b> $errno:$errstr
+		<br><b>Code:</b> $errno/$type:$errstr
 		<br><b>Variable dump:</b>
 		<pre>
 EOD;
