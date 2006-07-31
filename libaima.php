@@ -15,6 +15,7 @@ $aimaprogressive = false;
 
 function aimaoutput($im, $text) {
 	global $svgBuffs, $aimaprogressive;
+	if(!is_int($im)) return;
 	if($aimaprogressive) print $text;
 	else $svgBuffs[$im] .= $text;
 }
