@@ -140,18 +140,22 @@ for($v=-250; $v<=250; $v+=$inc) {
  * Draw the rectangles
  */
 $imagerectangle($im, $cx-256, $cy-256, $cx+255, $cy+255, $black);
+$caption_bounds = imagettfbbox(15, 0, "arialuni", $caption);
 if($layout == "spread") {
 	$imagefilledrectangle($im, 0, 0, 124, 511, $white);
 	$imagefilledrectangle($im, 643, 0, 767, 511, $white);
 	$imagerectangle($im, 0, 0, 124, 511, $black);
 	$imagerectangle($im, 643, 0, 767, 511, $black);
-	$imagestring($im, 3, 704-strlen($caption)*3.45, 10, $caption, $black);
-	$imagestring($im, 3, 64-strlen($caption)*3.45, 10, $caption, $black);
+//	$imagestring($im, 3, 704-strlen($caption)*3.45, 10, $caption, $black);
+//	$imagestring($im, 3, 64-strlen($caption)*3.45, 10, $caption, $black);
+	$imagettftext($im, 15, 0, 704-$caption_bounds[2]/2, 25, $black, "arialuni", $caption);
+	$imagettftext($im, 15, 0, 64-$caption_bounds[2]/2, 25, $black, "arialuni", $caption);
 }
 else {
 	$imagefilledrectangle($im, 515, 0, 767, 511, $white);
 	$imagerectangle($im, 515, 0, 767, 511, $black);
-	$imagestring($im, 3, 640-strlen($caption)*3.45, 10, $caption, $black);
+//	$imagestring($im, 3, 640-strlen($caption)*3.45, 10, $caption, $black);
+	$imagettftext($im, 15, 0, 640-$caption_bounds[2]/2, 25, $black, "arialuni", $caption);
 }
 // }}}
 
@@ -209,7 +213,9 @@ foreach($entities as $entity_id => $entity) {
 	# yes, we want this to only apply to aima, not gd
 	aimafilledrectangle($im, $entity['x']+7, $entity['y']-7, $entity['x']+90, $entity['y']+7, $white);
 	dot($im, $entity['dx'], $entity['dy'], $colour);
-	$imagestring($im, 3, $entity['x'], $entity['y']-6, ($count ? "$entity_name (".($count+1).")" : $entity_name), $colour);
+	$title = ($count ? "$entity_name (".($count+1).")" : $entity_name);
+//	$imagestring($im, 3, $entity['x'], $entity['y']-6, $title, $colour);
+	$imagettftext($im, 10, 0, $entity['x'], $entity['y']+5, $colour, "arialuni", $title);
 	aimacustom($im, "</a>");
 }
 // }}}
