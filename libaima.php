@@ -68,6 +68,9 @@ function aimastring($im, $size, $x, $y, $text, $fill, $stroke=0) {
 	aimaoutput($im, "<text x='$x' y='$y' font-family='Verdana' font-size='$size' fill='$fill' stroke='$stroke'>$text</text>\n");
 }
 
+function aimattftext($im, $size, $angle, $x, $y, $colour, $font, $text) {
+	aimastring($im, $size, $x, $y, $text, $colour);
+}
 
 function aimarectangle($im, $x, $y, $w, $h, $stroke, $fill=0) {
 	global $colBuffs;
@@ -119,6 +122,7 @@ switch($_GET["format"]) {
 		$imagefill = "aimafill";
 		$imageline = "aimaline";
 		$imagestring = "aimastring";
+		$imagettftext = "aimattftext";
 		$imagerectangle = "aimarectangle";
 		$imagefilledrectangle = "aimafilledrectangle";
 		$imageellipse = "aimaellipse";
@@ -136,6 +140,7 @@ switch($_GET["format"]) {
 		$imagefill = "imagefill";
 		$imageline = "imageline";
 		$imagestring = "imagestring";
+		$imagettftext = "imagettftext";
 		$imagerectangle = "imagerectangle";
 		$imagefilledrectangle = "imagefilledrectangle";
 		$imageellipse = "imageellipse";
