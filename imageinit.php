@@ -7,6 +7,8 @@
 
 require_once "libaima.php";
 
+putenv('GDFONTPATH=' . realpath('.'));
+
 $im = $imagecreatetruecolor(768, 512);
 # FIXME: aimacustom(javascript)
 # imageantialias($im, true);
