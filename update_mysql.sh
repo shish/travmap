@@ -26,11 +26,11 @@ echo "
 		INDEX(y),
 		INDEX(race),
 		INDEX(population)
-	);
+	) CHARSET=utf8;
 " | mysql -u$MYSQL_USER -p$MYSQL_PASS -h $MYSQL_HOST $MYSQL_DB
 
 if [ `stat -c "%s" sql/$1.sql` -ge 256000 ] ; then
-	perl -ne "s/INSERT INTO \`x_world\` VALUES \(//; s/\),\(/\n/g; s/\);//; print;" < sql/$1.sql > sql/$DBNAME.txt
+	perl -ne "s/INSERT INTO \`x_world\` VALUES \(//; s/\),\(/\n/g; s/\);//; print;" < sql/$1.sql | iconv -f $3 -t utf8 > sql/$DBNAME.txt
 	mysqlimport \
 		-u$MYSQL_USER -p$MYSQL_PASS -h $MYSQL_HOST $MYSQL_DB \
 		--delete --local \

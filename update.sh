@@ -9,57 +9,57 @@
 cd `dirname $0`
 
 function foreach() {
-	sh $1 s1.travian.com map
-	sh $1 s2.travian.com map
-	sh $1 s3.travian.com map
-	sh $1 s4.travian.com map
-	sh $1 s5.travian.com map
-	sh $1 s6.travian.com map
-	sh $1 s7.travian.com map
+	sh $1 s1.travian.com map utf8
+	sh $1 s2.travian.com map iso-8859-1
+	sh $1 s3.travian.com map iso-8859-1
+	sh $1 s4.travian.com map iso-8859-1
+	sh $1 s5.travian.com map iso-8859-1
+	sh $1 s6.travian.com map iso-8859-1
+	sh $1 s7.travian.com map utf8
 
-	sh $1 s1.travian.fr map
-	sh $1 s2.travian.fr map
-	sh $1 s3.travian.fr map
-	sh $1 s4.travian.fr map
-	sh $1 s5.travian.fr map
-	sh $1 s6.travian.fr map
-	sh $1 87.106.1.213 map
-	sh $1 s7.travian.fr map
-	sh $1 s8.travian.fr map
-	sh $1 s9.travian.fr map
-	sh $1 s10.travian.fr map
-	sh $1 85.214.42.15 map
-	sh $1 s11.travian.fr map
-	sh $1 87.106.19.213 map
-	sh $1 s12.travian.fr map
+	sh $1 s1.travian.fr map iso-8859-1
+	sh $1 s2.travian.fr map iso-8859-1
+	sh $1 s3.travian.fr map iso-8859-1
+	sh $1 s4.travian.fr map iso-8859-1
+	sh $1 s5.travian.fr map iso-8859-1
+	sh $1 s6.travian.fr map iso-8859-1
+	sh $1 87.106.1.213 map iso-8859-1
+	sh $1 s7.travian.fr map iso-8859-1
+	sh $1 s8.travian.fr map iso-8859-1
+	sh $1 s9.travian.fr map iso-8859-1
+	sh $1 s10.travian.fr map iso-8859-1
+	sh $1 85.214.42.15 map iso-8859-1
+	sh $1 s11.travian.fr map iso-8859-1
+	sh $1 87.106.19.213 map iso-8859-1
+	sh $1 s12.travian.fr map iso-8859-1
 
-	sh $1 s1.travian.it map
-	sh $1 s2.travian.it map
-	sh $1 s3.travian.it map
-	sh $1 s4.travian.it map
-	sh $1 s5.travian.it map
-	sh $1 s6.travian.it map
-	sh $1 s7.travian.it map
-	sh $1 s8.travian.it map
+	sh $1 s1.travian.it map utf8
+	sh $1 s2.travian.it map iso-8859-1
+	sh $1 s3.travian.it map iso-8859-1
+	sh $1 s4.travian.it map iso-8859-1
+	sh $1 s5.travian.it map iso-8859-1
+	sh $1 s6.travian.it map iso-8859-1
+	sh $1 s7.travian.it map iso-8859-1
+	sh $1 s8.travian.it map iso-8859-1
 
-	sh $1 www.travian.org karte
-	sh $1 www.travian.at  karte
+	sh $1 www.travian.org karte utf8
+	sh $1 www.travian.at  karte utf8
 
-	sh $1 s1.travian.net map
-	sh $1 s2.travian.net map
-	sh $1 s3.travian.net map
+	sh $1 s1.travian.net map iso-8859-1
+	sh $1 s2.travian.net map iso-8859-1
+	sh $1 s3.travian.net map utf8
 
-	sh $1 s1.travian.nl map
-	sh $1 s2.travian.nl map
-	sh $1 s3.travian.nl map
-	sh $1 speed.travian.nl map
+	sh $1 s1.travian.nl map iso-8859-1
+	sh $1 s2.travian.nl map iso-8859-1
+	sh $1 s3.travian.nl map iso-8859-1
+#	sh $1 speed.travian.nl map iso-8859-1
 
-	sh $1 welt1.travian.de karte
-	sh $1 welt2.travian.de karte
-	sh $1 welt3.travian.de karte
-	sh $1 welt4.travian.de karte
+	sh $1 welt1.travian.de karte utf8
+	sh $1 welt2.travian.de karte iso-8859-1
+	sh $1 welt3.travian.de karte iso-8859-1
+	sh $1 welt4.travian.de karte iso-8859-1
 
-	sh $1 s1.travian3.pl map
+	sh $1 s1.travian3.pl map utf8
 }
 
 
