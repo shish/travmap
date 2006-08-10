@@ -68,8 +68,12 @@ function aimastring($im, $size, $x, $y, $text, $fill, $stroke=0) {
 	aimaoutput($im, "<text x='$x' y='$y' font-family='Verdana' font-size='$size' fill='$fill' stroke='$stroke'>$text</text>\n");
 }
 
-function aimattftext($im, $size, $angle, $x, $y, $colour, $font, $text) {
-	aimastring($im, $size, $x, $y, $text, $colour);
+function aimattftext($im, $size, $angle, $x, $y, $colour, $font, $text, $stroke=0) {
+	global $colBuffs;
+	$fill = $colBuffs[$colour];
+	$stroke = $colBuffs[$stroke];
+	$size *= 1.3;
+	aimaoutput($im, "<text x='$x' y='$y' font-family='$font' font-size='$size' fill='$fill' stroke='$stroke'>$text</text>\n");
 }
 
 function aimarectangle($im, $x, $y, $w, $h, $stroke, $fill=0) {
