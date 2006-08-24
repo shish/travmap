@@ -169,6 +169,7 @@ $ca = 0;
 function svgentities($text) {
 	$text = str_replace("<", "&lt;", $text);
 	$text = str_replace(">", "&gt;", $text);
+	$text = str_replace("&", "&amp;", $text);
 	$text = str_replace("'", "", $text);
 	$text = str_replace("\"", "", $text);
 	return $text;
