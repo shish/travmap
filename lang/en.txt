@@ -4,6 +4,7 @@ key=Key
 instructions=Instructions
 link to image=Link to image
 loading=Loading...
+last update=Last update:
 
 roman=Roman
 gaul=Gaul

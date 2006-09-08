@@ -4,6 +4,7 @@ key=N&oslash;gle
 instructions=Instruktioner
 link to image=Link til billede
 loading=Henter...
+last update=last update:
 
 roman=Romer
 gaul=Gaul

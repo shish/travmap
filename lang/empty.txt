@@ -4,6 +4,7 @@ key=
 instructions=
 link to image=
 loading=
+last update=
 
 roman=
 gaul=

@@ -4,6 +4,7 @@ key=Cheie
 instructions=Instructiuni
 link to image=Link la imagine
 loading=Se incarca...
+last update=last update:
 
 roman=Roman
 gaul=Gal

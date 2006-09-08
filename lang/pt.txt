@@ -4,6 +4,7 @@ key=Chave
 instructions=Instruçőes
 link to image=Ligaçăo para a imagem
 loading=A Carregar...
+last update=last update:
 
 roman=Romanos
 gaul=Gauleses

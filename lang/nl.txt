@@ -4,6 +4,7 @@ key=Legenda
 instructions=Instructies
 link to image=Link naar plaatje
 loading=Loading...
+last update=last update:
 
 roman=Romein
 gaul=Galliër

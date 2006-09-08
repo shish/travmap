@@ -4,6 +4,7 @@ key=Clau
 instructions=Instruccions
 link to image=Enllaç a la imatge
 loading=Carregant...
+last update=last update:
 
 roman=Romà
 gaul=Gal

@@ -4,6 +4,7 @@ key=Klucz
 instructions=Instructions
 link to image=Link to image
 loading=Loading...
+last update=last update:
 
 roman=Rzymianie
 gaul=Galowie
