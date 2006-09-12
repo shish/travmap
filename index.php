@@ -7,8 +7,24 @@ require_once "version.php";
 function wwwcmp($a, $b) {
 	$as = explode(".", $a);
 	$bs = explode(".", $b);
-	if(strncmp($as[-1], $bs[-1], 2) != 0) return strncmp($as[-1], $bs[-1], 2);
-	else return strcmp($as[0], $bs[0]);
+	$ae = count($as)-1;
+	$be = count($bs)-1;
+	if(strncmp($as[$ae], $bs[$be], 2) != 0) {
+		// first sort by country
+		return strncmp($as[$ae], $bs[$be], 2);
+	}
+	else if(preg_match('/[0-9]/', $as[0]) && preg_match('/[0-9]/', $bs[0])) {
+		// then by server number
+		$ai = Array();
+		$bi = Array();
+		preg_match('/([0-9]+)/', $as[0], $ai);
+		preg_match('/([0-9]+)/', $bs[0], $bi);
+		return ($ai[0] == $bi[0]) ? 0 : (($ai[0] > $bi[0]) ? 1 : -1);
+	}
+	else {
+		// then by string(part #0) if server number fails
+		return strcmp($as[0], $bs[0]);
+	}
 }
 
 /*
@@ -212,6 +228,10 @@ else {
 		<br><input type="submit" value="<?=$words['show map'];?>">
 		<br><a href="#" onclick="toggle('advanced'); return false;"><?=$words['advanced options'];?></a>
 		<br><a href="#" onclick="toggle('output'); return false;"><?=$words['output options'];?></a>
+	</div>
+	<div id="donate">
+		<p><a href="http://www.dreamhost.com/donate.cgi?id=4542"><img border="0"
+		alt="Pay my bills!" src="https://secure.newdream.net/donate1.gif" /></a>
 	</div>
 </form>
 				</td>
