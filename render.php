@@ -73,7 +73,7 @@ foreach($entities as $entity_name => $entity) {
 			$entity['y'] = 500-(($pbl-1)*15)+($kcount3++*15);
 		}
 		else if(($x >= $cx) && ($y >= $cy)) {
-			$entity['y'] = 500-(($pbr-1)*15)+($kcount4++*15);
+			$entity['y'] = 480-(($pbr-1)*15)+($kcount4++*15);
 		}
 		else if(($x < $cx) && ($y < $cy)) {
 			$entity['y'] = 40+($kcount1++*15);
@@ -135,6 +135,7 @@ for($v=-250; $v<=250; $v+=$inc) {
 	$imagestring($im, 3, $cx+($v-$zx)*$zz+2, $y+1, $v, $mgrey);
 }
 
+date_default_timezone_set("America/Los_Angeles");
 $stamp1 = $words["last update"];
 $stamp2 = date("y/m/d h:i T", filemtime("sql/$server.sql"));
 
@@ -153,9 +154,7 @@ if($layout == "spread") {
 	$imagettftext($im, 15, 0, 706-$caption_bounds[2]/2, 25, $black, "arialuni", $caption);
 	$imagettftext($im, 15, 0, 64-$caption_bounds[2]/2, 25, $black, "arialuni", $caption);
 
-	$stamp1_bounds = imagettfbbox(10, 0, "arialuni", $stamp1);
 	$stamp2_bounds = imagettfbbox(10, 0, "arialuni", $stamp2);
-	$imagettftext($im, 10, 0, 706-$stamp1_bounds[2]/2, 490, $grey, "arialuni", $stamp1);
 	$imagettftext($im, 10, 0, 706-$stamp2_bounds[2]/2, 508, $grey, "arialuni", $stamp2);
 }
 else {
