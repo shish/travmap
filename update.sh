@@ -34,6 +34,7 @@ function foreach() {
 	sh $1 s11.travian.fr map $defenc
 	sh $1 87.106.19.213 map $defenc
 	sh $1 s12.travian.fr map $defenc
+	sh $1 s13.travian.fr map $defenc
 
 	sh $1 s1.travian.it map utf8
 	sh $1 s2.travian.it map $defenc
@@ -43,6 +44,7 @@ function foreach() {
 	sh $1 s6.travian.it map $defenc
 	sh $1 s7.travian.it map $defenc
 	sh $1 s8.travian.it map $defenc
+	sh $1 s9.travian.it map $defenc
 
 	sh $1 www.travian.org karte utf8
 	sh $1 www.travian.at  karte utf8
@@ -55,6 +57,7 @@ function foreach() {
 	sh $1 s2.travian.nl map $defenc
 	sh $1 s3.travian.nl map $defenc
 #	sh $1 speed.travian.nl map $defenc
+	sh $1 s4.travian.nl map $defenc
 
 	sh $1 welt1.travian.de karte utf8
 	sh $1 welt2.travian.de karte $defenc
@@ -62,6 +65,10 @@ function foreach() {
 	sh $1 welt4.travian.de karte $defenc
 
 	sh $1 s1.travian3.pl map utf8
+	
+	sh $1 s1.travian.com.pl map utf8
+
+	sh $1 s1.travian.com.pt map utf8
 }
 
 
