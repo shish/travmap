@@ -18,6 +18,11 @@ if [ -f sql/$1.sql ] ; then
 	fi
 fi
 
-wget -q http://$1/$2.sql -O sql/$1.sql
+echo -n  "Downloading http://$1/$2.sql... "
+if wget -q http://$1/$2.sql -O sql/$1.sql ; then
+	echo "ok"
+else
+	echo "failed"
+fi
 
 
