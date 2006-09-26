@@ -1,12 +1,12 @@
 lang=Czech
 
-key=Klíè
+key=Klíč
 instructions=Instrukce
 link to image=Odkaz na obrázek
-loading=Naèítám... 
+loading=Načítám... 
 last update=Naposled aktualizováno: 
 
-roman=Øímani
+roman=Římani
 gaul=Galové
 teuton=Tetonci
 
@@ -19,45 +19,45 @@ zoom out=-
 
 server=Server 
 alliance=Aliance 
-player=Hráè
-lines=Èáry 
+player=Hráč
+lines=Čáry 
 group by=Skupinovat podle 
 zoom=Zoom 
 case sensitive=Case Sensitive 
-dot size=Velikost Bodù
+dot size=Velikost Bodů
 min distance=Min. Vzdálenost
 max distance=Max. Vzdálenost
 min population=Min. Populace
 max population=Max. Populace
-order by=Seøadit podle
+order by=Seřadit podle
 colour by=Barvit podle
 output format=Výstupní Formát 
 show map=Zobrazit Mapu
 layout=Vrstva
-spread=Rozloená
+spread=Rozložená
 caption=Popisek
-shrinkwrap=Oøezat Okraje
-new page=Otevøít na nové stránce
+shrinkwrap=Ořezat Okraje
+new page=Otevřít na nové stránce
 
-advanced options=Pokroèilé nastavení
+advanced options=Pokročilé nastavení
 output options=Nastavení výstupu
 language options=Nastavení jazyka
 
-default=Standartnì
+default=Standartně
 distance from zoom target=Vzdálenosti od zoomovaného cíle
 population=Populace
 race=Rasy
-town=Mìsta
+town=Města
 
-help1=Oddìlujte více hráèù a aliancí èárkami, uvozovky mohou být pouity k zachovaní pùvodní funkce mezer a èárek, napø. -- <code>A, B, "C,D,E", F</code> 
+help1=Oddělujte více hráčů a aliancí čárkami, uvozovky mohou být použity k zachovaní původní funkce mezer a čárek, např. -- <code>A, B, "C,D,E", F</code> 
 help2=Zoom = <code>x,y,faktor zoomu</code> nebo <code>jméno vesnice,faktor zoomu</code> 
-help3=Aliance, hráèi, a mìsta v zoomu jsou vechny case sensetive, protoe to dìlá vìci o *HODNÌ* rychlejí 
-help4=Hráèe a aliance s nestandartními znaky ve jménech mùete popsat jejich ID spíe ne jejich jménem, napø. <code>id:123</code>. ID mùete vidìt v odkazech stránek o <a href="links1.png">vesnicích</a> a <a href="links2.png">statistikách</a>. 
-help5=Hotlinkování je povoleno -- kadá mapa zabere trochu èasu, kdy je jako první vìc kadý den generována, pak je uloena, a nevyaduje prakticky ádne dalí zpracování, nebo nìjaké iroké pásmo k opakovanému posílání. 
-help6=Skupinovat podle Aliance 2 = zachází s hráèi, kteøí nejsou v alianci, jako by byly samostatná aliance.
+help3=Aliance, hráči, a města v zoomu jsou všechny case sensetive, protože to dělá věci o *HODNĚ* rychlejší 
+help4=Hráče a aliance s nestandartními znaky ve jménech můžete popsat jejich ID spíše než jejich jménem, např. <code>id:123</code>. ID můžete vidět v odkazech stránek o <a href="links1.png">vesnicích</a> a <a href="links2.png">statistikách</a>. 
+help5=Hotlinkování je povoleno -- každá mapa zabere trochu času, když je jako první věc každý den generována, pak je uložena, a nevyžaduje prakticky žádne další zpracování, nebo nějaké široké pásmo k opakovanému posílání. 
+help6=Skupinovat podle Aliance 2 = zachází s hráči, kteří nejsou v alianci, jako by byly samostatná aliance.
 
-servertime=Mapy jsou aktualizovány v 1:30 ráno, právì teï je
-report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Hlate</a> vechny chyby, které se neopraví do nìkolika minut od jejich objevení. (Pouijte <a href="http://trac.shishnet.org/travmap/report/1">Chybového Stopaøe</a>, vypoøádávání se s vìcmi skrze e-mail je nepraktické) 
-credit=Shish a Babelfish jsou oba hrozní pøekladatelé, <a href="http://trac.shishnet.org/travmap/browser/trunk/lang">prosím pomozte!</a> (Do èetiny pøeloil Dejf)
+servertime=Mapy jsou aktualizovány v 1:30 ráno, právě teď je
+report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Hlašte</a> všechny chyby, které se neopraví do několika minut od jejich objevení. (Použijte <a href="http://trac.shishnet.org/travmap/report/1">Chybového Stopaře</a>, vypořádávání se s věcmi skrze e-mail je nepraktické) 
+credit=Shish a Babelfish jsou oba hrozní překladatelé, <a href="http://trac.shishnet.org/travmap/browser/trunk/lang">prosím pomozte!</a> (Do češtiny přeložil Dejf)
 
 notice= 
