@@ -35,6 +35,7 @@ function foreach() {
 	sh $1 87.106.19.213 map $defenc
 	sh $1 s12.travian.fr map $defenc
 	sh $1 s13.travian.fr map $defenc
+	sh $1 s14.travian.fr map $defenc
 
 	sh $1 s1.travian.it map utf8
 	sh $1 s2.travian.it map $defenc
@@ -45,6 +46,8 @@ function foreach() {
 	sh $1 s7.travian.it map $defenc
 	sh $1 s8.travian.it map $defenc
 	sh $1 s9.travian.it map $defenc
+	sh $1 s10.travian.it map $defenc
+	sh $1 87.106.12.134 map $defenc # = s10
 
 	sh $1 www.travian.org karte utf8
 	sh $1 www.travian.at  karte utf8
@@ -52,6 +55,7 @@ function foreach() {
 	sh $1 s1.travian.net map $defenc
 	sh $1 s2.travian.net map $defenc
 	sh $1 s3.travian.net map utf8
+	sh $1 s4.travian.net map utf8
 
 	sh $1 s1.travian.nl map $defenc
 	sh $1 s2.travian.nl map $defenc
@@ -63,14 +67,23 @@ function foreach() {
 	sh $1 welt2.travian.de karte $defenc
 	sh $1 welt3.travian.de karte $defenc
 	sh $1 welt4.travian.de karte $defenc
+	sh $1 welt5.travian.de karte utf8
 
 	sh $1 s1.travian3.pl map utf8
+	sh $1 s2.travian3.pl map utf8
 	
 	sh $1 s1.travian.com.pl map utf8
 
 	sh $1 s1.travian.com.pt map utf8
+	
+	sh $1 s1.travian.ru map utf8
+	
+	sh $1 s1.travian.com.tr map utf8
+	
+	sh $1 s1.travian.ru map utf8
 }
 
+echo -n > update.log
 
 # create default folders
 if [ ! -d sql ] ; then mkdir sql ; fi
@@ -84,8 +97,11 @@ if [ ! -d cache ] ; then
 	chmod -R 777 cache
 fi
 
+echo "updating texts" >> update.log
 foreach ./update_text.sh
+echo "updating mysql" >> update.log
 foreach ./update_mysql.sh
+echo "updates done" >> update.log
 # foreach update_sqlite.sh
 
 rm -f cache/*.txt
