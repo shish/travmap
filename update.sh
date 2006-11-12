@@ -36,6 +36,7 @@ function foreach() {
 	sh $1 s12.travian.fr map $defenc
 	sh $1 s13.travian.fr map $defenc
 	sh $1 s14.travian.fr map $defenc
+	sh $1 s15.travian.fr map $defenc
 
 	sh $1 s1.travian.it map utf8
 	sh $1 s2.travian.it map $defenc
@@ -56,11 +57,12 @@ function foreach() {
 	sh $1 s2.travian.net map $defenc
 	sh $1 s3.travian.net map utf8
 	sh $1 s4.travian.net map utf8
+	sh $1 speed.travian.net map utf8
 
 	sh $1 s1.travian.nl map $defenc
 	sh $1 s2.travian.nl map $defenc
 	sh $1 s3.travian.nl map $defenc
-#	sh $1 speed.travian.nl map $defenc
+	sh $1 speed.travian.nl map utf8
 	sh $1 s4.travian.nl map $defenc
 
 	sh $1 welt1.travian.de karte utf8
@@ -68,9 +70,10 @@ function foreach() {
 	sh $1 welt3.travian.de karte $defenc
 	sh $1 welt4.travian.de karte $defenc
 	sh $1 welt5.travian.de karte utf8
+	sh $1 speed.travian.de karte utf8
 
 	sh $1 s1.travian3.pl map utf8
-	sh $1 s2.travian3.pl map utf8
+	sh $1 s2.travian3.pl karte utf8
 	
 	sh $1 s1.travian.com.pl map utf8
 
@@ -81,6 +84,8 @@ function foreach() {
 	sh $1 s1.travian.com.tr map utf8
 	
 	sh $1 s1.travian.ru map utf8
+	
+	sh $1 s1.travian.ro map utf8
 }
 
 echo -n > update.log
