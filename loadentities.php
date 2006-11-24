@@ -28,7 +28,7 @@ if(!$using_data_cache && $datacache) {
 	$dbh = sqlite_open($datacache);
 	if(@sqlite_query($dbh, "BEGIN TRANSACTION")) {
 		sqlite_query($dbh, 
-			"CREATE TABLE $table(
+			"CREATE TABLE '$table' (
 				x, y, population, race,
 				owner_name, owner_id,
 				guild_name, guild_id,
@@ -47,7 +47,7 @@ if(!$using_data_cache && $datacache) {
 while($row = sql_fetch_row($result)) {
 	if(!$using_data_cache && $datacache) {
 		sqlite_query($dbh, "INSERT INTO 
-			$table(
+			'$table' (
 				x, y, population, race, 
 				owner_name, owner_id,
 				guild_name, guild_id,

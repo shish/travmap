@@ -20,7 +20,11 @@ if($datacache && file_exists($datacache)) {
 
 	function sql_fetch_row($result) {return sqlite_fetch_array($result);}
 	function sql_escape_string($text) {return sqlite_escape_string($text);}
-	function sql_query($query) {global $db; return sqlite_query($db, $query);}
+	function sql_query($query) {
+		global $db;
+		$query = preg_replace("/(TABLE|INTO|FROM)\s+(\w+)/", "$1 '$2'", $query);
+		return sqlite_query($db, $query);
+	}
 }
 else {
 	require_once "config.php";
