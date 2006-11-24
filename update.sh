@@ -49,6 +49,7 @@ function foreach() {
 	sh $1 s9.travian.it map $defenc
 	sh $1 s10.travian.it map $defenc
 	sh $1 87.106.12.134 map $defenc # = s10
+	sh $1 s11.travian.it map $defenc
 
 	sh $1 www.travian.org karte utf8
 	sh $1 www.travian.at  karte utf8
@@ -78,6 +79,7 @@ function foreach() {
 	sh $1 s1.travian.com.pl map utf8
 
 	sh $1 s1.travian.com.pt map utf8
+	sh $1 s2.travian.com.pt map utf8
 	
 	sh $1 s1.travian.ru map utf8
 	
@@ -86,6 +88,8 @@ function foreach() {
 	sh $1 s1.travian.ru map utf8
 	
 	sh $1 s1.travian.ro map utf8
+	
+	sh $1 s1.travian.dk map utf8
 }
 
 echo -n > update.log
