@@ -33,7 +33,7 @@ $mindist = getInt("mindist", null);
 $maxpop = getInt("maxpop", null);
 $minpop = getInt("minpop", null);
 
-$table = str_replace(".", "_", $server);
+$table = preg_replace("/[^a-zA-Z0-9]/", "_", $server);
 
 $datahash = md5("$server $alliance $player $town $zoom $mindist $maxdist $caption $casen $maxpop $minpop");
 $datahash_initial = substr($datahash, 0, 2); 
