@@ -106,11 +106,8 @@ if [ ! -d cache ] ; then
 	chmod -R 777 cache
 fi
 
-echo "updating texts" >> update.log
 foreach ./update_text.sh
-echo "updating mysql" >> update.log
 foreach ./update_mysql.sh
-echo "updates done" >> update.log
 # foreach update_sqlite.sh
 
 rm -f cache/*.txt
