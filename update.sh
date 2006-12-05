@@ -37,6 +37,7 @@ function foreach() {
 	sh $1 s13.travian.fr map $defenc
 	sh $1 s14.travian.fr map $defenc
 	sh $1 s15.travian.fr map $defenc
+	sh $1 s16.travian.fr map $defenc
 
 	sh $1 s1.travian.it map utf8
 	sh $1 s2.travian.it map $defenc
@@ -74,7 +75,7 @@ function foreach() {
 	sh $1 speed.travian.de karte utf8
 
 	sh $1 s1.travian3.pl map utf8
-	sh $1 s2.travian3.pl karte utf8
+	sh $1 s2.travian3.pl map utf8
 	
 	sh $1 s1.travian.com.pl map utf8
 
@@ -91,8 +92,6 @@ function foreach() {
 	
 	sh $1 s1.travian.dk map utf8
 }
-
-echo -n > update.log
 
 # create default folders
 if [ ! -d sql ] ; then mkdir sql ; fi
