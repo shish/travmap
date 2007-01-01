@@ -1,0 +1,63 @@
+﻿lang=中文
+
+key=关键字
+instructions=命令
+link to image=图像链接
+loading=载入中...
+last update=上一次更新:
+
+roman=罗马人
+gaul=高卢人
+teuton=日尔曼人
+
+north=^
+east=&lt;
+south=V
+west=&gt;
+zoom in=+
+zoom out=-
+
+server=服务器
+alliance=联盟
+player=玩家
+lines=连线
+group by=分组
+zoom=放大
+case sensitive=区分大小写
+dot size=圆点大小
+min distance=最小距离
+max distance=最大距离
+min population=人口最少
+max population=人口最多
+order by=排序按照
+colour by=颜色按照
+output format=输出格式
+show map=显示地图
+layout=显示方式
+spread=按区域展开
+caption=标题
+shrinkwrap=边缘适应
+new page=在新的一页打开
+
+advanced options=高级选项
+output options=输出选项
+language options=语言选项
+
+default=缺省
+distance from zoom target=到目标的距离
+population=人口
+race=种族
+town=村子
+
+help1=将多个联盟和玩家之间用分号(;)分开. 引号用来保持分号和空格号不变.举例 -- <code>A, B, "C,D,E", F</code>
+help2=放大 = <code>x,y,放大系数</code> 或者 <code>村子名字,放大系数</code>
+help3=联盟,玩家和村子名都是区分大小写的,这是为了让程序运行的更快.
+help4=一些玩家和联盟的名字中含有非标准字符,这种情况我们可以用id号码来解决, 比如:<code>id:123</code>, id号可以这样找到:<a href="links1.png">village</a> 和 <a href="links2.png">statistics</a>页面
+help5=我们推荐热链接地图 -- 每天第一次生成地图会花费一些时间,然后地图会被缓存起来,这样以后就不会占用cpu和网络带宽.
+help6=按照联盟分组 2 = 意思是所有没有联盟的玩家是分开的
+
+servertime=本网站内容更新于 1:30AM, 现在时间是:
+report bugs=<a href="http://trac.shishnet.org/travmap/report/1">报告</a> 没有在几分钟内更正的任何Bug (清使用 <a href="http://trac.shishnet.org/travmap/report/1">Bug 跟踪</a>, 因为用电子邮件太麻烦了)
+credit=中文版由 Tengxiao (aka chinsa) 翻译 
+
+notice=
