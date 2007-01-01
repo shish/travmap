@@ -30,7 +30,11 @@ echo "
 " | mysql -u$MYSQL_USER -p$MYSQL_PASS -h $MYSQL_HOST $MYSQL_DB
 
 if [ `stat -c "%s" sql/$1.sql` -ge 128000 ] ; then
-	perl -ne "s/INSERT INTO \`x_world\` VALUES \(//; s/\),\(/\n/g; s/\);//; print;" < sql/$1.sql | iconv -f $3 -t utf8 > sql/$DBNAME.txt
+	if [ `file sql/$1.sql | grep Unicode | wc -l` -eq 1 ] ; then
+		perl -ne "s/INSERT INTO \`x_world\` VALUES \(//; s/\),\(/\n/g; s/\);//; print;" < sql/$1.sql > sql/$DBNAME.txt
+	else
+		perl -ne "s/INSERT INTO \`x_world\` VALUES \(//; s/\),\(/\n/g; s/\);//; print;" < sql/$1.sql | iconv -f iso-8859-1 -t utf8 > sql/$DBNAME.txt
+	fi
 	mysqlimport \
 		-u$MYSQL_USER -p$MYSQL_PASS -h $MYSQL_HOST $MYSQL_DB \
 		--delete --local \
