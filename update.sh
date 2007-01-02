@@ -74,6 +74,7 @@ function foreach() {
 
 	sh $1 s1.travian3.pl map
 	sh $1 s2.travian3.pl map
+	sh $1 s3.travian3.pl map
 	
 	sh $1 s1.travian.com.pl map
 
@@ -83,6 +84,7 @@ function foreach() {
 	sh $1 s1.travian.ru map
 	
 	sh $1 s1.travian.com.tr map
+	sh $1 s2.travian.com.tr map
 	
 	sh $1 s1.travian.ru map
 	
