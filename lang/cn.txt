@@ -1,4 +1,4 @@
-﻿lang=中文
+lang=中文
 
 key=关键字
 instructions=命令
@@ -49,7 +49,7 @@ population=人口
 race=种族
 town=村子
 
-help1=将多个联盟和玩家之间用分号(;)分开. 引号用来保持分号和空格号不变.举例 -- <code>A, B, "C,D,E", F</code>
+help1=将多个联盟和玩家之间用逗号分开. 引号用来保持分号和空格号不变.举例 -- <code>A, B, "C,D,E", F</code>
 help2=放大 = <code>x,y,放大系数</code> 或者 <code>村子名字,放大系数</code>
 help3=联盟,玩家和村子名都是区分大小写的,这是为了让程序运行的更快.
 help4=一些玩家和联盟的名字中含有非标准字符,这种情况我们可以用id号码来解决, 比如:<code>id:123</code>, id号可以这样找到:<a href="links1.png">village</a> 和 <a href="links2.png">statistics</a>页面
