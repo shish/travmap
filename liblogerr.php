@@ -1,5 +1,5 @@
 <?php
-function error_handler($errno, $errstr ,$errfile, $errline, $errcontext) {
+function error_handler($errno, $errstr, $errfile, $errline, $errcontext) {
 	$halt_script = true;
 	switch($errno) { 
 		case E_USER_NOTICE: 
