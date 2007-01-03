@@ -97,6 +97,8 @@ function foreach() {
 	sh $1 s1.travian.hk map
 
 	sh $1 s1.travian.cn map
+	
+	sh $1 s1.travian.cz map
 }
 
 # create default folders
