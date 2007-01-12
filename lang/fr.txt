@@ -4,7 +4,7 @@ key=Clé
 instructions=Instructions
 link to image=Lien vers l'image
 loading=Chargement...
-last update=last update:
+last update=dernière mise à jour:
 
 roman=Romains
 gaul=Gaulois
@@ -36,7 +36,7 @@ show map=Afficher la Carte
 layout=Mise en page
 spread=Déployer par Zones
 caption=Légende
-shrinkwrap=Shrinkwrap
+shrinkwrap=Redimensionnement automatique
 new page=Ouvrir dans une nouvelle page
 
 advanced options=Options Avançées
@@ -52,10 +52,9 @@ town=Ville
 help1=Séparer les alliances multiples et les joueurs par une virgule; des virgules peuvent etre utilisées pour guarder les tirets et les espaces intacts, ex: -- <code>A, B, "C,D,E", F</code>
 help2=Zoom = <code>x,y,facteur de zoom</code> ou <code>nom du village, facteur de zoom</code>
 help3=Les cases Alliance, Joueur, Village et zoom sont des cases sensitives (à mémoire de texte), pour vous aidez à écrire plus vite.
-help4=Les joueurs et les alliances avec des charactères non-standards dans leurs noms peuvent utiliser leur IDs plutot que leurs noms, ex : <code>id:123</code>. IDs can be seen in the links from <a href="links1.png">village</a> and <a href="links2.png">statistics</a> pages.
-help6=Group by Alliance 2 = treat players with no alliance as all separate
+help4=Les joueurs et les alliances avec des caractères non-standards dans leurs noms peuvent utiliser leur IDs plutôt que leurs noms, ex : <code>id:123</code>. Les IDs peuvent être vue dans le lien des pages des <a href="links1.png">village</a> et <a href="links2.png">statistique</a>.
+help6=Group by Alliance 2 = Traite les joueurs sans alliance tous séparément.
 
-
-servertime=Les cartes sont mises à jours à 1:30AM, l'heure actuelle est
+servertime=Les cartes sont mises à jours à 13:30, l'heure actuelle est
 report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Reportez</a> les erreurs constatées et apportez vos idées...
 credit=<a href="http://trac.shishnet.org/travmap/browser/trunk/lang">Traduit</a> avec l'aide de Sakumi et de Bouy
