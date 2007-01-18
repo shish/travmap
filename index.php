@@ -252,7 +252,7 @@ else {
 	
 	<p><?=$words['report bugs'];?>
 
-	<p style="text-align: center;"><a href="mailto:webmaster@shish.is-a-geek.net">webmaster@shish.is-a-geek.net</a>
+	<p style="text-align: center;"><a href="mailto:webmaster@shishnet.org">webmaster@shishnet.org</a>
 </div>
 
 <div id="map" style="display: none;"></div>
