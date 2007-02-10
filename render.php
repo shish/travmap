@@ -107,15 +107,24 @@ foreach($entities as $entity_name => $entity) {
 // }}}
 
 // grid {{{
+function get_gridline_color($pos) {
+	global $grey, $mgrey, $lgrey, $wgrey;
+
+		if($pos % 1000 == 0) $col = $grey;
+	elseif($pos % 100 == 0) $col = $mgrey;
+	elseif($pos % 10 == 0) $col = $lgrey;
+	elseif($pos % 1 == 0) $col = $wgrey;
+	
+	return $col;
+}
+
 function draw_grid_lines($image, $mapradius, $drawradius) {
-	global $zz, $zx, $zy, $cx, $cy, $grey, $mgrey, $lgrey, $wgrey, $imageline;
+	global $zz, $zx, $zy, $cx, $cy, $imageline;
 	
 	$inc = ($zz > 10) ? 1 : 10;
+	
 	for($v=-$mapradius; $v<=$mapradius; $v+=$inc) {
-		    if($v % 1000 == 0) $col = $grey;
-		elseif($v % 100 == 0) $col = $mgrey;
-		elseif($v % 10 == 0) $col = $lgrey;
-		elseif($v % 1 == 0) $col = $wgrey;
+		$col = get_gridline_color($v);
 	
 		$top =    $cy-$drawradius;
 		$bottom = $cy+$drawradius;
