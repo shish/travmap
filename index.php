@@ -243,6 +243,7 @@ else {
 	<p><?=$words['help4'];?>
 	<p><?=$words['help5'];?>
 	<p><?=$words['help6'];?>
+	<p><?=$words['help7'];?>
 	
 	<p><?=$words['servertime'];?> <?=$servertime;?>
 
