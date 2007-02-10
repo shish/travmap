@@ -36,6 +36,9 @@ function foreach() {
 	sh $1 s14.travian.fr map
 	sh $1 s15.travian.fr map
 	sh $1 s16.travian.fr map
+	sh $1 s17.travian.fr map
+	
+	sh $1 s1.travian3.fr map
 
 	sh $1 s1.travian.it map
 	sh $1 s2.travian.it map
@@ -49,6 +52,7 @@ function foreach() {
 	sh $1 s10.travian.it map
 	sh $1 87.106.12.134 map # = s10
 	sh $1 s11.travian.it map
+	sh $1 s12.travian.it map
 
 	sh $1 www.travian.org karte
 	sh $1 www.travian.at  karte
@@ -75,6 +79,7 @@ function foreach() {
 	sh $1 s1.travian3.pl map
 	sh $1 s2.travian3.pl map
 	sh $1 s3.travian3.pl map
+	sh $1 speed.travian3.pl map
 	
 	sh $1 s1.travian.com.pl map
 
@@ -99,6 +104,14 @@ function foreach() {
 	sh $1 s1.travian.cn map
 	
 	sh $1 s1.travian.cz map
+	
+	sh $1 s1.travian.hu map
+	
+	sh $1 s1.travian.fi map
+
+	sh $1 s1.travian.us map
+	
+	sh $1 s1.travian.co.uk map
 }
 
 # create default folders
