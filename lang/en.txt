@@ -55,9 +55,10 @@ help3=Alliance, player, and town to zoom in on are all case sensetive, as it mak
 help4=Players and alliances with non-standard characters in their names can use their IDs rather than their names, eg <code>id:123</code>. IDs can be seen in the links from <a href="links1.png">village</a> and <a href="links2.png">statistics</a> pages.
 help5=Hotlinking is encouraged -- while each map takes a while to be generated the first time each day, it's then cached, and takes practically no processing power or bandwidth to re-send.
 help6=Group by Alliance 2 = treat players with no alliance as all separate
+help7=If the server data seems out of date, please first check the server's map.sql file -- if that data is out of date, complain to the travian administrators, not me!
 
 servertime=Maps are updated at 1:30AM, the current time is
 report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Report</a> any bugs that aren't fixed within a couple of minutes of them appearing. (Use <a href="http://trac.shishnet.org/travmap/report/1">the bug tracker</a>, dealing with things via email gets disorganised)
 credit=Shish and Babelfish are both horrible translators, <a href="http://trac.shishnet.org/travmap/browser/trunk/lang">please help!</a>
 
-notice=
+notice=Yes, s5.travian.com hasn't updated for a while. The data I'm getting from the server hasn't been updated -- poke the server admins to update the data file, and then I can update my own database~

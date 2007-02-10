@@ -54,6 +54,7 @@ help2=Zoom = <code>x,y,zoom factor</code> of <code>Naam van het dorp,zoom factor
 help3=Alliantie, speler en dorp om op in te zoomen zijn allemaal hoofdlettergevoelig, aangezien dat een *STUK* sneller is
 help4=Spelers en allianties met niet-standaard tekens in hun naam kunnen vervangen worden door hun IDs, bijvoorbeeld <code>id:123</code>
 help6=Groepeer op Alliantie(s)2 = Geef spelers zonder alliantie gescheiden weer.
+help7=If the server data seems out of date, please first check the server's map.sql file -- if that data is out of date, complain to the travian administrators, not me!
 
 servertime=Kaarten worden bijgewerkt om 1:30AM, het is nu
 report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Rapporteer</a> fouten die niet enkele minuten na ontdekking verholpen zijn.

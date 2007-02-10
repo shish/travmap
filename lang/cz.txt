@@ -55,6 +55,7 @@ help3=Aliance, hráči, a města v zoomu jsou všechny case sensetive, protože 
 help4=Hráče a aliance s nestandartními znaky ve jménech můžete popsat jejich ID spíše než jejich jménem, např. <code>id:123</code>. ID můžete vidět v odkazech stránek o <a href="links1.png">vesnicích</a> a <a href="links2.png">statistikách</a>. 
 help5=Hotlinkování je povoleno -- každá mapa zabere trochu času, když je jako první věc každý den generována, pak je uložena, a nevyžaduje prakticky žádne další zpracování, nebo nějaké široké pásmo k opakovanému posílání. 
 help6=Skupinovat podle Aliance 2 = zachází s hráči, kteří nejsou v alianci, jako by byly samostatná aliance.
+help7=If the server data seems out of date, please first check the server's map.sql file -- if that data is out of date, complain to the travian administrators, not me!
 
 servertime=Mapy jsou aktualizovány v 1:30 ráno, právě teď je
 report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Hlašte</a> všechny chyby, které se neopraví do několika minut od jejich objevení. (Použijte <a href="http://trac.shishnet.org/travmap/report/1">Chybového Stopaře</a>, vypořádávání se s věcmi skrze e-mail je nepraktické) 

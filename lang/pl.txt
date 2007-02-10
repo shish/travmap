@@ -54,6 +54,7 @@ help2=Powiekszenie = <code>x, y, wartosc powiekszenia</code> lub <code>nazwa wio
 help3=Pamietaj ze wielkosc liter MA ZNACZENIE!
 help4=Players and alliances with non-standard characters in their names can use their IDs rather than their names, eg <code>id:123</code>
 help6=Group by Alliance 2 = treat players with no alliance as all separate
+help7=If the server data seems out of date, please first check the server's map.sql file -- if that data is out of date, complain to the travian administrators, not me!
 
 servertime=Maps are updated at 1:30AM, the current time is
 report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Raportuj</a> jesli jakis blad nie zostal naprawiony w ciagu kilku minut od pojawienia.

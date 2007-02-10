@@ -54,6 +54,7 @@ help2=Zoom = <code>x,y,zoom factor</code> eller <code>bynavn,zoom faktor</code>
 help3=Alliancer, spillere, og bynavne til zoom er alle case sensetive, da det gør søningen *MEGET* hurtigere
 help4=Hotlinking opfordres -- Da hver eneste kort genereres første gang hver dag og derefter ligges i cache'en, tager det næsten ingen processorkraft eller båndvidde at sende.
 help6=Group by Alliance 2 = treat players with no alliance as all separate
+help7=If the server data seems out of date, please first check the server's map.sql file -- if that data is out of date, complain to the travian administrators, not me!
 
 servertime=servertid
 report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Report</a> any bugs that aren't fixed within a couple of minutes of them appearing. (Use <a href="http://trac.shishnet.org/travmap/report/1">the bug tracker</a>, dealing with things via email gets disorganised)

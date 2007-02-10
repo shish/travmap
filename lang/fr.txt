@@ -54,6 +54,7 @@ help2=Zoom = <code>x,y,facteur de zoom</code> ou <code>nom du village, facteur d
 help3=Les cases Alliance, Joueur, Village et zoom sont des cases sensitives (à mémoire de texte), pour vous aidez à écrire plus vite.
 help4=Les joueurs et les alliances avec des caractères non-standards dans leurs noms peuvent utiliser leur IDs plutôt que leurs noms, ex : <code>id:123</code>. Les IDs peuvent être vue dans le lien des pages des <a href="links1.png">village</a> et <a href="links2.png">statistique</a>.
 help6=Group by Alliance 2 = Traite les joueurs sans alliance tous séparément.
+help7=If the server data seems out of date, please first check the server's map.sql file -- if that data is out of date, complain to the travian administrators, not me!
 
 servertime=Les cartes sont mises à jours à 13:30, l'heure actuelle est
 report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Reportez</a> les erreurs constatées et apportez vos idées...

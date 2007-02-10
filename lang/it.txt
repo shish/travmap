@@ -54,6 +54,7 @@ help2=Zoom = <code>asse x, asse y, fattore di zoom</code> (1, 2, 1.1 ecc.) oppur
 help3=Nomi di alleanze, giocatori e villaggi sono tutti sensibili alle maiuscole (case sensetive), se rispettate questa regola la ricerca sarà *MOLTO* più veloce
 help4=I giocatori e le alleanze con i caratteri non standard nei loro nomi possono usare le loro identificazioni piuttosto che i loro nomi, per esempio <code>id:123</code>. IDs can be seen in the links from <a href="links1.png">village</a> and <a href="links2.png">statistics</a> pages.
 help6=Group by Alliance 2 = treat players with no alliance as all separate
+help7=If the server data seems out of date, please first check the server's map.sql file -- if that data is out of date, complain to the travian administrators, not me!
 
 
 servertime=Maps are updated at 1:30AM, the current time is

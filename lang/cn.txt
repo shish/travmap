@@ -55,6 +55,7 @@ help3=联盟,玩家和村子名都是区分大小写的,这是为了让程序运
 help4=一些玩家和联盟的名字中含有非标准字符,这种情况我们可以用id号码来解决, 比如:<code>id:123</code>, id号可以这样找到:<a href="links1.png">village</a> 和 <a href="links2.png">statistics</a>页面
 help5=我们推荐热链接地图 -- 每天第一次生成地图会花费一些时间,然后地图会被缓存起来,这样以后就不会占用cpu和网络带宽.
 help6=按照联盟分组 2 = 意思是所有没有联盟的玩家是分开的
+help7=If the server data seems out of date, please first check the server's map.sql file -- if that data is out of date, complain to the travian administrators, not me!
 
 servertime=本网站内容更新于 1:30AM, 现在时间是:
 report bugs=<a href="http://trac.shishnet.org/travmap/report/1">报告</a> 没有在几分钟内更正的任何Bug (清使用 <a href="http://trac.shishnet.org/travmap/report/1">Bug 跟踪</a>, 因为用电子邮件太麻烦了)

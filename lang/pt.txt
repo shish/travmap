@@ -55,6 +55,7 @@ help3=Tanto a Aliança como o Jogador ou a Aldeia às quais se aplicam o Zoom s�
 help4=Jogadores e Alianças com caracteres năo standard nos seus nomes podem usar os IDs em vez dos nomes, ex.:<code>id:123</code>
 help5=Criar uma ligaçăo(Link) directa ao mapa é aconselhavel, pois cada mapa é gerado cada dia consumindo tempo ao servidor, sendo posteriormente guardado năo necessitando de tanto tempo para o reenvio.
 help6=Agrupar por Aliança 2 - Considera os jogadores sem aliança como separados
+help7=If the server data seems out of date, please first check the server's map.sql file -- if that data is out of date, complain to the travian administrators, not me!
 
 servertime=Os mapas săo actualizados às 1:30AM, actulamente săo
 report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Avisem-me</a> de qualquer falha que exista tăo depressa quanto possivel.

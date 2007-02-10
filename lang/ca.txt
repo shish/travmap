@@ -55,6 +55,7 @@ help3=L'aliança, els jugadors i les viles tenen en compte les mejúscules, perq
 help4=Els jugadors o/i aliançes que tinguin carácters no estandards en el nom, poden posar la seva ID en comptes del nom. Ex: <code>id:6969</code> 
 help5=Us animem a usar els Links.. Mentres que cada mapa triga una mica al ser generat per primera vegada cada dia, aleshores es queda en la caché, i no comporta practicament res de treball de procesador ni d'ample de banda per ésser reenviat.
 help6=Group by Alliance 2 = treat players with no alliance as all separate
+help7=If the server data seems out of date, please first check the server's map.sql file -- if that data is out of date, complain to the travian administrators, not me!
 
 servertime=Maps are updated at 1:30AM, the current time is
 report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Avisa'm</a> de qualsevol errada que trovis, si fa uns quants minuts que dura.
