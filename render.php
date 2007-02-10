@@ -107,33 +107,49 @@ foreach($entities as $entity_name => $entity) {
 // }}}
 
 // grid {{{
-/*
- * Draw grid
- */
-$inc = ($zz > 10) ? 1 : 10;
-for($v=-250; $v<=250; $v+=$inc) {
-	    if($v % 1000 == 0) $col = $grey;
-	elseif($v % 100 == 0) $col = $mgrey;
-	elseif($v % 10 == 0) $col = $lgrey;
-	elseif($v % 1 == 0) $col = $wgrey;
-
-	if(in($cx+($v-$zx)*$zz, $cx-250, $cx+250)) $imageline($im, $cx+($v-$zx)*$zz, $cy+(-250+$zy)*$zz, $cx+($v-$zx)*$zz, $cy+(250+$zy)*$zz, $col);
-	if(in($cy+($v+$zy)*$zz, $cy-250, $cy+250)) $imageline($im, $cx-(-250+$zx)*$zz, $cy+($v+$zy)*$zz, $cx-(250+$zx)*$zz, $cy+($v+$zy)*$zz, $col);
-} 
-
-
-/*
- * Draw grid axes
- */
-$inc = ($zz > 10) ? 10 : 50;
-
-$x = bound($cx-$zx*$zz, $cx-250, $cx+225);
-$y = bound($cy+$zy*$zz, $cy-250, $cy+240);
-
-for($v=-250; $v<=250; $v+=$inc) {
-	$imagestring($im, 3, $x+2, $cy-($v-$zy)*$zz+1, $v, $mgrey);
-	$imagestring($im, 3, $cx+($v-$zx)*$zz+2, $y+1, $v, $mgrey);
+function draw_grid_lines($image, $mapradius, $drawradius) {
+	global $zz, $zx, $zy, $cx, $cy, $grey, $mgrey, $lgrey, $wgrey, $imageline;
+	
+	$inc = ($zz > 10) ? 1 : 10;
+	for($v=-$mapradius; $v<=$mapradius; $v+=$inc) {
+		    if($v % 1000 == 0) $col = $grey;
+		elseif($v % 100 == 0) $col = $mgrey;
+		elseif($v % 10 == 0) $col = $lgrey;
+		elseif($v % 1 == 0) $col = $wgrey;
+	
+		$top =    $cy-$drawradius;
+		$bottom = $cy+$drawradius;
+		$left =   $cx-$drawradius;
+		$right =  $cx+$drawradius;
+		
+		$x = $cx+($v-$zx)*$zz;
+		$y = $cy+($v+$zy)*$zz;
+		
+		if(in($x, $left, $right)) $imageline($image, $x, $cy+(-$mapradius+$zy)*$zz, $x, $cy+($mapradius+$zy)*$zz, $col);
+		if(in($y, $top, $bottom)) $imageline($image, $cx-(-$mapradius+$zx)*$zz, $y, $cx-($mapradius+$zx)*$zz, $y, $col);
+	} 
 }
+
+function draw_grid_labels($image, $mapradius, $drawradius) {
+	global $zz, $zx, $zy, $cx, $cy, $imagestring, $mgrey;
+	
+	$inc = ($zz > 10) ? 10 : 50;
+
+	$x = bound($cx-$zx*$zz, $cx-$drawradius, $cx+$drawradius-25);
+	$y = bound($cy+$zy*$zz, $cy-$drawradius, $cy+$drawradius-10);
+
+	for($v=-$mapradius; $v<=$mapradius; $v+=$inc) {
+		$imagestring($image, 3, $x+2, $cy-($v-$zy)*$zz+1, $v, $mgrey);
+		$imagestring($image, 3, $cx+($v-$zx)*$zz+2, $y+1, $v, $mgrey);
+	}
+}
+
+function draw_grid($image, $mapradius, $drawradius) {
+	draw_grid_lines($image, $mapradius, $drawradius);
+	draw_grid_labels($image, $mapradius, $drawradius);
+}
+
+draw_grid($im, 500, 250);
 
 date_default_timezone_set("America/Los_Angeles");
 $stamp1 = $words["last update"];
