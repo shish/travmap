@@ -1,0 +1,62 @@
+lang=Türkçe
+ 
+key=Anahtar 
+instructions=Talimatlar 
+link to image=Resim Adresi 
+loading=Yükleniyor... 
+last update=Son Güncelleme: 
+ 
+roman=Romalýlar 
+gaul=Galyalýlar 
+teuton=Cermenler
+ 
+north=kuzey 
+east=doðu 
+south=güney 
+west=batý 
+zoom in=yaklaþ 
+zoom out=uzaklaþ 
+ 
+server=Sunucu 
+alliance=Birlik 
+player=Oyuncu
+lines=Çizgiler
+group by=Grupla 
+zoom=Yaklaþtýr
+case sensitive=Büyük/Küçük harf duyarlý 
+dot size=Nokta Büyüklüðü
+min distance=En az Mesafe 
+max distance=En çok Mesafe 
+min population=En az Nüfus 
+max population=En çok Nüfus 
+order by=Sýrala
+colour by=Renklendir 
+output format=Çýkýþ Formatý 
+show map=Haritayý Göster
+layout=Çýkýþ Planý
+spread=Yayýlma
+caption=Baþlýk 
+shrinkwrap=Shrinkwrap 
+new page=Yeni Pencerede Aç 
+ 
+advanced options=Geliþmiþ Ayarlar 
+output options=Çýkýþ Ayarlarý
+language options=Lisan Seçenekleri 
+ 
+default=Varsayýlan 
+distance from zoom target=Seçili Hedeften Uzaklýk 
+population=Nüfus
+race=Irk
+town=Köy
+ 
+help1=Birden fazla birlik ya da oyuncu için virgül kullanabilirsiniz; virgül ile ayýrdýklarýnýzý gruplandýrmak için týrnak iþaretini kullanabilirsiniz, örnek -- <code>A, B, "C,D,E", F</code> 
+help2=yaklaþtýr = <code>x,y,yaklaþtýrma faktörü</code> yada <code>köy adý,yaklaþtýrma faktörü</code> 
+help3=birlik, oyuncu ve köy isimlerini Yaklaþtýrma Faktörü olarak kullanýrken büyük/küçük harf duyarlýdýr. 
+help4=Oyuncu ve birlik isimleri türkçe karakter içeriyorsa bunun yerine ID kodlarýný kullanabilirsiniz., örnek <code>id:123</code>. ID kodlarýný <a href="links1.png">village</a> linkinden ve <a href="links2.png">statistics</a> sayfasýndan görebilirsiniz. 
+help5=Hýzlý sayfalama -- her harita gün içinde ilk oluþturulacaðý zaman biraz zaman alýr, daha sonra önbelleðe atýlýr, ve tekrar yükleneceði zaman daha hýzlý yüklenir. 
+help6=Gruplama Birlik 2 = Bir birliðe dahil olmayan tüm oyuncular ayrý ayrý gösterilir 
+ 
+servertime=Haritalarýn son güncelleme saati 1:30AM, þu anda saat 
+report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Report</a> þu anda düzeltilmemiþ bazý hatalar bulunabilir. (Use <a href="http://trac.shishnet.org/travmap/report/1">hata bildirimi için</a>,) 
+credit=Türkçe'ye çeviren Veysi Emrullah BABAN
+
