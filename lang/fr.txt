@@ -4,7 +4,7 @@ key=Clé
 instructions=Instructions
 link to image=Lien vers l'image
 loading=Chargement...
-last update=dernière mise à jour:
+last update=Dernière mise à jour:
 
 roman=Romains
 gaul=Gaulois
@@ -25,11 +25,11 @@ group by=Grouper par
 zoom=Centrage et Zoom
 case sensitive=Case Sensitive
 dot size=Taille du Point village
-min distance=Min Dist
-max distance=Max Dist
+min distance=Distance Min
+max distance=Distance Max
 min population=Population Min
 max population=Population Max
-order by=Ranger la liste suivant la
+order by=Ranger la liste suivant
 colour by=par Couleur
 output format=Format de Sortie
 show map=Afficher la Carte
@@ -51,11 +51,12 @@ town=Ville
 
 help1=Séparer les alliances multiples et les joueurs par une virgule; des virgules peuvent etre utilisées pour guarder les tirets et les espaces intacts, ex: -- <code>A, B, "C,D,E", F</code>
 help2=Zoom = <code>x,y,facteur de zoom</code> ou <code>nom du village, facteur de zoom</code>
-help3=Les cases Alliance, Joueur, Village et zoom sont des cases sensitives (à mémoire de texte), pour vous aidez à écrire plus vite.
+help3=Les cases Alliance, Joueur, Village Zoomés sont des cases sensitives (à mémoire de texte), pour vous aidez à écrire plus vite.
 help4=Les joueurs et les alliances avec des caractères non-standards dans leurs noms peuvent utiliser leur IDs plutôt que leurs noms, ex : <code>id:123</code>. Les IDs peuvent être vue dans le lien des pages des <a href="links1.png">village</a> et <a href="links2.png">statistique</a>.
-help6=Group by Alliance 2 = Traite les joueurs sans alliance tous séparément.
-help7=If the server data seems out of date, please first check the server's map.sql file -- if that data is out of date, complain to the travian administrators, not me!
+help5=Le «Hotlinking» est encouragé – alors que chaque carte prend du temps pour se générer la première fois chaque jours, le processus est alors mit en mémoire cache, et ne prend pratiquement aucune ressources ni de bande passante pour être ré-envoyé.
+help6=Grouper par Alliance(s) 2 = Traite les joueurs sans alliance tous séparément. 
+help7=Si les données du serveur ne semblent pas à jour, merci de vérifier le fichier map.sql du serveur en premier – si ces données ne sont pas à jour, plaignez-vous aux administrateurs de Travian, pas moi !
 
-servertime=Les cartes sont mises à jours à 13:30, l'heure actuelle est
-report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Reportez</a> les erreurs constatées et apportez vos idées...
+servertime=Les cartes sont mises à jours à 1:30AM, l'heure actuelle est
+report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Reportez</a> chaque bug qui n’a pas été fixés dans les minutes qui suive son apparition. (Utilisez <a href="http://trac.shishnet.org/travmap/report/1">le traqueur de Bug</a>, traiter via email rends les choses désorganisées.
 credit=<a href="http://trac.shishnet.org/travmap/browser/trunk/lang">Traduit</a> avec l'aide de Sakumi et de Bouy
