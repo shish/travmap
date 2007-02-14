@@ -209,10 +209,44 @@ function svgentities($text) {
 	return $text;
 }
 
-foreach($entities as $entity_id => $entity) {
+function draw_entity_label($image, $entity, $colour) {
+	global $server, $white, $imagettftext;
+	
+	aimacustom($image, "<a xlink:href='http://$server/".$entity['link']."'>");
+	# yes, we want this to only apply to aima, not gd
+	aimafilledrectangle($image,
+			$entity['x']+7, $entity['y']-7,
+			$entity['x']+90, $entity['y']+7, $white);
+	dot($image, $entity['dx'], $entity['dy'], $colour);
 	$entity_name = $entity["name"];
-
 	$count = $entity['count'];
+	$title = ($count ? "$entity_name (".($count+1).")" : $entity_name);
+	$imagettftext($image, 10, 0, $entity['x'], $entity['y']+5, $colour, "arialuni", $title);
+	aimacustom($image, "</a>");
+}
+
+function draw_village_marker($image, $entity, $village, $colour) {
+	global $server, $cx, $cy, $zx, $zy, $zz, $lines, $imageline, $dotsize;
+	
+	$vx = $cx+($village['x']-$zx)*$zz;
+	$vy = $cy-($village['y']-$zy)*$zz;
+	if($lines) $imageline($image, $entity['dx'], $entity['dy'], $vx, $vy, $colour);
+	
+	$name = $village['name'];
+	$owner = $village['owner'];
+	$guild = $village['guild'];
+	$x = $village['x'];
+	$y = $village['y'];
+	$pop = $village['population'];
+	$cohash = (256-$y)*512 + ($x+257);
+	$tip = svgentities("$name ($x, $y), $pop, ($owner, $guild)");
+	aimacustom($image, "<a xlink:href='http://$server/karte.php?z=$cohash' xlink:title='$tip'>");
+	dot($image, $vx, $vy, $colour, (log($pop+1)+1)*$dotsize);
+	aimacustom($image, "</a>");
+}
+
+function get_entity_colour($entity) {
+	global $colby, $cals, $ct, $ca;
 
 	if($colby == "alliance") {
 		if(!is_null($cals[$entity["guild"]])) $colour = $cals[$entity["guild"]];
@@ -225,33 +259,27 @@ foreach($entities as $entity_id => $entity) {
 	else {
 		$colour = $ct[($ca++)%count($ct)];
 	}
+}
 
-	foreach($entity['villages'] as $village) {
-		$vx = $cx+($village['x']-$zx)*$zz;
-		$vy = $cy-($village['y']-$zy)*$zz;
-		if($lines) $imageline($im, $entity['dx'], $entity['dy'], $vx, $vy, $colour);
-		
-		$name = $village['name'];
-		$owner = $village['owner'];
-		$guild = $village['guild'];
-		$x = $village['x'];
-		$y = $village['y'];
-		$pop = $village['population'];
-		$cohash = (256-$y)*512 + ($x+257);
-		$tip = svgentities("$name ($x, $y), $pop, ($owner, $guild)");
-		aimacustom($im, "<a xlink:href='http://$server/karte.php?z=$cohash' xlink:title='$tip'>");
-		dot($im, $vx, $vy, $colour, (log($pop+1)+1)*$dotsize);
-		aimacustom($im, "</a>");
+foreach($entities as $entity_id => $entity) {
+	if($colby == "alliance") {
+		if(!is_null($cals[$entity["guild"]])) $colour = $cals[$entity["guild"]];
+		else $colour = $cals[$entity["guild"]] = $ct[($ca++)%count($ct)];
 	}
-	
-	aimacustom($im, "<a xlink:href='http://$server/".$entity['link']."'>");
-	# yes, we want this to only apply to aima, not gd
-	aimafilledrectangle($im, $entity['x']+7, $entity['y']-7, $entity['x']+90, $entity['y']+7, $white);
-	dot($im, $entity['dx'], $entity['dy'], $colour);
-	$title = ($count ? "$entity_name (".($count+1).")" : $entity_name);
-//	$imagestring($im, 3, $entity['x'], $entity['y']-6, $title, $colour);
-	$imagettftext($im, 10, 0, $entity['x'], $entity['y']+5, $colour, "arialuni", $title);
-	aimacustom($im, "</a>");
+	else if($colby == "race") {
+		if(!is_null($cals[$entity["race_id"]])) $colour = $cals[$entity["race_id"]];
+		else $colour = $cals[$entity["race_id"]] = $ct[($ca++)%count($ct)];
+	}
+	else {
+		$colour = $ct[($ca++)%count($ct)];
+	}
+
+//	$colour = get_entity_colour($entity);
+	foreach($entity['villages'] as $village) {
+		draw_village_marker($im, $entity, $village, $colour);
+	}
+
+	draw_entity_label($im, $entity, $colour);
 }
 // }}}
 
