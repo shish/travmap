@@ -200,15 +200,6 @@ else {
 $cals = Array();
 $ca = 0;
 
-function svgentities($text) {
-	$text = str_replace("<", "&lt;", $text);
-	$text = str_replace(">", "&gt;", $text);
-	$text = str_replace("&", "&amp;", $text);
-	$text = str_replace("'", "", $text);
-	$text = str_replace("\"", "", $text);
-	return $text;
-}
-
 function draw_entity_label($image, $entity, $colour) {
 	global $server, $white, $imagettftext;
 	

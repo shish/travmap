@@ -73,6 +73,7 @@ function aimattftext($im, $size, $angle, $x, $y, $colour, $font, $text, $stroke=
 	$fill = $colBuffs[$colour];
 	$stroke = $colBuffs[$stroke];
 	$size *= 1.3;
+	$text = svgentities($text);
 	aimaoutput($im, "<text x='$x' y='$y' font-family='$font' font-size='$size' fill='$fill' stroke='$stroke'>$text</text>\n");
 }
 
@@ -112,6 +113,15 @@ function imagesvg($im) {aimasvg($im);}
 function aimadestroy($im) {
 	global $svgBuffs;
 	$svgBuffs[$im] = null;
+}
+
+function svgentities($text) {
+	$text = str_replace("<", "&lt;", $text);
+	$text = str_replace(">", "&gt;", $text);
+	$text = str_replace("&", "&amp;", $text);
+	$text = str_replace("'", "", $text);
+	$text = str_replace("\"", "", $text);
+	return $text;
 }
 // }}}
 
