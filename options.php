@@ -35,10 +35,6 @@ $minpop = getInt("minpop", null);
 
 $table = preg_replace("/[^a-zA-Z0-9]/", "_", $server);
 
-$datahash = md5("$server $alliance $player $town $zoom $mindist $maxdist $caption $casen $maxpop $minpop");
-$datahash_initial = substr($datahash, 0, 2); 
-$datacache = $nocache ? false : "cache/$datahash_initial/$datahash.db";
-
 require_once "database.php";
 // }}}
 

@@ -21,47 +21,8 @@ $races = Array($words["roman"], $words["teuton"], $words["gaul"]);
 $result = sql_query($query);
 
 
-// data cache {{{
-$dbh = null;
-if(!$using_data_cache && $datacache) {
-	require_once "options.php";
-	$dbh = sqlite_open($datacache);
-	if(@sqlite_query($dbh, "BEGIN TRANSACTION")) {
-		sqlite_query($dbh, 
-			"CREATE TABLE '$table' (
-				x, y, population, race,
-				owner_name, owner_id,
-				guild_name, guild_id,
-				town_name, town_id
-			)");
-	}
-	else {
-		sqlite_close($dbh);
-		unlink($datacache);
-		$datacache = false;
-	}
-}
-// }}}
-
 // load data {{{
 while($row = sql_fetch_row($result)) {
-	if(!$using_data_cache && $datacache) {
-		sqlite_query($dbh, "INSERT INTO 
-			'$table' (
-				x, y, population, race, 
-				owner_name, owner_id,
-				guild_name, guild_id,
-				town_name, town_id
-			)
-			VALUES(
-				'{$row["x"]}', '{$row["y"]}', '{$row["population"]}', '{$row["race"]}',
-				'{$row["owner_name"]}', '{$row["owner_id"]}',
-				'{$row["guild_name"]}', '{$row["guild_id"]}',
-				'{$row["town_name"]}', '{$row["town_id"]}'
-			)
-		");
-	}
-
 	$user_name = $row["owner_name"];
 	$user_id = $row["owner_id"];
 	$guild_name = $row["guild_name"];
@@ -108,9 +69,6 @@ while($row = sql_fetch_row($result)) {
 	$entities[$entity_id]['villages'][$entities[$entity_id]['count']]['population'] = $row['population'];
 	$entities[$entity_id]['villages'][$entities[$entity_id]['count']]['x'] = $row['x'];
 	$entities[$entity_id]['villages'][$entities[$entity_id]['count']]['y'] = $row['y'];
-}
-if($datacache && !$using_data_cache) {
-	sqlite_query($dbh, "END TRANSACTION");
 }
 // }}}
 ?>
