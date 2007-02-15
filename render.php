@@ -40,6 +40,7 @@ if($azoom) {
 	$zy = ($miny+$maxy)/2;
 	
 	$bigdiff = (($maxx-$minx) > ($maxy-$miny)) ? ($maxx-$minx) : ($maxy-$miny);
+	if($bigdiff == 0) $bigdiff = 5;
 	$zz = (450/$bigdiff);
 }
 // }}}
@@ -121,16 +122,16 @@ function get_gridline_color($pos) {
 function draw_grid_lines($image, $mapradius, $drawradius) {
 	global $zz, $zx, $zy, $cx, $cy, $imageline;
 	
-	$inc = ($zz > 10) ? 1 : 10;
+	$inc = ($zz >= 10) ? 1 : 10;
 	
+	$top =    $cy-$drawradius;
+	$bottom = $cy+$drawradius;
+	$left =   $cx-$drawradius;
+	$right =  $cx+$drawradius;
+		
 	for($v=-$mapradius; $v<=$mapradius; $v+=$inc) {
 		$col = get_gridline_color($v);
 	
-		$top =    $cy-$drawradius;
-		$bottom = $cy+$drawradius;
-		$left =   $cx-$drawradius;
-		$right =  $cx+$drawradius;
-		
 		$x = $cx+($v-$zx)*$zz;
 		$y = $cy+($v+$zy)*$zz;
 		
@@ -142,7 +143,9 @@ function draw_grid_lines($image, $mapradius, $drawradius) {
 function draw_grid_labels($image, $mapradius, $drawradius) {
 	global $zz, $zx, $zy, $cx, $cy, $imagestring, $mgrey;
 	
-	$inc = ($zz > 10) ? 10 : 50;
+	if($zz >= 10) $inc = 10;
+	else if($zz <= 0.75) $inc = 100;
+	else $inc = 50;
 
 	$x = bound($cx-$zx*$zz, $cx-$drawradius, $cx+$drawradius-25);
 	$y = bound($cy+$zy*$zz, $cy-$drawradius, $cy+$drawradius-10);
@@ -282,31 +285,37 @@ foreach($entities as $entity_id => $entity) {
 
 // navigator widget for SVG {{{
 if($_GET["format"] == "svg") {
-	$base_query = preg_replace("/&amp;zoom=-?\d+,-?\d+,-?\d+/", "", str_replace("&", "&amp;", $_SERVER["QUERY_STRING"]));
+	$base_query = preg_replace("/&amp;zoom=[^&$]+/", "", str_replace("&", "&amp;", $_SERVER["QUERY_STRING"]));
 	
-	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=".($zx-100/$zz).",$zy,$zz' xlink:title='west'>");
-	dot($im, $cx+230-9, $cy+230+0, $ct[($ca++)%count($ct)]);
+	$tzz = $zz == 0 ? 1 : $zz; // stop divide by zeroes
+	
+	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=".($zx-100/$tzz).",$zy,$zz' xlink:title='west'>");
+	dot($im, $cx+230-9, $cy+230+0, $white);
 	aimacustom($im, "</a>");
 	
-	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,".($zy+100/$zz).",$zz' xlink:title='north'>");
-	dot($im, $cx+230+0, $cy+230-9, $ct[($ca++)%count($ct)]);
+	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,".($zy+100/$tzz).",$zz' xlink:title='north'>");
+	dot($im, $cx+230+0, $cy+230-9, $white);
 	aimacustom($im, "</a>");
 	
-	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,".($zy-100/$zz).",$zz' xlink:title='south'>");
-	dot($im, $cx+230+0, $cy+230+9, $ct[($ca++)%count($ct)]);
+	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,".($zy-100/$tzz).",$zz' xlink:title='south'>");
+	dot($im, $cx+230+0, $cy+230+9, $white);
 	aimacustom($im, "</a>");
 	
-	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=".($zx+100/$zz).",$zy,$zz' xlink:title='east'>");
-	dot($im, $cx+230+9, $cy+230-0, $ct[($ca++)%count($ct)]);
+	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=".($zx+100/$tzz).",$zy,$zz' xlink:title='east'>");
+	dot($im, $cx+230+9, $cy+230-0, $white);
 	aimacustom($im, "</a>");
 
 	
 	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,$zy,".($zz-2)."' xlink:title='zoom out'>");
-	dot($im, $cx+230+15, $cy+245, $ct[($ca++)%count($ct)]);
+//	dot($im, $cx+230+15, $cy+245, $ct[($ca++)%count($ct)]);
+	dot($im, $cx+230+15, $cy+245, $white);
+	aimaline($im, $cx+230+12, $cy+245, $cx+230+18, $cy+245, $black);
 	aimacustom($im, "</a>");
 	
 	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,$zy,".($zz+2)."' xlink:title='zoom in'>");
-	dot($im, $cx+230-15, $cy+245, $ct[($ca++)%count($ct)]);
+	dot($im, $cx+230-15, $cy+245, $white);
+	aimaline($im, $cx+230-18, $cy+245, $cx+230-12, $cy+245, $black);
+	aimaline($im, $cx+230-15, $cy+242, $cx+230-15, $cy+248, $black);
 	aimacustom($im, "</a>");
 }
 // }}}
