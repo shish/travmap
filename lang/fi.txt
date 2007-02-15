@@ -1,0 +1,64 @@
+lang=Suomi
+
+key=Avain
+instructions=Ohjeet
+link to image=Linkki kuvaan
+loading=Ladataan...
+last update=Viimeisin päivitys:
+
+roman=Roomalainen
+gaul=Gallialainen
+teuton=Teutooni
+
+north=^
+east=&lt;
+south=V
+west=&gt;
+zoom in=+
+zoom out=-
+
+server=Serveri
+alliance=Liittouma
+player=Pelaaja
+lines=Linjat
+group by=Ryhmitä
+zoom=Zoomaa
+case sensitive=Tyyppikohtainen
+dot size=Pistekoko
+min distance=Min Etäisyys
+max distance=Max Etäisyys
+min population=Min Väkiluku
+max population=Max Väkiluku
+order by=Järjestä
+colour by=Värit
+output format=tuotoksen muoto
+show map=Näytä kartta
+layout=Ulkoasu
+spread=Levittäytyneisyys
+caption=Kuvateksti
+shrinkwrap=kutista
+new page=Avaa uudelle sivulle
+
+advanced options=Lisäasetukset
+output options=ulkoasun asetukset
+language options=Kieliasetukset
+
+default=Oletus
+distance from zoom target=Etäisyys tarkennetusta kohteesta
+population=Väkiluku
+race=Heimo
+town=Kylä
+
+help1=Erota useampi liittouma ja pelaaja pilkuilla; lainausmerkkejä voi käyttää pitääkseen pilkut ja välilyönnit koskemattomina, esim. -- <code>A, B, "C,D,E", F</code>
+help2=Zoomi = <code>x,y,zoom-toiminto</code> tai <code>kaupungin nimi,zoom-toiminto</code>
+help3=Liittouman, pelaajan, ja kylän zoomaus ovat aina tyyppikohtaisia, tekee asioista *PALJON* nopeampaa
+help4=Pelaajat ja liittouma joilla on ei-standardeja merkkejä nimissään voivat käyttää mieluummin heidän ID numeroa kuin nimeään, esim. <code>id:123</code>. ID:t voi nähdä linkeistä: <a href="links1.png">Kylä</a> ja <a href="links2.png">tilastot</a> sivuilta.
+help5=Linkitys on suotavaa -- Sillä välin kun jokainen kartta ottaa oman aikansa muodostua ekaa kertaa päivässä, se ladataan välimuistiin, ja sen uudelleenlähetys ei käytännössä tuota rasitusta kaisaan tai prosessointiin.
+help6=Ryhmitä liittouma 2 = käsittele pelaajia erikseen (ei liittouman mukaan)
+help7=Jos serverin tieto näyttää vanhentuneelta, tarkista ensin serverin map.sql tiedosto -- jos tämä tieto on vanhentunut, valita travianin administraattorille, elä minulle!
+
+servertime=Kartat on päivitetty 1:30, tämänhetkinen aika on
+report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Raportoi</a> kaikki virheet jotka eivät ole korjattu parin minuutin päästä niiden ilmestymisestä. (Käytä <a href="http://trac.shishnet.org/travmap/report/1">virheen etsijää</a>, sähköpostilla esiat menevät sekaisin)
+credit=Belzar ja Sladdi kääntäjinä jos vikaa, <a href="http://trac.shishnet.org/travmap/browser/trunk/lang">Auta!</a>
+
+notice=Kyllä, s5.travian.com ei ole päivitetty hetkeen. Tieto jonka saan serveriltä, ei ole päivitetty -- Töki serverin administraattoreilta, saadaksesi päivitetyn tiedoston ja sitten minä voin päivittää sen omaan tietokantaan~
