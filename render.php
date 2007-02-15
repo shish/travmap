@@ -239,7 +239,13 @@ function draw_village_marker($image, $entity, $village, $colour) {
 	$y = $village['y'];
 	$pop = $village['population'];
 	$cohash = (256-$y)*512 + ($x+257);
-	$tip = svgentities("$name ($x, $y), $pop, ($owner, $guild)");
+	if($zx !=0 || $zy != 0) {
+		$dx = $x-$zx;
+		$dy = $y-$zy;
+		$dist = (int)sqrt($dx*$dx + $dy*$dy);
+		$dfz = " ($dist away)";
+	}
+	$tip = svgentities("$name ($x, $y)$dfz, $pop, ($owner, $guild)");
 	aimacustom($image, "<a xlink:href='http://$server/karte.php?z=$cohash' xlink:title='$tip'>");
 	dot($image, $vx, $vy, $colour, (log($pop+1)+1)*$dotsize);
 	aimacustom($image, "</a>");
