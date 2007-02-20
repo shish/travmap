@@ -5,7 +5,6 @@
  * open the database
  */
 
-require_once "options.php";
 require_once "config.php";
 
 mysql_pconnect($mysql_host, $mysql_user, $mysql_pass);
