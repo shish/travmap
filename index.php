@@ -45,35 +45,31 @@ $servertime = date('g:iA');
  * look for the database's tables
  */
 if(file_exists("cache/servers.txt")) {
-	$fp = fopen("cache/servers.txt", "r");
-	while($tmp = fgets($fp)) {$serveropts .= $tmp;}
-	fclose($fp);
+	$serveropts = file_get_contents("cache/servers.txt");
 }
 else {
-	/*
-	 * Connect manually -- database.php uses data caching,
-	 * which can mess with things in some odd situations...
-	 */
-	require_once "config.php";
-	mysql_pconnect($mysql_host, $mysql_user, $mysql_pass);
-	mysql_select_db($mysql_db);
+	require_once "database.php";
 
 	$options = Array();
-	$res = mysql_query("SHOW TABLES");
-	while($row = mysql_fetch_row($res)) {
-		$server = str_replace("_", ".", $row[0]);
-		$row2 = mysql_fetch_row(mysql_query("SELECT count(*) AS count FROM {$row[0]}"));
-		$disabled = $row2[0] < 1000 ? " disabled" : "";
-		$options[] = "<option value='$server'$disabled>$server</option>\n";
+
+	$lastcountry = "";
+	$res = sql_query("SELECT name,country FROM servers ORDER BY country, num");
+	while($row = sql_fetch_row($res)) {
+		$name = $row['name'];
+		$country = $row['country'];
+		$row2 = sql_fetch_row(sql_query("SELECT count(*) AS count FROM ".str_replace('.', '_', $name)));
+		$disabled = $row2['count'] < 1000 ? " disabled" : "";
+		
+		if($country != $lastcountry) {
+			$options[] = "<option style='background: black; color: white;' disabled>$country</option>";
+			$lastcountry = $country;
+		}
+		$options[] = "<option value='$name'$disabled>$name</option>";
 	}
 
-	$serveropts = "";
-	usort($options, "wwwcmp");
-	foreach($options as $option) {$serveropts .= $option;}
+	$serveropts = implode("\n", $options);
 
-	$fp = fopen("cache/servers.txt", "w");
-	fputs($fp, $serveropts);
-	fclose($fp);
+	file_put_contents("cache/servers.txt", $serveropts);
 }
 // }}}
 
