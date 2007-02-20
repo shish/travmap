@@ -88,8 +88,10 @@ function foreach() {
 
 	sh $1 s1.travian.com.pt map
 	sh $1 s2.travian.com.pt map
+	sh $1 speed.travian.com.pt map
 	
 	sh $1 s1.travian.ru map
+	sh $1 s2.travian.ru map
 	
 	sh $1 s1.travian.com.tr map
 	sh $1 s2.travian.com.tr map
