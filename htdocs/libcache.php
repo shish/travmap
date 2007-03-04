@@ -9,7 +9,7 @@
 $cachehit = false;
 $cachename = "";
 
-function cache_start($cachedir="./cache") {
+function cache_start($cachedir="../cache") {
 	global $cachehit, $cachename;
 
 	// force on so we can read it at the end

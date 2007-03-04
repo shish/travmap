@@ -7,11 +7,12 @@
 #
 
 DBNAME=`echo $1 | sed 's/\./_/g'`
+data=../sql
 
 echo -n  "Downloading http://$1/$2.sql... "
 
 # if the SQL file is less than 4 hours old, leave it
-if [ -f sql/$1.sql ] ; then
+if [ -f $data/$1.sql ] ; then
 	NOW=`date +"%s"`
 	THEN=`stat -L -c %Y sql/$1.sql`
 	DIFF=`expr $NOW - $THEN`
@@ -21,8 +22,8 @@ if [ -f sql/$1.sql ] ; then
 	fi
 fi
 
-if wget -q http://$1/$2.sql -O sql/$1.sql ; then
-	touch sql/$1.sql
+if wget -q http://$1/$2.sql -O $data/$1.sql ; then
+	touch $data/$1.sql
 	echo "ok"
 else
 	echo "failed"
