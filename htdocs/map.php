@@ -9,14 +9,12 @@ include "libtimer.php";
 include "libcache.php";
 include "liblogerr.php";
 
-timer_start();
-
 cache_start();
 if(!cache_is_hit()) {
+	timer_start();
 	include "render.php";
 	include "output.php";
 	cache_save();
+	timer_save();
 }
-
-timer_save();
 ?>
