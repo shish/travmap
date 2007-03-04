@@ -44,8 +44,8 @@ $servertime = date('g:iA');
  * load the server list -- cached if possible, else
  * look for the database's tables
  */
-if(file_exists("cache/servers.txt")) {
-	$serveropts = file_get_contents("cache/servers.txt");
+if(file_exists("../cache/servers.txt")) {
+	$serveropts = file_get_contents("../cache/servers.txt");
 }
 else {
 	require_once "database.php";
@@ -69,7 +69,7 @@ else {
 
 	$serveropts = implode("\n", $options);
 
-	file_put_contents("cache/servers.txt", $serveropts);
+	file_put_contents("../cache/servers.txt", $serveropts);
 }
 // }}}
 
@@ -78,8 +78,8 @@ else {
  * Scan each of the lanugage files
  */
 $langs = "";
-if(file_exists("cache/langs.txt")) {
-	$fp = fopen("cache/langs.txt", "r");
+if(file_exists("../cache/langs.txt")) {
+	$fp = fopen("../cache/langs.txt", "r");
 	while($tmp = fgets($fp)) {$langs .= $tmp;}
 	fclose($fp);
 }
@@ -97,7 +97,7 @@ else {
 		$n++;
 	}
 
-	$fp = fopen("cache/langs.txt", "w");
+	$fp = fopen("../cache/langs.txt", "w");
 	fputs($fp, $langs);
 	fclose($fp);
 }
@@ -117,13 +117,13 @@ else {
 	<body>
 		<table border="1" align="center">
 			<tr>
+<!-- nav {{{ -->
 				<td>
 <h1>TravMap <?=$version;?></h1>
 
 <small><a href="#" onclick="help(); return false;" style="display: block; margin: 8px;"><?=$words['instructions'];?></a></small>
-
-<hr>
 <!--
+<hr>
 <table style="margin: 16px;" border="1">
 	<tr>
 		<td colspan="2"><a href="#" onclick="north(); return false;">North</a></td>
@@ -139,9 +139,8 @@ else {
 		<td><a href="#" onclick="zout(); return false;">Out</a></td>
 	</tr>
 </table>
-
-<hr>
 -->
+<hr>
 <form onSubmit="updateMap(); return false;" action="">
 	<input type="hidden" name="lang" value="<?=$lang;?>">
 	<div id="basic">
@@ -225,12 +224,15 @@ else {
 		<br><a href="#" onclick="toggle('advanced'); return false;"><?=$words['advanced options'];?></a>
 		<br><a href="#" onclick="toggle('output'); return false;"><?=$words['output options'];?></a>
 	</div>
+	<hr>
 	<div id="donate">
 		<p><a href="http://www.dreamhost.com/donate.cgi?id=4542"><img border="0"
 		alt="Pay my bills!" src="https://secure.newdream.net/donate1.gif" /></a>
 	</div>
 </form>
 				</td>
+<!-- }}} -->
+<!-- instructions {{{ -->
 				<td style="width: 768px;">
 <div id="inst">
 	<p><?=$words['help1'];?>
@@ -264,6 +266,7 @@ else {
 	<small><?=$words['credit'];?></small>
 </small>
 				</td>
+<!-- }}} -->
 			</tr>
 		</table>
 	</body>
