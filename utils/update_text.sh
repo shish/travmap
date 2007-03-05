@@ -14,7 +14,7 @@ echo -n  "Downloading http://$1/$2.sql... "
 # if the SQL file is less than 4 hours old, leave it
 if [ -f $data/$1.sql ] ; then
 	NOW=`date +"%s"`
-	THEN=`stat -L -c %Y sql/$1.sql`
+	THEN=`stat -L -c %Y $data/$1.sql`
 	DIFF=`expr $NOW - $THEN`
 	if [ $DIFF -lt 43200 ] ; then # 43200 sec = 12 hour
 		echo "cached"
