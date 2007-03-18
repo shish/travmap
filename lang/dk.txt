@@ -51,12 +51,13 @@ town=By
 
 help1=Adskil flere alliancer og spillere med kommaer; gåseøjn kan bruges til at søge på navne der indeholder mellemrum og kommaer, f.eks -- <code>A, B, "C,D,E", F</code>
 help2=Zoom = <code>x,y,zoom factor</code> eller <code>bynavn,zoom faktor</code>
-help3=Alliancer, spillere, og bynavne til zoom er alle case sensetive, da det gør søningen *MEGET* hurtigere
+help3=Alliancer, spillere, og bynavne til zoom er alle case sensetive, da det gør søningenhurtigere
 help4=Hotlinking opfordres -- Da hver eneste kort genereres første gang hver dag og derefter ligges i cache'en, tager det næsten ingen processorkraft eller båndvidde at sende.
-help6=Group by Alliance 2 = treat players with no alliance as all separate
-help7=If the server data seems out of date, please first check the server's map.sql file -- if that data is out of date, complain to the travian administrators, not me!
+help6=Group by Alliance 2 = behandler spillere uden alliance som forskellige
+help7=hvis serverens data ser ud til at være forældede, så tjek venligst serverens map.sql fil -- hvis den data er for gammel beklag dig til travians
+administrators, ikke mig!
 
 servertime=servertid
-report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Report</a> any bugs that aren't fixed within a couple of minutes of them appearing. (Use <a href="http://trac.shishnet.org/travmap/report/1">the bug tracker</a>, dealing with things via email gets disorganised)
-credit=Dansk oversættelse af <a href="mailto:polleman@thecrib.dk">Palle Polle Mikkelsen</a> - <a href="http://www.thecrib.dk">www.thecrib.dk</a>
+report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Reporter</a> alle fejl (bugs) som ikke er rettet indenfor et par minutter efter du ser dem (brug <a href="http://trac.shishnet.org/travmap/report/1">bugtackeren</a> det gir for meget rod at ordne det via email)
+credit=Dansk oversættelse af <a href="mailto:polleman@thecrib.dk">Palle Polle Mikkelsen</a> - <a href="http://www.thecrib.dk">www.thecrib.dk</a> + Kristoffer Woller
 
