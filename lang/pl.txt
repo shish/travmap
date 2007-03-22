@@ -1,10 +1,10 @@
 lang=Polski
 
 key=Klucz
-instructions=Instructions
-link to image=Link to image
+instructions=Instrukcje
+link to image=Link do mapy
 loading=Loading...
-last update=last update:
+last update=ostatnia aktualizacja:
 
 roman=Rzymianie
 gaul=Galowie
@@ -25,8 +25,8 @@ group by=Grupuj
 zoom=Powiekszenie
 case sensitive=Case Sensitive
 dot size=Rozmiar punktow
-min distance=Min Distance
-max distance=Max Distance
+min distance=Min odleglosc
+max distance=Max odleglosc
 min population=Min populacja
 max population=Max populacja
 order by=Sortuj wg
@@ -37,7 +37,7 @@ layout=Layout
 spread=Spread
 caption=Caption
 shrinkwrap=Shrinkwrap
-new page=Open in new page
+new page=Otwoz na nowej stronie
 
 advanced options=Opcje Zaawansowane
 output options=Opcje Output
@@ -47,15 +47,15 @@ default=Domyslne
 distance from zoom target=Odleglosc od celu
 population=Populacja
 race=Plemiona
-town=Town
+town=Miasta
 
 help1=Oddzielaj koalicje i graczy przecinkami
 help2=Powiekszenie = <code>x, y, wartosc powiekszenia</code> lub <code>nazwa wioski, wsp. powiekszenia</code>
 help3=Pamietaj ze wielkosc liter MA ZNACZENIE!
-help4=Players and alliances with non-standard characters in their names can use their IDs rather than their names, eg <code>id:123</code>
-help6=Group by Alliance 2 = treat players with no alliance as all separate
-help7=If the server data seems out of date, please first check the server's map.sql file -- if that data is out of date, complain to the travian administrators, not me!
+help4=Gracze z znakami niestandardowymi w nazwach moga uzyc ID np.: <code>id:123</code>
+help6=Grupowanie Alliance 2 = traktuje graczy bez sojuszu jako osobne sojusze.
+help7=Jesli mapa jest zdeaktualizowana, sprawdz date aktualizacji map.sql jeœli jest nie aktualna ¿ale kierujcie do administratorow traviana nie mnie!
 
-servertime=Maps are updated at 1:30AM, the current time is
+servertime=Mapy s¹ aktualizowane o 01:30, aktualna data to:
 report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Raportuj</a> jesli jakis blad nie zostal naprawiony w ciagu kilku minut od pojawienia.
-credit=<a href="http://trac.shishnet.org/travmap/browser/trunk/lang">Translated</a> by Dyzdyz
+credit=<a href="http://trac.shishnet.org/travmap/browser/trunk/lang">Translated</a> by Dyzdyz actualization bY yui
