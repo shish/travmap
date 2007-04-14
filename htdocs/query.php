@@ -88,22 +88,18 @@ if($maxpop) {
 //  }}}
 
 // location {{{
-// the cache only contains this data to start with
-if(!$using_data_cache) {
-	if($zx != 0 || $zy != 0 || $zz != 1) {
-		$query .= "
-			AND x > (-256/$zz) + ($zx)
-			AND x < ( 256/$zz) + ($zx)
-			AND y < ( 256/$zz) + ($zy)
-			AND y > (-256/$zz) + ($zy)
-		";
-	}
-	if($maxdist) {
-		$query .= "AND sqrt(pow(x-($zx), 2) + pow(y-($zy), 2)) <= $maxdist ";
-	}
-	if($mindist) {
-		$query .= "AND sqrt(pow(x-($zx), 2) + pow(y-($zy), 2)) >= $mindist ";
-	}
+$query .= "
+	AND x > (-256/$zz) + ($zx)
+	AND x < ( 256/$zz) + ($zx)
+	AND y < ( 256/$zz) + ($zy)
+	AND y > (-256/$zz) + ($zy)
+";
+
+if($maxdist) {
+	$query .= "AND sqrt(pow(x-($zx), 2) + pow(y-($zy), 2)) <= $maxdist ";
+}
+if($mindist) {
+	$query .= "AND sqrt(pow(x-($zx), 2) + pow(y-($zy), 2)) >= $mindist ";
 }
 // }}}
 
