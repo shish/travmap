@@ -23,8 +23,9 @@ function cache_start($cachedir="../cache") {
 
 	$nocache = isset($_GET['nocache']);
 	$hash = md5($_SERVER["QUERY_STRING"]);
-	$initial = substr($hash, 0, 2);
-	$cachename = "$cachedir/$initial/$hash.$format";
+	$ab = substr($hash, 0, 2);
+	$cd = substr($hash, 2, 2);
+	$cachename = "$cachedir/$ab/$cd/$hash.$format";
 
 	if(file_exists($cachename) && !$nocache) {
 		$gmdate_mod = gmdate('D, d M Y H:i:s', filemtime($cachename)) . ' GMT';
