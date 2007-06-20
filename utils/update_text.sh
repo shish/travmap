@@ -7,9 +7,11 @@
 #
 
 DBNAME=`echo $1 | sed 's/\./_/g'`
+. config.sh
 data=../sql
 
-echo -n  "Downloading http://$1/$2.sql... "
+echo -n "Downloading http://$1/$2.sql... "
+echo -n "Downloading http://$1/$2.sql... " > $STATUS
 
 # if the SQL file is less than 4 hours old, leave it
 if [ -f $data/$1.sql ] ; then
@@ -29,4 +31,4 @@ else
 	echo "failed"
 fi
 
-
+echo -n > $STATUS

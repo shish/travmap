@@ -11,6 +11,8 @@ DBNAME=`echo $1 | sed 's/\./_/g'`
 . config.sh # mysql contact info
 data=../sql
 
+echo -n "Updating $1's database" > $STATUS
+
 echo "
 	CREATE TABLE IF NOT EXISTS $DBNAME(
 		lochash MEDIUMINT UNSIGNED PRIMARY KEY NOT NULL, x SMALLINT NOT NULL, y SMALLINT NOT NULL, race TINYINT NOT NULL,
@@ -51,3 +53,4 @@ else
 	rm -f $data/$DBNAME.txt
 fi
 
+echo -n > $STATUS
