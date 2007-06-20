@@ -21,8 +21,9 @@ function cache_start($cachedir="../cache") {
 		case "SVG": case "svg": $format = "svg+xml"; break;
 	}
 
+	date_default_timezone_set("America/Los_Angeles");
 	$nocache = isset($_GET['nocache']);
-	$hash = md5($_SERVER["QUERY_STRING"]);
+	$hash = md5($_SERVER["QUERY_STRING"] . date("y/m/d"));
 	$ab = substr($hash, 0, 2);
 	$cd = substr($hash, 2, 2);
 	$cachename = "$cachedir/$ab/$cd/$hash.$format";
