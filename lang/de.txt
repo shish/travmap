@@ -53,9 +53,11 @@ help1=Mehrere Allianzen und Spieler durch Kommas trennen
 help2=Zoom = <code>x,y,Zoomfaktor</code> oder <code>Dorfname,Zoomfactor</code>
 help3=Allianzen, Spieler, und Dorfer sind alle case sensetive, da es die Berechnungen *sehr* beschleunigt
 help4=Bei Spielern und Allianzen mit Sonderzeichen in ihren Namen kann man statt des Namens auch ihre ID benutzen, z.B. <code>id:123</code>
+help5=
 help6=Group by Alliance 2 = treat players with no alliance as all separate
 help7=If the server data seems out of date, please first check the server's map.sql file -- if that data is out of date, complain to the travian administrators, not me!
 
 servertime=Maps are updated at 1:30AM, the current time is
 report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Berichten</a> Sie alle Fehler, die nicht innerhalb weniger Minuten nach ihrem auftreten behoben sind.
 credit=<a href="http://trac.shishnet.org/travmap/browser/trunk/lang">Übersetzt</a> mit Hilfe von Mayhem (und Zweiundachtzig)
+notice=
