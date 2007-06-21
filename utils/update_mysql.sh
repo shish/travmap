@@ -16,9 +16,9 @@ echo -n "Updating $1's database" > $STATUS
 echo "
 	CREATE TABLE IF NOT EXISTS $DBNAME(
 		lochash MEDIUMINT UNSIGNED PRIMARY KEY NOT NULL, x SMALLINT NOT NULL, y SMALLINT NOT NULL, race TINYINT NOT NULL,
-		town_id  MEDIUMINT UNSIGNED NOT NULL, town_name  CHAR(20) NOT NULL,
-		owner_id MEDIUMINT UNSIGNED NOT NULL, owner_name CHAR(16) NOT NULL,
-		guild_id MEDIUMINT UNSIGNED NOT NULL, guild_name CHAR(8) NOT NULL,
+		town_id  MEDIUMINT UNSIGNED NOT NULL, town_name  VARCHAR(20) NOT NULL,
+		owner_id MEDIUMINT UNSIGNED NOT NULL, owner_name VARCHAR(16) NOT NULL,
+		guild_id MEDIUMINT UNSIGNED NOT NULL, guild_name VARCHAR(8) NOT NULL,
 		population MEDIUMINT NOT NULL,
 		INDEX(town_name),
 		INDEX(owner_name),
@@ -27,6 +27,7 @@ echo "
 		INDEX(guild_id),
 		INDEX(x),
 		INDEX(y),
+		INDEX(x, y),
 		INDEX(race),
 		INDEX(population)
 	) CHARSET=utf8;
