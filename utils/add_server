@@ -1,7 +1,9 @@
 #!/bin/sh
 cd `dirname $0`
 . config.sh
-mysql -u$MYSQL_USER -p$MYSQL_PASS -h $MYSQL_HOST $MYSQL_DB -e "INSERT INTO servers VALUES('$1', 'map', '$2', $3, 250, 250)"
+# mysql -u$MYSQL_USER -p$MYSQL_PASS -h $MYSQL_HOST $MYSQL_DB -e "INSERT INTO servers VALUES('$1', 'map', '$2', $3, 250, 250);"
+psql -U $MYSQL_USER -h $MYSQL_HOST $MYSQL_DB -c "INSERT INTO servers VALUES('$1', 'map', '$2', $3, 250, 250);"
 ./update_text.sh $1 map
-./update_mysql.sh $1
+# ./update_mysql.sh $1
+./update_pgsql.sh $1
 rm -f ../cache/servers.txt
