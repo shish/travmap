@@ -232,45 +232,12 @@ else {
 		<br><a href="#" onclick="toggle('output'); return false;"><?=$words['output options'];?></a>
 	</div>
 	<hr>
-	<div id="donate">
-		<p>Firefox supports SVG \o/
-<p><script type="text/javascript"><!--
-google_ad_client = "pub-9027476807739652";
-google_ad_width = 110;
-google_ad_height = 32;
-google_ad_format = "110x32_as_rimg";
-google_cpa_choice = "CAAQ5dWXhAIaCFljab8HZ3iDKOP143Q";
-google_ad_channel = "3728258148";
-//--></script>
-<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-		<p><a href="http://www.dreamhost.com/donate.cgi?id=4542"><img border="0"
-		alt="Pay my bills!" src="https://secure.newdream.net/donate1.gif" /></a>
-	</div>
 </form>
 				</td>
 <!-- }}} -->
 <!-- instructions {{{ -->
 				<td style="width: 768px;">
 <div id="inst">
-<div style="float: right; margin-top: 128px; margin-right: 32px;">
-<script type="text/javascript"><!--
-google_ad_client = "pub-9027476807739652";
-google_ad_width = 120;
-google_ad_height = 240;
-google_ad_format = "120x240_as";
-google_ad_type = "text";
-google_ad_channel = "";
-google_color_border = "DDDDDD";
-google_color_bg = "EEEEEE";
-google_color_link = "333333";
-google_color_text = "333333";
-google_color_url = "333333";
-//--></script>
-<script type="text/javascript"
-  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-</div>
 	<p><?=$words['help1'];?>
 	<p><?=$words['help2'];?>
 	<p><?=$words['help3'];?>
