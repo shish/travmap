@@ -30,17 +30,23 @@ function wwwcmp($a, $b) {
 /*
  * for the long link
  */
-$baseurl = preg_replace("#[^/]+$#", "", $_SERVER['SCRIPT_URI']);
+// $baseurl = preg_replace("#[^/]+$#", "", $_SERVER['SCRIPT_URI']);
+$baseurl = "http://travmap.shishnet.org/";
 
 
 /*
  * for time until next update
  */
 $servertime = date('g:iA');
+
+$status = file_get_contents("status.txt");
+if(strlen($status) > 0) {
+	$status = "Current status: $status";
+}
 // }}}
 
 /* server list {{{
-*
+ *
  * load the server list -- cached if possible, else
  * look for the database's tables
  */
@@ -53,12 +59,11 @@ else {
 	$options = Array();
 
 	$lastcountry = "";
-	$res = sql_query("SELECT name,country FROM servers ORDER BY country, num");
+	$res = sql_query("SELECT name,country,villages FROM servers ORDER BY country, num");
 	while($row = sql_fetch_row($res)) {
 		$name = $row['name'];
 		$country = $row['country'];
-		$row2 = sql_fetch_row(sql_query("SELECT count(*) AS count FROM ".str_replace('.', '_', $name)));
-		$disabled = $row2['count'] < 1000 ? " disabled" : "";
+		$disabled = $row['villages'] < 1000 ? " disabled" : "";
 		
 		if($country != $lastcountry) {
 			$options[] = "<option style='background: black; color: white;' disabled>$country</option>";
@@ -85,8 +90,8 @@ if(file_exists("../cache/langs.txt")) {
 }
 else {
 	$n = 0;
-	foreach(glob("lang/??.txt") as $flang) {
-		$code = preg_replace("#lang/(..).txt#", '$1', $flang);
+	foreach(glob("../lang/??.txt") as $flang) {
+		$code = preg_replace("#../lang/(..).txt#", '$1', $flang);
 		$fp = fopen($flang, "r");
 		$lang = str_replace("lang=", "", trim(fgets($fp)));
 		fclose($fp);
@@ -113,6 +118,8 @@ else {
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 		<script>baseurl = "<?=$baseurl;?>";</script>
 		<script type="text/javascript" src="script.js"></script>
+		<meta name="description" content="A mapping tool for the online game Travian">
+		<meta name="keywords" content="travian,game,map,rts">
 	</head>
 	<body>
 		<table border="1" align="center">
@@ -226,6 +233,17 @@ else {
 	</div>
 	<hr>
 	<div id="donate">
+		<p>Firefox supports SVG \o/
+<p><script type="text/javascript"><!--
+google_ad_client = "pub-9027476807739652";
+google_ad_width = 110;
+google_ad_height = 32;
+google_ad_format = "110x32_as_rimg";
+google_cpa_choice = "CAAQ5dWXhAIaCFljab8HZ3iDKOP143Q";
+google_ad_channel = "3728258148";
+//--></script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
 		<p><a href="http://www.dreamhost.com/donate.cgi?id=4542"><img border="0"
 		alt="Pay my bills!" src="https://secure.newdream.net/donate1.gif" /></a>
 	</div>
@@ -235,6 +253,24 @@ else {
 <!-- instructions {{{ -->
 				<td style="width: 768px;">
 <div id="inst">
+<div style="float: right; margin-top: 128px; margin-right: 32px;">
+<script type="text/javascript"><!--
+google_ad_client = "pub-9027476807739652";
+google_ad_width = 120;
+google_ad_height = 240;
+google_ad_format = "120x240_as";
+google_ad_type = "text";
+google_ad_channel = "";
+google_color_border = "DDDDDD";
+google_color_bg = "EEEEEE";
+google_color_link = "333333";
+google_color_text = "333333";
+google_color_url = "333333";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
 	<p><?=$words['help1'];?>
 	<p><?=$words['help2'];?>
 	<p><?=$words['help3'];?>
@@ -244,6 +280,8 @@ else {
 	<p><?=$words['help7'];?>
 	
 	<p><?=$words['servertime'];?> <?=$servertime;?>
+
+	<p><?=$status;?>
 
 	<hr style="width: 400px">
 

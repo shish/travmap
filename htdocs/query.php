@@ -15,12 +15,19 @@ require_once "database.php"; # required for getMatches
  * Build the query
  * o)  single table is considerably (3-4 times) faster than joins :-/
  */
+
+if($groupby == "group") {
+	$gg = ", if(guild_name='', owner_name, guild_name) as guild_group";
+}
+else {
+	$gg = "";
+}
 $query = "
 	SELECT x, y, x-y AS diag, population, race, 
 		owner_name, owner_id,
 		guild_name, guild_id,
-		town_name, town_id,
-		if(guild_name='', owner_name, guild_name) as guild_group
+		town_name, town_id
+		$gg
 	FROM $table
 	WHERE 1=1 
 ";
@@ -96,10 +103,16 @@ $query .= "
 ";
 
 if($maxdist) {
-	$query .= "AND sqrt(pow(x-($zx), 2) + pow(y-($zy), 2)) <= $maxdist ";
+	$query .= "
+		AND pow(x-($zx), 2) + pow(y-($zy), 2) <= pow($maxdist , 2)
+		AND x > ($zx - $maxdist)
+		AND x < ($zx + $maxdist)
+		AND y > ($zy - $maxdist)
+		AND y < ($zy + $maxdist)
+	";
 }
 if($mindist) {
-	$query .= "AND sqrt(pow(x-($zx), 2) + pow(y-($zy), 2)) >= $mindist ";
+	$query .= "AND pow(x-($zx), 2) + pow(y-($zy), 2) >= pow($mindist, 2) ";
 }
 // }}}
 
@@ -120,7 +133,7 @@ switch($order) {
 // }}}
 
 // limit {{{
-$query .= "LIMIT 5000 ";
+$query .= "LIMIT 2000 ";
 // }}}
 
 

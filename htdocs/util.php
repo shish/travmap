@@ -108,6 +108,8 @@ function getMatches($col, $name) {
 /*
  * look up a name by it's associated ID number; useful
  * for players and guilds with dodgy names
+ *
+ * nothing uses this o_O
  */
 function id2name($idcol, $namecol, $id, $table) {
 	if(!is_numeric($id)) return;
