@@ -1,0 +1,64 @@
+lang=Norsk
+
+key=N&oslash;kkel
+instructions=Instruksjoner
+link to image=Bildelink
+loading=Laster...
+last update=Siste oppdatering:
+
+roman=Romere
+gaul=Gallere
+teuton=Germanere
+
+north=Nord
+east=&Oslash;st
+south=S&oslash;r
+west=Vest
+zoom in=+
+zoom out=-
+
+server=Server
+alliance=Allianse
+player=Spiller
+lines=Linjer
+group by=Grupper etter
+zoom=Zoom
+case sensitive=Skill mellom sm&aring; og store bokstaver
+dot size=Punktst&oslash;rrelse
+min distance=Minimumsdistanse
+max distance=Maksimumsdistanse
+min population=Minimum innbyggere
+max population=Maksimum innbyggere
+order by=Sorter etter
+colour by=Farge etter
+output format=Bildeformat
+show map=Vis kart
+layout= Listearrangement
+spread=Spredt
+caption=Overskrift
+shrinkwrap=Kun omr&aring;der med data
+new page=&Aring;pne i ny side
+
+advanced options=Avanserte instillinger
+output options=Visningsinnstillinger
+language options=Spr&aring;kinnstillinger
+
+default=Standard
+distance from zoom target=Avstand fra zoomsenter
+population=Innbyggere
+race=Stamme
+town=Landsby
+
+help1=Skill flere allianser og/eller spillere med komma; dobbelapostrofer kan bli brukt for &aring; ta vare p&aring; mellomrom eller komma i navn, f.eks -- <code>A, B, "C,D,E", F</code>
+help2=Zoom = <code>x,y,zoom faktor</code> eller <code>landsbynavn,zoom faktor</code>
+help3=Allianse, spiller, og landsby &aring; zoome til skiller alle mellom store og sm&aring; bokstaver, siden det gj&oslash;r ting raskere.
+help4=Hvis du &oslash;nsker &aring; s&oslash;ke p&aring; spillere eller allianser med tegn som ikke er tall eller bokstaver i navnet, kan du bruke ID-nummert i stedet for navnet, slik <code>id:123</code>. ID-nummer kan finnes i linkene fra <a href="links1.png">by-</a> og <a href="links2.png">statistikk</a>sidene.
+help5=&Aring; linke direkte til bilder p&aring; denne serveren (hotlinking) er anbefalt -- Kartene genereres bare en gang pr. dag (f&oslash;rste gang det &aring;pnes), og hentes deretter ut fra et mellomlager. Dette krever s&aring; og si ingen prosessorkraft eller b&aring;ndbredde.
+help6=Grupper etter Allianse 2 = behande spillere uten allianser p&aring; egen h&aring;nd.
+help7=Hvis kartdataene ser ut til &aring; v&aelig;re gamle, sjekk f&oslash;rst serverens map.sql-fil (http://s*.travian.**/map.sql) er utdatert-- hvis de dataene er gamle, klag til administratorene for den siden, ikke til meg.
+
+servertime=Kart oppdateres klokken 01:30 (servertid). Klokken er n&aring;:
+report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Rapporter</a> alle problemer som ikke er l&oslash;st innen et par minutter. (Bruk <a href="http://trac.shishnet.org/travmap/report/1">bug tracker'n</a>, &aring; ta det over e-post blir rotete)
+credit=Norsk oversettelse av <a href="http://anderseinar.net">Anders Einar Hilden</a>
+
+notice=
