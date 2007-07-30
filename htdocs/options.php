@@ -7,7 +7,7 @@
 
 require_once "util.php";
 require_once "localise.php"; # words[key]
-# require_once "database.php"; # leave until after we've done $_GET["server"]...
+require_once "database.php";
 
 // GET options {{{
 $server   = getString("server", "s2.travian.com");
@@ -34,8 +34,7 @@ $maxpop = getInt("maxpop", null);
 $minpop = getInt("minpop", null);
 
 $table = preg_replace("/[^a-zA-Z0-9]/", "_", $server);
-
-require_once "database.php";
+$server_info = sql_fetch_row(sql_query("SELECT * FROM servers WHERE name='".sql_escape_string($server)."'"));
 // }}}
 
 // figure out where we are {{{
@@ -75,7 +74,8 @@ function town2xy($name) {
 	return $xy;
 }
 
-$zx = 0; $zy = 0; $zz = 1;
+$size = max($server_info['height'], $server_info['width']);
+$zx = 0; $zy = 0; $zz = 500.0 / $size;
 
 if($zoom) {
 	$za = array_map("trim", split(",", $zoom));
