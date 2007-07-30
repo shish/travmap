@@ -17,17 +17,18 @@ require_once "database.php"; # required for getMatches
  */
 
 if($groupby == "group") {
-	$gg = ", if(guild_name='', owner_name, guild_name) as guild_group";
+	$guild_group = "if(guild_name='', owner_name, guild_name) as guild_group";
 }
 else {
-	$gg = "";
+	$guild_group = "1";
 }
+
 $query = "
 	SELECT x, y, x-y AS diag, population, race, 
 		owner_name, owner_id,
 		guild_name, guild_id,
-		town_name, town_id
-		$gg
+		town_name, town_id,
+		$guild_group
 	FROM $table
 	WHERE 1=1 
 ";
