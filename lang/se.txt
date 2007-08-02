@@ -1,0 +1,64 @@
+﻿lang=Swedish
+
+key=Nyckel
+instructions=Instruktioner
+link to image=Länka till bild
+loading=Laddar...
+last update=Senast uppdaterad:
+
+roman=Romare
+gaul=Galler
+teuton=Germaner
+
+north=^
+east=&lt;
+south=V
+west=&gt;
+zoom in=+
+zoom out=-
+
+server=Server
+alliance=Allians
+player=Spelare
+lines=Linjer
+group by=Sortera efter
+zoom=
+case sensitive=Versalkänslig
+dot size=Prick Storlek
+min distance=Min. Distans
+max distance=Max. Distans
+min population=Min. Befolkning
+max population=Max. Befolkning
+order by=Sortera Efter
+colour by=Färg Efter
+output format=Output Format
+show map=Visa Karta
+layout=Utseende
+spread=Sprid
+caption=Titel
+shrinkwrap=Shrinkwrap
+new page=Öppna i ny sida
+
+advanced options=Avancerade Inställningar
+output options=Output Options
+language options=Språk Inställningar
+
+default=Standard
+distance from zoom target=Distans från inzoomat mål
+population=Befolkning
+race=Stam
+town=By
+
+help1=Sepererar flera allianser och spelare med kommatecken; citattecken kan användas för att hålla kommatecken och mellanslag hela, T.ex -- <code>A, B, "C,D,E", F</code>
+help2=Zoom = <code>x,y,zoom faktor</code> eller <code>Byns namn,zoom factor</code>
+help3=Allians, spelare, och by att zoom:a in på är versalkänsliga, då det gör det hela snabbare.
+help4=Spelare och allianser med ovanliga tecken i deras namn kan använda deras ID istället för deras namn, T.ex <code>id:123</code>. ID's kan hittas på <a href="links1.png">byn</a> och <a href="links2.png">statistik</a> sidorna.
+help5=Snabblänkning uppmuntras -- eftersom varje kartbit tar en stund att generara för fösta gången per dag, sedan sparas den i Cache-minnet, vilket gör så att den tar nästintill ingen tid att öppna igen.
+help6=Gruppera efter Allians 2 = Bearbetar spelare utan allianser som varförsig.
+help7=Ifall server-datan verkar vara ej uppdaterad, snälla, kolla först serverns map.sql fil -- ifall den datan är ej uppdaterad, klaga då hos Travian administratörerna, inte till mig!
+
+servertime=Kartorna uppdateras 1:30AM, den nuvarande tiden är
+report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Rapportera</a> buggar som inte är åtgärdade inom ett par minuter efter att de har dykt upp. (Använd <a href="http://trac.shishnet.org/travmap/report/1">the bug tracker</a>, hantering via email blir lätt desorganiserat)
+credit=Shish and Babelfish are both horrible translators, <a href="http://trac.shishnet.org/travmap/browser/trunk/lang">please help!</a>
+
+notice=
