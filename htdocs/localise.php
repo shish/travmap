@@ -5,10 +5,34 @@
  * load localisations from name=value file
  */
 
-$lang = "en";
+$lang = null;
 
-if(isset($_GET["lang"]) && (strlen($_GET["lang"]) == 2) && (file_exists("../lang/{$_GET['lang']}.txt"))) {
-	$lang = $_GET["lang"];
+if(isset($_GET["lang"])) {
+	switch($_GET["lang"]) {
+		case 'cn': $glang = 'zh'; break;
+		case 'cz': $glang = 'cs'; break;
+		case 'dk': $glang = 'da'; break;
+		case 'se': $glang = 'sv'; break;
+		default:   $glang = $_GET["lang"]; break;
+	}
+	if((strlen($glang) == 2) && (file_exists("../lang/$glang.txt"))) {
+		$lang = $glang;
+	}
+}
+
+if(is_null($lang) && isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+	$al = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+	$options = explode(',', str_replace(';', ',', $al));
+	foreach($options as $option) {
+		if(file_exists("../lang/$option.txt")) {
+			$lang = $option;
+			break;
+		}
+	}
+}
+
+if(is_null($lang)) {
+	$lang = "en";
 }
 
 $words = Array();
