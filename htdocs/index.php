@@ -90,6 +90,7 @@ if(file_exists("../cache/langs.txt")) {
 }
 else {
 	$n = 0;
+	$flags = "";
 	foreach(glob("../lang/??.txt") as $flang) {
 		$code = preg_replace("#../lang/(..).txt#", '$1', $flang);
 		$fp = fopen($flang, "r");
@@ -99,11 +100,16 @@ else {
 		else if(($n % 5) == 0) $langs .= "<br>\n";
 		else $langs .= " | ";
 		$langs .= "<a href='?lang=$code'>$lang</a>\n";
+		$flags .= "<a href='?lang=$code'><img src='http://static.shishnet.org/flags/$code.png' alt='$lang'></a>\n";
 		$n++;
 	}
 
 	$fp = fopen("../cache/langs.txt", "w");
 	fputs($fp, $langs);
+	fclose($fp);
+
+	$fp = fopen("../cache/flags.txt", "w");
+	fputs($fp, $flags);
 	fclose($fp);
 }
 // }}}
@@ -240,11 +246,11 @@ else {
 <div id="inst">
 	<div style="float: right; margin-top: 128px; margin-right: 32px; width: 128px; text-align: center;">
 		<small>
-		<br><a href="http://www.lighttpd.net/"><img src="http://shishnet.org/ufufuf/light_button.png" alt="Powered by LigHTTPD"></a>
+		<br><a href="http://www.lighttpd.net/"><img src="http://static.shishnet.org/buttons/lighttpd.png" alt="Powered by LigHTTPD"></a>
 		<br>&nbsp;
-		<br><a href="http://www.postgresql.org/"><img src="http://shishnet.org/ufufuf/postgres_button.png" alt="Powered by PostgreSQL"></a>
+		<br><a href="http://www.postgresql.org/"><img src="http://static.shishnet.org/buttons/postgres.png" alt="Powered by PostgreSQL"></a>
 		<br>&nbsp;
-		<br><a href="http://www.contextshift.eu/"><img src="http://shishnet.org/ufufuf/cs_button.png" alt="Run in a ContextShift VM"></a>
+		<br><a href="http://www.contextshift.eu/"><img src="http://static.shishnet.org/buttons/contextshift.png" alt="Run in a ContextShift VM"></a>
 		<br>&nbsp;
 <br><script type="text/javascript"><!--
 google_ad_client = "pub-9027476807739652";
