@@ -244,44 +244,7 @@ else {
 <!-- instructions {{{ -->
 				<td style="width: 768px;">
 <div id="inst">
-	<div style="float: right; margin-top: 128px; margin-right: 32px; width: 128px; text-align: center;">
-		<small>
-		<br><a href="http://www.lighttpd.net/"><img src="http://static.shishnet.org/buttons/lighttpd.png" alt="Powered by LigHTTPD"></a>
-		<br>&nbsp;
-		<br><a href="http://www.postgresql.org/"><img src="http://static.shishnet.org/buttons/postgres.png" alt="Powered by PostgreSQL"></a>
-		<br>&nbsp;
-		<br><a href="http://www.contextshift.eu/"><img src="http://static.shishnet.org/buttons/contextshift.png" alt="Run in a ContextShift VM"></a>
-		<br>&nbsp;
-<br><script type="text/javascript"><!--
-google_ad_client = "pub-9027476807739652";
-google_ad_width = 110;
-google_ad_height = 32;
-google_ad_format = "110x32_as_rimg";
-google_cpa_choice = "CAAQ5dWXhAIaCFljab8HZ3iDKOP143Q";
-google_ad_channel = "3728258148";
-//--></script>
-		</small>
-<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-	</div>
-	<div style="float: left; margin-top: 128px; margin-left: 32px;">
-<script type="text/javascript"><!--
-google_ad_client = "pub-9027476807739652";
-google_ad_width = 120;
-google_ad_height = 240;
-google_ad_format = "120x240_as";
-google_ad_type = "text";
-google_ad_channel = "";
-google_color_border = "DDDDDD";
-google_color_bg = "EEEEEE";
-google_color_link = "333333";
-google_color_text = "333333";
-google_color_url = "333333";
-//--></script>
-<script type="text/javascript"
-  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-	</div>
+	<?php require_once "ads.php"; ?>
 
 	<p><?=$words['help1'];?>
 	<p><?=$words['help2'];?>
