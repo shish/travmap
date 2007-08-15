@@ -49,31 +49,16 @@ population=Lakosság
 race=Faj
 town=Település
 
-help1=Több klán vagy település nevét vesszővel válaszd el. Például:
-&lt;code&gt;A, B, C&lt;/code&gt;
-help2=Nagyítás = &lt;code&gt;x,y,nagyítás foka&lt;/code&gt; vagy
-&lt;code&gt;település neve,nagyítás foka&lt;/code&gt;
+help1=Több klán vagy település nevét vesszővel válaszd el. Például: <code>A, B, C</code>
+help2=Nagyítás = <code>x,y,nagyítás foka</code> vagy <code>település neve,nagyítás foka</code>
 help3=Klán, játékos és településnevek a nagyításnál mind case sensitive-ek
-help4=Az olyan játékosok és klánok keresésekor amelyek neve tartalmaznak nem
-standard betűket ajánlott azok ID-jét használni. Például:
-&lt;code&gt;id:123&lt;/code&gt;. Az ID-k fellelhetőek a &lt;a
-href="links1.png"&gt;település&lt;/a&gt; és &lt;a
-href="links2.png"&gt;statisztika&lt;/a&gt; oldalán.
-help5=Hotlinking is encouraged -- while each map takes a while to be generated
-the first time each day, it's then cached, and takes practically no processing
-power or bandwidth to re-send.
+help4=Az olyan játékosok és klánok keresésekor amelyek neve tartalmaznak nem standard betűket ajánlott azok ID-jét használni. Például: <code>id:123</code>. Az ID-k fellelhetőek a <a href="links1.png">település</a> és <a href="links2.png">statisztika</a> oldalán.
+help5=Hotlinking is encouraged -- while each map takes a while to be generated the first time each day, it's then cached, and takes practically no processing power or bandwidth to re-send.
 help6=Group by Alliance 2 = treat players with no alliance as all separate
-help7=Amennyiben a szerver adatai elavultak, kérlek először ellenőrizd a
-szerver map.sql fájlját -- ha az elavult, jelezd a Travian
-adminisztrátorainak, ne nekünk!
+help7=Amennyiben a szerver adatai elavultak, kérlek először ellenőrizd a szerver map.sql fájlját -- ha az elavult, jelezd a Travian adminisztrátorainak, ne nekünk!
 
 servertime=A térképek utoljára frissítve: 1:30AM, pillanatnyi időpont
-report bugs=&lt;a
-href="http://trac.shishnet.org/travmap/report/1"&gt;Jelentsd&lt;/a&gt; azt a
-hibát amely pár percnél tovább jelentkezik. (Használd a &lt;a
-href="http://trac.shishnet.org/travmap/report/1"&gt;hibajelentőt&lt;/a&gt;)
-credit=A magyarnyelvű &lt;a
-href="http://trac.shishnet.org/travmap/browser/trunk/lang"&gt;fordítás&lt;/a&gt;
-Roobi segítségével készült!
+report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Jelentsd</a> azt a hibát amely pár percnél tovább jelentkezik. (Használd a <a href="http://trac.shishnet.org/travmap/report/1">hibajelentőt</a>)
+credit=A magyarnyelvű <a href="http://trac.shishnet.org/travmap/browser/trunk/lang">fordítás</a> Roobi segítségével készült!
 
 notice=
