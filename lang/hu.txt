@@ -1,0 +1,79 @@
+lang=Magyar
+
+key=Kulcs
+instructions=Útmutató
+link to image=Hivatkozás a képre
+loading=Betöltés...
+last update=Utolsó frissítés:
+
+roman=Római
+gaul=Gall
+teuton=Germán
+
+north=É
+east=K
+south=D
+west=NY
+zoom in=+
+zoom out=-
+
+server=Szerver
+alliance=Klán
+player=Játékos
+lines=Segédvonalak
+group by=Csoportosítás:
+zoom=Nagyítás
+case sensitive=Case Sensitive
+dot size=Pont nagyság
+min distance=Min távolság
+max distance=Max távolság
+min population=Min lakosság
+max population=Max lakosság
+order by=Sorbarendezés
+colour by=Színezés
+output format=Formátum
+show map=Térkép mutatása
+layout=Kinézet
+spread=Osztott
+caption=Cím
+shrinkwrap= Felesleg levágása (Shrinkwrap)
+new page=Megnyitás új oldalon
+
+advanced options=Részletes beállítások
+output options=Kimeneti beállítások
+language options=Nyelvi beállítások
+
+default=Alapértelmezett
+distance from zoom target=távolság -tól Nagyítás Cél
+population=Lakosság
+race=Faj
+town=Település
+
+help1=Több klán vagy település nevét vesszővel válaszd el. Például:
+&lt;code&gt;A, B, C&lt;/code&gt;
+help2=Nagyítás = &lt;code&gt;x,y,nagyítás foka&lt;/code&gt; vagy
+&lt;code&gt;település neve,nagyítás foka&lt;/code&gt;
+help3=Klán, játékos és településnevek a nagyításnál mind case sensitive-ek
+help4=Az olyan játékosok és klánok keresésekor amelyek neve tartalmaznak nem
+standard betűket ajánlott azok ID-jét használni. Például:
+&lt;code&gt;id:123&lt;/code&gt;. Az ID-k fellelhetőek a &lt;a
+href="links1.png"&gt;település&lt;/a&gt; és &lt;a
+href="links2.png"&gt;statisztika&lt;/a&gt; oldalán.
+help5=Hotlinking is encouraged -- while each map takes a while to be generated
+the first time each day, it's then cached, and takes practically no processing
+power or bandwidth to re-send.
+help6=Group by Alliance 2 = treat players with no alliance as all separate
+help7=Amennyiben a szerver adatai elavultak, kérlek először ellenőrizd a
+szerver map.sql fájlját -- ha az elavult, jelezd a Travian
+adminisztrátorainak, ne nekünk!
+
+servertime=A térképek utoljára frissítve: 1:30AM, pillanatnyi időpont
+report bugs=&lt;a
+href="http://trac.shishnet.org/travmap/report/1"&gt;Jelentsd&lt;/a&gt; azt a
+hibát amely pár percnél tovább jelentkezik. (Használd a &lt;a
+href="http://trac.shishnet.org/travmap/report/1"&gt;hibajelentőt&lt;/a&gt;)
+credit=A magyarnyelvű &lt;a
+href="http://trac.shishnet.org/travmap/browser/trunk/lang"&gt;fordítás&lt;/a&gt;
+Roobi segítségével készült!
+
+notice=
