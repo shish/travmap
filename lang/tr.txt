@@ -2,6 +2,7 @@ lang=Türkçe
  
 key=Anahtar 
 instructions=Talimatlar 
+server status=Server Status
 link to image=Resim Adresi 
 loading=Yükleniyor... 
 last update=Son Güncelleme: 

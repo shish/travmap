@@ -2,6 +2,7 @@ lang=Dansk
 
 key=N&oslash;gle
 instructions=Instruktioner
+server status=Server Status
 link to image=Link til billede
 loading=Henter...
 last update=last update:

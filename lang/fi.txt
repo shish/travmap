@@ -2,6 +2,7 @@ lang=Suomi
 
 key=Avain
 instructions=Ohjeet
+server status=Server Status
 link to image=Linkki kuvaan
 loading=Ladataan...
 last update=Viimeisin päivitys:

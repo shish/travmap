@@ -2,6 +2,7 @@ lang=Magyar
 
 key=Kulcs
 instructions=Útmutató
+server status=Server Status
 link to image=Hivatkozás a képre
 loading=Betöltés...
 last update=Utolsó frissítés:

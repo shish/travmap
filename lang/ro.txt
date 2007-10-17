@@ -2,6 +2,7 @@ lang=Romanian
 
 key=Cheie
 instructions=Instructiuni
+server status=Server Status
 link to image=Link la imagine
 loading=Se incarca...
 last update=last update:

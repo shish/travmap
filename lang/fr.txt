@@ -2,6 +2,7 @@ lang=Français
 
 key=Clé
 instructions=Instructions
+server status=Server Status
 link to image=Lien vers l'image
 loading=Chargement...
 last update=Dernière mise à jour:

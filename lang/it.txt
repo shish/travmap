@@ -2,6 +2,7 @@ lang=Italiano
 
 key=Chiave
 instructions=Instructions
+server status=Server Status
 link to image=Link to image
 loading=Loading...
 last update=last update:

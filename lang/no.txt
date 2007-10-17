@@ -2,6 +2,7 @@ lang=Norsk
 
 key=N&oslash;kkel
 instructions=Instruksjoner
+server status=Server Status
 link to image=Bildelink
 loading=Laster...
 last update=Siste oppdatering:

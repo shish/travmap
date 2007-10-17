@@ -2,6 +2,7 @@ lang=Czech
 
 key=Klíč
 instructions=Instrukce
+server status=Server Status
 link to image=Odkaz na obrázek
 loading=Načítám... 
 last update=Naposled aktualizováno: 

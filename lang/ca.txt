@@ -2,6 +2,7 @@ lang=Catalan
 
 key=Clau
 instructions=Instruccions
+server status=Server Status
 link to image=Enllaç a la imatge
 loading=Carregant...
 last update=last update:

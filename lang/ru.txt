@@ -2,6 +2,7 @@ lang=Русский
 
 key=Ключ
 instructions=Инструкция
+server status=Server Status
 link to image=Ссылка на карту
 loading=Загрузка...
 last update=Последнее обновление:

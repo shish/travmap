@@ -2,6 +2,7 @@ lang=Nederlands
 
 key=Legenda
 instructions=Instructies
+server status=Server Status
 link to image=Link naar plaatje
 loading=Loading...
 last update=last update:

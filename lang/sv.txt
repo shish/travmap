@@ -2,6 +2,7 @@
 
 key=Nyckel
 instructions=Instruktioner
+server status=Server Status
 link to image=Länka till bild
 loading=Laddar...
 last update=Senast uppdaterad:

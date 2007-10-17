@@ -2,6 +2,7 @@ lang=中文
 
 key=关键字
 instructions=命令
+server status=Server Status
 link to image=图像链接
 loading=载入中...
 last update=上一次更新:

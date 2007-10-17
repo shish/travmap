@@ -2,6 +2,7 @@ lang=Slovak
 
 key=Klúč
 instructions=Inštrukcie
+server status=Server Status
 link to image=Priamy link na obrázok
 loading=Loading...
 last update=Posledný updejt:

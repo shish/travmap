@@ -2,6 +2,7 @@ lang=
 
 key=
 instructions=
+server status=
 link to image=
 loading=
 last update=

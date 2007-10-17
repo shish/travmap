@@ -2,6 +2,7 @@ lang=Polski
 
 key=Klucz
 instructions=Instrukcje
+server status=Server Status
 link to image=Link do mapy
 loading=Loading...
 last update=ostatnia aktualizacja:
