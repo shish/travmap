@@ -15,7 +15,7 @@ if(isset($_GET["lang"])) {
 		case 'se': $glang = 'sv'; break;
 		default:   $glang = $_GET["lang"]; break;
 	}
-	if((strlen($glang) == 2) && (file_exists("../lang/$glang.txt"))) {
+	if((strlen($glang) == 2 || strlen($glang) == 5) && (file_exists("../lang/$glang.txt"))) {
 		$lang = $glang;
 	}
 }
