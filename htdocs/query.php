@@ -17,7 +17,7 @@ require_once "database.php"; # required for getMatches
  */
 
 if($groupby == "group") {
-	$guild_group = "if(guild_name='', owner_name, guild_name) as guild_group";
+	$guild_group = "CASE WHEN guild_name='' THEN owner_name ELSE guild_name END AS guild_group";
 }
 else {
 	$guild_group = "1";
