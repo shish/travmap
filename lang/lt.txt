@@ -1,0 +1,65 @@
+﻿lang=Lietuvių 
+ 
+key=Paaiškinimai 
+instructions=Instrukcija
+server status=Server Status
+link to image=Nuoroda į sugeneruotą žemėlapį 
+loading=Prašome palaukti... 
+last update=Atnaujinta: 
+ 
+roman=Romėnai 
+gaul=Galai 
+teuton=Germanai 
+ 
+north=^ 
+east=&lt; 
+south=V 
+west=&gt; 
+zoom in=+ 
+zoom out=- 
+ 
+server=Serveris 
+alliance=Aljansas 
+player=Žaidėjas 
+lines=Rodyti linijas 
+group by=Rūšiuoti pagal 
+zoom=Koordinatės ir mastelis 
+case sensitive=Skirti didžias ir mažas raides 
+dot size=Taškų dydis 
+min distance=Minimalus atstumas 
+max distance=Maksimalus atstumas 
+min population=Gyventojų skaičius nuo 
+max population=Gyventojų skaičius iki 
+order by=Išvardinti pagal  
+colour by=Rodyti spalvas pagal 
+output format=Išvesties formatas 
+show map=Sugeneruoti  
+layout=Paaiškinimų išdėstymas 
+spread=stulpeliais 
+caption=Antraštė 
+shrinkwrap=Puslapyje telpantis mastelis  
+new page=Naujame puslapyje 
+ 
+advanced options=Kiti nustatymai 
+output options=Išvesties nustatymai 
+language options=Kalbos pasirinkimas  
+ 
+default=paprastai 
+distance from zoom target=atstumą nuo centro 
+population=gyventojų skaičių 
+race=gentį 
+town=gyvenvietes 
+ 
+help1=Įrašykite per kablelį aljansų ir atskirų žaidėjų vardus, jeigu norite pavaizduoti žemėlapyje tik juos. Jei kablelio ženklas arba tarpas yra tam tikro vardo dalis, rašykite tą vardą kabutėse. Pvz.: <code>A, B, "C,D,E", F</code> 
+help2= Koordinatės ir mastelis: <code>x,y,padidinimo koeficientas</code> arba <code>gyvenvietės pavadinimas, padidinimo koeficientas</code> 
+help3=Rašant žaidėjų vardus, aljansų bei gyvenviečių pavadinimus, didžiosios ir mažosios raidės <u>skiriasi</u>. 
+help4=Jei žaidėjų arba aljansų pavadinimuose yra nestandartinių simbolių, vietoj vardo rašykite identifikacinį numerį. Pvz., <code>id:123</code>. Šie numeriai atspindi nuorodose <a href="links1.png">gyvenviečių informacijoje</a> ir <a href="links2.png">statistikoje</a>. 
+help5=Yra patogu naudotis nuorodomis į sugeneruotus žemėlapius: jie laikomi dienos bėgyje <i>cache</i> atmintyje. Kai dar kartą norėsite pažvelgti į tą patį vaizdą, jums nereikės laukti, kol jis bus sugeneruotas iš naujo. 
+help6=Rūšiuoti pagal “Alliance 2” - atskirai rodyti visus žaidėjus, nepriklausančius jokiems aljansams. 
+help7=Jeigu jums atrodo, kad duomenys pasenę, patikrinkite atitinkamo serverio žemėlapio duomenų failą map.sql . Jei duomenys šiame faile yra tikrai pasenę, kreipkitės į Traviano administratorius, kadangi šie duomenys nepriklauso mūsų svetainei.  
+ 
+servertime=Žemėlapiai atnaujinami kasdien 1:30AM. Šiuo metu serverio laikas yra 
+report bugs=Apie visas klaidas praneškite <a href="http://trac.shishnet.org/travmap/report/1">šioje lentoje</a>. Tai greičiau, negu susisiekti elektroniniu paštu. 
+credit=Lietuvių versija sukurta kartu su <a href="http://travianas.lt">Traviano pagalbos svetaine</a>.  
+ 
+notice=
