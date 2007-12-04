@@ -57,3 +57,5 @@ FORM {margin: 0px;}
 CODE {font-size: 0.9em; background: #CCC;}
 .left {text-align: left; width: 500px; margin: auto;}
 
+#graphs A {display: block;}
+#graphs IMG {display: block;}
