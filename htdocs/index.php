@@ -41,7 +41,7 @@ $servertime = date('g:iA');
 
 $status = file_get_contents("status.txt");
 if(strlen($status) > 0) {
-	$status = "Current status: $status";
+	$status = ": $status";
 }
 // }}}
 
@@ -59,7 +59,7 @@ else {
 	$options = Array();
 
 	$lastcountry = "";
-	$res = sql_query("SELECT name,country,villages FROM servers ORDER BY country, num");
+	$res = sql_query("SELECT name,country,villages FROM servers WHERE visible=True ORDER BY country, num");
 	while($row = sql_fetch_row($res)) {
 		$name = $row['name'];
 		$country = $row['country'];
@@ -91,8 +91,8 @@ if(file_exists("../cache/langs.txt")) {
 else {
 	$n = 0;
 	$flags = "";
-	foreach(glob("../lang/??.txt") as $flang) {
-		$code = preg_replace("#../lang/(..).txt#", '$1', $flang);
+	foreach(glob("../lang/*.txt") as $flang) {
+		$code = preg_replace("#../lang/(.*).txt#", '$1', $flang);
 		$fp = fopen($flang, "r");
 		$lang = str_replace("lang=", "", trim(fgets($fp)));
 		fclose($fp);
@@ -237,8 +237,17 @@ else {
 		<br><a href="#" onclick="toggle('advanced'); return false;"><?=$words['advanced options'];?></a>
 		<br><a href="#" onclick="toggle('output'); return false;"><?=$words['output options'];?></a>
 	</div>
-	<hr>
 </form>
+	<hr>
+	<!--
+	<div id="graphs">
+		<img src="http://stats.shishnet.org/graphs/graphs/load_tiny.php?rrd=load&time=day" alt="Load Average" title="Load Average">
+		<img src="http://stats.shishnet.org/graphs/graphs/browser_tiny.php?rrd=browsers_travmap&time=day" alt="Daily Hits" title="Daily Hits">
+		<p><a href="http://stats.shishnet.org/graphs/history.php?rrd=browsers_travmap&function=browser"><img src="http://stats.shishnet.org/graphs/graphs/browser_tiny.php?rrd=browsers_travmap&time=day" alt="graph"></a>
+		<br><a href="http://stats.shishnet.org/graphs/history.php?rrd=browsers_travmap&function=browser"><img src="http://stats.shishnet.org/graphs/graphs/browser_tiny.php?rrd=browsers_travmap&time=week" alt="graph"></a>
+		<br><a href="http://stats.shishnet.org/graphs/history.php?rrd=load&function=load"><img src="http://stats.shishnet.org/graphs/graphs/load_tiny.php?rrd=load&time=day" alt="graph"></a>
+	</div>
+		-->
 				</td>
 <!-- }}} -->
 <!-- instructions {{{ -->
@@ -253,10 +262,10 @@ else {
 	<p><?=$words['help5'];?>
 	<p><?=$words['help6'];?>
 	<p><?=$words['help7'];?>
-	
+
 	<p><?=$words['servertime'];?> <?=$servertime;?>
 
-	<p><?=$status;?>
+	<p><a href="status.php"><?=$words['server status'];?></a><?=$status;?>
 
 	<hr style="width: 400px">
 
