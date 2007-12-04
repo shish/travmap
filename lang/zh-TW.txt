@@ -1,0 +1,65 @@
+﻿lang=繁體中文
+
+key=關鍵字
+instructions=使用說明
+server status=伺服器狀態
+link to image=地圖鏈結
+loading=載入中...
+last update=最後更新日期
+
+roman=羅馬人
+gaul=高盧人
+teuton=條頓人
+
+north=^
+east=&lt;
+south=V
+west=&gt;
+zoom in=+
+zoom out=-
+
+server=伺服器
+alliance=聯盟
+player=玩家
+lines=連線
+group by=分類設定
+zoom=放大
+case sensitive=區分大小寫
+dot size=圓點大小
+min distance=最小距離
+max distance=最大距離
+min population=人口最少
+max population=人口最多
+order by=排序按照
+colour by=顏色按照
+output format=輸出格式
+show map=顯示地圖
+layout=顯示方式
+spread=按區域展開
+caption=地圖標題
+shrinkwrap=邊緣適應
+new page=在新頁面開啟
+
+advanced options=進階選項
+output options=輸出選項
+language options=語言選項
+
+default=預設
+distance from zoom target=到目標的距離
+population=人口
+race=種族
+town=村莊
+
+help1=將多個聯盟和玩家之間用逗號分開. 引號用來保持分號和空格號不變.舉例 -- <code>A, B, "C,D,E", F</code>
+help2=放大 = <code>x,y,放大係數</code> 或者 <code>村子名字,放大係數</code>
+help3=聯盟,玩家和村子名都是區分大小寫的,這是為了讓程式運行的更快.
+help4=一些玩家和聯盟的名字中含有非標準字元,這種情況我們可以用id號碼來解決, 例如:<code>id:123</code>, id號可以這樣找到:<a href="links1.png">村莊</a> 和 <a href="links2.png">統計</a>頁面
+help5=建議使用下方地圖網址 -- 每天第一次產生地圖會花費一些時間,而地圖會被暫存,相同的地圖可以不必重複產生,透過地圖網址可縮短等待時間
+help6=按照聯盟分組 2 = 意思是所有沒有聯盟的玩家是分開的
+help7=若是伺服器資料錯誤, 請檢查伺服器內的 map.sql 檔案 – 若是資料已經逾期, 請通知Travian管理員, 並非本站!
+
+servertime=本網站內容更新於 1:30AM, 現在時間是:
+report bugs=<a href="http://trac.shishnet.org/travmap/report/1">通報</a>任何 Bug (請使用 <a href="http://trac.shishnet.org/travmap/report/1">Bug 追蹤</a>, 因為用電子郵件太麻煩了)
+credit=繁體中文版由 YTZ 翻譯 
+
+notice=
