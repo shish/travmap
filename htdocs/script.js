@@ -53,7 +53,7 @@ function updateMap() {
 		window.location = "map.php?"+url;
 	}
 
-	set_cookie("travmap_server", byId("server_select").selectedIndex);
+	set_cookie("travmap_server", byId("server_select").selectedIndex, 31);
 }
 
 function loadsettings() {
