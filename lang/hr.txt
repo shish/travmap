@@ -1,0 +1,66 @@
+lang=Hrvatski
+
+key=Ključ
+instructions=Naputak
+server status=Stanje poslužitelja
+link to image=Poveznica na sliku
+loading=Učitava...
+last update=Zadnje ažuriranje:
+
+roman=Rimljani
+gaul=Gali
+teuton=Teutonci
+
+north=^
+east=&lt;
+south=V
+west=&gt;
+zoom in=+
+zoom out=-
+
+server=Poslužitelj
+alliance=Savez
+player=Igrač
+lines=Crte
+group by=Grupiraj po
+zoom=Podesi razlučivost
+case sensitive=Osjetljivo na veličinu slova
+dot size=Veličina točke
+min distance=Min udaljenost
+max distance=Max udaljenost
+min population=Min Populacija
+max population=Max Populacija
+order by=Sortiraj po
+colour by=Boja po
+output format=Format izlaza
+show map=Prikaži mapu
+layout=Vrsta prikaza
+spread=Prošireno
+caption=Naslov
+shrinkwrap=Smanji i podesi
+new page=Otvori u novoj stranici
+
+advanced options=Napredna podešavanja
+output options=Podešavanje izlaza
+language options=Podešavanje jezika
+
+default=Početne postavke
+distance from zoom target=Udaljenost od cilja
+population=Populacija
+race=Pleme
+town=Grad
+
+help1=Moguće je razdijeliti više različitih saveza i igrača zarezom; moguće je koristiti navodnike kako bi se održao format (primjerice kod zareza i/ili slobodnih prostora u nazivu), npr. -- <code>A, B, "C,D,E", F</code>
+help2=Razlučivost = <code>x,y,faktor razlučivosti</code> ili <code>naziv grada,faktor razlučivosti</code>
+help3=Nazivi saveza, igrača i gradova pri podešavanju razlučivosti su osjetljivi na veličinu slova, pošto to povećava brzinu rada sustava
+help4=Nazive igrača i saveza s neuobičajenim slovima (npr. hrvatska slova, točke, zarezi i sl.) mogu se zamijeniti njihovim ID brojem, primjerice <code>id:123</code>. ID brojeve moguće je pronaći u adresama poveznica na <a href="links1.png">gradove</a> i <a href="links2.png">statistiku</a>.
+help5=Stavljanje poveznica na karte je poželjno -- naime pri prvom generiranju neke mape potrebno je određeno vrijeme obrade, no pri svakom sljedećem pozivu koristi se prethodno generirana slika.
+help6=Grupiranje po savezu 2 = tretira igrače koji nisu niti u jednom savezu kao odvojene
+help7=Ako se podaci na poslučitelju čine zastarjelima molim vas prvo provjerite map.sql datoteku vašeg poslužitelja. Ako je ona zastarjela, žalite se vašem travian administratoru, ne meni!
+
+servertime=Mape se ažuriraju u 01:30 po noći. Trenutno vrijeme poslužitelja je
+report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Prijavite</a> svaku pogrešku koja ne nestaje nakon nekoliko minuta od njezina nastanka. (Koristite <a href="http://trac.shishnet.org/travmap/report/1">bug tracker</a> za to, pošto je upravljanje pogreškama putem elektroničke pošte često teško organizirati)
+credit=Shish i Babelfish su obojica grozni prevoditelji, <a href="http://trac.shishnet.org/travmap/browser/trunk/lang">svaka je pomoć dobrodošla!</a>
+
+notice=
+
