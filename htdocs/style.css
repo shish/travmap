@@ -30,13 +30,13 @@ TD SELECT {width: 95%;}
 	width: 768px;
 	height: 512px;
 }
-#inst {
+#about, #inst {
 	display: block;
 	font-size: 0.9em;
 	width: 768px;
 	height: 512px;
 }
-#inst P {
+#about P, #inst P {
 	text-align: justify;
 	width: 400px;
 	margin-top: 1em;
