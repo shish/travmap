@@ -16,10 +16,11 @@ echo -n "Updating $1's database" > $STATUS
 if [ ! -f "$data/$1.sql" ] ; then
 	echo "$1's SQL file does not exist!"
 	exit
-elif [ `stat -c "%s" $data/$1.sql` -le 128000 ] ; then
+elif [ `stat -c "%s" $data/$1.sql` -le 64000 ] ; then
 	echo "$1's SQL file is short!"
 	exit
 else
+	./update_status $1 "Updating table"
 	echo "
 SET client_encoding = 'UTF8';
 DROP TABLE $DBNAME;
@@ -54,9 +55,15 @@ CREATE INDEX ${DBNAME}_race ON $DBNAME(race);
 CREATE INDEX ${DBNAME}_population ON $DBNAME(population);
 
 UPDATE servers SET villages=(SELECT COUNT(*) FROM ${DBNAME}) WHERE name='$1';
+UPDATE servers SET owners=(SELECT COUNT(DISTINCT owner_id) FROM ${DBNAME}) WHERE name='$1';
+UPDATE servers SET guilds=(SELECT COUNT(DISTINCT guild_id) FROM ${DBNAME}) WHERE name='$1';
+UPDATE servers SET population=(SELECT SUM(population) FROM ${DBNAME}) WHERE name='$1';
+UPDATE servers SET width =(SELECT MAX(x) - MIN(x) FROM ${DBNAME}) WHERE name='$1';
+UPDATE servers SET height=(SELECT MAX(x) - MIN(x) FROM ${DBNAME}) WHERE name='$1';
 	" >> $data/$DBNAME.txt
 	psql -q -U $MYSQL_USER $MYSQL_DB < $data/$DBNAME.txt
 	rm -f $data/$DBNAME.txt
+	./update_status $1 "`date '+%Y-%m-%d %H:%M:%S'`"
 fi
 
 echo -n > $STATUS

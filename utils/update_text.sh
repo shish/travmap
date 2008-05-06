@@ -26,8 +26,14 @@ fi
 
 if wget -q http://$1/$2.sql -O $data/$1.sql ; then
 	touch $data/$1.sql
+	if [ `stat -c "%s" $data/$1.sql` -le 64000 ] ; then
+		./update_status $1 "$2.sql is short"
+	else
+		./update_status $1 "$2.sql downloaded"
+	fi
 	echo "ok"
 else
+	./update_status $1 "$2.sql missing"
 	echo "failed"
 fi
 

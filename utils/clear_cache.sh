@@ -15,6 +15,7 @@ for n in `ls -t $CACHE` ; do
 	for o in $CACHE/$n/* ; do
 		rm -f $o/*
 	done
+	sleep 1
 done
 
 echo -n > $STATUS
