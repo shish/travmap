@@ -27,9 +27,9 @@ if [ ! -d $CACHE ] ; then
 	chmod -R 777 $CACHE
 fi
 
-./pgsql.sh -t -A -F " " -c "SELECT name,mapfile FROM servers ORDER BY country, num" | xargs -l1 ./update_text.sh
+./pgsql.sh -t -A -F " " -c "SELECT name,mapfile FROM servers WHERE visible=True ORDER BY country, num" | xargs -l1 ./update_text.sh
 #./pgsql.sh -t -A -F " " -c "SELECT name FROM servers ORDER BY country, num" | xargs -l1 ./update_mysql.sh
-./pgsql.sh -t -A -F " " -c "SELECT name FROM servers ORDER BY country, num" | xargs -l1 ./update_pgsql.sh
+./pgsql.sh -t -A -F " " -c "SELECT name FROM servers WHERE visible=True ORDER BY country, num" | xargs -l1 ./update_pgsql.sh
 
 ./clear_cache.sh
 
