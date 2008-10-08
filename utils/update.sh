@@ -32,5 +32,6 @@ fi
 ./pgsql.sh -t -A -F " " -c "SELECT name FROM servers WHERE visible=True ORDER BY country, num" | xargs -l1 ./update_pgsql.sh
 
 ./clear_cache.sh
+./clear_dbcache.sh
 
 echo "Update complete at `date +%l:%M%p`" > $STATUS
