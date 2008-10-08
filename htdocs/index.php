@@ -50,13 +50,17 @@ if(strlen($status) > 0) {
  * load the server list -- cached if possible, else
  * look for the database's tables
  */
-if(file_exists("../cache/servers.txt")) {
+if(file_exists("../cache/countries.txt") && file_exists("../cache/servers.txt")) {
+	$countryopts = file_get_contents("../cache/countries.txt");
 	$serveropts = file_get_contents("../cache/servers.txt");
 }
 else {
 	require_once "database.php";
 
-	$options = Array();
+	$country_list = Array();
+//	$country_list[] = "<option>All</option>";
+
+	$server_list = Array();
 
 	$lastcountry = "";
 	$res = sql_query("SELECT name,country,villages FROM servers WHERE visible=True ORDER BY country, num");
@@ -66,14 +70,17 @@ else {
 		$disabled = $row['villages'] < 1000 ? " disabled" : "";
 		
 		if($country != $lastcountry) {
-			$options[] = "<option style='background: black; color: white;' disabled>$country</option>";
+			$country_list[] = "<option>$country</option>";
+			$server_list[] = "<option style='background: black; color: white;' disabled>$country</option>";
 			$lastcountry = $country;
 		}
-		$options[] = "<option value='$name'$disabled>$name</option>";
+		$server_list[] = "<option value='$name'$disabled>$name</option>";
 	}
 
-	$serveropts = implode("\n", $options);
+	$countryopts = implode("\n", $country_list);
+	$serveropts = implode("\n", $server_list);
 
+	file_put_contents("../cache/countries.txt", $countryopts);
 	file_put_contents("../cache/servers.txt", $serveropts);
 }
 // }}}
@@ -96,6 +103,7 @@ else {
 		$fp = fopen($flang, "r");
 		$lang = str_replace("lang=", "", trim(fgets($fp)));
 		fclose($fp);
+		if($lang == "") continue;
 		if($n == 0) $langs = "";
 		else if(($n % 5) == 0) $langs .= "<br>\n";
 		else $langs .= " | ";
@@ -158,7 +166,8 @@ else {
 	<input type="hidden" name="lang" value="<?=$lang;?>">
 	<div id="basic">
 		<br><?=$words['server'];?>
-		<br><select id="server_select" name="server"><?=$serveropts;?></select>
+		<br><select onChange="updateServers(this);" id="country_select" name="country"><?=$countryopts;?></select>
+		<br><select onChange="saveServer(this);" id="server_select" name="server"><?=$serveropts;?></select>
 		<br><?=$words['alliance'];?>
 		<br><input type="text" name="alliance">
 		<br><?=$words['player'];?>
@@ -273,7 +282,15 @@ else {
 	
 	<p><?=$words['report bugs'];?>
 
-	<p style="text-align: center;"><a href="mailto:webmaster@shishnet.org">webmaster@shishnet.org</a>
+	<p style="text-align: center;"><a href="mailto:webmaster@shishnet.org">webmaster@shishnet.org</a><!-- // <a href="#" onclick="about(); return false;">About</a> -->
+</div>
+
+<div id="about" style="display: none;">
+<!-- google_ad_section_start -->
+<p>TravMap is a tool for displaying maps of players in the free online
+game Travian, a massively multiplayer real time strategy which allows
+players to build villages, trade goods, form alliances and wage war~
+<!-- google_ad_section_end -->
 </div>
 
 <div id="map" style="display: none;"></div>

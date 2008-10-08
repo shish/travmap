@@ -1,0 +1,6 @@
+<?php
+$mysql_host = "localhost";
+$mysql_user = "bob";
+$mysql_pass = "passwd";
+$mysql_db = "travmap";
+?>

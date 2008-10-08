@@ -96,6 +96,8 @@ if($maxpop) {
 //  }}}
 
 // location {{{
+
+if(empty($zz)) $zz = 1;
 $query .= "
 	AND x > (-256/$zz) + ($zx)
 	AND x < ( 256/$zz) + ($zx)

@@ -39,6 +39,7 @@ function updateMap() {
 	}
 	if(byId("newpage_check").checked == false) {
 		byId("inst").style.display = "none";
+		byId("about").style.display = "none";
 		byId("map").style.display = "block";
 		if(byId("format_select").value == "svg") {
 			byId("map").innerHTML = ""+
@@ -52,21 +53,79 @@ function updateMap() {
 	else {
 		window.location = "map.php?"+url;
 	}
+}
 
-	set_cookie("travmap_server", byId("server_select").selectedIndex, 31);
+
+function getHTTPObject() {
+	if (window.XMLHttpRequest){
+		return new XMLHttpRequest();
+	}
+	else if(window.ActiveXObject){
+		return new ActiveXObject("Microsoft.XMLHTTP");
+	}
+}
+
+function updateServers(country_box) {
+	country = country_box[country_box.selectedIndex].text;
+
+	server_list = document.getElementById("server_select");
+	server_list.disabled = true;
+
+	var http = getHTTPObject();
+	http.open("GET", 'ajax.php?mode=servers&country='+country, true);
+	http.onreadystatechange = function() {
+		if (http.readyState == 4) {
+			for(i=server_list.options.length; i>=0; i--) {server_list.options[i] = null;}
+
+			results = http.responseText.split("\n");
+
+			for(i=0; i<results.length; i++) {
+				parts = results[i].split(",");
+				server = parts[0];
+				enabled = parts[1];
+
+				if(server.length > 0) {
+					server_list.options[i] = new Option(server, server);
+				}
+			}
+
+			server_list.disabled = false;
+		}
+
+	}
+	// input.http.send(null);
+	http.send(null);
+}
+
+function saveServer(server_box) {
+	server = server_box[server_box.selectedIndex].text;
+	set_cookie("travmap_server", server, 31);
 }
 
 function loadsettings() {
-	if(serverid = get_cookie("travmap_server")) {
-		byId("server_select").selectedIndex = serverid;
+	box = document.getElementById("server_select");
+	if(server = get_cookie("travmap_server")) {
+		for(i=0; i<box.options.length; i++) {
+			if(box.options[i].value == server) {
+				byId("server_select").selectedIndex = i;
+				break;
+			}
+		}
 	}
 }
 
 
 
 function help() {
-	byId("inst").style.display = "block";
 	byId("map").style.display = "none";
+	byId("about").style.display = "none";
+	byId("inst").style.display = "block";
+}
+
+function about() {
+	byId("map").style.display = "none";
+	byId("inst").style.display = "none";
+	byId("about").style.display = "block";
 }
 
 
