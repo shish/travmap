@@ -14,9 +14,9 @@ echo -n "Downloading http://$1/$2.sql... "
 echo -n "Downloading http://$1/$2.sql... " > $STATUS
 
 # if the SQL file is less than 4 hours old, leave it
-if [ -f $data/$1.sql ] ; then
+if [ -f $data/$1.sql.gz ] ; then
 	NOW=`date +"%s"`
-	THEN=`stat -L -c %Y $data/$1.sql`
+	THEN=`stat -L -c %Y $data/$1.sql.gz`
 	DIFF=`expr $NOW - $THEN`
 	if [ $DIFF -lt 43200 ] ; then # 43200 sec = 12 hour
 		echo "cached"
@@ -24,9 +24,9 @@ if [ -f $data/$1.sql ] ; then
 	fi
 fi
 
-if wget -q http://$1/$2.sql -O $data/$1.sql ; then
-	touch $data/$1.sql
-	if [ `stat -c "%s" $data/$1.sql` -le 64000 ] ; then
+if wget -q http://$1/$2.sql.gz -O $data/$1.sql.gz ; then
+	touch $data/$1.sql.gz
+	if [ `stat -c "%s" $data/$1.sql.gz` -le 64000 ] ; then
 		./update_status $1 "$2.sql is short"
 	else
 		./update_status $1 "$2.sql downloaded"

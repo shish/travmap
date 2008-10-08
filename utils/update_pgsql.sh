@@ -13,10 +13,10 @@ data=../sql
 
 echo -n "Updating $1's database" > $STATUS
 
-if [ ! -f "$data/$1.sql" ] ; then
+if [ ! -f "$data/$1.sql.gz" ] ; then
 	echo "$1's SQL file does not exist!"
 	exit
-elif [ `stat -c "%s" $data/$1.sql` -le 64000 ] ; then
+elif [ `stat -c "%s" $data/$1.sql.gz` -le 64000 ] ; then
 	echo "$1's SQL file is short!"
 	exit
 else
@@ -33,10 +33,10 @@ CREATE TABLE $DBNAME(
 );
 
 COPY $DBNAME (lochash, x, y, race, town_id, town_name, owner_id, owner_name, guild_id, guild_name, population) FROM stdin;" > $data/$DBNAME.txt
-	if [ `file $data/$1.sql | grep Unicode | wc -l` -eq 1 ] ; then
-		perl sql2pg.pl < $data/$1.sql >> $data/$DBNAME.txt
+	if [ `zcat $data/$1.sql.gz | head | file - | grep Unicode | wc -l` -eq 1 ] ; then
+		zcat $data/$1.sql.gz | perl sql2pg.pl >> $data/$DBNAME.txt
 	else
-		perl sql2pg.pl < $data/$1.sql | iconv -f iso-8859-1 -t utf8 >> $data/$DBNAME.txt
+		zcat $data/$1.sql.gz | perl sql2pg.pl | iconv -f iso-8859-1 -t utf8 >> $data/$DBNAME.txt
 	fi
 	echo "\.
 CREATE INDEX ${DBNAME}_town_id ON $DBNAME(town_id);
