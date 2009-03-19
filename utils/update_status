@@ -1,0 +1,4 @@
+#!/bin/sh
+cd `dirname $0`
+. config.sh
+psql -U $MYSQL_USER -h $MYSQL_HOST $MYSQL_DB -c "UPDATE servers SET status='$2' WHERE name='$1';"
