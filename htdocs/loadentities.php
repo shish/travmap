@@ -51,7 +51,7 @@ while($row = sql_fetch_row($result)) {
 				$entities[$entity_id]['link'] = "spieler.php?uid=".$row['owner_id'];
 				break;
 			case "town":
-				$entities[$entity_id]['link'] = "karte.php?d=". (($row['x']+257) + (256-$row['y'])*512);
+				$entities[$entity_id]['link'] = "karte.php?z=".$row['id'];
 				break;
 		}
 		$entities[$entity_id]['name'] = $entity_name;
