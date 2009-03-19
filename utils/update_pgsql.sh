@@ -61,7 +61,7 @@ UPDATE servers SET population=(SELECT SUM(population) FROM ${DBNAME}) WHERE name
 UPDATE servers SET width =(SELECT MAX(x) - MIN(x) FROM ${DBNAME}) WHERE name='$1';
 UPDATE servers SET height=(SELECT MAX(x) - MIN(x) FROM ${DBNAME}) WHERE name='$1';
 	" >> $data/$DBNAME.txt
-	psql -q -U $MYSQL_USER $MYSQL_DB < $data/$DBNAME.txt
+	psql -q -U $SQL_USER $SQL_DB < $data/$DBNAME.txt
 	rm -f $data/$DBNAME.txt
 	./update_status $1 "`date '+%Y-%m-%d %H:%M:%S'`"
 fi

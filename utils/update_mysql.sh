@@ -31,7 +31,7 @@ echo "
 		INDEX(race),
 		INDEX(population)
 	) CHARSET=utf8;
-" | mysql -u$MYSQL_USER -p$MYSQL_PASS -h $MYSQL_HOST $MYSQL_DB
+" | mysql -u$SQL_USER -p$SQL_PASS -h $SQL_HOST $SQL_DB
 
 if [ ! -f "$data/$1.sql" ] ; then
 	echo "$1's SQL file does not exist!"
@@ -47,7 +47,7 @@ else
 		perl -ne "$SQL2CSV" < $data/$1.sql | iconv -f iso-8859-1 -t utf8 > $data/$DBNAME.txt
 	fi
 	mysqlimport \
-		-u$MYSQL_USER -p$MYSQL_PASS -h $MYSQL_HOST $MYSQL_DB \
+		-u$SQL_USER -p$SQL_PASS -h $SQL_HOST $SQL_DB \
 		--delete --local \
 		--fields-terminated-by="," --fields-optionally-enclosed-by="'" \
 		$data/$DBNAME.txt

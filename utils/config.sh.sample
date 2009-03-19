@@ -1,7 +1,7 @@
-MYSQL_HOST=localhost
-MYSQL_USER=bob
-MYSQL_PASS=passwd
-MYSQL_DB=travmap
+SQL_HOST=localhost
+SQL_USER=bob
+SQL_PASS=passwd
+SQL_DB=travmap
 CACHE=../cache
 STATUS=../htdocs/status.txt
-export PGPASSWORD=$MYSQL_PASS
+export PGPASSWORD=$SQL_PASS
