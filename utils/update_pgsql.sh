@@ -1,14 +1,14 @@
 #!/bin/sh
 
 #
-# update_mysql.sh (c) Shish 2006
+# update_pgsql.sh (c) Shish 2006
 #
-# a script to update a mysql database
+# a script to update a pgsql database
 #
 
 DBNAME=`echo $1 | sed 's/\./_/g'`
 
-. config.sh # mysql contact info
+. config.sh # pgsql contact info
 data=../sql
 
 echo -n "Updating $1's database" > $STATUS
