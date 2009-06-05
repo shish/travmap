@@ -58,6 +58,6 @@ help5=Hýzlý sayfalama -- her harita gün içinde ilk oluþturulacaðý zaman b
 help6=Gruplama Birlik 2 = Bir birliðe dahil olmayan tüm oyuncular ayrý ayrý gösterilir 
  
 servertime=Haritalarýn son güncelleme saati 1:30AM, þu anda saat 
-report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Report</a> þu anda düzeltilmemiþ bazý hatalar bulunabilir. (Use <a href="http://trac.shishnet.org/travmap/report/1">hata bildirimi için</a>,) 
+report bugs=<a href="http://redmine.shishnet.org/projects/travmap/issues">Report</a> þu anda düzeltilmemiþ bazý hatalar bulunabilir. (Use <a href="http://trac.shishnet.org/travmap/report/1">hata bildirimi için</a>,) 
 credit=Türkçe'ye çeviren Veysi Emrullah BABAN
 

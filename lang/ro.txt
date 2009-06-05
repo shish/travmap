@@ -59,7 +59,7 @@ help6=Group by Alliance 2 = treat players with no alliance as all separate
 help7=If the server data seems out of date, please first check the server's map.sql file -- if that data is out of date, complain to the travian administrators, not me!
 
 servertime=Hartile sunt actualizate la 1:30AM, timpul curent este
-report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Raportati</a> orice erori ce nu sunt rezolvate la cel mult 2 minute de la prima aparitie (Folositi <a href="http://trac.shishnet.org/travmap/report/1">bug tracker-ul</a>, adresarea problemelor pe email este dezorganizata)
+report bugs=<a href="http://redmine.shishnet.org/projects/travmap/issues">Raportati</a> orice erori ce nu sunt rezolvate la cel mult 2 minute de la prima aparitie (Folositi <a href="http://trac.shishnet.org/travmap/report/1">bug tracker-ul</a>, adresarea problemelor pe email este dezorganizata)
 credit=Translation by Remix
 
 notice=

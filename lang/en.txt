@@ -59,7 +59,8 @@ help6=Group by Alliance 2 = treat players with no alliance as all separate
 help7=If the server data seems out of date, please first check the server's map.sql file -- if that data is out of date, complain to the travian administrators, not me!
 
 servertime=Maps are updated at 1:30AM, the current time is
-report bugs=TravMap is constantly getting bigger and more resource demanding, while advertising income has dropped to almost nothing; thus I'm running the project at a loss from my own pocket... I don't want to take the project down while it's still getting 40,000 unique users per day, but I'm not sure what <i>can</i> be done. Suggestions, anyone?
+report bugs=<a href="http://code.shishnet.org/apache2rrd/travmap-year.png">Firefox is really popular :O</a> (Graph is hits per minute)
+1report bugs=TravMap is constantly getting bigger and more resource demanding, while advertising income has dropped to almost nothing; thus I'm running the project at a loss from my own pocket... I don't want to take the project down while it's still getting 40,000 unique users per day, but I'm not sure what <i>can</i> be done. Suggestions, anyone?
 credit=Shish and Babelfish are both horrible translators, <a href="http://trac.shishnet.org/travmap/browser/trunk/lang">please help!</a>
 
 notice=

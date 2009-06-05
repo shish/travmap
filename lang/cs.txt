@@ -59,7 +59,7 @@ help6=Sdružit podle Aliance 2 = hráči, kteří nejsou v alianci, budou zobraz
 help7=Pokud se data na tomto serveru zdají být příliš stará, zkontrolujte nejprve soubor map.sql na serveru travianu -- pokud nejsou data v souboru map.sql aktualizována, stěžujte si administrátorům Travianu a nikoli mě.
 
 servertime=Aktualizace map probíhá v 1:30 ráno, právě teď je
-report bugs=Prosím <a href="http://trac.shishnet.org/travmap/report/1">nahlašte</a> všechny chyby, které nejsou opraveny do několika minut od doby, kdy je objevíte. (Použijte <a href="http://trac.shishnet.org/travmap/report/1">systém Trac</a>. S chybami nahlášenými pomocí emailu se špatně pracuje.) 
+report bugs=Prosím <a href="http://redmine.shishnet.org/projects/travmap/issues">nahlašte</a> všechny chyby, které nejsou opraveny do několika minut od doby, kdy je objevíte. (Použijte <a href="http://trac.shishnet.org/travmap/report/1">systém Trac</a>. S chybami nahlášenými pomocí emailu se špatně pracuje.) 
 credit=Shish a Babelfish jsou oba hrozní překladatelé, <a href="http://trac.shishnet.org/travmap/browser/trunk/lang">prosím pomozte!</a> (Do češtiny přeložil Dejf, různé opravy ondrej(cz11))
 
 notice= 

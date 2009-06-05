@@ -59,7 +59,7 @@ help6=Ryhmitä liittouma 2 = käsittele pelaajia erikseen (ei liittouman mukaan)
 help7=Jos serverin tieto näyttää vanhentuneelta, tarkista ensin serverin map.sql tiedosto -- jos tämä tieto on vanhentunut, valita travianin administraattorille, elä minulle!
 
 servertime=Kartat on päivitetty 1:30, tämänhetkinen aika on
-report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Raportoi</a> kaikki virheet jotka eivät ole korjattu parin minuutin päästä niiden ilmestymisestä. (Käytä <a href="http://trac.shishnet.org/travmap/report/1">virheen etsijää</a>, sähköpostilla esiat menevät sekaisin)
+report bugs=<a href="http://redmine.shishnet.org/projects/travmap/issues">Raportoi</a> kaikki virheet jotka eivät ole korjattu parin minuutin päästä niiden ilmestymisestä. (Käytä <a href="http://trac.shishnet.org/travmap/report/1">virheen etsijää</a>, sähköpostilla esiat menevät sekaisin)
 credit=Belzar ja Sladdi kääntäjinä jos vikaa, <a href="http://trac.shishnet.org/travmap/browser/trunk/lang">Auta!</a>
 
 notice=Kyllä, s5.travian.com ei ole päivitetty hetkeen. Tieto jonka saan serveriltä, ei ole päivitetty -- Töki serverin administraattoreilta, saadaksesi päivitetyn tiedoston ja sitten minä voin päivittää sen omaan tietokantaan~

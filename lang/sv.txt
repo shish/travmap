@@ -59,7 +59,7 @@ help6=Gruppera efter Allians 2 = Bearbetar spelare utan allianser som varförsig
 help7=Ifall server-datan verkar vara ej uppdaterad, snälla, kolla först serverns map.sql fil -- ifall den datan är ej uppdaterad, klaga då hos Travian administratörerna, inte till mig!
 
 servertime=Kartorna uppdateras 1:30AM, den nuvarande tiden är
-report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Rapportera</a> buggar som inte är åtgärdade inom ett par minuter efter att de har dykt upp. (Använd <a href="http://trac.shishnet.org/travmap/report/1">the bug tracker</a>, hantering via email blir lätt desorganiserat)
+report bugs=<a href="http://redmine.shishnet.org/projects/travmap/issues">Rapportera</a> buggar som inte är åtgärdade inom ett par minuter efter att de har dykt upp. (Använd <a href="http://trac.shishnet.org/travmap/report/1">the bug tracker</a>, hantering via email blir lätt desorganiserat)
 credit=Shish and Babelfish are both horrible translators, <a href="http://trac.shishnet.org/travmap/browser/trunk/lang">please help!</a>
 
 notice=

@@ -59,7 +59,7 @@ help6=Zoskupiť podľa Alliance 2 = ber hráčov bez členstva v aliancii ako sa
 help7=Ak dáta vypadajú zastaralé, prosím najskôr skontrolujte serverovský map.sql súbor (aha, napríklad http://s2.travian.sk/map.sql) -- ak sú dáta tu nejaké staré, nespamujte mňa, ale admina serveru!
 
 servertime=Mapy boli/sú (?) updejtované o 1:30AM, aktuálny čas je 
-report bugs=<a href="http://trac.shishnet.org/travmap/report/1">Report</a> any bugs that aren't fixed within a couple of minutes of them appearing. (Use <a href="http://trac.shishnet.org/travmap/report/1">the bug tracker</a>, dealing with things via email gets disorganised)
+report bugs=<a href="http://redmine.shishnet.org/projects/travmap/issues">Report</a> any bugs that aren't fixed within a couple of minutes of them appearing. (Use <a href="http://trac.shishnet.org/travmap/report/1">the bug tracker</a>, dealing with things via email gets disorganised)
 credit=Shish and Babelfish are both horrible translators, <a href="http://trac.shishnet.org/travmap/browser/trunk/lang">please help! (preložený súbor treba poslať aj tak mailom, nesnažte sa v trax-e niečo nájsť :)</a>
 
 notice=

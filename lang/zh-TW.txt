@@ -59,7 +59,7 @@ help6=按照聯盟分組 2 = 意思是所有沒有聯盟的玩家是分開的
 help7=若是伺服器資料錯誤, 請檢查伺服器內的 map.sql 檔案 – 若是資料已經逾期, 請通知Travian管理員, 並非本站!
 
 servertime=本網站內容更新於 1:30AM, 現在時間是:
-report bugs=<a href="http://trac.shishnet.org/travmap/report/1">通報</a>任何 Bug (請使用 <a href="http://trac.shishnet.org/travmap/report/1">Bug 追蹤</a>, 因為用電子郵件太麻煩了)
+report bugs=<a href="http://redmine.shishnet.org/projects/travmap/issues">通報</a>任何 Bug (請使用 <a href="http://trac.shishnet.org/travmap/report/1">Bug 追蹤</a>, 因為用電子郵件太麻煩了)
 credit=繁體中文版由 YTZ 翻譯 
 
 notice=
