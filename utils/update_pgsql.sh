@@ -33,7 +33,7 @@ CREATE TABLE $DBNAME(
 );
 
 COPY $DBNAME (lochash, x, y, race, town_id, town_name, owner_id, owner_name, guild_id, guild_name, population) FROM stdin;" > $data/$DBNAME.txt
-	if [ `zcat $data/$1.sql.gz | head | file - | grep Unicode | wc -l` -eq 1 ] ; then
+	if [ `zcat $data/$1.sql.gz | head -n 500 | file - | grep Unicode | wc -l` -eq 1 ] ; then
 		zcat $data/$1.sql.gz | perl sql2pg.pl >> $data/$DBNAME.txt
 	else
 		zcat $data/$1.sql.gz | perl sql2pg.pl | iconv -f iso-8859-1 -t utf8 >> $data/$DBNAME.txt
