@@ -74,7 +74,7 @@ function town2xy($name) {
 	return $xy;
 }
 
-$size = max($server_info['height'], $server_info['width']);
+$size = max(max($server_info['height'], $server_info['width']), 1);
 $zx = 0; $zy = 0; $zz = 500.0 / $size;
 
 if($zoom) {
