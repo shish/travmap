@@ -59,6 +59,6 @@ help7=hvis serverens data ser ud til at være forældede, så tjek venligst serv
 administrators, ikke mig!
 
 servertime=servertid
-report bugs=<a href="http://redmine.shishnet.org/projects/travmap/issues">Reporter</a> alle fejl (bugs) som ikke er rettet indenfor et par minutter efter du ser dem (brug <a href="http://trac.shishnet.org/travmap/report/1">bugtackeren</a> det gir for meget rod at ordne det via email)
+report bugs=<a href="http://github.com/shish/travmap">Reporter</a> alle fejl (bugs) som ikke er rettet indenfor et par minutter efter du ser dem
 credit=Dansk oversættelse af <a href="mailto:polleman@thecrib.dk">Palle Polle Mikkelsen</a> - <a href="http://www.thecrib.dk">www.thecrib.dk</a> + Kristoffer Woller
 

@@ -59,7 +59,7 @@ help6=Group by Alliance 2 = treat players with no alliance as all separate
 help7=Amennyiben a szerver adatai elavultak, kérlek először ellenőrizd a szerver map.sql fájlját -- ha az elavult, jelezd a Travian adminisztrátorainak, ne nekünk!
 
 servertime=A térképek utoljára frissítve: 1:30AM, pillanatnyi időpont
-report bugs=<a href="http://redmine.shishnet.org/projects/travmap/issues">Jelentsd</a> azt a hibát amely pár percnél tovább jelentkezik. (Használd a <a href="http://trac.shishnet.org/travmap/report/1">hibajelentőt</a>)
-credit=A magyarnyelvű <a href="http://trac.shishnet.org/travmap/browser/trunk/lang">fordítás</a> Roobi segítségével készült!
+report bugs=<a href="http://github.com/shish/travmap">Jelentsd</a> azt a hibát amely pár percnél tovább jelentkezik.
+credit=A magyarnyelvű <a href="http://github.com/shish/travmap/tree/master/lang/">fordítás</a> Roobi segítségével készült!
 
 notice=

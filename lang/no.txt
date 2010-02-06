@@ -59,7 +59,7 @@ help6=Grupper etter Allianse 2 = behande spillere uten allianser p&aring; egen h
 help7=Hvis kartdataene ser ut til &aring; v&aelig;re gamle, sjekk f&oslash;rst serverens map.sql-fil (http://s*.travian.**/map.sql) er utdatert-- hvis de dataene er gamle, klag til administratorene for den siden, ikke til meg.
 
 servertime=Kart oppdateres klokken 01:30 (servertid). Klokken er n&aring;:
-report bugs=<a href="http://redmine.shishnet.org/projects/travmap/issues">Rapporter</a> alle problemer som ikke er l&oslash;st innen et par minutter. (Bruk <a href="http://trac.shishnet.org/travmap/report/1">bug tracker'n</a>, &aring; ta det over e-post blir rotete)
+report bugs=<a href="http://github.com/shish/travmap">Rapporter</a> alle problemer som ikke er l&oslash;st innen et par minutter.
 credit=Norsk oversettelse av <a href="http://anderseinar.net">Anders Einar Hilden</a>
 
 notice=

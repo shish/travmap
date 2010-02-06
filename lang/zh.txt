@@ -59,7 +59,7 @@ help6=按照联盟分组 2 = 意思是所有没有联盟的玩家是分开的
 help7=If the server data seems out of date, please first check the server's map.sql file -- if that data is out of date, complain to the travian administrators, not me!
 
 servertime=本网站内容更新于 1:30AM, 现在时间是:
-report bugs=<a href="http://redmine.shishnet.org/projects/travmap/issues">报告</a> 没有在几分钟内更正的任何Bug (清使用 <a href="http://trac.shishnet.org/travmap/report/1">Bug 跟踪</a>, 因为用电子邮件太麻烦了)
+report bugs=<a href="http://github.com/shish/travmap">报告</a> 没有在几分钟内更正的任何Bug
 credit=中文版由 Tengxiao (aka chinsa) 翻译 
 
 notice=
