@@ -299,6 +299,17 @@ players to build villages, trade goods, form alliances and wage war~
 
 <hr>
 
+<form action="add.php" method="GET">
+<table>
+	<tr><td colspan="2">Add Server</td></tr>
+	<tr><td>Server</td><td><input type="text" name="server" placeholder="e.g. s3.travian.com" pattern="[a-z0-9\.]+"></td></tr>
+	<tr><td>Country</td><td><input type="text" name="country" placeholder="e.g. America"></td></tr>
+	<tr><td colspan="2"><input type="submit"></td></tr>
+</table>
+</form>
+
+<hr>
+
 <p><small>
 	<?=$langs;?>
 	<br>
