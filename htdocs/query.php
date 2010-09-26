@@ -136,7 +136,7 @@ switch($order) {
 // }}}
 
 // limit {{{
-$query .= "LIMIT 2000 ";
+$query .= "LIMIT 5000 ";
 // }}}
 
 
