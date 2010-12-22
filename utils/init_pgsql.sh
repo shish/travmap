@@ -10,11 +10,10 @@
 
 echo "CREATE TABLE servers (
 		name character varying(64) NOT NULL PRIMARY KEY,
-		mapfile character varying(8) NOT NULL,
 		country character varying(32) NOT NULL,
-		num smallint NOT NULL,
-		width integer NOT NULL,
-		height integer NOT NULL,
+		num integer NOT NULL,
+		width integer NOT NULL DEFAULT 250,
+		height integer NOT NULL DEFAULT 250,
 		villages integer DEFAULT 0 NOT NULL,
 		visible boolean DEFAULT true NOT NULL,
 		status character varying(255),

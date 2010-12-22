@@ -3,7 +3,7 @@ cd `dirname $0`
 . config.sh
 # mysql -u$SQL_USER -p$SQL_PASS -h $SQL_HOST $SQL_DB -e "INSERT INTO servers VALUES('$1', 'map', '$2', $3, 250, 250);"
 echo "Adding $1 to database"
-psql -U $SQL_USER -h $SQL_HOST $SQL_DB -c "INSERT INTO servers VALUES('$1', 'map', '$2', $3, 250, 250);"
+psql -U $SQL_USER -h $SQL_HOST $SQL_DB -c "INSERT INTO servers(name, country, num) VALUES('$1', '$2', $3);"
 echo "Fetching SQL dump"
 ./update_text.sh $1 map
 # ./update_mysql.sh $1
