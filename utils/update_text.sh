@@ -10,8 +10,8 @@ DBNAME=`echo $1 | sed 's/\./_/g'`
 . config.sh
 data=../sql
 
-echo -n "Downloading http://$1/$2.sql.gz... "
-echo -n "Downloading http://$1/$2.sql.gz... " > $STATUS
+echo -n "Downloading http://$1/map.sql.gz... "
+echo -n "Downloading http://$1/map.sql.gz... " > $STATUS
 
 # if the SQL file is less than 4 hours old, leave it
 if [ -f $data/$1.sql.gz ] ; then
@@ -24,16 +24,16 @@ if [ -f $data/$1.sql.gz ] ; then
 	fi
 fi
 
-if wget -q http://$1/$2.sql.gz -O $data/$1.sql.gz ; then
+if wget -q http://$1/map.sql.gz -O $data/$1.sql.gz ; then
 	touch $data/$1.sql.gz
 	if [ `stat -c "%s" $data/$1.sql.gz` -le 64000 ] ; then
-		./update_status $1 "$2.sql.gz is short"
+		./update_status $1 "map.sql.gz is short"
 	else
-		./update_status $1 "$2.sql.gz downloaded"
+		./update_status $1 "map.sql.gz downloaded"
 	fi
 	echo "ok"
 else
-	./update_status $1 "$2.sql.gz missing"
+	./update_status $1 "map.sql.gz missing"
 	echo "failed"
 fi
 
