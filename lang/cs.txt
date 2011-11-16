@@ -1,6 +1,6 @@
 lang=Czech
 
-key=Klíč
+key=Legenda
 instructions=Instrukce
 server status=Status serveru
 link to image=Odkaz na obrázek
@@ -44,8 +44,8 @@ advanced options=Pokročilá nastavení
 output options=Nastavení výstupu
 language options=Nastavení jazyka
 
-default=Standardně
-distance from zoom target=Vzdálenosti od centra mapy
+default=Standartně
+distance from zoom target=Vzdálenost od centra mapy
 population=Populace
 race=Rasy
 town=Města
