@@ -24,7 +24,7 @@ if [ -f $data/$1.sql.gz ] ; then
 	fi
 fi
 
-if wget -q http://$1/map.sql.gz -O $data/$1.sql.gz ; then
+if wget --timeout=3 --tries=2 -q http://$1/map.sql.gz -O $data/$1.sql.gz ; then
 	touch $data/$1.sql.gz
 	if [ `stat -c "%s" $data/$1.sql.gz` -le 64000 ] ; then
 		./update_status $1 "map.sql.gz is short"
