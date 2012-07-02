@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #
 # update_pgsql.sh (c) Shish 2006

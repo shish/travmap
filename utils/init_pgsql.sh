@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #
 # init_pgsql.sh (c) Shish 2009

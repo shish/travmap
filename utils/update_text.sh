@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #
 # update_text.sh (c) Shish 2006
