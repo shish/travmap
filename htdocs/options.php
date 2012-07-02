@@ -78,7 +78,7 @@ $size = max(max($server_info['height'], $server_info['width']), 1);
 $zx = 0; $zy = 0; $zz = 500.0 / $size;
 
 if($zoom) {
-	$za = array_map("trim", split(",", $zoom));
+	$za = array_map("trim", explode(",", $zoom));
 	
 	switch(count($za)) {
 		case 3: 
