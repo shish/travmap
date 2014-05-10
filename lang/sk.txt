@@ -11,12 +11,12 @@ roman=Riman
 gaul=Gal
 teuton=Germán
 
-north=^
-east=&lt;
-south=V
-west=&gt;
-zoom in=+
-zoom out=-
+north=Sever
+east=Východ
+south=Juh
+west=Západ
+zoom in=priblížiť
+zoom out=oddialiť
 
 server=Server
 alliance=Aliancia
@@ -26,10 +26,10 @@ group by=Zoskupuj podľa
 zoom=Zoom
 case sensitive=Case Sensitive
 dot size=Veľkosť bodu
-min distance=Min Distance
-max distance=Max Distance
-min population=Min Population
-max population=Max Population
+min distance=Minimálna vzdialenosť
+max distance=Maximálna vzdialenosť
+min population=Minimálna Populácia
+max population=Maximálna populácia
 order by=Usporiadaj podľa
 colour by=Vyfarbi podľa
 output format=Výstupný formát
@@ -37,7 +37,7 @@ show map=Zobraz mapu
 layout=Rozloženie
 spread=Po bokoch
 caption=Caption
-shrinkwrap=Zazúmovať na objekty
+shrinkwrap=Priblížiť na objekty
 new page=Otvoriť na novej stránke
 
 advanced options=Rozšírené nastavenia
@@ -53,13 +53,13 @@ town=Dedinka
 help1=Oddelujte viaceré mená hráčov/aliancií čiarkami. Úvodzovky je možné použiť na uvedenie mena hráča/aliancie, ktoré obsahuje medzeru, alebo čiarku. Napríklad: <code>Juro, Fero, "Dezo musi mat huste,meno!", Jano</code>
 help2=Zoom = <code>x,y,zoom factor</code> or <code>village name,zoom factor</code>
 help3=Aliancie, hráči i dediny sú všetky Case Sensitive. Urýchluje to hľadanie.
-help4=Zmrdi, čo chcú byť hustí a majú mená s divnými znakmi, ako apostrof, dolárik a podobne môžu byť referencovaný cez ID. Napríklad: <code>id:123</code>. ID hráča sa dá z hry získať asi tu: <a href="links1.png">dedinka</a> a <a href="links2.png">stránka štatistík</a>.
+help4=Hráči, čo mená so špecálnymi znakmi môžu byť referencovaný cez ID. Napríklad: <code>id:123</code>. ID hráča sa dá z hry získať asi tu: <a href="links1.png">dedinka</a> a <a href="links2.png">stránka štatistík</a>.
 help5=Hotlinking is encouraged -- while each map takes a while to be generated the first time each day, it's then cached, and takes practically no processing power or bandwidth to re-send.
 help6=Zoskupiť podľa Alliance 2 = ber hráčov bez členstva v aliancii ako samostatné aliancie
-help7=Ak dáta vypadajú zastaralé, prosím najskôr skontrolujte serverovský map.sql súbor (aha, napríklad http://s2.travian.sk/map.sql) -- ak sú dáta tu nejaké staré, nespamujte mňa, ale admina serveru!
+help7=Ak dáta vyzerajú zastaralé, prosím najskôr skontrolujte serverovský map.sql súbor (napríklad http://s2.travian.sk/map.sql) -- ak sú dáta zastaralé, nespamujte mňa, ale admina serveru!
 
-servertime=Mapy boli/sú (?) updejtované o 1:30AM, aktuálny čas je 
-report bugs=<a href="http://github.com/shish/travmap">Report</a> any bugs that aren't fixed within a couple of minutes of them appearing.
+servertime=Mapy boli obnovené o 1:30AM, aktuálny čas je 
+report bugs=<a href="http://github.com/shish/travmap">Nahláste</a> chyby, ktoré niesú opravené do pár minút od ich objavenia.
 credit=Shish and Babelfish are both horrible translators, <a href="http://github.com/shish/travmap/tree/master/lang/">please help! (preložený súbor treba poslať aj tak mailom, nesnažte sa v trax-e niečo nájsť :)</a>
 
 notice=
