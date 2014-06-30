@@ -257,13 +257,12 @@ else {
 		<br><a href="http://stats.shishnet.org/graphs/history.php?rrd=load&function=load"><img src="http://stats.shishnet.org/graphs/graphs/load_tiny.php?rrd=load&time=day" alt="graph"></a>
 	</div>
 		-->
+					<?php include_once "ads.php"; ?>
 				</td>
 <!-- }}} -->
 <!-- instructions {{{ -->
 				<td style="width: 768px;">
 <div id="inst">
-	<?php require_once "ads.php"; ?>
-
 	<p><?=$words['help1'];?>
 	<p><?=$words['help2'];?>
 	<p><?=$words['help3'];?>

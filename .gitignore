@@ -5,6 +5,5 @@ htdocs/config.php
 htdocs/error.log
 htdocs/log.txt
 htdocs/status.txt
-htdocs/ads.php
 htdocs/arialuni.ttf
 utils/config.sh
