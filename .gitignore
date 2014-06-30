@@ -7,3 +7,4 @@ htdocs/log.txt
 htdocs/status.txt
 htdocs/arialuni.ttf
 utils/config.sh
+utils/servers.sql
