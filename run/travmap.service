@@ -1,0 +1,14 @@
+[Unit]
+Description=ShishNet Travmap
+
+[Service]
+ExecStart=/data/sites/travmap.shishnet.org/run/run
+Restart=always
+Sockets=/tmp/fcgi-travmap.sock
+
+Type=notify
+NotifyAccess=all
+WatchdogSec=60
+
+[Install]
+WantedBy=multi-user.target

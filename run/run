@@ -1,0 +1,9 @@
+#!/bin/bash
+
+exec 2>&1
+#ulimit -v 512000
+export REAL_SCRIPT_NAME=""
+export PHP_FCGI_CHILDREN=4
+spawn-fcgi -n -s /tmp/fcgi-travmap.sock -u shish -U www-data -- /usr/bin/php5-cgi &
+sd_watcher --url http://travmap.shishnet.org/ --pid $! --interval 30 --exit &
+sleep 3  # give time for the "main process" token to be reassigned
