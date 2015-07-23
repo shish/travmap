@@ -71,11 +71,14 @@ else {
 		
 		if($country != $lastcountry) {
 			$country_list[] = "<option>$country</option>";
-			$server_list[] = "<option style='background: black; color: white;' disabled>$country</option>";
+			if($server_list) $server_list[] = "</optgroup>";
+			$server_list[] = "<optgroup label='$country'>";
+			#$server_list[] = "<option style='background: black; color: white;' disabled>$country</option>";
 			$lastcountry = $country;
 		}
 		$server_list[] = "<option value='$name'$disabled>$name</option>";
 	}
+	if($server_list) $server_list[] = "</optgroup>";
 
 	$countryopts = implode("\n", $country_list);
 	$serveropts = implode("\n", $server_list);
