@@ -16,6 +16,7 @@ echo "CREATE TABLE servers (
 		height integer NOT NULL DEFAULT 250,
 		villages integer DEFAULT 0 NOT NULL,
 		visible boolean DEFAULT true NOT NULL,
+		updated timestamp with time zone DEFAULT '1970-01-01' NOT NULL,
 		status character varying(255),
 		owners integer DEFAULT 0 NOT NULL,
 		guilds integer DEFAULT 0 NOT NULL,

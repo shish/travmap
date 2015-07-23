@@ -54,16 +54,19 @@ CREATE INDEX ${DBNAME}_y ON $DBNAME(y);
 -- CREATE INDEX ${DBNAME}_race ON $DBNAME(race);
 CREATE INDEX ${DBNAME}_population ON $DBNAME(population);
 
-UPDATE servers SET villages=(SELECT COUNT(*) FROM ${DBNAME}) WHERE name='$1';
-UPDATE servers SET owners=(SELECT COUNT(DISTINCT owner_id) FROM ${DBNAME}) WHERE name='$1';
-UPDATE servers SET guilds=(SELECT COUNT(DISTINCT guild_id) FROM ${DBNAME}) WHERE name='$1';
-UPDATE servers SET population=(SELECT SUM(population) FROM ${DBNAME}) WHERE name='$1';
-UPDATE servers SET width =(SELECT MAX(x) - MIN(x) FROM ${DBNAME}) WHERE name='$1';
-UPDATE servers SET height=(SELECT MAX(x) - MIN(x) FROM ${DBNAME}) WHERE name='$1';
+UPDATE servers SET
+	villages=(SELECT COUNT(*) FROM ${DBNAME}),
+	owners=(SELECT COUNT(DISTINCT owner_id) FROM ${DBNAME}),
+	guilds=(SELECT COUNT(DISTINCT guild_id) FROM ${DBNAME}),
+	population=(SELECT SUM(population) FROM ${DBNAME}),
+	width =(SELECT MAX(x) - MIN(x) FROM ${DBNAME}),
+	height=(SELECT MAX(x) - MIN(x) FROM ${DBNAME}),
+	updated=now()
+WHERE name='$1';
 	" >> $data/$DBNAME.txt
 	psql -q -U $SQL_USER $SQL_DB < $data/$DBNAME.txt
 	rm -f $data/$DBNAME.txt
-	./update_status $1 "`date '+%Y-%m-%d %H:%M:%S'`"
+	./update_status $1 "ok"
 fi
 
 echo -n > $STATUS

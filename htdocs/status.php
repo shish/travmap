@@ -18,9 +18,10 @@ $total_guilds = $row['guilds'];
 $total_owners = $row['owners'];
 $total_population = $row['population'];
 $totals = "
-			<tr><th colspan='6'>Totals</th></tr>
+			<tr><th colspan='7'>Totals</th></tr>
 			<tr>
 				<td>Server</td>
+				<td>Updated</td>
 				<td>Status</td>
 				<td>Alliances</td>
 				<td>Players</td>
@@ -28,6 +29,7 @@ $totals = "
 				<td>Population</td>
 			</tr>
 			<tr>
+				<td>-</td>
 				<td>-</td>
 				<td>-</td>
 				<td>$total_guilds</td>
@@ -48,19 +50,30 @@ $yesterday = date('Y-m-d', mktime(0,0,0,$m,($d-1),$y));
 $rows = array();
 $links = array();
 $lastcountry = "";
-$res = sql_query("SELECT name,country,villages,status,owners,guilds,population FROM servers WHERE visible=True ORDER BY country, num");
+$res = sql_query("SELECT name,country,villages,updated,status,owners,guilds,population FROM servers WHERE visible=True ORDER BY country, num");
 while($row = sql_fetch_row($res)) {
 	$name = $row['name'];
 	$country = $row['country'];
 	$villages = $row['villages'];
+	$updated = $row['updated'];
 	$status = $row['status'];
 
-	if(substr($status, 0, 10) == $today || substr($status, 0, 10) == $yesterday ||
-			$status == "map.sql downloaded" || $status == "karte.sql downloaded") {
+	if($status == "ok" || $status == "map.sql downloaded" || $status == "karte.sql downloaded") {
 		$status = "<font color='green'>$status</font>";
 	}
 	else {
 		$status = "<font color='red'>$status</font>";
+	}
+
+	$updated = substr($updated, 0, 16);
+	if(substr($updated, 0, 10) == $today) {
+		$updated = "<font color='green'>$updated</font>";
+	}
+	elseif(substr($updated, 0, 10) == $yesterday) {
+		$updated = "<font color='orange'>$updated</font>";
+	}
+	else {
+		$updated = "<font color='red'>$updated</font>";
 	}
 
 	$players = $row['owners'];
@@ -70,9 +83,10 @@ while($row = sql_fetch_row($res)) {
 	if($country != $lastcountry) {
 		$links[] = "<a href='#$country'>$country</a>";
 		$rows[] = "
-			<tr><th colspan='6'><a name='$country'>$country</a></th></tr>
+			<tr><th colspan='7'><a name='$country'>$country</a></th></tr>
 			<tr>
 				<td>Server</td>
+				<td>Updated</td>
 				<td>Status</td>
 				<td>Alliances</td>
 				<td>Players</td>
@@ -85,6 +99,7 @@ while($row = sql_fetch_row($res)) {
 	$rows[] = "
 		<tr>
 			<td><a href='http://$name/'>$name</a></td>
+			<td>$updated</td>
 			<td>$status</td>
 			<td>$guilds</td>
 			<td>$players</td>
