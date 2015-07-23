@@ -59,3 +59,10 @@ CODE {font-size: 0.9em; background: #CCC;}
 
 #graphs A {display: block;}
 #graphs IMG {display: block;}
+
+input:required:invalid {
+	background-color: #FEE;
+}
+input:required:valid {
+	background-color: #EFE;
+}

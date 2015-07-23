@@ -304,13 +304,13 @@ players to build villages, trade goods, form alliances and wage war~
 <form action="add.php" method="GET">
 <table>
 	<tr><td colspan="2">Add Server</td></tr>
-	<tr><td>Server</td><td><input type="text" name="server" placeholder="e.g. s3.travian.com" pattern="[a-z0-9\.]+"></td>
+	<tr><td>Server</td><td><input type="text" name="server" placeholder="e.g. s3.travian.com" pattern="[a-z0-9\.]+\.travian\.[a-z0-9\.]+" required></td>
 		<td>
 			<span style="color:green">s5.travian.com</span> /
 			<span style="color:red">s5 / server1 / ptx / s4.nl</span>
 		</td>
 	</tr>
-	<tr><td>Country</td><td><input type="text" name="country" placeholder="e.g. America"></td></tr>
+	<tr><td>Country</td><td><input type="text" name="country" placeholder="e.g. America" pattern="[A-Z][a-z ]+" required></td></tr>
 	<tr><td colspan="2"><input type="submit"></td></tr>
 </table>
 </form>
