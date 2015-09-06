@@ -49,8 +49,13 @@ $yesterday = date('Y-m-d', mktime(0,0,0,$m,($d-1),$y));
 
 $rows = array();
 $links = array();
-$lastcountry = "";
-$res = sql_query("SELECT name,country,villages,updated,status,owners,guilds,population FROM servers WHERE visible=True ORDER BY country, num");
+$last_country = "";
+$res = sql_query("
+	SELECT name,country,villages,updated,status,owners,guilds,population
+	FROM servers
+	WHERE visible=True
+	ORDER BY country, name
+");
 while($row = sql_fetch_row($res)) {
 	$name = $row['name'];
 	$country = $row['country'];
@@ -80,7 +85,7 @@ while($row = sql_fetch_row($res)) {
 	$guilds = $row['guilds'];
 	$population = $row['population'];
 	
-	if($country != $lastcountry) {
+	if($country != $last_country) {
 		$links[] = "<a href='#$country'>$country</a>";
 		$rows[] = "
 			<tr><th colspan='7'><a name='$country'>$country</a></th></tr>
@@ -94,7 +99,7 @@ while($row = sql_fetch_row($res)) {
 				<td>Population</td>
 			</tr>
 		";
-		$lastcountry = $country;
+		$last_country = $country;
 	}
 	$rows[] = "
 		<tr>

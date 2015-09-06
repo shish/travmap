@@ -63,7 +63,7 @@ else {
 	$server_list = Array();
 
 	$lastcountry = "";
-	$res = sql_query("SELECT name,country,villages FROM servers WHERE visible=True ORDER BY country, num");
+	$res = sql_query("SELECT name,country,villages FROM servers WHERE visible=True ORDER BY country, name");
 	while($row = sql_fetch_row($res)) {
 		$name = $row['name'];
 		$country = $row['country'];
@@ -304,7 +304,7 @@ players to build villages, trade goods, form alliances and wage war~
 <form action="add.php" method="GET">
 <table>
 	<tr><td colspan="2">Add Server</td></tr>
-	<tr><td>Server</td><td><input type="text" name="server" placeholder="e.g. s3.travian.com" pattern="[a-z0-9\.]+\.travian\.[a-z0-9\.]+" required></td>
+	<tr><td>Server</td><td><input type="text" name="server" placeholder="e.g. s3.travian.com" pattern="[a-z0-9\.\-]+\.travian\.[a-z0-9\.]+" required></td>
 		<td>
 			<span style="color:green">s5.travian.com</span> /
 			<span style="color:red">s5 / server1 / ptx / s4.nl</span>

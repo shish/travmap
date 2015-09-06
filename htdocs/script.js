@@ -19,13 +19,13 @@ window.onload = function(e) {
 	updatepart("instructions");
 	updatepart("langopts");
 	loadsettings();
-}
+};
 
 
 function updateMap() {
-	elements = document.forms[0].elements;
-	url = "";
-	for(i=0; i<elements.length; i++) {
+	var elements = document.forms[0].elements;
+	var url = "";
+	for(var i=0; i<elements.length; i++) {
 		if(elements[i].type == "checkbox") {
 			if(elements[i].checked) {
 				url += elements[i].name +"=on&";
@@ -66,46 +66,44 @@ function getHTTPObject() {
 }
 
 function updateServers(country_box) {
-	country = country_box[country_box.selectedIndex].text;
+	var country = country_box[country_box.selectedIndex].text;
 
-	server_list = document.getElementById("server_select");
+	var server_list = document.getElementById("server_select");
 	server_list.disabled = true;
 
 	var http = getHTTPObject();
 	http.open("GET", 'ajax.php?mode=servers&country='+country, true);
 	http.onreadystatechange = function() {
 		if (http.readyState == 4) {
-			for(i=server_list.options.length; i>=0; i--) {server_list.options[i] = null;}
+			server_list.innerHTML = "";
+			var results = http.responseText.split("\n");
 
-			results = http.responseText.split("\n");
-
-			for(i=0; i<results.length; i++) {
-				parts = results[i].split(",");
-				server = parts[0];
-				enabled = parts[1];
+			for(var i=0; i<results.length; i++) {
+				var parts = results[i].split(",");
+				var server = parts[0];
+				var enabled = parts[1];
 
 				if(server.length > 0) {
-					server_list.options[i] = new Option(server, server);
+					server_list.appendChild(new Option(server, server));
 				}
 			}
 
 			server_list.disabled = false;
 		}
-
-	}
-	// input.http.send(null);
+	};
 	http.send(null);
 }
 
 function saveServer(server_box) {
-	server = server_box[server_box.selectedIndex].text;
+	var server = server_box[server_box.selectedIndex].text;
 	set_cookie("travmap_server", server, 31);
 }
 
 function loadsettings() {
-	box = document.getElementById("server_select");
-	if(server = get_cookie("travmap_server")) {
-		for(i=0; i<box.options.length; i++) {
+	var box = document.getElementById("server_select");
+	var server = get_cookie("travmap_server");
+	if(server) {
+		for(var i=0; i<box.options.length; i++) {
 			if(box.options[i].value == server) {
 				byId("server_select").selectedIndex = i;
 				break;

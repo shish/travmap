@@ -5,7 +5,7 @@ if(!preg_match("/^[A-Z][A-Za-z ]+$/", $_GET["country"])) {
 }
 
 if(!(
-	preg_match("/^[a-z0-9\.]+$/", $_GET["server"]) &&
+	preg_match("/^[a-z0-9\.\-]+$/", $_GET["server"]) &&
 	dns_get_record($_GET["server"])
 )) {
 	die("Invalid server name");
@@ -14,8 +14,9 @@ if(!(
 $server = $_GET["server"];
 $country = $_GET["country"];
 $num = (int)time();
-print "adding $country / $server\n";
+$mapfile = strpos($server, "-") ? "json" : "map";
+print "adding $country / $server / $mapfile\n";
 chdir("/data/sites/travmap.shishnet.org/utils/");
-system("./add_server $server '$country' $num");
+system("./add_server $server '$country' $num $mapfile");
 ?>
 </pre>

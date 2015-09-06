@@ -1,6 +1,6 @@
 #!/bin/bash
 cd `dirname $0`
-DBNAME=`echo $1 | sed 's/\./_/g'`
+DBNAME=`echo $1 | sed 's/[\.\-]/_/g'`
 . config.sh
 psql -U $SQL_USER -h $SQL_HOST $SQL_DB -c "DELETE FROM servers WHERE name='$1';"
 psql -U $SQL_USER -h $SQL_HOST $SQL_DB -c "DROP TABLE $DBNAME;"
