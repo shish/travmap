@@ -106,19 +106,6 @@ function getMatches($col, $name) {
 
 
 /*
- * look up a name by it's associated ID number; useful
- * for players and guilds with dodgy names
- *
- * nothing uses this o_O
- */
-function id2name($idcol, $namecol, $id, $table) {
-	if(!is_numeric($id)) return;
-	$row = sql_fetch_row(sql_query("SELECT $namecol FROM $table WHERE $idcol=$id LIMIT 1;"));
-	return "'$row[$namecol]'";
-}
-
-
-/*
  * some maths
  */
 function in($v, $min, $max) {return ($v >= $min && $v <= $max);}

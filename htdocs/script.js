@@ -2,12 +2,12 @@
  * script.js (c) Shish 2006
  */
 
-var displayparts = new Array();
-displayparts["advanced"] = "hide";
-displayparts["output"] = "hide";
-displayparts["instructions"] = "show";
-displayparts["langopts"] = "show";
-
+var displayparts = {
+	advanced: "hide",
+	output: "hide",
+	instructions: "show",
+	langopts: "show"
+};
 
 function byId(id) {
 	return document.getElementById(id);

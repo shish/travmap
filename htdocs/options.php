@@ -34,7 +34,8 @@ $maxpop = getInt("maxpop", null);
 $minpop = getInt("minpop", null);
 
 $table = preg_replace("/[^a-zA-Z0-9]/", "_", $server);
-$server_info = sql_fetch_row(sql_query("SELECT * FROM servers WHERE name='".sql_escape_string($server)."'"));
+$s_server = sql_escape_string($server);
+$server_info = sql_fetch_row(sql_query("SELECT * FROM servers WHERE name='$s_server'"));
 // }}}
 
 // figure out where we are {{{
@@ -54,7 +55,7 @@ else {
  */
 
 function town2xy($name) {
-	global $table;
+	global $table, $casen, $zx;
 
 	$xy = Array();
 	

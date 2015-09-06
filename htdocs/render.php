@@ -121,23 +121,23 @@ function get_gridline_color($pos) {
 
 function draw_grid_lines($image, $mapradius, $drawradius) {
 	global $zz, $zx, $zy, $cx, $cy, $imageline;
-	
+
 	$inc = ($zz >= 10) ? 1 : 10;
 	
 	$top =    $cy-$drawradius;
 	$bottom = $cy+$drawradius;
 	$left =   $cx-$drawradius;
 	$right =  $cx+$drawradius;
-		
+
 	for($v=-$mapradius; $v<=$mapradius; $v+=$inc) {
 		$col = get_gridline_color($v);
 	
 		$x = $cx+($v-$zx)*$zz;
 		$y = $cy+($v+$zy)*$zz;
-		
+
 		if(in($x, $left, $right)) $imageline($image, $x, $cy+(-$mapradius+$zy)*$zz, $x, $cy+($mapradius+$zy)*$zz, $col);
 		if(in($y, $top, $bottom)) $imageline($image, $cx-(-$mapradius+$zx)*$zz, $y, $cx-($mapradius+$zx)*$zz, $y, $col);
-	} 
+	}
 }
 
 function draw_grid_labels($image, $mapradius, $drawradius) {
@@ -259,22 +259,11 @@ function get_entity_colour($entity) {
 	else {
 		$colour = $ct[($ca++)%count($ct)];
 	}
+	return $colour;
 }
 
 foreach($entities as $entity_id => $entity) {
-	if($colby == "alliance") {
-		if(!is_null($cals[$entity["guild"]])) $colour = $cals[$entity["guild"]];
-		else $colour = $cals[$entity["guild"]] = $ct[($ca++)%count($ct)];
-	}
-	else if($colby == "race") {
-		if(!is_null($cals[$entity["race_id"]])) $colour = $cals[$entity["race_id"]];
-		else $colour = $cals[$entity["race_id"]] = $ct[($ca++)%count($ct)];
-	}
-	else {
-		$colour = $ct[($ca++)%count($ct)];
-	}
-
-//	$colour = get_entity_colour($entity);
+	$colour = get_entity_colour($entity);
 	foreach($entity['villages'] as $village) {
 		draw_village_marker($im, $entity, $village, $colour);
 	}
