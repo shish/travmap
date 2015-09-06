@@ -134,4 +134,3 @@ function dot($im, $x, $y, $col, $s=5) {
 	$imagefilledellipse($im, $x, $y, $s, $s, $col);
 	$imageellipse($im, $x, $y, $s, $s, $black);
 }
-?>

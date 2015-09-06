@@ -3,4 +3,3 @@ $sql_host = "localhost";
 $sql_user = "bob";
 $sql_pass = "passwd";
 $sql_db = "travmap";
-?>

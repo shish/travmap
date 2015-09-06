@@ -7,4 +7,3 @@ if($_GET["mode"] == "servers") {
 		print $row["name"] . "," . ($row["population"] > 1000) . "\n";
 	}
 }
-?>

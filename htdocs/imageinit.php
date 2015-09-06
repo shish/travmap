@@ -20,4 +20,3 @@ $grey  = $imagecolorallocate($im, 127, 127, 127);
 $dgrey = $imagecolorallocate($im, 63,  63,  63);
 $black = $imagecolorallocate($im, 0,   0,   0);
 $imagefill($im, 0, 0, $white);
-?>

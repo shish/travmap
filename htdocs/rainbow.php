@@ -20,4 +20,3 @@ $s = 0.5; $v = 1.0;  for($h=0.00; $h<0.99; $h+=0.166) {$ct[] = $imagecoloralloca
 $s = 1.0; $v = 1.0;  for($h=0.08; $h<0.99; $h+=0.166) {$ct[] = $imagecolorallocate_hsv($im, $h, $s, $v);}
 $s = 1.0; $v = 0.75; for($h=0.08; $h<0.99; $h+=0.166) {$ct[] = $imagecolorallocate_hsv($im, $h, $s, $v);}
 $s = 0.5; $v = 1.0;  for($h=0.08; $h<0.99; $h+=0.166) {$ct[] = $imagecolorallocate_hsv($im, $h, $s, $v);}
-?>

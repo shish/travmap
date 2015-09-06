@@ -21,7 +21,6 @@ $races = Array($words["roman"], $words["teuton"], $words["gaul"]);
 $result = sql_query($query);
 
 
-// load data {{{
 while($row = sql_fetch_row($result)) {
 	$user_name = $row["owner_name"];
 	$user_id = $row["owner_id"];
@@ -70,5 +69,3 @@ while($row = sql_fetch_row($result)) {
 	$entities[$entity_id]['villages'][$entities[$entity_id]['count']]['x'] = $row['x'];
 	$entities[$entity_id]['villages'][$entities[$entity_id]['count']]['y'] = $row['y'];
 }
-// }}}
-?>

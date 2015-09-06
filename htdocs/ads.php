@@ -2,7 +2,6 @@ Travian Links:
 <br><a href="http://travianskins.com/">Skins</a>
 <br><a href="http://travian-reports.net/">Reports</a>
 <br><a href="http://travianreports.com/">More Reports</a>
-</small>
 <hr>
 <a href="http://whos.amung.us/show/fdbyho26"><img src="http://whos.amung.us/widget/fdbyho26.png" alt="web tracker" width="81" height="29" border="0" /></a>
 

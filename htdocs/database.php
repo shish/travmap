@@ -35,4 +35,3 @@ function sql_query($query) {
 	return $result;
 }
 */
-?>

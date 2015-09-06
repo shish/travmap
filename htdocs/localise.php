@@ -42,4 +42,3 @@ while($line = fgets($fp)) {
 	if(isset($row[1])) $words[$row[0]] = trim($row[1]);
 }
 fclose($fp);
-?>

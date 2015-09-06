@@ -25,4 +25,3 @@ switch($_GET["format"]) {
 		break;
 }
 $imagedestroy($im);
-?>

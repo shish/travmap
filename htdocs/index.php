@@ -124,8 +124,6 @@ else {
 	fclose($fp);
 }
 // }}}
-
-// html template {{{
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
@@ -328,6 +326,3 @@ players to build villages, trade goods, form alliances and wage war~
 		</table>
 	</body>
 </html>
-<?php
-// }}}
-?>

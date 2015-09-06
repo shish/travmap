@@ -115,7 +115,6 @@ while($row = sql_fetch_row($res)) {
 }
 // }}}
 
-// html template {{{
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
@@ -147,6 +146,3 @@ TD {
 		</table>
 	</body>
 </html>
-<?php
-// }}}
-?>

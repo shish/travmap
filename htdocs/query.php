@@ -143,4 +143,3 @@ $query .= "LIMIT 5000 ";
 if($_GET["debug"] == "on") {
 	print "<p><b>Query:</b> $query";
 }
-?>

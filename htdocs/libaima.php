@@ -208,4 +208,3 @@ function aimacolorallocate_hsv($im, $H, $S, $V) {
 	return aimacolorallocate($im, $rgb[0], $rgb[1], $rgb[2]);
 }
 // }}}
-?>

@@ -319,4 +319,3 @@ if($_GET["format"] == "svg") {
 	aimacustom($im, "</a>");
 }
 // }}}
-?>
