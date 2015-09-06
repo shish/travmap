@@ -1,6 +1,2 @@
 User-agent: *
-Disallow: /awstats/
-Disallow: /cache/
-Disallow: /sql/
-Disallow: /lib/
-Disallow: /lang/
+Allow: /

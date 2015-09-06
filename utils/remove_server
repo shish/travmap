@@ -5,4 +5,3 @@ DBNAME=`echo $1 | sed 's/[\.\-]/_/g'`
 psql -U $SQL_USER -h $SQL_HOST $SQL_DB -c "DELETE FROM servers WHERE name='$1';"
 psql -U $SQL_USER -h $SQL_HOST $SQL_DB -c "DROP TABLE $DBNAME;"
 rm -f ../cache/servers.txt
-rm -f ../sql/$1.sql.gz

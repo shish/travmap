@@ -165,7 +165,7 @@ draw_grid($im, 500, 250);
 
 date_default_timezone_set("America/Los_Angeles");
 $stamp1 = $words["last update"];
-$stamp2 = date("y/m/d h:i T", filemtime("../sql/$server.sql.gz"));
+$stamp2 = substr($server_info['updated'], 0, 16);
 
 /*
  * Draw the rectangles
