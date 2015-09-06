@@ -123,20 +123,15 @@ function draw_grid_lines($image, $mapradius, $drawradius) {
 	global $zz, $zx, $zy, $cx, $cy, $imageline;
 
 	$inc = ($zz >= 10) ? 1 : 10;
-	
-	$top =    $cy-$drawradius;
-	$bottom = $cy+$drawradius;
-	$left =   $cx-$drawradius;
-	$right =  $cx+$drawradius;
 
 	for($v=-$mapradius; $v<=$mapradius; $v+=$inc) {
 		$col = get_gridline_color($v);
 	
-		$x = $cx+($v-$zx)*$zz;
-		$y = $cy+($v+$zy)*$zz;
+		$x = ($v-$zx)*$zz;
+		$y = ($v+$zy)*$zz;
 
-		if(in($x, $left, $right)) $imageline($image, $x, $cy+(-$mapradius+$zy)*$zz, $x, $cy+($mapradius+$zy)*$zz, $col);
-		if(in($y, $top, $bottom)) $imageline($image, $cx-(-$mapradius+$zx)*$zz, $y, $cx-($mapradius+$zx)*$zz, $y, $col);
+		if(in($x, -$drawradius, $drawradius)) $imageline($image, $cx+$x, $cy+(-$mapradius+$zy)*$zz, $cx+$x, $cy+($mapradius+$zy)*$zz, $col);
+		if(in($y, -$drawradius, $drawradius)) $imageline($image, $cx-(-$mapradius+$zx)*$zz, $cy+$y, $cx-($mapradius+$zx)*$zz, $cy+$y, $col);
 	}
 }
 
@@ -147,12 +142,12 @@ function draw_grid_labels($image, $mapradius, $drawradius) {
 	else if($zz <= 0.75) $inc = 100;
 	else $inc = 50;
 
-	$x = bound($cx-$zx*$zz, $cx-$drawradius, $cx+$drawradius-25);
-	$y = bound($cy+$zy*$zz, $cy-$drawradius, $cy+$drawradius-10);
+	$x = bound(-$zx*$zz, -$drawradius, $drawradius-25);
+	$y = bound( $zy*$zz, -$drawradius, $drawradius-10);
 
 	for($v=-$mapradius; $v<=$mapradius; $v+=$inc) {
-		$imagestring($image, 3, $x+2, $cy-($v-$zy)*$zz+1, $v, $mgrey);
-		$imagestring($image, 3, $cx+($v-$zx)*$zz+2, $y+1, $v, $mgrey);
+		$imagestring($image, 3, $cx+$x+2, $cy-($v-$zy)*$zz+1, $v, $mgrey);
+		$imagestring($image, 3, $cx+($v-$zx)*$zz+2, $cy+$y+1, $v, $mgrey);
 	}
 }
 
@@ -222,9 +217,9 @@ function draw_entity_label($image, $entity, $colour) {
 function draw_village_marker($image, $entity, $village, $colour) {
 	global $server, $cx, $cy, $zx, $zy, $zz, $lines, $imageline, $dotsize;
 	
-	$vx = $cx+($village['x']-$zx)*$zz;
-	$vy = $cy-($village['y']-$zy)*$zz;
-	if($lines) $imageline($image, $entity['dx'], $entity['dy'], $vx, $vy, $colour);
+	$vx =  ($village['x']-$zx)*$zz;
+	$vy = -($village['y']-$zy)*$zz;
+	if($lines) $imageline($image, $entity['dx'], $entity['dy'], $cx+$vx, $cy+$vy, $colour);
 	
 	$name = $village['name'];
 	$owner = $village['owner'];
@@ -241,7 +236,7 @@ function draw_village_marker($image, $entity, $village, $colour) {
 	}
 	$tip = svgentities("$name ($x, $y)$dfz, $pop, ($owner, $guild)");
 	aimacustom($image, "<a xlink:href='http://$server/karte.php?z=$cohash' xlink:title='$tip'>");
-	dot($image, $vx, $vy, $colour, (log($pop+1)+1)*$dotsize);
+	dot($image, $cx+$vx, $cy+$vy, $colour, (log($pop+1)+1)*$dotsize);
 	aimacustom($image, "</a>");
 }
 
