@@ -130,8 +130,12 @@ function draw_grid_lines($image, $mapradius, $drawradius) {
 		$x = ($v-$zx)*$zz;
 		$y = ($v+$zy)*$zz;
 
-		if(in($x, -$drawradius, $drawradius)) $imageline($image, $cx+$x, $cy+(-$mapradius+$zy)*$zz, $cx+$x, $cy+($mapradius+$zy)*$zz, $col);
-		if(in($y, -$drawradius, $drawradius)) $imageline($image, $cx-(-$mapradius+$zx)*$zz, $cy+$y, $cx-($mapradius+$zx)*$zz, $cy+$y, $col);
+		$y1 = bound( (-$mapradius+$zy)*$zz, -$drawradius, $drawradius-1);
+		$y2 = bound(  ($mapradius+$zy)*$zz, -$drawradius, $drawradius-1);
+		$x1 = bound(-(-$mapradius+$zx)*$zz, -$drawradius, $drawradius-1);
+		$x2 = bound( -($mapradius+$zx)*$zz, -$drawradius, $drawradius-1);
+		if(in($x, -$drawradius, $drawradius)) $imageline($image, $cx+$x, $cy+$y1, $cx+$x, $cy+$y2, $col);
+		if(in($y, -$drawradius, $drawradius)) $imageline($image, $cx+$x1, $cy+$y, $cx+$x2, $cy+$y, $col);
 	}
 }
 
@@ -156,7 +160,7 @@ function draw_grid($image, $mapradius, $drawradius) {
 	draw_grid_labels($image, $mapradius, $drawradius);
 }
 
-draw_grid($im, 500, 250);
+draw_grid($im, 500, 256);
 
 date_default_timezone_set("America/Los_Angeles");
 $stamp1 = $words["last update"];
@@ -193,7 +197,7 @@ else {
 
 // entities {{{
 /*
- * Draw each entity, it's villages, and it's key entry
+ * Draw each entity, its villages, and its key entry
  */
 $cals = Array();
 $ca = 0;

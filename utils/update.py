@@ -93,7 +93,7 @@ class Server(namedtuple('Server', fields)):
             os.rename(path + ".tmp", path)
             return True
         except Exception as e:
-            print(e)
+            s.set_status("Fetch: " + str(e))
             return False
 
     ###################################################################
@@ -125,7 +125,7 @@ class Server(namedtuple('Server', fields)):
         try:
             cur.copy_from(fp, self.dbname, columns="lochash, x, y, race, town_id, town_name, owner_id, owner_name, guild_id, guild_name, population".split(", "))
         except Exception as e:
-            self.set_status(str(e))
+            self.set_status("Load: " + str(e))
             conn.rollback()
             #file(cache_name(self.name, ".err"), "w").write(data.encode('utf8'))
             return
@@ -242,11 +242,14 @@ class Server(namedtuple('Server', fields)):
 
     def _create_data_from_json(self):
         data = []
-        j = json.load(open(cache_name(self.name, '.json')))['response']
+        j = json.load(open(cache_name(self.name, '.json')))
+        if j['error']:
+            raise Exception(j['error']['message'])
+        r = j['response']
         alliances = {0: {'nameShort': ''}}
-        for alliance in j['alliances']:
+        for alliance in r['alliances']:
             alliances[int(alliance['allianceId'])] = alliance
-        for player in j['players']:
+        for player in r['players']:
             for village in player['villages']:
                 data.append("\t".join([safe(x) for x in [
                     village['villageId'],

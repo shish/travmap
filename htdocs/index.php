@@ -308,7 +308,7 @@ players to build villages, trade goods, form alliances and wage war~
 			<span style="color:red">s5 / server1 / ptx / s4.nl</span>
 		</td>
 	</tr>
-	<tr><td>Country</td><td><input type="text" name="country" placeholder="e.g. America" pattern="[A-Z][a-z ]+" required></td></tr>
+	<tr><td>Country</td><td><input type="text" name="country" placeholder="e.g. America" pattern="[A-Z][a-zA-Z ]+" required></td></tr>
 	<tr><td colspan="2"><input type="submit"></td></tr>
 </table>
 </form>
