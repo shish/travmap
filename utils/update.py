@@ -14,7 +14,7 @@ import psycopg2
 from glob import glob
 from time import time
 from datetime import datetime
-from cStringIO import StringIO
+from io import StringIO
 from collections import namedtuple
 
 
@@ -41,7 +41,7 @@ def is_cached(path):
 
 
 def safe(x):
-    return unicode(x).replace('\\', '\\\\').replace("\t", " ")
+    return str(x).replace('\\', '\\\\').replace("\t", " ")
 
 
 class Server(namedtuple('Server', fields)):
@@ -76,7 +76,7 @@ class Server(namedtuple('Server', fields)):
         try:
             res = requests.get(url, stream=True, params=params)
             length = res.headers.get('content-length')
-            fp = file(path + ".tmp", "w")
+            fp = open(path + ".tmp", "wb")
             if length is None:
                 fp.write(res.content)
             else:
@@ -121,13 +121,13 @@ class Server(namedtuple('Server', fields)):
         """.replace("DBNAME", self.dbname))
 
         # data
-        fp = StringIO(data.encode('utf8'))
+        fp = StringIO(data)
         try:
             cur.copy_from(fp, self.dbname, columns="lochash, x, y, race, town_id, town_name, owner_id, owner_name, guild_id, guild_name, population".split(", "))
         except Exception as e:
             self.set_status("Load: " + str(e))
             conn.rollback()
-            #file(cache_name(self.name, ".err"), "w").write(data.encode('utf8'))
+            # open(cache_name(self.name, ".err"), "w").write(data.encode('utf8'))
             return
 
         # metadata
@@ -268,7 +268,7 @@ class Server(namedtuple('Server', fields)):
 
 
 def get_config():
-    for line in open('config.sh'):
+    for line in open('/utils/config.sh'):
         k, _, v = line.strip().partition("=")
         os.environ[k] = v
 
