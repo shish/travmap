@@ -93,7 +93,7 @@ class Server(namedtuple('Server', fields)):
             os.rename(path + ".tmp", path)
             return True
         except Exception as e:
-            s.set_status("Fetch: " + str(e))
+            self.set_status("Fetch: " + str(e))
             return False
 
     ###################################################################
@@ -180,14 +180,14 @@ class Server(namedtuple('Server', fields)):
 
     def _create_data_from_text(self):
         data = []
-	p = re.compile("(\d+),(-?\d+),(-?\d+),(\d+),(\d+),'(.*)',(\d+),'(.*)',(\d+),'(.*)',(\d+)")
+        p = re.compile("(\d+),(-?\d+),(-?\d+),(\d+),(\d+),'(.*)',(\d+),'(.*)',(\d+),'(.*)',(\d+)")
         for line in gzip.open(cache_name(self.name, ".sql.gz")):
             try:
                 line = line.decode("uso-8859-1")
             except Exception:
                 line = line.decode("utf8")
-	    line = line.replace("INSERT INTO `x_world` VALUES (", "")
-	    line = line.replace(");", "")
+                line = line.replace("INSERT INTO `x_world` VALUES (", "")
+                line = line.replace(");", "")
             for subline in line.split("),("):
                 m = p.match(subline)
                 if m:
