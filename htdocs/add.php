@@ -16,7 +16,7 @@ $country = $_GET["country"];
 $num = (int)time();
 $mapfile = strpos($server, "-") ? "json" : "map";
 print "adding $country / $server / $mapfile\n";
-chdir("/data/sites/travmap.shishnet.org/utils/");
+chdir("/utils/");
 system("./add_server $server '$country' $num $mapfile");
 ?>
 </pre>
