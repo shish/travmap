@@ -101,8 +101,8 @@ if(file_exists("../cache/langs.txt")) {
 else {
 	$n = 0;
 	$flags = "";
-	foreach(glob("../lang/*.txt") as $flang) {
-		$code = preg_replace("#../lang/(.*).txt#", '$1', $flang);
+	foreach(glob("./lang/*.txt") as $flang) {
+		$code = preg_replace("#./lang/(.*).txt#", '$1', $flang);
 		$fp = fopen($flang, "r");
 		$lang = str_replace("lang=", "", trim(fgets($fp)));
 		fclose($fp);

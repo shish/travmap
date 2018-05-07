@@ -15,7 +15,7 @@ if(isset($_GET["lang"])) {
 		case 'se': $glang = 'sv'; break;
 		default:   $glang = $_GET["lang"]; break;
 	}
-	if((strlen($glang) == 2 || strlen($glang) == 5) && (file_exists("../lang/$glang.txt"))) {
+	if((strlen($glang) == 2 || strlen($glang) == 5) && (file_exists("./lang/$glang.txt"))) {
 		$lang = $glang;
 	}
 }
@@ -24,7 +24,7 @@ if(is_null($lang) && isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
 	$al = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
 	$options = explode(',', str_replace(';', ',', $al));
 	foreach($options as $option) {
-		if(file_exists("../lang/$option.txt")) {
+		if(file_exists("./lang/$option.txt")) {
 			$lang = $option;
 			break;
 		}
@@ -36,7 +36,7 @@ if(is_null($lang)) {
 }
 
 $words = Array();
-$fp = fopen("../lang/$lang.txt", "r");
+$fp = fopen("./lang/$lang.txt", "r");
 while($line = fgets($fp)) {
 	$row = explode("=", $line, 2);
 	if(isset($row[1])) $words[$row[0]] = trim($row[1]);
