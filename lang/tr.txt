@@ -1,63 +1,62 @@
 lang=Türkçe
- 
+
 key=Anahtar 
 instructions=Talimatlar 
-server status=Server Status
+server status=Server Durumu
 link to image=Resim Adresi 
 loading=Yükleniyor... 
-last update=Son Güncelleme: 
- 
-roman=Romalýlar 
-gaul=Galyalýlar 
+last update=Son Güncelleme
+
+roman=Romalılar 
+gaul=Galyalılar 
 teuton=Cermenler
- 
+
 north=kuzey 
-east=doðu 
+east=dogu 
 south=güney 
-west=batý 
-zoom in=yaklaþ 
-zoom out=uzaklaþ 
- 
+west=batı 
+zoom in=yaklaştır
+zoom out=uzaklaştır
+
 server=Sunucu 
 alliance=Birlik 
 player=Oyuncu
 lines=Çizgiler
 group by=Grupla 
-zoom=Yaklaþtýr
-case sensitive=Büyük/Küçük harf duyarlý 
-dot size=Nokta Büyüklüðü
+zoom=Yaklaştır
+case sensitive=Büyük/Küçük harf duyarlı 
+dot size=Nokta Büyüklügü
 min distance=En az Mesafe 
 max distance=En çok Mesafe 
 min population=En az Nüfus 
 max population=En çok Nüfus 
-order by=Sýrala
+order by=Sırala
 colour by=Renklendir 
-output format=Çýkýþ Formatý 
-show map=Haritayý Göster
-layout=Çýkýþ Planý
-spread=Yayýlma
-caption=Baþlýk 
-shrinkwrap=Shrinkwrap 
+output format=Çıkış Formatı
+show map=Haritayı Göster
+layout=Çıkış Planı
+spread=Yayılma
+caption=Başlık
+shrinkwrap=Sıkıca Sarmak(Paketlemek)
 new page=Yeni Pencerede Aç 
  
-advanced options=Geliþmiþ Ayarlar 
-output options=Çýkýþ Ayarlarý
-language options=Lisan Seçenekleri 
- 
-default=Varsayýlan 
-distance from zoom target=Seçili Hedeften Uzaklýk 
+advanced options=Gelişmiş Ayarlar 
+output options=Çıkış Ayarları
+language options=Dil Seçenekleri 
+
+default=Varsayılan 
+distance from zoom target=Seçili Hedeften Uzaklık 
 population=Nüfus
 race=Irk
 town=Köy
- 
-help1=Birden fazla birlik ya da oyuncu için virgül kullanabilirsiniz; virgül ile ayýrdýklarýnýzý gruplandýrmak için týrnak iþaretini kullanabilirsiniz, örnek -- <code>A, B, "C,D,E", F</code> 
-help2=yaklaþtýr = <code>x,y,yaklaþtýrma faktörü</code> yada <code>köy adý,yaklaþtýrma faktörü</code> 
-help3=birlik, oyuncu ve köy isimlerini Yaklaþtýrma Faktörü olarak kullanýrken büyük/küçük harf duyarlýdýr. 
-help4=Oyuncu ve birlik isimleri türkçe karakter içeriyorsa bunun yerine ID kodlarýný kullanabilirsiniz., örnek <code>id:123</code>. ID kodlarýný <a href="links1.png">village</a> linkinden ve <a href="links2.png">statistics</a> sayfasýndan görebilirsiniz. 
-help5=Hýzlý sayfalama -- her harita gün içinde ilk oluþturulacaðý zaman biraz zaman alýr, daha sonra önbelleðe atýlýr, ve tekrar yükleneceði zaman daha hýzlý yüklenir. 
-help6=Gruplama Birlik 2 = Bir birliðe dahil olmayan tüm oyuncular ayrý ayrý gösterilir 
- 
-servertime=Haritalarýn son güncelleme saati 1:30AM, þu anda saat 
-report bugs=<a href="http://github.com/shish/travmap">Report</a> þu anda düzeltilmemiþ bazý hatalar bulunabilir.
-credit=Türkçe'ye çeviren Veysi Emrullah BABAN
 
+help1=Birden fazla birlik ya da oyuncu için virgül kullanabilirsiniz; virgül ile ayırdıklarınızı gruplandırmak için tırnak işaretini kullanabilirsiniz, örnek -- <code>A, B, "C,D,E", F</code> 
+help2=yaklaştır = <code>x,y,yaklaştırma faktörü</code> yada <code>köy adı,yaklaştırma faktörü</code> 
+help3=birlik, oyuncu ve köy isimlerini Yaklaştırma Faktörü olarak kullanırken büyük/küçük harf duyarlıdır. 
+help4=Oyuncu ve birlik isimleri türkçe karakter içeriyorsa bunun yerine ID kodlarını kullanabilirsiniz., örnek <code>id:123</code>. ID kodlarını <a href="links1.png">village</a> linkinden ve <a href="links2.png">statistics</a> sayfasından görebilirsiniz. 
+help5=Hızlı sayfalama -- her harita gün içinde ilk oluşturulacagı zaman biraz zaman alır, daha sonra önbelleðe atýlýr, ve tekrar yüklenecegi zaman daha hızlı yüklenir. 
+help6=Gruplama Birlik 2 = Bir birlige dahil olmayan tüm oyuncular ayrı ayrı gösterilir 
+
+servertime=Haritaların son güncelleme saati 1:30AM, þu anda saat 
+report bugs=<a href="http://github.com/shish/travmap">Report</a> þu anda düzeltilmemiþ bazý hatalar bulunabilir.
+credit=Türkçe'ye çeviren Ahmet AKSOY
