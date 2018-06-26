@@ -33,10 +33,13 @@ function error_handler($errno, $errstr, $errfile, $errline, $errcontext) {
 			break;
 	}
 
+	error_log("Error $errno ($type) at $errfile:$errline: $errstr");
+	/*
 	$fp = fopen("../logs/error.log", "a");
 	$errfile = basename($errfile);
 	fputs($fp, "Error $errno ($type) at $errfile:$errline: $errstr\n");
 	fclose($fp);
+	*/
 
 	if($halt_script) {
 		ob_end_clean();
