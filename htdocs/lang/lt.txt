@@ -59,7 +59,7 @@ help6=Rūšiuoti pagal “Alliance 2” - atskirai rodyti visus žaidėjus, nepr
 help7=Jeigu jums atrodo, kad duomenys pasenę, patikrinkite atitinkamo serverio žemėlapio duomenų failą map.sql . Jei duomenys šiame faile yra tikrai pasenę, kreipkitės į Traviano administratorius, kadangi šie duomenys nepriklauso mūsų svetainei.  
  
 servertime=Žemėlapiai atnaujinami kasdien 1:30AM. Šiuo metu serverio laikas yra 
-report bugs=Apie visas klaidas praneškite <a href="http://github.com/shish/travmap">šioje lentoje</a>. Tai greičiau, negu susisiekti elektroniniu paštu. 
-credit=Lietuvių versija sukurta kartu su <a href="http://travianas.lt">Traviano pagalbos svetaine</a>.  
+report bugs=Apie visas klaidas praneškite <a href="https://github.com/shish/travmap">šioje lentoje</a>. Tai greičiau, negu susisiekti elektroniniu paštu. 
+credit=Lietuvių versija sukurta kartu su <a href="https://travianas.lt">Traviano pagalbos svetaine</a>.  
  
 notice=

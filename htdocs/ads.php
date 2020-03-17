@@ -1,9 +1,7 @@
 Travian Links:
-<br><a href="http://travianskins.com/">Skins</a>
-<br><a href="http://travian-reports.net/">Reports</a>
 <br><a href="http://travianreports.com/">More Reports</a>
 <hr>
-<a href="http://whos.amung.us/show/fdbyho26"><img src="http://whos.amung.us/widget/fdbyho26.png" alt="web tracker" width="81" height="29" border="0" /></a>
+<a href="https://whos.amung.us/show/fdbyho26"><img src="https://whos.amung.us/widget/fdbyho26.png" alt="web tracker" width="81" height="29" border="0" /></a>
 
 <script type="text/javascript">
 	var _gaq = _gaq || [];

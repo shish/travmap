@@ -58,6 +58,6 @@ help6=Groepeer op Alliantie(s)2 = Geef spelers zonder alliantie gescheiden weer.
 help7=If the server data seems out of date, please first check the server's map.sql file -- if that data is out of date, complain to the travian administrators, not me!
 
 servertime=Kaarten worden bijgewerkt om 1:30AM, het is nu
-report bugs=<a href="http://github.com/shish/travmap">Rapporteer</a> fouten die niet enkele minuten na ontdekking verholpen zijn.
-credit=<a href="http://github.com/shish/travmap/tree/master/lang/">Vertaald</a> door SH4D3H en Nilis (en Aldwoni)
+report bugs=<a href="https://github.com/shish/travmap">Rapporteer</a> fouten die niet enkele minuten na ontdekking verholpen zijn.
+credit=<a href="https://github.com/shish/travmap/tree/master/lang/">Vertaald</a> door SH4D3H en Nilis (en Aldwoni)
 

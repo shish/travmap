@@ -58,5 +58,5 @@ help6=Grupowanie Alliance 2 = traktuje graczy bez sojuszu jako osobne sojusze.
 help7=Jesli mapa jest zdeaktualizowana, sprawdz date aktualizacji map.sql jeœli jest nie aktualna ¿ale kierujcie do administratorow traviana nie mnie!
 
 servertime=Mapy s¹ aktualizowane o 01:30, aktualna data to:
-report bugs=<a href="http://github.com/shish/travmap">Raportuj</a> jesli jakis blad nie zostal naprawiony w ciagu kilku minut od pojawienia.
-credit=<a href="http://github.com/shish/travmap/tree/master/lang/">Translated</a> by Dyzdyz actualization bY yui
+report bugs=<a href="https://github.com/shish/travmap">Raportuj</a> jesli jakis blad nie zostal naprawiony w ciagu kilku minut od pojawienia.
+credit=<a href="https://github.com/shish/travmap/tree/master/lang/">Translated</a> by Dyzdyz actualization bY yui

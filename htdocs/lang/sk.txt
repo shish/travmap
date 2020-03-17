@@ -56,10 +56,10 @@ help3=Aliancie, hráči i dediny sú všetky Case Sensitive. Urýchluje to hľad
 help4=Hráči, čo mená so špecálnymi znakmi môžu byť referencovaný cez ID. Napríklad: <code>id:123</code>. ID hráča sa dá z hry získať asi tu: <a href="links1.png">dedinka</a> a <a href="links2.png">stránka štatistík</a>.
 help5=Hotlinking is encouraged -- while each map takes a while to be generated the first time each day, it's then cached, and takes practically no processing power or bandwidth to re-send.
 help6=Zoskupiť podľa Alliance 2 = ber hráčov bez členstva v aliancii ako samostatné aliancie
-help7=Ak dáta vyzerajú zastaralé, prosím najskôr skontrolujte serverovský map.sql súbor (napríklad http://s2.travian.sk/map.sql) -- ak sú dáta zastaralé, nespamujte mňa, ale admina serveru!
+help7=Ak dáta vyzerajú zastaralé, prosím najskôr skontrolujte serverovský map.sql súbor (napríklad https://s2.travian.sk/map.sql) -- ak sú dáta zastaralé, nespamujte mňa, ale admina serveru!
 
 servertime=Mapy boli obnovené o 1:30AM, aktuálny čas je 
-report bugs=<a href="http://github.com/shish/travmap">Nahláste</a> chyby, ktoré niesú opravené do pár minút od ich objavenia.
-credit=Shish and Babelfish are both horrible translators, <a href="http://github.com/shish/travmap/tree/master/lang/">please help! (preložený súbor treba poslať aj tak mailom, nesnažte sa v trax-e niečo nájsť :)</a>
+report bugs=<a href="https://github.com/shish/travmap">Nahláste</a> chyby, ktoré niesú opravené do pár minút od ich objavenia.
+credit=Shish and Babelfish are both horrible translators, <a href="https://github.com/shish/travmap/tree/master/lang/">please help! (preložený súbor treba poslať aj tak mailom, nesnažte sa v trax-e niečo nájsť :)</a>
 
 notice=

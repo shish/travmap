@@ -58,5 +58,5 @@ help5=Hızlı sayfalama -- her harita gün içinde ilk oluşturulacagı zaman bi
 help6=Gruplama Birlik 2 = Bir birlige dahil olmayan tüm oyuncular ayrı ayrı gösterilir 
 
 servertime=Haritaların son güncelleme saati 1:30AM, þu anda saat 
-report bugs=<a href="http://github.com/shish/travmap">Report</a> þu anda düzeltilmemiþ bazý hatalar bulunabilir.
+report bugs=<a href="https://github.com/shish/travmap">Report</a> þu anda düzeltilmemiþ bazý hatalar bulunabilir.
 credit=Türkçe'ye çeviren Ahmet AKSOY

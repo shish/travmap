@@ -60,8 +60,8 @@ help7=If the server data seems out of date, please first check the server's map.
 
 servertime=Maps are updated at 1:30AM, the current time is
 report bugs=
-2report bugs=<a href="http://shishnet.org/ufufuf/travmap-ua.png">Firefox is really popular :O</a> (Graph is hits per minute, updated Feb2010)
+2report bugs=<a href="https://shishnet.org/ufufuf/travmap-ua.png">Firefox is really popular :O</a> (Graph is hits per minute, updated Feb2010)
 1report bugs=TravMap is constantly getting bigger and more resource demanding, while advertising income has dropped to almost nothing; thus I'm running the project at a loss from my own pocket... I don't want to take the project down while it's still getting 40,000 unique users per day, but I'm not sure what <i>can</i> be done. Suggestions, anyone?
-credit=Shish and Babelfish are both horrible translators, <a href="http://github.com/shish/travmap/tree/master/lang/">please help!</a>
+credit=Shish and Babelfish are both horrible translators, <a href="https://github.com/shish/travmap/tree/master/lang/">please help!</a>
 
 notice=Travian Kingdoms servers now supported~ Lots of code got changed, please report new bugs (and old bugs :) )

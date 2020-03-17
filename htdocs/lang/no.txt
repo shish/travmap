@@ -56,10 +56,10 @@ help3=Allianse, spiller, og landsby &aring; zoome til skiller alle mellom store 
 help4=Hvis du &oslash;nsker &aring; s&oslash;ke p&aring; spillere eller allianser med tegn som ikke er tall eller bokstaver i navnet, kan du bruke ID-nummert i stedet for navnet, slik <code>id:123</code>. ID-nummer kan finnes i linkene fra <a href="links1.png">by-</a> og <a href="links2.png">statistikk</a>sidene.
 help5=&Aring; linke direkte til bilder p&aring; denne serveren (hotlinking) er anbefalt -- Kartene genereres bare en gang pr. dag (f&oslash;rste gang det &aring;pnes), og hentes deretter ut fra et mellomlager. Dette krever s&aring; og si ingen prosessorkraft eller b&aring;ndbredde.
 help6=Grupper etter Allianse 2 = behande spillere uten allianser p&aring; egen h&aring;nd.
-help7=Hvis kartdataene ser ut til &aring; v&aelig;re gamle, sjekk f&oslash;rst serverens map.sql-fil (http://s*.travian.**/map.sql) er utdatert-- hvis de dataene er gamle, klag til administratorene for den siden, ikke til meg.
+help7=Hvis kartdataene ser ut til &aring; v&aelig;re gamle, sjekk f&oslash;rst serverens map.sql-fil (https://s*.travian.**/map.sql) er utdatert-- hvis de dataene er gamle, klag til administratorene for den siden, ikke til meg.
 
 servertime=Kart oppdateres klokken 01:30 (servertid). Klokken er n&aring;:
-report bugs=<a href="http://github.com/shish/travmap">Rapporter</a> alle problemer som ikke er l&oslash;st innen et par minutter.
-credit=Norsk oversettelse av <a href="http://anderseinar.net">Anders Einar Hilden</a>
+report bugs=<a href="https://github.com/shish/travmap">Rapporter</a> alle problemer som ikke er l&oslash;st innen et par minutter.
+credit=Norsk oversettelse av <a href="https://anderseinar.net">Anders Einar Hilden</a>
 
 notice=

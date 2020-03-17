@@ -205,7 +205,7 @@ class Server(namedtuple('Server', fields)):
                 'action': 'requestApiKey',
                 'email': "shish+travmap@shishnet.org",
                 'siteName': "TravMap",
-                'siteUrl': "http://travmap.shishnet.org/",
+                'siteUrl': "https://travmap.shishnet.org/",
                 'public': 'true',
             })
             with conn.cursor() as cur:

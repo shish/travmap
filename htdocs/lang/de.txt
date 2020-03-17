@@ -59,6 +59,6 @@ help6=Group by Alliance 2 = treat players with no alliance as all separate
 help7=If the server data seems out of date, please first check the server's map.sql file -- if that data is out of date, complain to the travian administrators, not me!
 
 servertime=Maps are updated at 1:30AM, the current time is
-report bugs=<a href="http://github.com/shish/travmap">Berichten</a> Sie alle Fehler, die nicht innerhalb weniger Minuten nach ihrem auftreten behoben sind.
-credit=<a href="http://github.com/shish/travmap/tree/master/lang/">Übersetzt</a> mit Hilfe von Mayhem (und Zweiundachtzig)
+report bugs=<a href="https://github.com/shish/travmap">Berichten</a> Sie alle Fehler, die nicht innerhalb weniger Minuten nach ihrem auftreten behoben sind.
+credit=<a href="https://github.com/shish/travmap/tree/master/lang/">Übersetzt</a> mit Hilfe von Mayhem (und Zweiundachtzig)
 notice=

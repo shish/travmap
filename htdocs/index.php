@@ -31,7 +31,7 @@ function wwwcmp($a, $b) {
  * for the long link
  */
 // $baseurl = preg_replace("#[^/]+$#", "", $_SERVER['SCRIPT_URI']);
-$baseurl = "http://travmap.shishnet.org/";
+$baseurl = "https://travmap.shishnet.org/";
 
 
 /*
@@ -111,7 +111,7 @@ else {
 		else if(($n % 5) == 0) $langs .= "<br>\n";
 		else $langs .= " | ";
 		$langs .= "<a href='?lang=$code'>$lang</a>\n";
-		$flags .= "<a href='?lang=$code'><img src='http://static.shishnet.org/flags/$code.png' alt='$lang'></a>\n";
+		$flags .= "<a href='?lang=$code'><img src='https://static.shishnet.org/flags/$code.png' alt='$lang'></a>\n";
 		$n++;
 	}
 
@@ -249,15 +249,6 @@ else {
 	</div>
 </form>
 	<hr>
-	<!--
-	<div id="graphs">
-		<img src="http://stats.shishnet.org/graphs/graphs/load_tiny.php?rrd=load&time=day" alt="Load Average" title="Load Average">
-		<img src="http://stats.shishnet.org/graphs/graphs/browser_tiny.php?rrd=browsers_travmap&time=day" alt="Daily Hits" title="Daily Hits">
-		<p><a href="http://stats.shishnet.org/graphs/history.php?rrd=browsers_travmap&function=browser"><img src="http://stats.shishnet.org/graphs/graphs/browser_tiny.php?rrd=browsers_travmap&time=day" alt="graph"></a>
-		<br><a href="http://stats.shishnet.org/graphs/history.php?rrd=browsers_travmap&function=browser"><img src="http://stats.shishnet.org/graphs/graphs/browser_tiny.php?rrd=browsers_travmap&time=week" alt="graph"></a>
-		<br><a href="http://stats.shishnet.org/graphs/history.php?rrd=load&function=load"><img src="http://stats.shishnet.org/graphs/graphs/load_tiny.php?rrd=load&time=day" alt="graph"></a>
-	</div>
-		-->
 					<?php include_once "ads.php"; ?>
 				</td>
 <!-- }}} -->

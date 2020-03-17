@@ -59,8 +59,8 @@ help6=Grupiranje po savezu 2 = tretira igrače koji nisu niti u jednom savezu ka
 help7=Ako se podaci na poslučitelju čine zastarjelima molim vas prvo provjerite map.sql datoteku vašeg poslužitelja. Ako je ona zastarjela, žalite se vašem travian administratoru, ne meni!
 
 servertime=Mape se ažuriraju u 01:30 po noći. Trenutno vrijeme poslužitelja je
-report bugs=<a href="http://github.com/shish/travmap">Prijavite</a> svaku pogrešku koja ne nestaje nakon nekoliko minuta od njezina nastanka.
-credit=Shish i Babelfish su obojica grozni prevoditelji, <a href="http://github.com/shish/travmap/tree/master/lang/">svaka je pomoć dobrodošla!</a>
+report bugs=<a href="https://github.com/shish/travmap">Prijavite</a> svaku pogrešku koja ne nestaje nakon nekoliko minuta od njezina nastanka.
+credit=Shish i Babelfish su obojica grozni prevoditelji, <a href="https://github.com/shish/travmap/tree/master/lang/">svaka je pomoć dobrodošla!</a>
 
 notice=
 
