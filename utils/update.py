@@ -75,7 +75,8 @@ class Server(namedtuple('Server', fields)):
 
         try:
             res = requests.get(url, stream=True, params=params)
-            res.raise_for_status()
+            if res.status_code != 200:
+                raise Exception('Error %d while fetching %s' % (res.status_code, url))
             length = res.headers.get('content-length')
             fp = open(path + ".tmp", "wb")
             if length is None:
@@ -209,7 +210,8 @@ class Server(namedtuple('Server', fields)):
                 'siteUrl': "https://travmap.shishnet.org/",
                 'public': 'true',
             })
-            res.raise_for_status()
+            if res.status_code != 200:
+                raise Exception('Error %d while requesting API key' % (res.status.code, ))
             with conn.cursor() as cur:
                 j = res.json()['response']
                 cur.execute(
