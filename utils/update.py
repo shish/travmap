@@ -188,7 +188,7 @@ class Server(namedtuple('Server', fields)):
     def _create_data_from_text(self):
         data = []
         p = re.compile("(\d+),(-?\d+),(-?\d+),(\d+),(\d+),'(.*)',(\d+),'(.*)',(\d+),'(.*)',(\d+)")
-        for line in open(cache_name(self.name, ".sql.gz")):
+        for line in open(cache_name(self.name, ".sql")):
             try:
                 line = line.decode("uso-8859-1")
             except Exception:
@@ -205,7 +205,7 @@ class Server(namedtuple('Server', fields)):
     ###################################################################
     # old school gz
     def update_text(self):
-        self.set_status("downloading sql...")
+        self.set_status("downloading sql.gz...")
         path = cache_name(self.name, ".sql.gz")
 
         if self.fetch("http://%s/map.sql.gz" % self.name, path):
