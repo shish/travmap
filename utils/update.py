@@ -54,10 +54,11 @@ class Server(namedtuple('Server', fields)):
         if self.mapfile == "map":
             if self.update_text():
                 self.load_data(self._create_data_from_text())
+                self.set_status("ok")
         elif self.mapfile == "json":
             if self.update_json():
                 self.load_data(self._create_data_from_json())
-        self.set_status("ok")
+                self.set_status("ok")
 
     def set_status(self, text):
         print("[%s] %s" % (self.name, text))
