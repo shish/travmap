@@ -75,6 +75,7 @@ class Server(namedtuple('Server', fields)):
 
         try:
             res = requests.get(url, stream=True, params=params)
+            res.raise_for_status()
             length = res.headers.get('content-length')
             fp = open(path + ".tmp", "wb")
             if length is None:
@@ -208,6 +209,7 @@ class Server(namedtuple('Server', fields)):
                 'siteUrl': "https://travmap.shishnet.org/",
                 'public': 'true',
             })
+            res.raise_for_status()
             with conn.cursor() as cur:
                 j = res.json()['response']
                 cur.execute(
@@ -293,7 +295,7 @@ def update_servers(servers):
                 try:
                     s.update()
                 except Exception as e:
-                    s.set_status(str(e))
+                    s.set_status("Error: " + str(e))
 
 
 def connect():
