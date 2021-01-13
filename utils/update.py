@@ -55,6 +55,10 @@ class Server(namedtuple('Server', fields)):
             if self.update_text():
                 self.load_data(self._create_data_from_text())
                 self.set_status("ok")
+        elif self.mapfile == "map.gz":
+            if self.update_text_gz():
+                self.load_data(self._create_data_from_text_gz())
+                self.set_status("ok")
         elif self.mapfile == "json":
             if self.update_json():
                 self.load_data(self._create_data_from_json())
@@ -167,6 +171,39 @@ class Server(namedtuple('Server', fields)):
 
     ###################################################################
     # old school
+    def update_text(self):
+        self.set_status("downloading sql...")
+        path = cache_name(self.name, ".sql")
+
+        if self.fetch("http://%s/map.sql" % self.name, path):
+            if os.stat(path).st_size < 64 * 1024:
+                self.set_status("map.sql is short")
+            else:
+                self.set_status("map.sql downloaded")
+            return True
+
+        self.set_status("map.sql missing")
+        return False
+
+    def _create_data_from_text(self):
+        data = []
+        p = re.compile("(\d+),(-?\d+),(-?\d+),(\d+),(\d+),'(.*)',(\d+),'(.*)',(\d+),'(.*)',(\d+)")
+        for line in open(cache_name(self.name, ".sql.gz")):
+            try:
+                line = line.decode("uso-8859-1")
+            except Exception:
+                line = line.decode("utf8")
+                line = line.replace("INSERT INTO `x_world` VALUES (", "")
+                line = line.replace(");", "")
+            for subline in line.split("),("):
+                m = p.match(subline)
+                if m:
+                    data.append("\t".join([safe(x) for x in m.groups()]))
+        return "\n".join(data)
+
+
+    ###################################################################
+    # old school gz
     def update_text(self):
         self.set_status("downloading sql...")
         path = cache_name(self.name, ".sql.gz")
