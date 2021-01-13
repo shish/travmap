@@ -175,7 +175,7 @@ class Server(namedtuple('Server', fields)):
     def _create_data_from_text(self):
         data = []
         p = re.compile("(\d+),(-?\d+),(-?\d+),(\d+),(\d+),'(.*)',(\d+),'(.*)',(\d+),'(.*)',(\d+)")
-        for line in open(cache_name(self.name, ".sql")):
+        for line in open(cache_name(self.name, ".sql"), "rb"):
             try:
                 line = line.decode("uso-8859-1")
             except Exception:
