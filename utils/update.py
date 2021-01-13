@@ -82,21 +82,8 @@ class Server(namedtuple('Server', fields)):
             res = requests.get(url, stream=True, params=params)
             if res.status_code != 200:
                 raise Exception('Error %d while fetching %s' % (res.status_code, url))
-            length = res.headers.get('content-length')
-            fp = open(path + ".tmp", "wb")
-            if length is None:
+            with open(path + ".tmp", "wb") as fp:
                 fp.write(res.content)
-            else:
-                length = int(length)
-                done = 0
-                last_perc = -1
-                for data in res.iter_content():
-                    done += len(data)
-                    perc = int(100 * done / length)
-                    if perc != last_perc and perc % 20 == 0:
-                        self.set_status("%d%% downloaded" % perc)
-                        last_perc = perc
-                    fp.write(data)
             os.rename(path + ".tmp", path)
             return True
         except Exception as e:
@@ -204,7 +191,7 @@ class Server(namedtuple('Server', fields)):
 
     ###################################################################
     # old school gz
-    def update_text(self):
+    def update_text_gz(self):
         self.set_status("downloading sql.gz...")
         path = cache_name(self.name, ".sql.gz")
 
@@ -218,7 +205,7 @@ class Server(namedtuple('Server', fields)):
         self.set_status("map.sql.gz missing")
         return False
 
-    def _create_data_from_text(self):
+    def _create_data_from_text_gz(self):
         data = []
         p = re.compile("(\d+),(-?\d+),(-?\d+),(\d+),(\d+),'(.*)',(\d+),'(.*)',(\d+),'(.*)',(\d+)")
         for line in gzip.open(cache_name(self.name, ".sql.gz")):
