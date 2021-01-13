@@ -211,7 +211,7 @@ class Server(namedtuple('Server', fields)):
                 'public': 'true',
             })
             if res.status_code != 200:
-                raise Exception('Error %d while requesting API key' % (res.status.code, ))
+                raise Exception('Error %d while requesting API key' % (res.status_code, ))
             with conn.cursor() as cur:
                 j = res.json()['response']
                 cur.execute(
