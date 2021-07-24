@@ -1,7 +1,7 @@
-FROM debian:buster
+FROM debian:stable
 EXPOSE 8000
 RUN apt update && apt install -y curl
-HEALTHCHECK --interval=5m --timeout=3s CMD curl --fail http://127.0.0.1:8000/ || exit 1
+HEALTHCHECK --interval=1m --timeout=3s CMD curl --fail http://127.0.0.1:8000/ || exit 1
 ENV SQL_HOST=localhost \
     SQL_USER=travmap \
     SQL_PASS=travmap \
