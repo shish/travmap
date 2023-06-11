@@ -1,5 +1,5 @@
 <?php
-function error_handler($errno, $errstr, $errfile, $errline, $errcontext) {
+function error_handler(int $errno, string $errstr, string $errfile, int $errline): bool {
 	$halt_script = true;
 	switch($errno) { 
 		case E_USER_NOTICE: 
@@ -50,17 +50,13 @@ function error_handler($errno, $errstr, $errfile, $errline, $errcontext) {
 		<b>Error report</b>
 		<br><b>Location:</b> $errfile:$errline
 		<br><b>Code:</b> $errno/$type:$errstr
-		<br><b>Variable dump:</b>
-		<pre>
-EOD;
-		print_r($errcontext);
-		echo <<<EOD
-		</pre>
 	</body>
 </html>
 EOD;
 
 		exit;
 	}
+
+	return true;
 }
 set_error_handler("error_handler");
