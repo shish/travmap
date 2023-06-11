@@ -5,23 +5,15 @@
  * SVG output, using a GD-like API
  */
 
-$svgBuffs = Array();
-$svgSizes = Array();
-$colBuffs = Array("none");
+class AimaImage {
+	public int $w;
+	public int $h;
+	public string $buffer;
 
-// functions {{{
-
-function aimaoutput($im, $text) {
-	global $svgBuffs;
-	if(is_int($im)) $svgBuffs[$im] .= $text;
-}
-
-function aimacreate($w, $h) {
-	global $svgBuffs, $svgSizes, $colBuffs;
-	$im = count($svgBuffs);
-	$svgSizes[$im][0] = $w;
-	$svgSizes[$im][1] = $h;
-	aimaoutput($im, <<<EOD
+	function __construct(int $w, int $h) {
+		$this->w = $w;
+		$this->h = $h;
+		$this->buffer = <<<EOD
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
@@ -32,90 +24,108 @@ function aimacreate($w, $h) {
 	>
 	<desc>SVG Image ($w x $h)</desc>
 	<title>SVG Image ($w x $h)</title>
-EOD
-);
-	return $im;
+EOD;
+	}
+
+	function write(string $text): void {
+		$this->buffer .= $text;
+	}
+
+	function __toString(): string {
+		return $this->buffer;
+	}
 }
 
-function aimacolorallocate($im, $r, $g, $b) {
-	global $svgBuffs, $colBuffs;
-	$id = count($colBuffs);
-	$colBuffs[$id] = sprintf("#%02X%02X%02X", $r, $g, $b);
-	return $id;
+class AimaColor {
+	public string $col; // public just to set to "none"
+
+	function __construct(int $r, int $g, int $b) {
+		$this->col = sprintf("#%02X%02X%02X", $r, $g, $b);
+	}
+
+	function __toString(): string {
+		return $this->col;
+	}
 }
 
-function aimacustom($im, $text) {
-	aimaoutput($im, $text);
+$none = new AimaColor(0, 0, 0);
+$none->col = "none";
+
+// functions {{{
+
+function _aimawrite(AimaImage $im, string $text): void {
+	$im->buffer .= $text;
 }
 
-function aimafill($im, $x, $y, $colid) {
-	global $svgSizes;
-	aimafilledrectangle($im, $x, $y, $svgSizes[$im][0], $svgSizes[$im][1], $colid);
+function aimacreate(int $w, int $h): AimaImage {
+	return new AimaImage($w, $h);
 }
 
-function aimaline($im, $x1, $y1, $x2, $y2, $colid) {
-	global $colBuffs;
-	$col = $colBuffs[$colid];
-	aimaoutput($im, "<line x1='$x1' y1='$y1' x2='$x2' y2='$y2' stroke='$col' />\n");
+function aimacolorallocate(AimaImage $im, int $r, int $g, int $b): AimaColor {
+	return new AimaColor($r, $g, $b);
 }
 
-function aimastring($im, $size, $x, $y, $text, $fill, $stroke=0) {
-	global $colBuffs;
-	$fill = $colBuffs[$fill];
-	$stroke = $colBuffs[$stroke];
+function aimacustom(AimaImage $im, string $text): void {
+	$im->write($text);
+}
+
+function aimafill(AimaImage $im, int $x, int $y, AimaColor $col): void {
+	aimafilledrectangle($im, $x, $y, $im->w, $img->h, $col);
+}
+
+function aimaline(AimaImage $im, int $x1, int $y1, int $x2, int $y2, AimaColor $col): void {
+	$im->write("<line x1='$x1' y1='$y1' x2='$x2' y2='$y2' stroke='$col' />\n");
+}
+
+function aimastring(AimaImage $im, int $size, int $x, int $y, string $text, AimaColor $fill, AimaColor $stroke=null): void {
+	global $none;
+	$stroke ??= $none;
 	$size *= 4;
 	$y += 11;
-	aimaoutput($im, "<text x='$x' y='$y' font-family='Verdana' font-size='$size' fill='$fill' stroke='$stroke'>$text</text>\n");
+	$im->write("<text x='$x' y='$y' font-family='Verdana' font-size='$size' fill='$fill' stroke='{$stroke}'>$text</text>\n");
 }
 
-function aimattftext($im, $size, $angle, $x, $y, $colour, $font, $text, $stroke=0) {
-	global $colBuffs;
-	$fill = $colBuffs[$colour];
-	$stroke = $colBuffs[$stroke];
+function aimattftext(AimaImage $im, int $size, int $angle, int $x, int $y, AimaColor $fill, string $font, string $text, AimaColor $stroke=null): void {
+	global $none;
+	$stroke ??= $none;
 	$size *= 1.3;
 	$text = svgentities($text);
-	aimaoutput($im, "<text x='$x' y='$y' font-family='$font' font-size='$size' fill='$fill' stroke='$stroke'>$text</text>\n");
+	$im->write("<text x='$x' y='$y' font-family='$font' font-size='$size' fill='$fill' stroke='{$stroke}'>$text</text>\n");
 }
 
-function aimarectangle($im, $x, $y, $w, $h, $stroke, $fill=0) {
-	global $colBuffs;
-	$fill = $colBuffs[$fill];
-	$stroke = $colBuffs[$stroke];
+function aimarectangle(AimaImage $im, int $x, int $y, int $w, int $h, AimaColor $stroke, AimaColor $fill=null): void {
+	global $none;
+	$fill ??= $none;
 	$w -= $x; // GD does x1,x2, SVG does x,w
 	$h -= $y;
-	aimaoutput($im, "<rect x='$x' y='$y' width='$w' height='$h' fill='$fill' stroke='$stroke'/>\n");
+	$im->write("<rect x='$x' y='$y' width='$w' height='$h' fill='$fill' stroke='$stroke'/>\n");
 }
-function aimafilledrectangle($im, $x, $y, $w, $h, $fill, $stroke=0) {
+function aimafilledrectangle(AimaImage $im, int $x, int $y, int $w, int $h, AimaColor $fill, AimaColor $stroke=null): void {
 	aimarectangle($im, $x, $y, $w, $h, $stroke, $fill);
 }
 
 
-function aimaellipse($im, $x, $y, $rx, $ry, $stroke, $fill=0) {
-	global $colBuffs;
-	$fill = $colBuffs[$fill];
-	$stroke = $colBuffs[$stroke];
+function aimaellipse(AimaImage $im, int $x, int $y, int $rx, int $ry, AimaColor $stroke, AimaColor $fill=null): void {
+	global $none;
+	$fill ??= $none;
 	$rx /= 2;
 	$ry /= 2;
-	aimaoutput($im, "<ellipse cx='$x' cy='$y' rx='$rx' ry='$ry' fill='$fill' stroke='$stroke'/>\n");
+	$im->write("<ellipse cx='$x' cy='$y' rx='$rx' ry='$ry' fill='$fill' stroke='$stroke'/>\n");
 }
-function aimafilledellipse($im, $x, $y, $rx, $ry, $fill, $stroke=0) {
+function aimafilledellipse(AimaImage $im, int $x, int $y, int $rx, int $ry, AimaColor $fill, AimaColor $stroke=null): void {
 	aimaellipse($im, $x, $y, $rx, $ry, $stroke, $fill);
 }
 
 
-function aimasvg($im) {
-	global $svgBuffs;
-    aimaoutput($im, "</svg>");
-	print $svgBuffs[$im];
+function aimasvg(AimaImage $im): string {
+	$im->write("</svg>");
+	print $im;
 }
-function imagesvg($im) {aimasvg($im);}
+function imagesvg(AimaImage $im): string {aimasvg($im);}
 
-function aimadestroy($im) {
-	global $svgBuffs;
-	$svgBuffs[$im] = null;
-}
+function aimadestroy(AimaImage $im): void {}
 
-function svgentities($text) {
+function svgentities(string $text): string {
 	$text = str_replace("<", "&lt;", $text);
 	$text = str_replace(">", "&gt;", $text);
 	$text = str_replace("&", "&amp;", $text);
