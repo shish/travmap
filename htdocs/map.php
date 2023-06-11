@@ -569,10 +569,11 @@ function draw_entity_label($image, $entity, $colour) {
 	global $server, $white, $imagettftext, $imagecustom;
 	
 	$imagecustom($image, "<a xlink:href='http://$server/".$entity['link']."'>");
-	# yes, we want this to only apply to aima, not gd
-	aimafilledrectangle($image,
-			$entity['x']+7, $entity['y']-7,
-			$entity['x']+90, $entity['y']+7, $white);
+	if(is_a($image, AimaImage)) {
+		aimafilledrectangle($image,
+				$entity['x']+7, $entity['y']-7,
+				$entity['x']+90, $entity['y']+7, $white);
+	}
 	dot($image, $entity['dx'], $entity['dy'], $colour);
 	$entity_name = $entity["name"];
 	$count = $entity['count'];
