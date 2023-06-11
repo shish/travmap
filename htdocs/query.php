@@ -20,7 +20,7 @@ if($groupby == "group") {
 	$guild_group = "CASE WHEN guild_name='' THEN owner_name ELSE guild_name END AS guild_group";
 }
 else {
-	$guild_group = "1";
+	$guild_group = "1 AS guild_group";
 }
 
 $query = "
