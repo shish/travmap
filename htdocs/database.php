@@ -7,12 +7,13 @@
 
 require_once "config.php";
 
-pg_pconnect("host=$sql_host user=$sql_user password=$sql_pass dbname=$sql_db");
-pg_query("SET client_encoding = 'UTF8';");
+$db = pg_pconnect("host=$sql_host user=$sql_user password=$sql_pass dbname=$sql_db");
+pg_query($db, "SET client_encoding = 'UTF8';");
 function sql_fetch_row($result) {return pg_fetch_assoc($result);}
-function sql_escape_string($text) {return pg_escape_string($text);}
-function sql_query($query) {
-	$result = @pg_query($query) or die(
+function sql_escape_string(string $text): string {global $db; return pg_escape_string($db, $text);}
+function sql_query(string $query) {
+	global $db;
+	$result = @pg_query($db, $query) or die(
 		"<h3>PgSQL Error:</h3>".
 		"<b>Failed Query:</b> $query".
 		"<p><b>Error:</b> ".pg_last_error()
