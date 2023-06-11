@@ -569,7 +569,7 @@ function draw_entity_label($image, $entity, $colour) {
 	global $server, $white, $imagettftext, $imagecustom;
 	
 	$imagecustom($image, "<a xlink:href='http://$server/".$entity['link']."'>");
-	if(is_a($image, AimaImage)) {
+	if(is_a($image, "AimaImage")) {
 		aimafilledrectangle($image,
 				$entity['x']+7, $entity['y']-7,
 				$entity['x']+90, $entity['y']+7, $white);
