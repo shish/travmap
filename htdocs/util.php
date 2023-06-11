@@ -9,21 +9,21 @@
 /*
  * because php randomly decided to treat "&foo=" as "" rather than null :-/
  */
-function getString($name, $default) {
+function getString(string $name, string $default): string {
 	return (isset($_GET[$name]) && strlen($_GET[$name]) > 0) ? $_GET[$name] : $default;
 }
-function getFloat($name, $default) {
+function getFloat(string $name, float $default): float {
 	return (isset($_GET[$name]) && strlen($_GET[$name]) > 0) ? (float)$_GET[$name] : $default;
 }
-function getInt($name, $default) {
+function getInt(string $name, int $default): int {
 	return (isset($_GET[$name])) ? (int)$_GET[$name] : $default;
 }
-function getBool($name) {
+function getBool(string $name): bool {
 	return (isset($_GET[$name]) && ($_GET[$name] == "on"));
 }
 
 
-function quotesplit($splitter=",", $string) {
+function quotesplit(string $splitter=",", string $string=""): array {
 	$result = Array();
 	$parts = explode($splitter, $string);
 	$instring = 0;

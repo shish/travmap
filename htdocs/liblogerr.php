@@ -6,7 +6,7 @@ function error_handler(int $errno, string $errstr, string $errfile, int $errline
 		case E_NOTICE: 
 			$halt_script = false;         
 			$type = "Notice";
-			return;
+			return true;
 			break; 
 
 		case E_USER_WARNING: 
@@ -15,7 +15,7 @@ function error_handler(int $errno, string $errstr, string $errfile, int $errline
 		case E_WARNING: 
 			$halt_script = false;        
 			$type = "Warning"; 
-			break; 
+			break;
 
 		case E_USER_ERROR: 
 		case E_COMPILE_ERROR: 
