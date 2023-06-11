@@ -93,26 +93,28 @@ function aimattftext(AimaImage $im, int $size, int $angle, int $x, int $y, AimaC
 	$im->write("<text x='$x' y='$y' font-family='$font' font-size='$size' fill='$fill' stroke='{$stroke}'>$text</text>\n");
 }
 
-function aimarectangle(AimaImage $im, int $x, int $y, int $w, int $h, AimaColor $stroke, ?AimaColor $fill=null): void {
+function aimarectangle(AimaImage $im, int $x, int $y, int $w, int $h, ?AimaColor $stroke=null, ?AimaColor $fill=null): void {
 	global $none;
+	$stroke ??= $none;
 	$fill ??= $none;
 	$w -= $x; // GD does x1,x2, SVG does x,w
 	$h -= $y;
 	$im->write("<rect x='$x' y='$y' width='$w' height='$h' fill='$fill' stroke='$stroke'/>\n");
 }
-function aimafilledrectangle(AimaImage $im, int $x, int $y, int $w, int $h, AimaColor $fill, ?AimaColor $stroke=null): void {
+function aimafilledrectangle(AimaImage $im, int $x, int $y, int $w, int $h, ?AimaColor $fill=null, ?AimaColor $stroke=null): void {
 	aimarectangle($im, $x, $y, $w, $h, $stroke, $fill);
 }
 
 
-function aimaellipse(AimaImage $im, int $x, int $y, int $rx, int $ry, AimaColor $stroke, ?AimaColor $fill=null): void {
+function aimaellipse(AimaImage $im, int $x, int $y, int $rx, int $ry, ?AimaColor $stroke=null, ?AimaColor $fill=null): void {
 	global $none;
+	$stroke ??= $none;
 	$fill ??= $none;
 	$rx /= 2;
 	$ry /= 2;
 	$im->write("<ellipse cx='$x' cy='$y' rx='$rx' ry='$ry' fill='$fill' stroke='$stroke'/>\n");
 }
-function aimafilledellipse(AimaImage $im, int $x, int $y, int $rx, int $ry, AimaColor $fill, ?AimaColor $stroke=null): void {
+function aimafilledellipse(AimaImage $im, int $x, int $y, int $rx, int $ry, ?AimaColor $fill=null, ?AimaColor $stroke=null): void {
 	aimaellipse($im, $x, $y, $rx, $ry, $stroke, $fill);
 }
 
