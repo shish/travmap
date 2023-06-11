@@ -70,7 +70,7 @@ function aimacustom(AimaImage $im, string $text): void {
 }
 
 function aimafill(AimaImage $im, int $x, int $y, AimaColor $col): void {
-	aimafilledrectangle($im, $x, $y, $im->w, $img->h, $col);
+	aimafilledrectangle($im, $x, $y, $im->w, $im->h, $col);
 }
 
 function aimaline(AimaImage $im, int $x1, int $y1, int $x2, int $y2, AimaColor $col): void {
@@ -117,11 +117,11 @@ function aimafilledellipse(AimaImage $im, int $x, int $y, int $rx, int $ry, Aima
 }
 
 
-function aimasvg(AimaImage $im): string {
+function aimasvg(AimaImage $im): void {
 	$im->write("</svg>");
 	print $im;
 }
-function imagesvg(AimaImage $im): string {aimasvg($im);}
+function imagesvg(AimaImage $im): void {aimasvg($im);}
 
 function aimadestroy(AimaImage $im): void {}
 
