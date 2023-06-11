@@ -115,9 +115,9 @@ function bound($v, $min, $max) {return ( in($v, $min, $max) ? $v : ($v < $min ? 
 /*
  * Draw a village / key entry's marker
  */
-function dot($im, float $x, float $y, $col, int $s=5) {
+function dot($im, float $x, float $y, $col, float $s=5) {
 	global $black, $imagefilledellipse, $imageellipse;
 	$s *= 2;
-	$imagefilledellipse($im, (int)$x, (int)$y, $s, $s, $col);
-	$imageellipse($im, (int)$x, (int)$y, $s, $s, $black);
+	$imagefilledellipse($im, (int)$x, (int)$y, (int)$s, (int)$s, $col);
+	$imageellipse($im, (int)$x, (int)$y, (int)$s, (int)$s, $black);
 }
