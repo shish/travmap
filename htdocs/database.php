@@ -17,7 +17,7 @@ function sql_query(string $query) {
 	$result = @pg_query($db, $query) or die(
 		"<h3>PgSQL Error:</h3>".
 		"<b>Failed Query:</b> $query".
-		"<p><b>Error:</b> ".pg_last_error()
+		"<p><b>Error:</b> ".pg_last_error($db)
 	);
 	return $result;
 }

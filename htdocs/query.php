@@ -43,7 +43,8 @@ $query = "
  * output:
  *   pre_name IN ("moo", "flarg", "a,b,c") OR pre_id IN (123, 42)
  */
-function list2query(string $str, string $pre): ?string {
+function list2query(?string $str, string $pre): ?string {
+	if(is_null($str)) return null;
 	$names = Array();
 	$ids = Array();
 
@@ -140,6 +141,6 @@ $query .= "LIMIT 5000 ";
 // }}}
 
 
-if($_GET["debug"] == "on") {
+if(@$_GET["debug"] == "on") {
 	print "<p><b>Query:</b> $query";
 }
