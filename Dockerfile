@@ -9,7 +9,7 @@ ENV SQL_HOST=localhost \
 VOLUME /cache
 
 ENV PYTHONUNBUFFERED 1
-RUN apt install -y php7.3-cli php7.3-gd php7.3-pgsql postgresql-client python3-requests python3-psycopg2
+RUN apt install -y php-cli php-gd php-pgsql postgresql-client python3-requests python3-psycopg2
 
 COPY htdocs /app
 COPY utils /utils
