@@ -566,7 +566,7 @@ $cals = Array();
 $ca = 0;
 
 function draw_entity_label($image, $entity, $colour) {
-	global $server, $white, $imagettftext;
+	global $server, $white, $imagettftext, $imagecustom;
 	
 	$imagecustom($image, "<a xlink:href='http://$server/".$entity['link']."'>");
 	# yes, we want this to only apply to aima, not gd
@@ -582,7 +582,7 @@ function draw_entity_label($image, $entity, $colour) {
 }
 
 function draw_village_marker($image, $entity, $village, $colour) {
-	global $server, $cx, $cy, $zx, $zy, $zz, $lines, $imageline, $dotsize;
+	global $server, $cx, $cy, $zx, $zy, $zz, $lines, $imageline, $imagecustom, $dotsize;
 	
 	$vx =  ($village['x']-$zx)*$zz;
 	$vy = -($village['y']-$zy)*$zz;
