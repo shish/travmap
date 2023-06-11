@@ -44,7 +44,10 @@ $minpop = getInt("minpop", null);
 $table = preg_replace("/[^a-zA-Z0-9]/", "_", $server);
 $s_server = sql_escape_string($server);
 $server_info = sql_fetch_row(sql_query("SELECT * FROM servers WHERE name='$s_server'"));
-if(!$server_info) throw new Exception("No registered server $s_server");
+if(!$server_info) {
+	echo("No registered server $s_server");
+	exit;
+}
 // }}}
 
 // figure out where we are {{{
