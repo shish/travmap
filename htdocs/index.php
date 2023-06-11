@@ -251,8 +251,6 @@ else {
 		<br><a href="#" onclick="toggle('output'); return false;"><?=$words['output options'];?></a>
 	</div>
 </form>
-	<hr>
-					<?php include_once "ads.php"; ?>
 				</td>
 <!-- }}} -->
 <!-- instructions {{{ -->
