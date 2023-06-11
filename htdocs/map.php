@@ -299,8 +299,8 @@ while($row = sql_fetch_row($result)) {
 	$guild_group = $row["guild_group"];
 	$town_name = $row["town_name"];
 	$town_id = $row["town_id"];
-	$race_name = $races[$row["race"]-1];
 	$race_id = $row["race"];
+	$race_name = $race_id <= count($races) ? $races[$race_id-1] : "Race $race_id";
 
 	switch($groupby) {
 		default:
@@ -510,8 +510,8 @@ function draw_grid_labels($image, $mapradius, $drawradius) {
 	$y = bound( $zy*$zz, -$drawradius, $drawradius-10);
 
 	for($v=-$mapradius; $v<=$mapradius; $v+=$inc) {
-		$imagestring($image, 3, $cx+$x+2, $cy-($v-$zy)*$zz+1, $v, $mgrey);
-		$imagestring($image, 3, $cx+($v-$zx)*$zz+2, $cy+$y+1, $v, $mgrey);
+		$imagestring($image, 3, (int)($cx+$x+2), (int)($cy-($v-$zy)*$zz+1), $v, $mgrey);
+		$imagestring($image, 3, (int)($cx+($v-$zx)*$zz+2), (int)($cy+$y+1), $v, $mgrey);
 	}
 }
 
