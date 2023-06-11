@@ -10,7 +10,7 @@ VOLUME /cache
 
 ENV PYTHONUNBUFFERED 1
 # pcre fails to compile regexes if the packages aren't manually installed?
-RUN apt install -y php-cli php-gd php-pgsql postgresql-client python3-requests python3-psycopg2 libpcre2-16-0 libpcre2-8-0 libpcre2-32-0
+RUN apt update && apt install -y php-cli php-gd php-pgsql postgresql-client python3-requests python3-psycopg2 libpcre2-16-0 libpcre2-8-0 libpcre2-32-0
 
 COPY htdocs /app
 COPY utils /utils
