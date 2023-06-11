@@ -138,11 +138,11 @@ TD {
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 	</head>
 	<body>
-		<?php print implode($links, ", "); ?>
+		<?php print implode(", ", $links); ?>
 		<p>
 		<table border="1" align="center">
 			<?php print $totals; ?>
-			<?php print implode($rows, "\n"); ?>
+			<?php print implode("\n", $rows); ?>
 		</table>
 	</body>
 </html>
