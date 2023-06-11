@@ -134,8 +134,8 @@ function draw_grid_lines($image, $mapradius, $drawradius) {
 		$y2 = bound(  ($mapradius+$zy)*$zz, -$drawradius, $drawradius-1);
 		$x1 = bound(-(-$mapradius+$zx)*$zz, -$drawradius, $drawradius-1);
 		$x2 = bound( -($mapradius+$zx)*$zz, -$drawradius, $drawradius-1);
-		if(in($x, -$drawradius, $drawradius)) $imageline($image, $cx+$x, $cy+$y1, $cx+$x, $cy+$y2, $col);
-		if(in($y, -$drawradius, $drawradius)) $imageline($image, $cx+$x1, $cy+$y, $cx+$x2, $cy+$y, $col);
+		if(in($x, -$drawradius, $drawradius)) $imageline($image, (int)$cx+$x, (int)$cy+$y1, (int)$cx+$x, (int)$cy+$y2, $col);
+		if(in($y, -$drawradius, $drawradius)) $imageline($image, (int)$cx+$x1, (int)$cy+$y, (int)$cx+$x2, (int)$cy+$y, $col);
 	}
 }
 
@@ -223,7 +223,7 @@ function draw_village_marker($image, $entity, $village, $colour) {
 	
 	$vx =  ($village['x']-$zx)*$zz;
 	$vy = -($village['y']-$zy)*$zz;
-	if($lines) $imageline($image, $entity['dx'], $entity['dy'], $cx+$vx, $cy+$vy, $colour);
+	if($lines) $imageline($image, $entity['dx'], $entity['dy'], (int)$cx+$vx, (int)$cy+$vy, $colour);
 	
 	$name = $village['name'];
 	$owner = $village['owner'];
