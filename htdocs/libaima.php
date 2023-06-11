@@ -196,7 +196,7 @@ function hsv2rgb($H, $S, $V) {
 		$B = $var_B * 255;
 	}
 
-	return Array($R, $G, $B);
+	return [(int)$R, (int)$G, (int)$B];
 }
 
 function imagecolorallocate_hsv($im, $H, $S, $V) {
