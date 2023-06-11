@@ -154,6 +154,7 @@ switch($_GET["format"] ?? "svg") {
 		$imageellipse = "aimaellipse";
 		$imagefilledellipse = "aimafilledellipse";
 		$imagedestroy = "aimadestroy";
+		$imagecustom = "aimacustom";
 		break;
 	case "JPEG": case "jpeg":
 	case "PNG": case "png":
@@ -172,6 +173,7 @@ switch($_GET["format"] ?? "svg") {
 		$imageellipse = "imageellipse";
 		$imagefilledellipse = "imagefilledellipse";
 		$imagedestroy = "imagedestroy";
+		$imagecustom = "imagecustom";
 		break;
 }
 // }}}
@@ -209,6 +211,10 @@ function hsv2rgb($H, $S, $V) {
 	}
 
 	return [(int)$R, (int)$G, (int)$B];
+}
+
+function imagecustom($im, $text) {
+	// no custom SVG data in GD images
 }
 
 function imagecolorallocate_hsv($im, $H, $S, $V) {

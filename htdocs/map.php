@@ -348,7 +348,7 @@ while($row = sql_fetch_row($result)) {
  */
 putenv('GDFONTPATH=' . realpath('.'));
 $im = $imagecreatetruecolor(768, 512);
-# FIXME: aimacustom(javascript)
+# FIXME: $imagecustom(javascript)
 # imageantialias($im, true);
 $white = $imagecolorallocate($im, 255, 255, 255);
 $wgrey = $imagecolorallocate($im, 240, 240, 240);
@@ -568,7 +568,7 @@ $ca = 0;
 function draw_entity_label($image, $entity, $colour) {
 	global $server, $white, $imagettftext;
 	
-	aimacustom($image, "<a xlink:href='http://$server/".$entity['link']."'>");
+	$imagecustom($image, "<a xlink:href='http://$server/".$entity['link']."'>");
 	# yes, we want this to only apply to aima, not gd
 	aimafilledrectangle($image,
 			$entity['x']+7, $entity['y']-7,
@@ -578,7 +578,7 @@ function draw_entity_label($image, $entity, $colour) {
 	$count = $entity['count'];
 	$title = ($count ? "$entity_name (".($count+1).")" : $entity_name);
 	$imagettftext($image, 10, 0, $entity['x'], $entity['y']+5, $colour, "arialuni", $title);
-	aimacustom($image, "</a>");
+	$imagecustom($image, "</a>");
 }
 
 function draw_village_marker($image, $entity, $village, $colour) {
@@ -603,9 +603,9 @@ function draw_village_marker($image, $entity, $village, $colour) {
 		$dfz = " ($dist away)";
 	}
 	$tip = svgentities("$name ($x, $y)$dfz, $pop, ($owner, $guild)");
-	aimacustom($image, "<a xlink:href='http://$server/karte.php?z=$cohash' xlink:title='$tip'>");
+	$imagecustom($image, "<a xlink:href='http://$server/karte.php?z=$cohash' xlink:title='$tip'>");
 	dot($image, $cx+$vx, $cy+$vy, $colour, (log($pop+1)+1)*$dotsize);
-	aimacustom($image, "</a>");
+	$imagecustom($image, "</a>");
 }
 
 function get_entity_colour($entity) {
@@ -641,34 +641,34 @@ if($_GET["format"] == "svg") {
 	
 	$tzz = $zz == 0 ? 1 : $zz; // stop divide by zeroes
 	
-	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=".($zx-100/$tzz).",$zy,$zz' xlink:title='west'>");
+	$imagecustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=".($zx-100/$tzz).",$zy,$zz' xlink:title='west'>");
 	dot($im, $cx+230-9, $cy+230+0, $white);
-	aimacustom($im, "</a>");
+	$imagecustom($im, "</a>");
 	
-	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,".($zy+100/$tzz).",$zz' xlink:title='north'>");
+	$imagecustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,".($zy+100/$tzz).",$zz' xlink:title='north'>");
 	dot($im, $cx+230+0, $cy+230-9, $white);
-	aimacustom($im, "</a>");
+	$imagecustom($im, "</a>");
 	
-	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,".($zy-100/$tzz).",$zz' xlink:title='south'>");
+	$imagecustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,".($zy-100/$tzz).",$zz' xlink:title='south'>");
 	dot($im, $cx+230+0, $cy+230+9, $white);
-	aimacustom($im, "</a>");
+	$imagecustom($im, "</a>");
 	
-	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=".($zx+100/$tzz).",$zy,$zz' xlink:title='east'>");
+	$imagecustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=".($zx+100/$tzz).",$zy,$zz' xlink:title='east'>");
 	dot($im, $cx+230+9, $cy+230-0, $white);
-	aimacustom($im, "</a>");
+	$imagecustom($im, "</a>");
 
 	
-	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,$zy,".($zz-2)."' xlink:title='zoom out'>");
+	$imagecustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,$zy,".($zz-2)."' xlink:title='zoom out'>");
 //	dot($im, $cx+230+15, $cy+245, $ct[($ca++)%count($ct)]);
 	dot($im, $cx+230+15, $cy+245, $white);
-	aimaline($im, $cx+230+12, $cy+245, $cx+230+18, $cy+245, $black);
-	aimacustom($im, "</a>");
+	$imageline($im, $cx+230+12, $cy+245, $cx+230+18, $cy+245, $black);
+	$imagecustom($im, "</a>");
 	
-	aimacustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,$zy,".($zz+2)."' xlink:title='zoom in'>");
+	$imagecustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,$zy,".($zz+2)."' xlink:title='zoom in'>");
 	dot($im, $cx+230-15, $cy+245, $white);
-	aimaline($im, $cx+230-18, $cy+245, $cx+230-12, $cy+245, $black);
-	aimaline($im, $cx+230-15, $cy+242, $cx+230-15, $cy+248, $black);
-	aimacustom($im, "</a>");
+	$imageline($im, $cx+230-18, $cy+245, $cx+230-12, $cy+245, $black);
+	$imageline($im, $cx+230-15, $cy+242, $cx+230-15, $cy+248, $black);
+	$imagecustom($im, "</a>");
 }
 // }}}
 
