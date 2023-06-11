@@ -1,7 +1,10 @@
 <?php
-require_once "localise.php";
-require_once "version.php";
-require_once "database.php";
+require_once "lib/localise.php";
+require_once "lib/version.php";
+require_once "lib/database.php";
+
+$words = get_words();
+$version = get_version();
 
 
 // totals {{{

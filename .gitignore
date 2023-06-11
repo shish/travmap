@@ -1,6 +1,7 @@
 cache
 logs
 sql
+vendor
 htdocs/config.php
 htdocs/error.log
 htdocs/log.txt

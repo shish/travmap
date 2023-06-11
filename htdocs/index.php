@@ -1,6 +1,9 @@
 <?php
-require_once "localise.php";
-require_once "version.php";
+require_once "lib/localise.php";
+require_once "lib/version.php";
+
+$words = get_words();
+$version = get_version();
 
 // misc {{{
 /* sort first by country, then by server */
@@ -58,7 +61,7 @@ if(file_exists("../cache/countries.txt") && file_exists("../cache/servers.txt"))
 	$serveropts = file_get_contents("../cache/servers.txt");
 }
 else {
-	require_once "database.php";
+	require_once "lib/database.php";
 
 	$country_list = Array();
 //	$country_list[] = "<option>All</option>";
@@ -167,7 +170,7 @@ else {
 -->
 <hr>
 <form onSubmit="updateMap(); return false;" action="">
-	<input type="hidden" name="lang" value="<?=$lang;?>">
+	<input type="hidden" name="lang" value="<?=get_lang();?>">
 	<div id="basic">
 		<br><?=$words['server'];?>
 		<br><select onChange="updateServers(this);" id="country_select" name="country"><?=$countryopts;?></select>
