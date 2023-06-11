@@ -262,7 +262,7 @@ else {
 	<p><?=$words['help2'];?>
 	<p><?=$words['help3'];?>
 	<p><?=$words['help4'];?>
-	<p><?=$words['help5'];?>
+	<p><?=@$words['help5'];?>
 	<p><?=$words['help6'];?>
 	<p><?=$words['help7'];?>
 
@@ -272,7 +272,7 @@ else {
 
 	<hr style="width: 400px">
 
-	<p><?=$words['notice'];?>
+	<p><?=@$words['notice'];?>
 	
 	<p><?=$words['report bugs'];?>
 

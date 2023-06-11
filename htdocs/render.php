@@ -232,6 +232,7 @@ function draw_village_marker($image, $entity, $village, $colour) {
 	$y = $village['y'];
 	$pop = $village['population'];
 	$cohash = (256-$y)*512 + ($x+257);
+	$dfz = "";
 	if($zx !=0 || $zy != 0) {
 		$dx = $x-$zx;
 		$dy = $y-$zy;
