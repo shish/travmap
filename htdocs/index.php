@@ -39,9 +39,12 @@ $baseurl = "https://travmap.shishnet.org/";
  */
 $servertime = date('g:iA');
 
-$status = file_get_contents("status.txt");
-if(strlen($status) > 0) {
-	$status = ": $status";
+$status = null;
+if(file_exists("status.txt")) {
+	$status = file_get_contents("status.txt");
+	if(strlen($status) > 0) {
+		$status = ": $status";
+	}
 }
 // }}}
 

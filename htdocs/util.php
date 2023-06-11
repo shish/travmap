@@ -9,13 +9,13 @@
 /*
  * because php randomly decided to treat "&foo=" as "" rather than null :-/
  */
-function getString(string $name, string $default): string {
+function getString(string $name, ?string $default): ?string {
 	return (isset($_GET[$name]) && strlen($_GET[$name]) > 0) ? $_GET[$name] : $default;
 }
-function getFloat(string $name, float $default): float {
+function getFloat(string $name, ?float $default): ?float {
 	return (isset($_GET[$name]) && strlen($_GET[$name]) > 0) ? (float)$_GET[$name] : $default;
 }
-function getInt(string $name, int $default): int {
+function getInt(string $name, ?int $default): ?int {
 	return (isset($_GET[$name])) ? (int)$_GET[$name] : $default;
 }
 function getBool(string $name): bool {

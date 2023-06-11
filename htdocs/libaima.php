@@ -126,7 +126,7 @@ function svgentities($text) {
 // }}}
 
 // Select renderer {{{
-switch($_GET["format"]) {
+switch($_GET["format"] ?? "svg") {
 	case "SVG": case "svg":
 		$imagestring = "aimastring";
 		$imagecreate = "aimacreate";

@@ -43,7 +43,7 @@ $query = "
  * output:
  *   pre_name IN ("moo", "flarg", "a,b,c") OR pre_id IN (123, 42)
  */
-function list2query($str, $pre) {
+function list2query(string $str, string $pre): ?string {
 	$names = Array();
 	$ids = Array();
 
@@ -68,7 +68,7 @@ function list2query($str, $pre) {
 	if(count($ids) > 0) 
 		$q .= "{$pre}_id IN(".join(", ", $ids).")";
 
-	return strlen($q) > 0 ? $q : false;
+	return strlen($q) > 0 ? $q : null;
 }
 
 $alliance_query = list2query($alliance, "guild");

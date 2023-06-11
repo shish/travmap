@@ -8,6 +8,7 @@
 require_once "config.php";
 
 $db = pg_pconnect("host=$sql_host user=$sql_user password=$sql_pass dbname=$sql_db");
+if(!$db) throw new Exception("Failed to connect to database");
 pg_query($db, "SET client_encoding = 'UTF8';");
 function sql_fetch_row($result) {return pg_fetch_assoc($result);}
 function sql_escape_string(string $text): string {global $db; return pg_escape_string($db, $text);}
