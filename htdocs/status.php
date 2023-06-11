@@ -1,11 +1,5 @@
 <?php
-require_once "lib/localise.php";
-require_once "lib/version.php";
 require_once "lib/database.php";
-
-$words = get_words();
-$version = get_version();
-
 
 // totals {{{
 $res = sql_query("
@@ -122,7 +116,7 @@ while($row = sql_fetch_row($res)) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
 	<head>
-		<title>TravMap <?=$version;?></title>
+		<title>TravMap Server List</title>
 		<style>
 BODY {
 	background: #EEE;

@@ -1,20 +1,6 @@
 <?php
-require_once "lib/localise.php";
-require_once "lib/version.php";
 require_once "lib/database.php";
 
-$words = get_words();
-$version = get_version();
-
-
-$m = date("m"); // Month value
-$d = date("d"); //today's date
-$y = date("Y"); // Year value
-$today = date('Y-m-d');
-$yesterday = date('Y-m-d', mktime(0,0,0,$m,($d-1),$y));
-
-$rows = array();
-$links = array();
 $res = sql_query("
 	SELECT name,country,villages,updated,status,owners,guilds,population
 	FROM servers
