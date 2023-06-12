@@ -541,20 +541,20 @@ if($layout == "spread") {
 	$imagerectangle($im, 643, 0, 767, 511, $black);
 //	$imagestring($im, 3, 704-strlen($caption)*3.45, 10, $caption, $black);
 //	$imagestring($im, 3, 64-strlen($caption)*3.45, 10, $caption, $black);
-	$imagettftext($im, 15, 0, 706-$caption_bounds[2]/2, 25, $black, "arialuni", $caption);
-	$imagettftext($im, 15, 0, 64-$caption_bounds[2]/2, 25, $black, "arialuni", $caption);
+	$imagettftext($im, 15, 0, (int)(706-$caption_bounds[2]/2), 25, $black, "arialuni", $caption);
+	$imagettftext($im, 15, 0, (int)(64-$caption_bounds[2]/2), 25, $black, "arialuni", $caption);
 
 	$stamp2_bounds = imagettfbbox(10, 0, "arialuni", $stamp2);
-	$imagettftext($im, 10, 0, 706-$stamp2_bounds[2]/2, 508, $grey, "arialuni", $stamp2);
+	$imagettftext($im, 10, 0, (int)(706-$stamp2_bounds[2]/2), 508, $grey, "arialuni", $stamp2);
 }
 else {
 	$imagefilledrectangle($im, 515, 0, 767, 511, $white);
 	$imagerectangle($im, 515, 0, 767, 511, $black);
 //	$imagestring($im, 3, 640-strlen($caption)*3.45, 10, $caption, $black);
-	$imagettftext($im, 15, 0, 640-$caption_bounds[2]/2, 25, $black, "arialuni", $caption);
+	$imagettftext($im, 15, 0, (int)(640-$caption_bounds[2]/2), 25, $black, "arialuni", $caption);
 
 	$stamp_bounds = imagettfbbox(10, 0, "arialuni", "$stamp1 $stamp2");
-	$imagettftext($im, 10, 0, 640-$stamp_bounds[2]/2, 508, $grey, "arialuni", "$stamp1 $stamp2");
+	$imagettftext($im, 10, 0, (int)(640-$stamp_bounds[2]/2), 508, $grey, "arialuni", "$stamp1 $stamp2");
 }
 // }}}
 
@@ -613,11 +613,11 @@ function get_entity_colour($entity) {
 	global $colby, $cals, $ct, $ca;
 
 	if($colby == "alliance") {
-		if(!is_null($cals[$entity["guild"]])) $colour = $cals[$entity["guild"]];
+		if(isset($cals[$entity["guild"]])) $colour = $cals[$entity["guild"]];
 		else $colour = $cals[$entity["guild"]] = $ct[($ca++)%count($ct)];
 	}
 	else if($colby == "race") {
-		if(!is_null($cals[$entity["race_id"]])) $colour = $cals[$entity["race_id"]];
+		if(isset($cals[$entity["race_id"]])) $colour = $cals[$entity["race_id"]];
 		else $colour = $cals[$entity["race_id"]] = $ct[($ca++)%count($ct)];
 	}
 	else {
