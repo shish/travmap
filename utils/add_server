@@ -5,4 +5,4 @@ cd `dirname $0`
 echo "Adding $1 to database"
 psql -U $SQL_USER -h $SQL_HOST $SQL_DB -c "INSERT INTO servers(name, country, num, mapfile) VALUES('$1', '$2', $3, '$4');"
 echo "Loading data"
-/usr/local/bin/python ./update.py $1
+./update.py $1

@@ -52,5 +52,5 @@ docker run --name sn-travmap \
 Run this as a cronjob to update internal data:
 
 ```
-docker exec sn-travmap /usr/bin/python /utils/update.py
+docker exec sn-travmap /utils/update.py
 ```
