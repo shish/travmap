@@ -47,8 +47,7 @@ $st->bindParam(':server', $server, PDO::PARAM_STR);
 $st->execute();
 $server_info = $st->fetch();
 if(!$server_info) {
-	echo("No registered server $s_server");
-	exit;
+	die("No registered server $server");
 }
 // }}}
 
