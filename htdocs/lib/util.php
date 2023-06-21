@@ -77,7 +77,7 @@ function quotesplit(string $splitter=",", string $string=""): array {
  * statement
  */
 function getMatches($col, $name) {
-	global $casen, $table;
+	global $casen, $table, $db;
 
 	if($casen) return "'$name'";
 
@@ -94,10 +94,10 @@ function getMatches($col, $name) {
 	/* no matching characters = no point matching */
 	/* if(strpos($name, "%") === false && strpos($name, "_") === false) return "'$name'"; */
 
-	$result = sql_query("SELECT $col FROM $table WHERE $col LIKE '$name' GROUP BY $col");
+	$result = $db->query("SELECT $col FROM $table WHERE $col LIKE '$name' GROUP BY $col");
 	$ret = "";
 	$n = 0;
-	while($row = sql_fetch_row($result)) {
+	foreach($result->fetchAll() as $row) {
 		if($n++) $ret .= ", ";
 		$ret .= "'{$row[$col]}'";
 	}

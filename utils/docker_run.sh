@@ -2,20 +2,13 @@
 
 cat >/app/config.php <<EOD
 <?php
-\$sql_host = "$SQL_HOST";
-\$sql_user = "$SQL_USER";
-\$sql_pass = "$SQL_PASS";
-\$sql_db = "$SQL_DB";
+\$sql_dsn = "sqlite:/data/travmap.sqlite";
 EOD
 
 cat >/utils/config.sh <<EOD
-SQL_HOST=$SQL_HOST
-SQL_USER=$SQL_USER
-SQL_PASS=$SQL_PASS
-SQL_DB=$SQL_DB
+SQL_DB=/data/travmap.sqlite
 CACHE=/cache
 STATUS=/app/status.txt
-export PGPASSWORD=\$SQL_PASS
 EOD
 
 cd /app

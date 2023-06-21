@@ -2,14 +2,14 @@
 require_once "lib/database.php";
 
 // totals {{{
-$res = sql_query("
+$res = $db->query("
 	SELECT
 		SUM(villages) AS villages,
 		SUM(guilds) AS guilds,
 		SUM(owners) AS owners,
 		SUM(population) AS population
 	FROM servers WHERE visible=True");
-$row = sql_fetch_row($res);
+$row = $res->fetch();
 $total_villages = $row['villages'];
 $total_guilds = $row['guilds'];
 $total_owners = $row['owners'];
@@ -47,13 +47,13 @@ $yesterday = date('Y-m-d', mktime(0,0,0,$m,($d-1),$y));
 $rows = array();
 $links = array();
 $last_country = "";
-$res = sql_query("
+$res = $db->query("
 	SELECT name,country,villages,updated,status,owners,guilds,population
 	FROM servers
 	WHERE visible=True
 	ORDER BY country, name
 ");
-while($row = sql_fetch_row($res)) {
+foreach($res->fetchAll() as $row) {
 	$name = $row['name'];
 	$country = $row['country'];
 	$villages = $row['villages'];

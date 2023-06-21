@@ -1,7 +1,7 @@
 <?php
 require_once "lib/database.php";
 
-$res = sql_query("
+$res = $db->query("
 	SELECT name,country,villages,updated,status,owners,guilds,population
 	FROM servers
 	WHERE visible=True
@@ -20,7 +20,7 @@ fputcsv($out, array(
 	'guilds',
 	'population',
 ));
-while($row = sql_fetch_row($res)) {
+while($row = $res->fetchAll()) {
 	fputcsv($out, array(
 		$row['name'],
 		$row['country'],

@@ -42,8 +42,10 @@ $maxpop = getInt("maxpop", null);
 $minpop = getInt("minpop", null);
 
 $table = preg_replace("/[^a-zA-Z0-9]/", "_", $server);
-$s_server = sql_escape_string($server);
-$server_info = sql_fetch_row(sql_query("SELECT * FROM servers WHERE name='$s_server'"));
+$st = $db->prepare("SELECT * FROM servers WHERE name=:server");
+$st->bindParam(':server', $server, PDO::PARAM_STR);
+$st->execute();
+$server_info = $st->fetch();
 if(!$server_info) {
 	echo("No registered server $s_server");
 	exit;
@@ -67,18 +69,20 @@ else {
  */
 
 function town2xy($name) {
-	global $table, $casen, $zx;
+	global $table, $casen, $zx, $db;
 
 	$xy = Array();
 	
-	$name = sql_escape_string($name);
 	if(preg_match("/^id:\d+$/", $name)) {
 		$id = (int)substr($name, 3);
-		$za2 = sql_fetch_row(sql_query("SELECT x,y FROM $table WHERE town_id=$id LIMIT 1"));
+		$za2 = $db->query("SELECT x,y FROM $table WHERE town_id=$id LIMIT 1")->fetch();
 	}
 	else {
 		$cmp = $casen ? "=" : "LIKE";
-		$za2 = sql_fetch_row(sql_query("SELECT x,y FROM $table WHERE town_name $cmp '$name' LIMIT 1"));
+		$st = $db->prepare("SELECT x,y FROM $table WHERE town_name $cmp :name LIMIT 1");
+		$st->bindParam(':name', $name, PDO::PARAM_STR);
+		$st->execute();
+		$za2 = $st->fetch();
 	}
 	if($zx < -256) $zx = -256;
 	$xy[0] = $za2['x'] ? $za2['x'] : 0;
@@ -185,7 +189,6 @@ function list2query(?string $str, string $pre): ?string {
 	$ids = Array();
 
 	$list = quotesplit(",", $str);
-	$list = array_map("sql_escape_string", $list);
 		
 	foreach($list as $al) {
 		if(preg_match("/^id:\d+$/", $al)) $ids[] = substr($al, 3);
@@ -291,10 +294,9 @@ $races = Array($words["roman"], $words["teuton"], $words["gaul"]);
 /*
  * query db for villages, group by owning entity
  */
-$result = sql_query($query);
+$result = $db->query($query);
 
-
-while($row = sql_fetch_row($result)) {
+foreach($result->fetchAll() as $row) {
 	$user_name = $row["owner_name"];
 	$user_id = $row["owner_id"];
 	$guild_name = $row["guild_name"];

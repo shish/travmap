@@ -4,13 +4,15 @@
 # update.py (c) Shish 2015
 #
 
+from typing import List, Dict, Any
 import re
 import os
 import sys
 import json
 import gzip
 import requests
-import psycopg2
+import sqlite3
+from contextlib import closing
 from glob import glob
 from time import time
 from datetime import datetime
@@ -66,10 +68,10 @@ class Server(namedtuple('Server', fields)):
 
     def set_status(self, text):
         print("[%s] %s" % (self.name, text))
-        with conn.cursor() as cur:
+        with closing(conn.cursor()) as cur:
             cur.execute(
-                "UPDATE servers SET status=%(status)s WHERE name=%(name)s",
-                {"name": self.name, "status": text[:250]}
+                "UPDATE servers SET status=? WHERE name=?",
+                (self.name, text[:250])
             )
             conn.commit()
 
@@ -103,7 +105,6 @@ class Server(namedtuple('Server', fields)):
             """.replace("DBNAME", self.dbname));
         except Exception:
             conn.rollback()
-        cur.execute("SET client_encoding = 'UTF8';")
         cur.execute("""
             CREATE TABLE DBNAME(
                 lochash INTEGER NOT NULL, x SMALLINT NOT NULL, y SMALLINT NOT NULL, race SMALLINT NOT NULL,
@@ -115,9 +116,10 @@ class Server(namedtuple('Server', fields)):
         """.replace("DBNAME", self.dbname))
 
         # data
-        fp = StringIO(data)
         try:
-            cur.copy_from(fp, self.dbname, columns="lochash, x, y, race, town_id, town_name, owner_id, owner_name, guild_id, guild_name, population".split(", "))
+            #fp = StringIO(data)
+            #cur.copy_from(fp, self.dbname, columns="lochash, x, y, race, town_id, town_name, owner_id, owner_name, guild_id, guild_name, population".split(", "))
+            cur.executemany(f"INSERT INTO {self.dbname} VALUES (:lochash, :x, :y, :race, :town_id, :town_name, :owner_id, :owner_name, :guild_id, :guild_name, :population)", data)
         except Exception as e:
             self.set_status("Load: " + str(e))
             conn.rollback()
@@ -125,34 +127,32 @@ class Server(namedtuple('Server', fields)):
             return
 
         # metadata
-        cur.execute("""
-            CREATE INDEX DBNAME_town_id ON DBNAME(town_id);
-            CREATE INDEX DBNAME_town_name ON DBNAME(town_name);
-            -- CREATE INDEX DBNAME_town_name_lower ON DBNAME(lower(town_name));
-            CREATE INDEX DBNAME_owner_id ON DBNAME(owner_id);
-            CREATE INDEX DBNAME_owner_name ON DBNAME(owner_name);
-            -- CREATE INDEX DBNAME_owner_name_lower ON DBNAME(lower(owner_name));
-            CREATE INDEX DBNAME_guild_id ON DBNAME(guild_id);
-            CREATE INDEX DBNAME_guild_name ON DBNAME(guild_name);
-            -- CREATE INDEX DBNAME_guild_name_lower ON DBNAME(lower(guild_name));
-            CREATE INDEX DBNAME_x ON DBNAME(x);
-            CREATE INDEX DBNAME_y ON DBNAME(y);
-            -- CREATE INDEX DBNAME_diag ON DBNAME((x-y));
-            -- CREATE INDEX DBNAME_race ON DBNAME(race);
-            CREATE INDEX DBNAME_population ON DBNAME(population);
-        """.replace("DBNAME", self.dbname))
-        cur.execute("""
+        cur.execute(f"CREATE INDEX {self.dbname}_town_id ON {self.dbname}(town_id)")
+        cur.execute(f"CREATE INDEX {self.dbname}_town_name ON {self.dbname}(town_name)")
+        #cur.execute(f"CREATE INDEX {self.dbname}_town_name_lower ON {self.dbname}(lower(town_name))")
+        cur.execute(f"CREATE INDEX {self.dbname}_owner_id ON {self.dbname}(owner_id)")
+        cur.execute(f"CREATE INDEX {self.dbname}_owner_name ON {self.dbname}(owner_name)")
+        #cur.execute(f"CREATE INDEX {self.dbname}_owner_name_lower ON {self.dbname}(lower(owner_name))")
+        cur.execute(f"CREATE INDEX {self.dbname}_guild_id ON {self.dbname}(guild_id)")
+        cur.execute(f"CREATE INDEX {self.dbname}_guild_name ON {self.dbname}(guild_name)")
+        #cur.execute(f"CREATE INDEX {self.dbname}_guild_name_lower ON {self.dbname}(lower(guild_name))")
+        cur.execute(f"CREATE INDEX {self.dbname}_x ON {self.dbname}(x)")
+        cur.execute(f"CREATE INDEX {self.dbname}_y ON {self.dbname}(y)")
+        #cur.execute(f"CREATE INDEX {self.dbname}_diag ON {self.dbname}((x-y))")
+        #cur.execute(f"CREATE INDEX {self.dbname}_race ON {self.dbname}(race)")
+        cur.execute(f"CREATE INDEX {self.dbname}_population ON {self.dbname}(population)")
+        cur.execute(f"""
             UPDATE servers
             SET
-                villages=(SELECT COUNT(*) FROM DBNAME),
-                owners=(SELECT COUNT(DISTINCT owner_id) FROM DBNAME),
-                guilds=(SELECT COUNT(DISTINCT guild_id) FROM DBNAME),
-                population=coalesce((SELECT SUM(population) FROM DBNAME), 0),
-                width =coalesce((SELECT MAX(x) - MIN(x) FROM DBNAME), 0),
-                height=coalesce((SELECT MAX(y) - MIN(y) FROM DBNAME), 0),
-                updated=now()
-            WHERE name=%s;
-        """.replace('DBNAME', self.dbname), [self.name])
+                villages=(SELECT COUNT(*) FROM {self.dbname}),
+                owners=(SELECT COUNT(DISTINCT owner_id) FROM {self.dbname}),
+                guilds=(SELECT COUNT(DISTINCT guild_id) FROM {self.dbname}),
+                population=coalesce((SELECT SUM(population) FROM {self.dbname}), 0),
+                width =coalesce((SELECT MAX(x) - MIN(x) FROM {self.dbname}), 0),
+                height=coalesce((SELECT MAX(y) - MIN(y) FROM {self.dbname}), 0),
+                updated=?
+            WHERE name=?;
+        """, (str(datetime.now()), self.name))
 
         conn.commit()
 
@@ -172,7 +172,7 @@ class Server(namedtuple('Server', fields)):
         self.set_status("map.sql missing")
         return False
 
-    def _create_data_from_text(self):
+    def _create_data_from_text(self) -> List[Dict[str, Any]]:
         data = []
         p = re.compile("(\d+),(-?\d+),(-?\d+),(\d+),(\d+),'(.*)',(\d+),'(.*)',(\d+),'(.*)',(\d+)")
         for line in open(cache_name(self.name, ".sql"), "rb"):
@@ -185,8 +185,11 @@ class Server(namedtuple('Server', fields)):
             for subline in line.split("),("):
                 m = p.match(subline)
                 if m:
-                    data.append("\t".join([safe(x) for x in m.groups()]))
-        return "\n".join(data)
+                    #data.append("\t".join([safe(x) for x in m.groups()]))
+                    keys = "lochash, x, y, race, town_id, town_name, owner_id, owner_name, guild_id, guild_name, population".split(", ")
+                    vals = m.groups()
+                    data.append(dict(zip(keys, vals)))
+        return data
 
 
     ###################################################################
@@ -237,7 +240,7 @@ class Server(namedtuple('Server', fields)):
             })
             if res.status_code != 200:
                 raise Exception('Error %d while requesting API key' % (res.status_code, ))
-            with conn.cursor() as cur:
+            with closing(conn.cursor()) as cur:
                 j = res.json()['response']
                 cur.execute(
                     """
@@ -297,9 +300,12 @@ class Server(namedtuple('Server', fields)):
 
 
 def get_config():
-    for line in open('/utils/config.sh'):
-        k, _, v = line.strip().partition("=")
-        os.environ[k] = v
+    try:
+        for line in open('/utils/config.sh'):
+            k, _, v = line.strip().partition("=")
+            os.environ[k] = v
+    except Exception as e:
+        print("Failed to load config.sh: "+str(e))
 
 
 def clear_cache():
@@ -309,7 +315,7 @@ def clear_cache():
 
 
 def update_servers(servers):
-    with conn.cursor() as cur:
+    with closing(conn.cursor()) as cur:
         cur.execute("""
             SELECT """ + ", ".join(fields) + """
             FROM servers
@@ -327,10 +333,7 @@ def update_servers(servers):
 
 def connect():
     global conn
-    dsn = "host=%s dbname=%s user=%s password=%s" % \
-        (os.environ["SQL_HOST"], os.environ["SQL_DB"],
-        os.environ["SQL_USER"], os.environ["SQL_PASS"])
-    conn = psycopg2.connect(dsn)
+    conn = sqlite3.connect(os.environ["SQL_DB"])
 
 
 def main(argv):

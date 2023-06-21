@@ -69,8 +69,8 @@ else {
 	$server_list = Array();
 
 	$lastcountry = "";
-	$res = sql_query("SELECT name,country,villages FROM servers WHERE visible=True ORDER BY country, name");
-	while($row = sql_fetch_row($res)) {
+	$res = $db->query("SELECT name,country,villages FROM servers WHERE visible=True ORDER BY country, name");
+	foreach($res->fetchAll() as $row) {
 		$name = $row['name'];
 		$country = $row['country'];
 		$disabled = $row['villages'] < 1000 ? " disabled" : "";

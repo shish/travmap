@@ -44,9 +44,7 @@ docker build -t travmap .
 Run it, exposing public port 8805:
 
 ```
-docker run --name sn-travmap \
-    -e SQL_HOST=postgres -e SQL_PASS=agav44q3g \
-    -p 127.0.0.1:8805:8000 -t travmap
+docker run --name sn-travmap --rm -ti -p 0.0.0.0:8805:8000 -t travmap
 ```
 
 Run this as a cronjob to update internal data:

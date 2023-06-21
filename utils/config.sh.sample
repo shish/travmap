@@ -1,7 +1,3 @@
-SQL_HOST=localhost
-SQL_USER=bob
-SQL_PASS=passwd
-SQL_DB=travmap
+SQL_DB=../data/travmap.sqlite
 CACHE=../cache
 STATUS=../htdocs/status.txt
-export PGPASSWORD=$SQL_PASS
