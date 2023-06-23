@@ -14,4 +14,4 @@ COPY utils /utils
 RUN echo '<?php $sql_dsn = "sqlite:/data/travmap.sqlite";' >/app/config.php
 RUN echo "SQL_DB=/data/travmap.sqlite\nCACHE=/cache\nSTATUS=/app/status.txt" >/utils/config.sh
 
-CMD cd /app && /usr/bin/php -S 0.0.0.0:8000 | grep --line-buffered -vE " (Accepted|Closing)"
+CMD cd /app && /usr/bin/php -S 0.0.0.0:8000 2>&1 | grep --line-buffered -vE " (Accepted|Closing)"
