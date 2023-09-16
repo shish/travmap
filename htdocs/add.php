@@ -20,6 +20,6 @@ $num = (int)time();
 $mapfile = strpos($server, "-") ? "json" : "map";
 print "adding $country / $server / $mapfile\n";
 chdir("/utils/");
-system("./add_server $server '$country' $num $mapfile");
+system("./add_server $server '$country' $num $mapfile 2>&1");
 ?>
 </pre>
