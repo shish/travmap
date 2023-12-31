@@ -16,3 +16,4 @@ jobs:
         name: shish2k/travmap
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+        buildargs: GITHUB_SHA

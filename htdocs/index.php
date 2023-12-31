@@ -4,6 +4,7 @@ require_once "lib/version.php";
 
 $words = get_words();
 $version = get_version();
+$gitver = substr(getenv("GITHUB_SHA") ?: "", 0, 7);
 
 // misc {{{
 /* sort first by country, then by server */
@@ -147,7 +148,7 @@ else {
 			<tr>
 <!-- nav {{{ -->
 				<td>
-<h1>TravMap <?=$version;?></h1>
+<h1>TravMap <span title="<?=$gitver;?>"><?=$version;?></span></h1>
 
 <small><a href="#" onclick="help(); return false;" style="display: block; margin: 8px;"><?=$words['instructions'];?></a></small>
 <!--

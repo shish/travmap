@@ -14,4 +14,7 @@ COPY utils /utils
 RUN echo '<?php $sql_dsn = "sqlite:/data/travmap.sqlite";' >/app/config.php
 RUN echo "SQL_DB=/data/travmap.sqlite\nCACHE=/cache\nSTATUS=/app/status.txt" >/utils/config.sh
 
+ARG GITHUB_SHA=unknown
+ENV GITHUB_SHA=${GITHUB_SHA}
+
 CMD cd /app && /usr/bin/php -S 0.0.0.0:8000 2>&1 | grep --line-buffered -vE " (Accepted|Closing)"
