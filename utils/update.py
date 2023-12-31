@@ -329,6 +329,8 @@ def update_servers(servers):
                     s.update()
                 except Exception as e:
                     s.set_status("Error: " + str(e))
+    with closing(conn.cursor()) as cur:
+        cur.execute("DELETE FROM servers WHERE (julianday('now') - julianday(updated)) > 14")
 
 
 def connect():
