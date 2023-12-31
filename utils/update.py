@@ -71,7 +71,7 @@ class Server(namedtuple('Server', fields)):
         with closing(conn.cursor()) as cur:
             cur.execute(
                 "UPDATE servers SET status=? WHERE name=?",
-                (self.name, text[:250])
+                (text[:250], self.name)
             )
             conn.commit()
 
