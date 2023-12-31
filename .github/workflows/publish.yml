@@ -10,10 +10,14 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@master
+    - name: Set build vars
+      run: |
+        echo "BUILD_TIME=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+        echo "BUILD_HASH=$GITHUB_SHA" >> $GITHUB_ENV
     - name: Publish
       uses: elgohr/Publish-Docker-Github-Action@main
       with:
         name: shish2k/travmap
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        buildargs: GITHUB_SHA
+        buildargs: BUILD_TIME,BUILD_HASH
