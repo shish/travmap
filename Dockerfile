@@ -7,7 +7,7 @@ VOLUME /cache
 
 ENV PYTHONUNBUFFERED 1
 # pcre fails to compile regexes if the packages aren't manually installed?
-RUN apt update && apt install -y php-cli php-gd php-sqlite3 python3-requests libpcre2-16-0 libpcre2-8-0 libpcre2-32-0 sqlite3
+RUN apt update && apt install -y php-cli php-gd php-sqlite3 python3-requests libpcre2-16-0 libpcre2-8-0 libpcre2-32-0 sqlite3 rsync
 
 COPY htdocs /app
 COPY utils /utils
