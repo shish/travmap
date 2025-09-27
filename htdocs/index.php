@@ -297,16 +297,23 @@ players to build villages, trade goods, form alliances and wage war~
 <hr>
 
 <form action="add.php" method="GET">
-<table>
+<table style="margin: auto;">
 	<tr><td colspan="2">Add Server</td></tr>
-	<tr><td>Server</td><td><input type="text" name="server" placeholder="e.g. ts1.x3.europe.travian.com" pattern="[a-z0-9]+\.x[0-9]\.[a-z]+\.travian\.com" required></td>
+	<tr><td>Server</td><td><input type="text" name="server" placeholder="e.g. ts1.x3.europe.travian.com" pattern="[a-z0-9]+\.x[0-9]\.[a-z]+\.travian\.com" required></td></tr>
+	<tr>
+		<td></td>
 		<td>
-			<span style="color:green">ts1.x3.europe.travian.com</span> /
-			<span style="color:red">s5 / server1 / ptx / s4.nl</span>
+			eg.
+			<span style="color:green">ts1.x3.europe.travian.com</span>
+			<br/>not
+			<span style="color:red">s5</span> /
+			<span style="color:red">server1</span> /
+			<span style="color:red">ptx</span> /
+			<span style="color:red">s4.nl</span>
 		</td>
 	</tr>
 	<tr><td>Country</td><td><input type="text" name="country" placeholder="e.g. America" pattern="[A-Z][a-zA-Z ]+" required></td></tr>
-	<tr><td colspan="2"><input type="submit"></td></tr>
+	<tr><td colspan="2"><input type="submit" value="Add Server"></td></tr>
 </table>
 </form>
 
