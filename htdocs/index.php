@@ -303,7 +303,7 @@ players to build villages, trade goods, form alliances and wage war~
 	<tr>
 		<td></td>
 		<td>
-			eg.
+			e.g.
 			<span style="color:green">ts1.x3.europe.travian.com</span>
 			<br/>not
 			<span style="color:red">s5</span> /
