@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 BODY {
 	background: #EEE;
 	font-family: "Arial", sans-serif;
@@ -17,14 +20,13 @@ H3 {
 	margin-top: 32px;
 	padding: 1px;
 }
-.page TD {
-	width: 175px;
+TD {
 	vertical-align: top;
 	text-align: center;
 }
-TD INPUT[type="submit"] {width: 95%;}
-TD INPUT[type="text"] {width: 95%;}
-TD SELECT {width: 95%;}
+TD INPUT[type="submit"],
+TD INPUT[type="text"],
+TD SELECT {width: 100%;}
 
 #map {
 	width: 768px;

@@ -146,7 +146,7 @@ else {
 	</head>
 	<body>
 		<table border="1" align="center" class="page">
-			<tr>
+			<tr style="width: 175px;">
 <!-- nav {{{ -->
 				<td>
 <h1>TravMap <span title="<?=$build_time;?>-<?=$build_hash;?>"><?=$version;?></span></h1>
@@ -299,7 +299,7 @@ players to build villages, trade goods, form alliances and wage war~
 <form action="add.php" method="GET">
 <table style="margin: auto; width: 30em;">
 	<tr><td colspan="2">Add Server</td></tr>
-	<tr><td>Server</td><td><input type="text" name="server" placeholder="e.g. ts1.x3.europe.travian.com" pattern="[a-z0-9]+\.x[0-9]\.[a-z]+\.travian\.com" required></td></tr>
+	<tr><td style="width: 7em;">Server</td><td><input type="text" name="server" placeholder="e.g. ts1.x3.europe.travian.com" pattern="[a-z0-9]+\.x[0-9]\.[a-z]+\.travian\.com" required></td></tr>
 	<tr>
 		<td></td>
 		<td>
