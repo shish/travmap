@@ -5,7 +5,7 @@ EXPOSE 8000
 VOLUME /data
 VOLUME /cache
 
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONUNBUFFERED=1
 # pcre fails to compile regexes if the packages aren't manually installed?
 RUN apt update && apt install -y php-cli php-gd php-sqlite3 python3-requests libpcre2-16-0 libpcre2-8-0 libpcre2-32-0 sqlite3 rsync
 
@@ -19,4 +19,5 @@ ENV BUILD_HASH=${BUILD_HASH}
 ARG BUILD_TIME=unknown
 ENV BUILD_TIME=${BUILD_TIME}
 
-CMD cd /app && /usr/bin/php -S 0.0.0.0:8000 2>&1 | grep --line-buffered -vE " (Accepted|Closing)"
+WORKDIR /app
+CMD ["/bin/sh", "-c", "exec /usr/bin/php -S 0.0.0.0:8000 2>&1 | grep --line-buffered -vE ' (Accepted|Closing)'"]
