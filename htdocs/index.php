@@ -145,7 +145,7 @@ else {
 		<meta name="keywords" content="travian,game,map,rts">
 	</head>
 	<body>
-		<table border="1" align="center">
+		<table border="1" align="center" class="page">
 			<tr>
 <!-- nav {{{ -->
 				<td>
@@ -297,7 +297,7 @@ players to build villages, trade goods, form alliances and wage war~
 <hr>
 
 <form action="add.php" method="GET">
-<table style="margin: auto;">
+<table style="margin: auto; width: 30em;">
 	<tr><td colspan="2">Add Server</td></tr>
 	<tr><td>Server</td><td><input type="text" name="server" placeholder="e.g. ts1.x3.europe.travian.com" pattern="[a-z0-9]+\.x[0-9]\.[a-z]+\.travian\.com" required></td></tr>
 	<tr>
