@@ -146,9 +146,9 @@ else {
 	</head>
 	<body>
 		<table border="1" align="center" class="page">
-			<tr style="width: 175px;">
+			<tr>
 <!-- nav {{{ -->
-				<td>
+				<td style="width: 175px;">
 <h1>TravMap <span title="<?=$build_time;?>-<?=$build_hash;?>"><?=$version;?></span></h1>
 
 <small><a href="#" onclick="help(); return false;" style="display: block; margin: 8px;"><?=$words['instructions'];?></a></small>
