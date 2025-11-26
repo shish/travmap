@@ -19,8 +19,6 @@ from datetime import datetime
 import typing as t
 
 
-fields = ["name", "mapfile", "privateApiKey", "publicSiteKey"]
-
 conn = None
 
 
@@ -47,9 +45,6 @@ def safe(x: str) -> str:
 
 class Server(t.NamedTuple):
     name: str
-    mapfile: str
-    privateApiKey: str
-    publicSiteKey: str
 
     @property
     def dbname(self) -> str:
@@ -57,18 +52,9 @@ class Server(t.NamedTuple):
 
     def update(self) -> None:
         set_global_status("Updating %s" % self.name)
-        if self.mapfile == "map":
-            if self.update_text():
-                self.load_data(self._create_data_from_text())
-                self.set_status("ok")
-        elif self.mapfile == "map.gz":
-            if self.update_text_gz():
-                self.load_data(self._create_data_from_text_gz())
-                self.set_status("ok")
-        elif self.mapfile == "json":
-            if self.update_json():
-                self.load_data(self._create_data_from_json())
-                self.set_status("ok")
+        if self.update_text():
+            self.load_data(self._create_data_from_text())
+            self.set_status("ok")
 
     def set_status(self, text: str) -> None:
         print(f"[{self.name}] {text}")
@@ -171,8 +157,6 @@ class Server(t.NamedTuple):
 
         conn.commit()
 
-    ###################################################################
-    # old school
     def update_text(self) -> bool:
         self.set_status("downloading sql...")
         path = cache_name(self.name, ".sql")
@@ -208,121 +192,6 @@ class Server(t.NamedTuple):
                     data.append(dict(zip(keys, vals)))
         return data
 
-    ###################################################################
-    # old school gz
-    def update_text_gz(self) -> bool:
-        self.set_status("downloading sql.gz...")
-        path = cache_name(self.name, ".sql.gz")
-
-        if self.fetch("http://%s/map.sql.gz" % self.name, path):
-            if os.stat(path).st_size < 64 * 1024:
-                self.set_status("map.sql.gz is short")
-            else:
-                self.set_status("map.sql.gz downloaded")
-            return True
-
-        self.set_status("map.sql.gz missing")
-        return False
-
-    def _create_data_from_text_gz(self) -> str:
-        data = []
-        p = re.compile(r"(\d+),(-?\d+),(-?\d+),(\d+),(\d+),'(.*)',(\d+),'(.*)',(\d+),'(.*)',(\d+)")
-        for bline in gzip.open(cache_name(self.name, ".sql.gz")):
-            try:
-                line = bline.decode("uso-8859-1")
-            except Exception:
-                line = bline.decode("utf8")
-                line = line.replace("INSERT INTO `x_world` VALUES (", "")
-                line = line.replace(");", "")
-            for subline in line.split("),("):
-                m = p.match(subline)
-                if m:
-                    data.append("\t".join([safe(x) for x in m.groups()]))
-        return "\n".join(data)
-
-    ###################################################################
-    # new school
-    def get_key(self) -> str:
-        url = "http://%s/api/external.php" % self.name
-        if not (self.privateApiKey and self.publicSiteKey):
-            self.set_status("generating key...")
-            res = requests.get(
-                url,
-                params={
-                    "action": "requestApiKey",
-                    "email": "shish+travmap@shishnet.org",
-                    "siteName": "TravMap",
-                    "siteUrl": "https://travmap.shishnet.org/",
-                    "public": "true",
-                },
-            )
-            if res.status_code != 200:
-                raise Exception("Error %d while requesting API key" % (res.status_code,))
-            with closing(conn.cursor()) as cur:
-                j = res.json()["response"]
-                cur.execute(
-                    """
-                    UPDATE servers
-                    SET privateApiKey=%s, publicSiteKey=%s, mapfile=%s
-                    WHERE name=%s
-                    """,
-                    (j["privateApiKey"], j["publicSiteKey"], "json", self.name),
-                )
-                conn.commit()
-                return j["privateApiKey"]
-        return self.privateApiKey
-
-    def update_json(self) -> bool:
-        self.set_status("downloading json...")
-        path = cache_name(self.name, ".json")
-
-        params = {
-            "action": "getMapData",
-            "privateApiKey": self.get_key(),
-        }
-        if self.fetch("http://%s/api/external.php" % self.name, path, params):
-            if os.stat(path).st_size < 64 * 1024:
-                self.set_status("map.json is short")
-            else:
-                self.set_status("map.json downloaded")
-            return True
-
-        self.set_status("map.json missing")
-        return False
-
-    def _create_data_from_json(self) -> str:
-        data = []
-        j = json.load(open(cache_name(self.name, ".json")))
-        if j["error"]:
-            raise Exception(j["error"]["message"])
-        r = j["response"]
-        alliances = {0: {"nameShort": ""}}
-        for alliance in r["alliances"]:
-            alliances[int(alliance["allianceId"])] = alliance
-        for player in r["players"]:
-            for village in player["villages"]:
-                data.append(
-                    "\t".join(
-                        [
-                            safe(x)
-                            for x in [
-                                village["villageId"],
-                                village["x"],
-                                village["y"],
-                                "0",
-                                village["villageId"],
-                                village["name"],
-                                player["playerId"],
-                                player["name"],
-                                player["allianceId"],
-                                alliances[int(player["allianceId"])]["nameShort"],
-                                village["population"],
-                            ]
-                        ]
-                    )
-                )
-        return "\n".join(data)
-
 
 def get_config() -> None:
     try:
@@ -354,8 +223,8 @@ def cmd_add(args) -> None:
 
     with closing(conn.cursor()) as cur:
         cur.execute(
-            "INSERT INTO servers(name, num, mapfile) VALUES(?, ?, ?)",
-            (args.server, args.num, args.mapfile),
+            "INSERT INTO servers(name, num) VALUES(?, ?)",
+            (args.server, args.num),
         )
         conn.commit()
 
@@ -392,9 +261,7 @@ def cmd_update(args) -> None:
     with closing(conn.cursor()) as cur:
         cur.execute(
             """
-            SELECT """
-            + ", ".join(fields)
-            + """
+            SELECT name
             FROM servers
             WHERE visible=True
             ORDER BY num
@@ -424,7 +291,6 @@ def main() -> int:
     parser_add = subparsers.add_parser("add", help="Add a new server")
     parser_add.add_argument("server", help="Server name (e.g., ts1.x3.europe.travian.com)")
     parser_add.add_argument("num", type=int, help="Server number (timestamp)")
-    parser_add.add_argument("mapfile", help="Map file type (map, map.gz, or json)")
     parser_add.set_defaults(func=cmd_add)
 
     parser_remove = subparsers.add_parser("remove", help="Remove a server")
