@@ -223,8 +223,8 @@ def cmd_add(args) -> None:
 
     with closing(conn.cursor()) as cur:
         cur.execute(
-            "INSERT INTO servers(name, num) VALUES(?, ?)",
-            (args.server, args.num),
+            "INSERT INTO servers(name) VALUES(?)",
+            (args.server,),
         )
         conn.commit()
 
@@ -259,14 +259,7 @@ def cmd_update(args) -> None:
     set_global_status("Update starting")
 
     with closing(conn.cursor()) as cur:
-        cur.execute(
-            """
-            SELECT name
-            FROM servers
-            WHERE visible=True
-            ORDER BY num
-        """
-        )
+        cur.execute("SELECT name FROM servers")
         for row in cur.fetchall():
             s = Server(*row)
             if not args.servers or s.name in args.servers:
@@ -290,7 +283,6 @@ def main() -> int:
 
     parser_add = subparsers.add_parser("add", help="Add a new server")
     parser_add.add_argument("server", help="Server name (e.g., ts1.x3.europe.travian.com)")
-    parser_add.add_argument("num", type=int, help="Server number (timestamp)")
     parser_add.set_defaults(func=cmd_add)
 
     parser_remove = subparsers.add_parser("remove", help="Remove a server")

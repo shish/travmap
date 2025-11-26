@@ -5,7 +5,6 @@ require_once "lib/util.php";
 $res = $db->query("
 	SELECT name,villages,updated,status,owners,guilds,population
 	FROM servers
-	WHERE visible=True
 	ORDER BY name
 ");
 

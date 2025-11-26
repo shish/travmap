@@ -72,12 +72,12 @@ else {
 	$server_list = Array();
 
 	$lastcountry = "";
-	$res = $db->query("SELECT name,villages FROM servers WHERE visible=True ORDER BY name");
+	$res = $db->query("SELECT name,villages FROM servers ORDER BY name");
 	foreach($res->fetchAll() as $row) {
 		$name = $row['name'];
 		$country = getSubdomain($name);
 		$disabled = $row['villages'] < 1000 ? " disabled" : "";
-		
+
 		if($country != $lastcountry) {
 			$country_list[] = "<option>$country</option>";
 			if($server_list) $server_list[] = "</optgroup>";
@@ -277,7 +277,7 @@ else {
 	<hr style="width: 400px">
 
 	<p><?=@$words['notice'];?>
-	
+
 	<p><?=$words['report bugs'];?>
 
 	<p style="text-align: center;"><a href="mailto:webmaster@shishnet.org">webmaster@shishnet.org</a><!-- // <a href="#" onclick="about(); return false;">About</a> -->
@@ -292,7 +292,7 @@ players to build villages, trade goods, form alliances and wage war~
 </div>
 
 <div id="map" style="display: none;"></div>
-<br><?=$words['link to image'];?>: 
+<br><?=$words['link to image'];?>:
 <input type="text" id="link" style="width: 512px;">
 
 <hr>

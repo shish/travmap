@@ -9,7 +9,7 @@ $res = $db->query("
 		SUM(guilds) AS guilds,
 		SUM(owners) AS owners,
 		SUM(population) AS population
-	FROM servers WHERE visible=True");
+	FROM servers");
 $row = $res->fetch();
 $total_villages = $row['villages'];
 $total_guilds = $row['guilds'];
@@ -51,7 +51,6 @@ $last_country = "";
 $res = $db->query("
 	SELECT name,villages,updated,status,owners,guilds,population
 	FROM servers
-	WHERE visible=True
 	ORDER BY name
 ");
 foreach($res->fetchAll() as $row) {
@@ -82,7 +81,7 @@ foreach($res->fetchAll() as $row) {
 	$players = $row['owners'];
 	$guilds = $row['guilds'];
 	$population = $row['population'];
-	
+
 	if($country != $last_country) {
 		$links[] = "<a href='#$country'>$country</a>";
 		$rows[] = "
