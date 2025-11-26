@@ -54,84 +54,55 @@ if(file_exists("status.txt")) {
 // }}}
 
 /* server list {{{
- *
- * load the server list -- cached if possible, else
- * look for the database's tables
  */
-if(file_exists("../cache/countries.txt") && file_exists("../cache/servers.txt")) {
-	$countryopts = file_get_contents("../cache/countries.txt");
-	$serveropts = file_get_contents("../cache/servers.txt");
-}
-else {
-	require_once "lib/database.php";
-	require_once "lib/util.php";
+require_once "lib/database.php";
+require_once "lib/util.php";
 
-	$country_list = Array();
+$country_list = Array();
 //	$country_list[] = "<option>All</option>";
 
-	$server_list = Array();
+$server_list = Array();
 
-	$lastcountry = "";
-	$res = $db->query("SELECT name,villages FROM servers ORDER BY name");
-	foreach($res->fetchAll() as $row) {
-		$name = $row['name'];
-		$country = getSubdomain($name);
-		$disabled = $row['villages'] < 1000 ? " disabled" : "";
+$lastcountry = "";
+$res = $db->query("SELECT name,villages FROM servers ORDER BY name");
+foreach($res->fetchAll() as $row) {
+	$name = $row['name'];
+	$country = getSubdomain($name);
+	$disabled = $row['villages'] < 1000 ? " disabled" : "";
 
-		if($country != $lastcountry) {
-			$country_list[] = "<option>$country</option>";
-			if($server_list) $server_list[] = "</optgroup>";
-			$server_list[] = "<optgroup label='$country'>";
-			#$server_list[] = "<option style='background: black; color: white;' disabled>$country</option>";
-			$lastcountry = $country;
-		}
-		$server_list[] = "<option value='$name'$disabled>$name</option>";
+	if($country != $lastcountry) {
+		$country_list[] = "<option>$country</option>";
+		if($server_list) $server_list[] = "</optgroup>";
+		$server_list[] = "<optgroup label='$country'>";
+		#$server_list[] = "<option style='background: black; color: white;' disabled>$country</option>";
+		$lastcountry = $country;
 	}
-	if($server_list) $server_list[] = "</optgroup>";
-
-	$countryopts = implode("\n", $country_list);
-	$serveropts = implode("\n", $server_list);
-
-	file_put_contents("../cache/countries.txt", $countryopts);
-	file_put_contents("../cache/servers.txt", $serveropts);
+	$server_list[] = "<option value='$name'$disabled>$name</option>";
 }
+if($server_list) $server_list[] = "</optgroup>";
+
+$countryopts = implode("\n", $country_list);
+$serveropts = implode("\n", $server_list);
 // }}}
 
 /* language files {{{
  *
  * Scan each of the lanugage files
  */
-$langs = "";
-if(file_exists("../cache/langs.txt")) {
-	$fp = fopen("../cache/langs.txt", "r");
-	while($tmp = fgets($fp)) {$langs .= $tmp;}
+$n = 0;
+foreach(glob("./lang/*.txt") as $flang) {
+	$code = preg_replace("#./lang/(.*).txt#", '$1', $flang);
+	$fp = fopen($flang, "r");
+	$lang = str_replace("lang=", "", trim(fgets($fp)));
 	fclose($fp);
+	if($lang == "") continue;
+	if($n == 0) $langs = "";
+	else if(($n % 5) == 0) $langs .= "<br>\n";
+	else $langs .= " | ";
+	$langs .= "<a href='?lang=$code'>$lang</a>\n";
+	$n++;
 }
-else {
-	$n = 0;
-	$flags = "";
-	foreach(glob("./lang/*.txt") as $flang) {
-		$code = preg_replace("#./lang/(.*).txt#", '$1', $flang);
-		$fp = fopen($flang, "r");
-		$lang = str_replace("lang=", "", trim(fgets($fp)));
-		fclose($fp);
-		if($lang == "") continue;
-		if($n == 0) $langs = "";
-		else if(($n % 5) == 0) $langs .= "<br>\n";
-		else $langs .= " | ";
-		$langs .= "<a href='?lang=$code'>$lang</a>\n";
-		$flags .= "<a href='?lang=$code'><img src='https://static.shishnet.org/flags/$code.png' alt='$lang'></a>\n";
-		$n++;
-	}
 
-	$fp = fopen("../cache/langs.txt", "w");
-	fputs($fp, $langs);
-	fclose($fp);
-
-	$fp = fopen("../cache/flags.txt", "w");
-	fputs($fp, $flags);
-	fclose($fp);
-}
 // }}}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
