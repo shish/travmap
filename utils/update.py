@@ -188,11 +188,11 @@ class Server(t.NamedTuple):
     def _create_data_from_text(self) -> list[dict[str, t.Any]]:
         data = []
         p = re.compile(r"(\d+),(-?\d+),(-?\d+),(\d+),(\d+),'(.*)',(\d+),'(.*)',(\d+),'(.*)',(\d+)")
-        for line in open(cache_name(self.name, ".sql"), "rb"):
+        for bline in open(cache_name(self.name, ".sql"), "rb"):
             try:
-                line = line.decode("uso-8859-1")
+                line = bline.decode("uso-8859-1")
             except Exception:
-                line = line.decode("utf8")
+                line = bline.decode("utf8")
                 line = line.replace("INSERT INTO `x_world` VALUES (", "")
                 line = line.replace(");", "")
             for subline in line.split("),("):
@@ -225,11 +225,11 @@ class Server(t.NamedTuple):
     def _create_data_from_text_gz(self) -> str:
         data = []
         p = re.compile(r"(\d+),(-?\d+),(-?\d+),(\d+),(\d+),'(.*)',(\d+),'(.*)',(\d+),'(.*)',(\d+)")
-        for line in gzip.open(cache_name(self.name, ".sql.gz")):
+        for bline in gzip.open(cache_name(self.name, ".sql.gz")):
             try:
-                line = line.decode("uso-8859-1")
+                line = bline.decode("uso-8859-1")
             except Exception:
-                line = line.decode("utf8")
+                line = bline.decode("utf8")
                 line = line.replace("INSERT INTO `x_world` VALUES (", "")
                 line = line.replace(");", "")
             for subline in line.split("),("):
