@@ -7,8 +7,8 @@ General use:
 Adding a new server:
 
 ```
-./manage.py add s1.foo.com <timestamp> <mapfile>
-# e.g., ./manage.py add s1.x3.europe.travian.com 1234567890 json
+./manage.py add s1.foo.com <timestamp>
+# e.g., ./manage.py add s1.x3.europe.travian.com 1234567890
 ```
 
 Removing a server:

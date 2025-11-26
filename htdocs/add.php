@@ -12,10 +12,9 @@ if(!dns_get_record($_GET["server"])) {
 
 $server = $_GET["server"];
 $num = (int)time();
-$mapfile = strpos($server, "-") ? "json" : "map";
-print "adding $server / $mapfile\n";
+print "adding $server\n";
 chdir("/utils/");
-system("./manage.py add " . escapeshellarg($server) . " $num " . escapeshellarg($mapfile) . " 2>&1");
+system("./manage.py add " . escapeshellarg($server) . " $num 2>&1");
 ?>
 </pre>
 
