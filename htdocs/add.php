@@ -15,7 +15,7 @@ $num = (int)time();
 $mapfile = strpos($server, "-") ? "json" : "map";
 print "adding $server / $mapfile\n";
 chdir("/utils/");
-system("./add_server $server $num $mapfile 2>&1");
+system("./manage.py add " . escapeshellarg($server) . " $num " . escapeshellarg($mapfile) . " 2>&1");
 ?>
 </pre>
 

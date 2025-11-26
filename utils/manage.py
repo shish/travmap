@@ -9,6 +9,7 @@ import os
 import sys
 import json
 import gzip
+import argparse
 import requests
 import sqlite3
 from contextlib import closing
@@ -16,7 +17,6 @@ from glob import glob
 from time import time
 from datetime import datetime
 import typing as t
-from collections import namedtuple
 
 
 fields = ["name", "mapfile", "privateApiKey", "publicSiteKey"]
@@ -126,6 +126,8 @@ class Server(t.NamedTuple):
 
         # data
         try:
+            # fp = StringIO(data)
+            # cur.copy_from(fp, self.dbname, columns="lochash, x, y, race, town_id, town_name, owner_id, owner_name, guild_id, guild_name, population".split(", "))
             cur.executemany(
                 f"INSERT INTO {self.dbname} VALUES (:lochash, :x, :y, :race, :town_id, :town_name, :owner_id, :owner_name, :guild_id, :guild_name, :population)",
                 data,
@@ -322,7 +324,7 @@ class Server(t.NamedTuple):
         return "\n".join(data)
 
 
-def config_to_environ() -> None:
+def get_config() -> None:
     try:
         for line in open("/utils/config.sh"):
             k, _, v = line.strip().partition("=")
@@ -337,7 +339,56 @@ def clear_cache() -> None:
         os.unlink(fn)
 
 
-def update_servers(servers):
+def connect() -> None:
+    global conn
+    conn = sqlite3.connect(os.environ["SQL_DB"])
+
+
+###################################################################
+# Command handlers
+
+
+def cmd_add(args) -> None:
+    """Add a new server to the database"""
+    print(f"Adding {args.server} to database")
+
+    with closing(conn.cursor()) as cur:
+        cur.execute(
+            "INSERT INTO servers(name, num, mapfile) VALUES(?, ?, ?)",
+            (args.server, args.num, args.mapfile),
+        )
+        conn.commit()
+
+    print("Loading data")
+    cmd_update(args)
+
+
+def cmd_remove(args) -> None:
+    """Remove a server from the database"""
+    server_name = args.server
+    dbname = server_name.replace("-", "_").replace(".", "_")
+
+    print(f"Removing {server_name} from database")
+
+    with closing(conn.cursor()) as cur:
+        cur.execute("DELETE FROM servers WHERE name=?", (server_name,))
+        try:
+            cur.execute(f"DROP TABLE {dbname}")
+        except Exception:
+            pass
+        conn.commit()
+
+    # Clear cache
+    cache_servers = os.path.join(os.path.dirname(os.environ["CACHE"]), "cache", "servers.txt")
+    if os.path.exists(cache_servers):
+        os.unlink(cache_servers)
+
+    print(f"Server {server_name} removed")
+
+
+def cmd_update(args) -> None:
+    set_global_status("Update starting")
+
     with closing(conn.cursor()) as cur:
         cur.execute(
             """
@@ -346,39 +397,65 @@ def update_servers(servers):
             + """
             FROM servers
             WHERE visible=True
-            ORDER BY country, num
+            ORDER BY num
         """
         )
         for row in cur.fetchall():
             s = Server(*row)
-            if s.name in servers or not servers:
+            if not args.servers or s.name in args.servers:
                 try:
                     s.update()
                 except Exception as e:
                     s.set_status("Error: " + str(e))
+
+    # Delete old servers
     with closing(conn.cursor()) as cur:
         cur.execute("DELETE FROM servers WHERE (julianday('now') - julianday(updated)) > 14")
+        conn.commit()
+
+    clear_cache()
+    set_global_status("Update complete")
 
 
-def connect() -> None:
-    global conn
-    conn = sqlite3.connect(os.environ["SQL_DB"])
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Manage TravMap servers")
+    subparsers = parser.add_subparsers(dest="command", help="Command to execute")
 
+    parser_add = subparsers.add_parser("add", help="Add a new server")
+    parser_add.add_argument("server", help="Server name (e.g., ts1.x3.europe.travian.com)")
+    parser_add.add_argument("num", type=int, help="Server number (timestamp)")
+    parser_add.add_argument("mapfile", help="Map file type (map, map.gz, or json)")
+    parser_add.set_defaults(func=cmd_add)
 
-def main(argv: list[str]) -> int:
+    parser_remove = subparsers.add_parser("remove", help="Remove a server")
+    parser_remove.add_argument("server", help="Server name to remove")
+    parser_remove.set_defaults(func=cmd_remove)
+
+    parser_update = subparsers.add_parser("update", help="Update server data")
+    parser_update.add_argument("servers", nargs="*", help="Servers to update (empty for all)")
+    parser_update.set_defaults(func=cmd_update)
+
+    args = parser.parse_args()
+
+    if not args.command:
+        parser.print_help()
+        return 1
+
     try:
-        config_to_environ()
-        set_global_status("Update starting")
+        get_config()
         connect()
-        # mkdirs()
-        update_servers(argv[1:])
-        clear_cache()
-        set_global_status("Update complete")
+        args.func(args)
         return 0
     except KeyboardInterrupt:
         set_global_status("Interrupted")
         return 1
+    except Exception as e:
+        print(f"Error: {e}")
+        import traceback
+
+        traceback.print_exc()
+        return 1
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv))
+    sys.exit(main())
