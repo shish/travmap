@@ -1,4 +1,4 @@
 <?php
 function get_version(): string {
-	return "0.11.2";
+	return "0.12.0";
 }
