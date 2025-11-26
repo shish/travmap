@@ -273,6 +273,24 @@ def cmd_update(args) -> None:
         cur.execute("DELETE FROM servers WHERE (julianday('now') - julianday(updated)) > 14")
         conn.commit()
 
+    # Drop any tables which don't have a matching server
+    with closing(conn.cursor()) as cur:
+        protected_tables = {"servers"}
+
+        cur.execute("SELECT name FROM servers")
+        valid_servers = {row[0] for row in cur.fetchall()}
+
+        cur.execute("SELECT name FROM sqlite_master WHERE type='table'")
+        for row in cur.fetchall():
+            tablename = row[0]
+            if tablename not in protected_tables and tablename not in valid_servers:
+                try:
+                    cur.execute(f"DROP TABLE {tablename}")
+                except Exception:
+                    pass
+
+        conn.commit()
+
     clear_cache()
     set_global_status("Update complete")
 
