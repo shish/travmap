@@ -46,7 +46,7 @@ foreach($res->fetchAll() as $row) {
 }
 uksort($servers, "wwwcmp");
 
-$last_country = "";
+$lastcountry = "";
 foreach($servers as $name => $villages) {
 	$country = getSubdomain($name);
 	$disabled = $villages < 1000 ? " disabled" : "";
