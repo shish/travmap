@@ -1,5 +1,6 @@
 <?php
 require_once "lib/database.php";
+require_once "lib/util.php";
 
 // totals {{{
 $res = $db->query("
@@ -48,14 +49,14 @@ $rows = array();
 $links = array();
 $last_country = "";
 $res = $db->query("
-	SELECT name,country,villages,updated,status,owners,guilds,population
+	SELECT name,villages,updated,status,owners,guilds,population
 	FROM servers
 	WHERE visible=True
-	ORDER BY country, name
+	ORDER BY name
 ");
 foreach($res->fetchAll() as $row) {
 	$name = $row['name'];
-	$country = $row['country'];
+	$country = getSubdomain($name);
 	$villages = $row['villages'];
 	$updated = $row['updated'];
 	$status = $row['status'];

@@ -8,14 +8,14 @@ $build_time = getenv("BUILD_TIME");
 $build_hash = substr(getenv("BUILD_HASH") ?: "", 0, 7);
 
 // misc {{{
-/* sort first by country, then by server */
+/* sort first by subdomain, then by server */
 function wwwcmp($a, $b) {
 	$as = explode(".", $a);
 	$bs = explode(".", $b);
 	$ae = count($as)-1;
 	$be = count($bs)-1;
 	if(strncmp($as[$ae], $bs[$be], 2) != 0) {
-		// first sort by country
+		// first sort by subdomain
 		return strncmp($as[$ae], $bs[$be], 2);
 	}
 	else if(preg_match('/[0-9]/', $as[0]) && preg_match('/[0-9]/', $bs[0])) {
@@ -64,6 +64,7 @@ if(file_exists("../cache/countries.txt") && file_exists("../cache/servers.txt"))
 }
 else {
 	require_once "lib/database.php";
+	require_once "lib/util.php";
 
 	$country_list = Array();
 //	$country_list[] = "<option>All</option>";
@@ -71,10 +72,10 @@ else {
 	$server_list = Array();
 
 	$lastcountry = "";
-	$res = $db->query("SELECT name,country,villages FROM servers WHERE visible=True ORDER BY country, name");
+	$res = $db->query("SELECT name,villages FROM servers WHERE visible=True ORDER BY name");
 	foreach($res->fetchAll() as $row) {
 		$name = $row['name'];
-		$country = $row['country'];
+		$country = getSubdomain($name);
 		$disabled = $row['villages'] < 1000 ? " disabled" : "";
 		
 		if($country != $lastcountry) {
@@ -312,7 +313,6 @@ players to build villages, trade goods, form alliances and wage war~
 			<span style="color:red">s4.nl</span>
 		</td>
 	</tr>
-	<tr><td>Country</td><td><input type="text" name="country" placeholder="e.g. America" pattern="[A-Z][a-zA-Z ]+" required></td></tr>
 	<tr><td colspan="2"><input type="submit" value="Add Server"></td></tr>
 </table>
 </form>

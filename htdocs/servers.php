@@ -1,11 +1,12 @@
 <?php
 require_once "lib/database.php";
+require_once "lib/util.php";
 
 $res = $db->query("
-	SELECT name,country,villages,updated,status,owners,guilds,population
+	SELECT name,villages,updated,status,owners,guilds,population
 	FROM servers
 	WHERE visible=True
-	ORDER BY country, name
+	ORDER BY name
 ");
 
 header("Content-Type: text/plain");
@@ -23,7 +24,7 @@ fputcsv($out, array(
 while($row = $res->fetchAll()) {
 	fputcsv($out, array(
 		$row['name'],
-		$row['country'],
+		getSubdomain($row['name']),
 		substr($row['updated'], 0, 16),
 		$row['status'],
 		$row['villages'],

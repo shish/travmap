@@ -23,6 +23,26 @@ function getBool(string $name): bool {
 }
 
 
+/*
+ * Extract subdomain from server name
+ * e.g. "x1.america.travian.com" -> "america"
+ * e.g. "ts5.travian.com" -> "travian"
+ */
+function getSubdomain(string $serverName): string {
+	$parts = explode(".", $serverName);
+	if (count($parts) >= 3) {
+		// Return second-to-last domain part (e.g., "america" from "x1.america.travian.com")
+		return ucfirst($parts[count($parts) - 2]);
+	}
+	if (count($parts) >= 2) {
+		// Return first domain part if only 2 parts (e.g., "travian" from "ts5.travian.com")
+		return ucfirst($parts[count($parts) - 2]);
+	}
+	// Fallback to the server name itself
+	return ucfirst($serverName);
+}
+
+
 function quotesplit(string $splitter=",", string $string=""): array {
 	$result = Array();
 	$parts = explode($splitter, $string);
