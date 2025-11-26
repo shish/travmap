@@ -174,7 +174,7 @@ class Server(namedtuple('Server', fields)):
 
     def _create_data_from_text(self) -> List[Dict[str, Any]]:
         data = []
-        p = re.compile("(\d+),(-?\d+),(-?\d+),(\d+),(\d+),'(.*)',(\d+),'(.*)',(\d+),'(.*)',(\d+)")
+        p = re.compile(r"(\d+),(-?\d+),(-?\d+),(\d+),(\d+),'(.*)',(\d+),'(.*)',(\d+),'(.*)',(\d+)")
         for line in open(cache_name(self.name, ".sql"), "rb"):
             try:
                 line = line.decode("uso-8859-1")
@@ -210,7 +210,7 @@ class Server(namedtuple('Server', fields)):
 
     def _create_data_from_text_gz(self):
         data = []
-        p = re.compile("(\d+),(-?\d+),(-?\d+),(\d+),(\d+),'(.*)',(\d+),'(.*)',(\d+),'(.*)',(\d+)")
+        p = re.compile(r"(\d+),(-?\d+),(-?\d+),(\d+),(\d+),'(.*)',(\d+),'(.*)',(\d+),'(.*)',(\d+)")
         for line in gzip.open(cache_name(self.name, ".sql.gz")):
             try:
                 line = line.decode("uso-8859-1")
