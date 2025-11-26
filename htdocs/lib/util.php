@@ -32,7 +32,7 @@ function getSubdomain(string $serverName): string {
 	$parts = explode(".", $serverName);
 	if (count($parts) >= 3) {
 		// Return second-to-last domain part (e.g., "america" from "x1.america.travian.com")
-		return ucfirst($parts[count($parts) - 2]);
+		return ucfirst($parts[count($parts) - 3]);
 	}
 	if (count($parts) >= 2) {
 		// Return first domain part if only 2 parts (e.g., "travian" from "ts5.travian.com")
@@ -56,7 +56,7 @@ function quotesplit(string $splitter=",", string $string=""): array {
 				preg_match('/"$/', $part)) {
 			$result[] = trim($part, '"');
 		}
-		
+
 		# starting a string
 		else if(($instring == 0) && preg_match('/^"/', $part)) {
 			$instring = 1;
@@ -78,7 +78,7 @@ function quotesplit(string $splitter=",", string $string=""): array {
 		else if($part == "") {
 			# leave it; anyone who *really* wants to search for blank can use ""
 		}
-		
+
 		# not in a string
 		else {
 			$result[] = $part;
@@ -87,8 +87,6 @@ function quotesplit(string $splitter=",", string $string=""): array {
 
 	return $result;
 }
-
-
 
 
 /*
@@ -140,4 +138,23 @@ function dot($im, float $x, float $y, $col, float $s=5) {
 	$s *= 2;
 	$imagefilledellipse($im, (int)$x, (int)$y, (int)$s, (int)$s, $col);
 	$imageellipse($im, (int)$x, (int)$y, (int)$s, (int)$s, $black);
+}
+
+
+function wwwcmp($a, $b) {
+	$as = explode(".", $a);
+	$bs = explode(".", $b);
+	$ae = count($as)-1;
+	$be = count($bs)-1;
+    for ($i = min($ae, $be); $i >= 0; $i--) {
+        # if segment matches "x\d+", skip it
+        if (preg_match('/^x\d+$/', $as[$i]) && preg_match('/^x\d+$/', $bs[$i])) {
+            continue;
+        }
+        $cmp = strcmp($as[$i], $bs[$i]);
+        if ($cmp !== 0) {
+            return $cmp;
+        }
+    }
+    return 0;
 }

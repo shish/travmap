@@ -8,30 +8,6 @@ $build_time = getenv("BUILD_TIME");
 $build_hash = substr(getenv("BUILD_HASH") ?: "", 0, 7);
 
 // misc {{{
-/* sort first by subdomain, then by server */
-function wwwcmp($a, $b) {
-	$as = explode(".", $a);
-	$bs = explode(".", $b);
-	$ae = count($as)-1;
-	$be = count($bs)-1;
-	if(strncmp($as[$ae], $bs[$be], 2) != 0) {
-		// first sort by subdomain
-		return strncmp($as[$ae], $bs[$be], 2);
-	}
-	else if(preg_match('/[0-9]/', $as[0]) && preg_match('/[0-9]/', $bs[0])) {
-		// then by server number
-		$ai = Array();
-		$bi = Array();
-		preg_match('/([0-9]+)/', $as[0], $ai);
-		preg_match('/([0-9]+)/', $bs[0], $bi);
-		return ($ai[0] == $bi[0]) ? 0 : (($ai[0] > $bi[0]) ? 1 : -1);
-	}
-	else {
-		// then by string(part #0) if server number fails
-		return strcmp($as[0], $bs[0]);
-	}
-}
-
 /*
  * for the long link
  */
@@ -63,12 +39,16 @@ $country_list = Array();
 
 $server_list = Array();
 
-$lastcountry = "";
+$servers = [];
 $res = $db->query("SELECT name,villages FROM servers ORDER BY name");
 foreach($res->fetchAll() as $row) {
-	$name = $row['name'];
+    $servers[$row["name"]] = $row["villages"];
+}
+uksort($servers, "wwwcmp");
+
+foreach($servers as $name => $villages) {
 	$country = getSubdomain($name);
-	$disabled = $row['villages'] < 1000 ? " disabled" : "";
+	$disabled = $villages < 1000 ? " disabled" : "";
 
 	if($country != $lastcountry) {
 		$country_list[] = "<option>$country</option>";

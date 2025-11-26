@@ -48,12 +48,17 @@ $yesterday = date('Y-m-d', mktime(0,0,0,$m,($d-1),$y));
 $rows = array();
 $links = array();
 $last_country = "";
+$dbrows = [];
 $res = $db->query("
 	SELECT name,villages,updated,status,owners,guilds,population
 	FROM servers
 	ORDER BY name
 ");
 foreach($res->fetchAll() as $row) {
+    $dbrows[$row["name"]] = $row;
+}
+uksort($dbrows, "wwwcmp");
+foreach($dbrows as $row) {
 	$name = $row['name'];
 	$country = getSubdomain($name);
 	$villages = $row['villages'];
