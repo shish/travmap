@@ -1,7 +1,0 @@
-#!/bin/bash
-cd `dirname $0`
-DBNAME=`echo $1 | sed 's/[\.\-]/_/g'`
-. config.sh
-echo "DELETE FROM servers WHERE name='$1';" | sqlite3 $SQL_DB
-echo "DROP TABLE $DBNAME;" | sqlite3 $SQL_DB
-rm -f ../cache/servers.txt
