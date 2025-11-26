@@ -365,7 +365,7 @@ def connect() -> None:
     conn = sqlite3.connect(os.environ["SQL_DB"])
 
 
-def main(argv: list[str]) -> None:
+def main(argv: list[str]) -> int:
     try:
         config_to_environ()
         set_global_status("Update starting")
@@ -374,8 +374,10 @@ def main(argv: list[str]) -> None:
         update_servers(argv[1:])
         clear_cache()
         set_global_status("Update complete")
+        return 0
     except KeyboardInterrupt:
         set_global_status("Interrupted")
+        return 1
 
 
 if __name__ == "__main__":
