@@ -1,2 +1,0 @@
-<?php
-$sql_dsn = "sqlite:/data/travmap.sqlite";

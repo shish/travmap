@@ -7,8 +7,6 @@
 import re
 import os
 import sys
-import json
-import gzip
 import argparse
 import requests
 import sqlite3
@@ -25,11 +23,11 @@ conn = None
 def set_global_status(text: str) -> None:
     text += " at %s" % str(datetime.now())[:16]
     print(text)
-    open(os.environ["STATUS"], "w").write(text)
+    open("../htdocs/status.txt", "w").write(text)
 
 
 def cache_name(server: str, ext: str) -> str:
-    return os.path.join(os.environ["CACHE"], server + ext)
+    return "../cache/" + server + ext
 
 
 def is_cached(path: str) -> bool:
@@ -59,7 +57,9 @@ class Server(t.NamedTuple):
     def set_status(self, text: str) -> None:
         print(f"[{self.name}] {text}")
         with closing(conn.cursor()) as cur:
-            cur.execute("UPDATE servers SET status=? WHERE name=?", (text[:250], self.name))
+            cur.execute(
+                "UPDATE servers SET status=? WHERE name=?", (text[:250], self.name)
+            )
             conn.commit()
 
     def fetch(self, url: str, path: str, params=None) -> bool:
@@ -90,9 +90,7 @@ class Server(t.NamedTuple):
             cur.execute(
                 """
                 DROP TABLE DBNAME;
-            """.replace(
-                    "DBNAME", self.dbname
-                )
+            """.replace("DBNAME", self.dbname)
             )
         except Exception:
             conn.rollback()
@@ -105,9 +103,7 @@ class Server(t.NamedTuple):
                 guild_id INTEGER NOT NULL, guild_name VARCHAR(64) NOT NULL,  -- 8
                 population SMALLINT NOT NULL
             );
-        """.replace(
-                "DBNAME", self.dbname
-            )
+        """.replace("DBNAME", self.dbname)
         )
 
         # data
@@ -129,16 +125,22 @@ class Server(t.NamedTuple):
         cur.execute(f"CREATE INDEX {self.dbname}_town_name ON {self.dbname}(town_name)")
         # cur.execute(f"CREATE INDEX {self.dbname}_town_name_lower ON {self.dbname}(lower(town_name))")
         cur.execute(f"CREATE INDEX {self.dbname}_owner_id ON {self.dbname}(owner_id)")
-        cur.execute(f"CREATE INDEX {self.dbname}_owner_name ON {self.dbname}(owner_name)")
+        cur.execute(
+            f"CREATE INDEX {self.dbname}_owner_name ON {self.dbname}(owner_name)"
+        )
         # cur.execute(f"CREATE INDEX {self.dbname}_owner_name_lower ON {self.dbname}(lower(owner_name))")
         cur.execute(f"CREATE INDEX {self.dbname}_guild_id ON {self.dbname}(guild_id)")
-        cur.execute(f"CREATE INDEX {self.dbname}_guild_name ON {self.dbname}(guild_name)")
+        cur.execute(
+            f"CREATE INDEX {self.dbname}_guild_name ON {self.dbname}(guild_name)"
+        )
         # cur.execute(f"CREATE INDEX {self.dbname}_guild_name_lower ON {self.dbname}(lower(guild_name))")
         cur.execute(f"CREATE INDEX {self.dbname}_x ON {self.dbname}(x)")
         cur.execute(f"CREATE INDEX {self.dbname}_y ON {self.dbname}(y)")
         # cur.execute(f"CREATE INDEX {self.dbname}_diag ON {self.dbname}((x-y))")
         # cur.execute(f"CREATE INDEX {self.dbname}_race ON {self.dbname}(race)")
-        cur.execute(f"CREATE INDEX {self.dbname}_population ON {self.dbname}(population)")
+        cur.execute(
+            f"CREATE INDEX {self.dbname}_population ON {self.dbname}(population)"
+        )
         cur.execute(
             f"""
             UPDATE servers
@@ -173,7 +175,9 @@ class Server(t.NamedTuple):
 
     def _create_data_from_text(self) -> list[dict[str, t.Any]]:
         data = []
-        p = re.compile(r"(\d+),(-?\d+),(-?\d+),(\d+),(\d+),'(.*)',(\d+),'(.*)',(\d+),'(.*)',(\d+)")
+        p = re.compile(
+            r"(\d+),(-?\d+),(-?\d+),(\d+),(\d+),'(.*)',(\d+),'(.*)',(\d+),'(.*)',(\d+)"
+        )
         for bline in open(cache_name(self.name, ".sql"), "rb"):
             try:
                 line = bline.decode("uso-8859-1")
@@ -193,24 +197,15 @@ class Server(t.NamedTuple):
         return data
 
 
-def get_config() -> None:
-    try:
-        for line in open("/utils/config.sh"):
-            k, _, v = line.strip().partition("=")
-            os.environ[k] = v
-    except Exception as e:
-        print("Failed to load config.sh: " + str(e))
-
-
 def clear_cache() -> None:
     set_global_status("Cleaning cache")
-    for fn in glob(os.path.join(os.environ["CACHE"], "*.txt")):
+    for fn in glob("../cache/*.txt"):
         os.unlink(fn)
 
 
 def connect() -> None:
     global conn
-    conn = sqlite3.connect(os.environ["SQL_DB"])
+    conn = sqlite3.connect("../data/travmap.sqlite")
 
 
 ###################################################################
@@ -247,11 +242,6 @@ def cmd_remove(args) -> None:
             pass
         conn.commit()
 
-    # Clear cache
-    cache_servers = os.path.join(os.path.dirname(os.environ["CACHE"]), "cache", "servers.txt")
-    if os.path.exists(cache_servers):
-        os.unlink(cache_servers)
-
     print(f"Server {server_name} removed")
 
 
@@ -270,7 +260,9 @@ def cmd_update(args) -> None:
 
     # Delete old servers
     with closing(conn.cursor()) as cur:
-        cur.execute("DELETE FROM servers WHERE (julianday('now') - julianday(updated)) > 14")
+        cur.execute(
+            "DELETE FROM servers WHERE (julianday('now') - julianday(updated)) > 14"
+        )
         conn.commit()
 
     # Drop any tables which don't have a matching server
@@ -300,7 +292,9 @@ def main() -> int:
     subparsers = parser.add_subparsers(dest="command", help="Command to execute")
 
     parser_add = subparsers.add_parser("add", help="Add a new server")
-    parser_add.add_argument("server", help="Server name (e.g., ts1.x3.europe.travian.com)")
+    parser_add.add_argument(
+        "server", help="Server name (e.g., ts1.x3.europe.travian.com)"
+    )
     parser_add.set_defaults(func=cmd_add)
 
     parser_remove = subparsers.add_parser("remove", help="Remove a server")
@@ -308,7 +302,9 @@ def main() -> int:
     parser_remove.set_defaults(func=cmd_remove)
 
     parser_update = subparsers.add_parser("update", help="Update server data")
-    parser_update.add_argument("servers", nargs="*", help="Servers to update (empty for all)")
+    parser_update.add_argument(
+        "servers", nargs="*", help="Servers to update (empty for all)"
+    )
     parser_update.set_defaults(func=cmd_update)
 
     args = parser.parse_args()
@@ -318,7 +314,7 @@ def main() -> int:
         return 1
 
     try:
-        get_config()
+        os.chdir(os.path.dirname(os.path.abspath(__file__)))
         connect()
         args.func(args)
         return 0

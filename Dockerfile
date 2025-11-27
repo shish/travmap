@@ -9,15 +9,13 @@ ENV PYTHONUNBUFFERED=1
 # pcre fails to compile regexes if the packages aren't manually installed?
 RUN apt update && apt install -y php-cli php-gd php-sqlite3 python3-requests libpcre2-16-0 libpcre2-8-0 libpcre2-32-0 sqlite3 rsync
 
-COPY htdocs /app
+COPY htdocs /htdocs
 COPY utils /utils
-RUN echo '<?php $sql_dsn = "sqlite:/data/travmap.sqlite";' >/app/config.php
-RUN echo "SQL_DB=/data/travmap.sqlite\nCACHE=/cache\nSTATUS=/app/status.txt" >/utils/config.sh
 
 ARG BUILD_HASH=unknown
 ENV BUILD_HASH=${BUILD_HASH}
 ARG BUILD_TIME=unknown
 ENV BUILD_TIME=${BUILD_TIME}
 
-WORKDIR /app
+WORKDIR /htdocs
 CMD ["/bin/sh", "-c", "exec /usr/bin/php -S 0.0.0.0:8000 2>&1 | grep --line-buffered -vE ' (Accepted|Closing)'"]

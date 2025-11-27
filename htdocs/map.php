@@ -32,7 +32,6 @@ $colby    = getString("colby", $groupby);
 $lines = getBool("lines");
 $casen = getBool("casen");
 $azoom = getBool("azoom");
-$nocache = getBool("nocache");
 
 $dotsize = getFloat("dotsize", 1);
 

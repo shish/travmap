@@ -1,3 +1,0 @@
-SQL_DB=../data/travmap.sqlite
-CACHE=../cache
-STATUS=../htdocs/status.txt
