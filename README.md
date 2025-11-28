@@ -1,35 +1,19 @@
-Notes on travmap hosting:
-=========================
+# Notes on travmap hosting
 
-General use:
-------------
-
-Adding a new server:
+## General use
 
 ```
-./manage.py add s1.foo.com <timestamp>
-# e.g., ./manage.py add s1.x3.europe.travian.com 1234567890
-```
-
-Removing a server:
-
-```
-./manage.py remove s1.foo.com
-```
-
-Updating data:
-
-```
+cd htdocs && php -S 127.0.0.1:8000
+./manage.py add ts1.x3.europe.travian.com
+./manage.py remove ts1.x3.europe.travian.com
 ./manage.py update
-# or for specific servers:
-./manage.py update s1.foo.com s2.bar.com
 ```
 
-Can be run daily from cron
+`update` can be run daily from cron
 
 
-Docker use:
------------
+## Docker use
+
 Build image:
 
 ```

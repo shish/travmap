@@ -11,136 +11,141 @@ import argparse
 import requests
 import sqlite3
 from contextlib import closing
-from glob import glob
-from time import time
 from datetime import datetime
 import typing as t
 
 
-conn = None
-
-
 def set_global_status(text: str) -> None:
     text += " at %s" % str(datetime.now())[:16]
-    print(text)
+    print(f"[Global] {text}")
     open("../htdocs/status.txt", "w").write(text)
 
 
-def cache_name(server: str, ext: str) -> str:
-    return "../cache/" + server + ext
-
-
-def is_cached(path: str) -> bool:
-    if os.path.exists(path):
-        if os.stat(path).st_mtime > time() - 12 * 60 * 60:
-            return True
-    return False
-
-
-def safe(x: str) -> str:
-    return str(x).replace("\\", "\\\\").replace("\t", " ")
-
-
-class Server(t.NamedTuple):
-    name: str
+@t.final
+class Server:
+    def __init__(self, conn: sqlite3.Connection, name: str) -> None:
+        self.conn = conn
+        self.name = name
 
     @property
     def dbname(self) -> str:
         return self.name.replace("-", "_").replace(".", "_")
 
-    def update(self) -> None:
-        set_global_status("Updating %s" % self.name)
-        if self.update_text():
-            self.load_data(self._create_data_from_text())
-            self.set_status("ok")
-
     def set_status(self, text: str) -> None:
         print(f"[{self.name}] {text}")
-        with closing(conn.cursor()) as cur:
-            cur.execute(
-                "UPDATE servers SET status=? WHERE name=?", (text[:250], self.name)
-            )
-            conn.commit()
+        with closing(self.conn.cursor()) as cur:
+            cur.execute("UPDATE servers SET status=? WHERE name=?", (text[:250], self.name))
+            self.conn.commit()
 
-    def fetch(self, url: str, path: str, params=None) -> bool:
-        if is_cached(path):
-            self.set_status("map data cached")
-            return True
+    def update(self) -> None:
+        set_global_status("Updating %s" % self.name)
+        self.set_status("downloading sql...")
+        text = requests.get(f"http://{self.name}/map.sql").text
+        self.set_status("map.sql downloaded")
+        data = self._create_data_from_text(text)
+        self.set_status("map.sql parsed")
+        self.load_data(data)
+        self.set_status("ok")
 
-        try:
-            res = requests.get(url, stream=True, params=params)
-            if res.status_code != 200:
-                raise Exception("Error %d while fetching %s" % (res.status_code, url))
-            with open(path + ".tmp", "wb") as fp:
-                fp.write(res.content)
-            os.rename(path + ".tmp", path)
-            return True
-        except Exception as e:
-            self.set_status("Fetch: " + str(e))
-            return False
+    def _create_data_from_text(self, text: str) -> list[dict[str, t.Any]]:
+        """
+        >>> from pprint import pprint
+        >>> x = '''
+        ... INSERT INTO `x_world` VALUES (50,-151,200,1,53195,'N ♣♥♠♦ RoMa PazZini',950,'DigBoy',45,'PDWNS',498,NULL,FALSE,NULL,NULL,NULL);
+        ... INSERT INTO `x_world` VALUES (143,-58,200,2,44039,'3 - Not Urspot',239,'Uranus',45,'PDWNS',921,NULL,FALSE,NULL,NULL,NULL);
+        ... INSERT INTO `x_world` VALUES (227,26,200,2,44501,'قرية جديدة',1967,'Mhmd',28,'Rebel',672,NULL,FALSE,NULL,NULL,NULL);
+        ... '''
+        >>> pprint(Server(None, "test")._create_data_from_text(x))
+        [{'guild_id': '45',
+          'guild_name': 'PDWNS',
+          'lochash': '50',
+          'owner_id': '950',
+          'owner_name': 'DigBoy',
+          'population': '498',
+          'race': '1',
+          'town_id': '53195',
+          'town_name': 'N ♣♥♠♦ RoMa PazZini',
+          'x': '-151',
+          'y': '200'},
+         {'guild_id': '45',
+          'guild_name': 'PDWNS',
+          'lochash': '143',
+          'owner_id': '239',
+          'owner_name': 'Uranus',
+          'population': '921',
+          'race': '2',
+          'town_id': '44039',
+          'town_name': '3 - Not Urspot',
+          'x': '-58',
+          'y': '200'},
+         {'guild_id': '28',
+          'guild_name': 'Rebel',
+          'lochash': '227',
+          'owner_id': '1967',
+          'owner_name': 'Mhmd',
+          'population': '672',
+          'race': '2',
+          'town_id': '44501',
+          'town_name': 'قرية جديدة',
+          'x': '26',
+          'y': '200'}]
+        """
+        data: list[dict[str, t.Any]] = []
 
-    ###################################################################
-    # both school
-    def load_data(self, data):
-        self.set_status("loading data...")
-        cur = conn.cursor()
+        p = re.compile(
+            r"INSERT INTO `x_world` VALUES \("
+            r"(?P<lochash>\d+),"
+            r"(?P<x>-?\d+),"
+            r"(?P<y>-?\d+),"
+            r"(?P<race>\d+),"
+            r"(?P<town_id>\d+),'(?P<town_name>.*)',"
+            r"(?P<owner_id>\d+),'(?P<owner_name>.*)',"
+            r"(?P<guild_id>\d+),'(?P<guild_name>.*)',"
+            r"(?P<population>\d+)"
+            r".*"
+            r"\);"
+        )
+        for line in text.splitlines():
+            if m := p.match(line):
+                data.append(m.groupdict())
+        return data
 
-        # tables
-        try:
-            cur.execute(
-                """
-                DROP TABLE DBNAME;
-            """.replace("DBNAME", self.dbname)
-            )
-        except Exception:
-            conn.rollback()
+    def load_data(self, data: list[dict[str, t.Any]]) -> None:
+        cur = self.conn.cursor()
+
+        cur.execute(f"DROP TABLE IF EXISTS {self.dbname}")
         cur.execute(
-            """
-            CREATE TABLE DBNAME(
+            f"""
+            CREATE TABLE {self.dbname}(
                 lochash INTEGER NOT NULL, x SMALLINT NOT NULL, y SMALLINT NOT NULL, race SMALLINT NOT NULL,
                 town_id  INTEGER NOT NULL, town_name  VARCHAR(128) NOT NULL, -- 20
                 owner_id INTEGER NOT NULL, owner_name VARCHAR(128) NOT NULL, -- 16
                 guild_id INTEGER NOT NULL, guild_name VARCHAR(64) NOT NULL,  -- 8
                 population SMALLINT NOT NULL
-            );
-        """.replace("DBNAME", self.dbname)
+            )
+        """
         )
 
-        # data
-        try:
-            # fp = StringIO(data)
-            # cur.copy_from(fp, self.dbname, columns="lochash, x, y, race, town_id, town_name, owner_id, owner_name, guild_id, guild_name, population".split(", "))
-            cur.executemany(
-                f"INSERT INTO {self.dbname} VALUES (:lochash, :x, :y, :race, :town_id, :town_name, :owner_id, :owner_name, :guild_id, :guild_name, :population)",
-                data,
-            )
-        except Exception as e:
-            self.set_status("Load: " + str(e))
-            conn.rollback()
-            # open(cache_name(self.name, ".err"), "w").write(data.encode('utf8'))
-            return
+        cur.executemany(
+            f"INSERT INTO {self.dbname} VALUES (:lochash, :x, :y, :race, :town_id, :town_name, :owner_id, :owner_name, :guild_id, :guild_name, :population)",
+            data,
+        )
 
         # metadata
         cur.execute(f"CREATE INDEX {self.dbname}_town_id ON {self.dbname}(town_id)")
         cur.execute(f"CREATE INDEX {self.dbname}_town_name ON {self.dbname}(town_name)")
         # cur.execute(f"CREATE INDEX {self.dbname}_town_name_lower ON {self.dbname}(lower(town_name))")
         cur.execute(f"CREATE INDEX {self.dbname}_owner_id ON {self.dbname}(owner_id)")
-        cur.execute(
-            f"CREATE INDEX {self.dbname}_owner_name ON {self.dbname}(owner_name)"
-        )
+        cur.execute(f"CREATE INDEX {self.dbname}_owner_name ON {self.dbname}(owner_name)")
         # cur.execute(f"CREATE INDEX {self.dbname}_owner_name_lower ON {self.dbname}(lower(owner_name))")
         cur.execute(f"CREATE INDEX {self.dbname}_guild_id ON {self.dbname}(guild_id)")
-        cur.execute(
-            f"CREATE INDEX {self.dbname}_guild_name ON {self.dbname}(guild_name)"
-        )
+        cur.execute(f"CREATE INDEX {self.dbname}_guild_name ON {self.dbname}(guild_name)")
         # cur.execute(f"CREATE INDEX {self.dbname}_guild_name_lower ON {self.dbname}(lower(guild_name))")
         cur.execute(f"CREATE INDEX {self.dbname}_x ON {self.dbname}(x)")
         cur.execute(f"CREATE INDEX {self.dbname}_y ON {self.dbname}(y)")
         # cur.execute(f"CREATE INDEX {self.dbname}_diag ON {self.dbname}((x-y))")
         # cur.execute(f"CREATE INDEX {self.dbname}_race ON {self.dbname}(race)")
-        cur.execute(
-            f"CREATE INDEX {self.dbname}_population ON {self.dbname}(population)"
-        )
+        cur.execute(f"CREATE INDEX {self.dbname}_population ON {self.dbname}(population)")
         cur.execute(
             f"""
             UPDATE servers
@@ -157,133 +162,65 @@ class Server(t.NamedTuple):
             (str(datetime.now()), self.name),
         )
 
-        conn.commit()
-
-    def update_text(self) -> bool:
-        self.set_status("downloading sql...")
-        path = cache_name(self.name, ".sql")
-
-        if self.fetch("http://%s/map.sql" % self.name, path):
-            if os.stat(path).st_size < 64 * 1024:
-                self.set_status("map.sql is short")
-            else:
-                self.set_status("map.sql downloaded")
-            return True
-
-        self.set_status("map.sql missing")
-        return False
-
-    def _create_data_from_text(self) -> list[dict[str, t.Any]]:
-        data = []
-        p = re.compile(
-            r"(\d+),(-?\d+),(-?\d+),(\d+),(\d+),'(.*)',(\d+),'(.*)',(\d+),'(.*)',(\d+)"
-        )
-        for bline in open(cache_name(self.name, ".sql"), "rb"):
-            try:
-                line = bline.decode("uso-8859-1")
-            except Exception:
-                line = bline.decode("utf8")
-                line = line.replace("INSERT INTO `x_world` VALUES (", "")
-                line = line.replace(");", "")
-            for subline in line.split("),("):
-                m = p.match(subline)
-                if m:
-                    # data.append("\t".join([safe(x) for x in m.groups()]))
-                    keys = "lochash, x, y, race, town_id, town_name, owner_id, owner_name, guild_id, guild_name, population".split(
-                        ", "
-                    )
-                    vals = m.groups()
-                    data.append(dict(zip(keys, vals)))
-        return data
-
-
-def clear_cache() -> None:
-    set_global_status("Cleaning cache")
-    for fn in glob("../cache/*.txt"):
-        os.unlink(fn)
-
-
-def connect() -> None:
-    global conn
-    conn = sqlite3.connect("../data/travmap.sqlite")
+        self.conn.commit()
 
 
 ###################################################################
 # Command handlers
 
 
-def cmd_add(args) -> None:
-    """Add a new server to the database"""
-    print(f"Adding {args.server} to database")
+def cmd_add(conn: sqlite3.Connection, server_name: str) -> None:
+    print(f"Adding {server_name} to database")
 
     with closing(conn.cursor()) as cur:
-        cur.execute(
-            "INSERT INTO servers(name) VALUES(?)",
-            (args.server,),
-        )
+        cur.execute("INSERT INTO servers(name) VALUES(?)", (server_name,))
         conn.commit()
 
-    print("Loading data")
-    cmd_update(args)
+    cmd_update(conn, [server_name])
 
 
-def cmd_remove(args) -> None:
-    """Remove a server from the database"""
-    server_name = args.server
-    dbname = server_name.replace("-", "_").replace(".", "_")
-
+def cmd_remove(conn: sqlite3.Connection, server_name: str) -> None:
     print(f"Removing {server_name} from database")
 
+    server = Server(conn, server_name)
     with closing(conn.cursor()) as cur:
-        cur.execute("DELETE FROM servers WHERE name=?", (server_name,))
-        try:
-            cur.execute(f"DROP TABLE {dbname}")
-        except Exception:
-            pass
+        cur.execute("DELETE FROM servers WHERE name=?", (server.name,))
+        cur.execute(f"DROP TABLE IF EXISTS {server.dbname}")
         conn.commit()
 
-    print(f"Server {server_name} removed")
+    print(f"Server {server.name} removed")
 
 
-def cmd_update(args) -> None:
+def cmd_update(conn: sqlite3.Connection, servers: list[str]) -> None:
     set_global_status("Update starting")
 
     with closing(conn.cursor()) as cur:
-        cur.execute("SELECT name FROM servers")
-        for row in cur.fetchall():
-            s = Server(*row)
-            if not args.servers or s.name in args.servers:
+        for (name,) in cur.execute("SELECT name FROM servers").fetchall():
+            s = Server(conn, name)
+            if not servers or s.name in servers:
                 try:
                     s.update()
                 except Exception as e:
-                    s.set_status("Error: " + str(e))
+                    print(e)
+                    s.set_status("error")
 
     # Delete old servers
     with closing(conn.cursor()) as cur:
-        cur.execute(
-            "DELETE FROM servers WHERE (julianday('now') - julianday(updated)) > 14"
-        )
+        cur.execute("DELETE FROM servers WHERE (julianday('now') - julianday(updated)) > 14")
         conn.commit()
 
     # Drop any tables which don't have a matching server
     with closing(conn.cursor()) as cur:
         protected_tables = {"servers"}
 
-        cur.execute("SELECT name FROM servers")
-        valid_servers = {row[0] for row in cur.fetchall()}
+        valid_servers = {row[0] for row in cur.execute("SELECT name FROM servers").fetchall()}
 
-        cur.execute("SELECT name FROM sqlite_master WHERE type='table'")
-        for row in cur.fetchall():
-            tablename = row[0]
+        for (tablename,) in cur.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall():
             if tablename not in protected_tables and tablename not in valid_servers:
-                try:
-                    cur.execute(f"DROP TABLE {tablename}")
-                except Exception:
-                    pass
+                cur.execute(f"DROP TABLE {tablename}")
 
         conn.commit()
 
-    clear_cache()
     set_global_status("Update complete")
 
 
@@ -292,9 +229,7 @@ def main() -> int:
     subparsers = parser.add_subparsers(dest="command", help="Command to execute")
 
     parser_add = subparsers.add_parser("add", help="Add a new server")
-    parser_add.add_argument(
-        "server", help="Server name (e.g., ts1.x3.europe.travian.com)"
-    )
+    parser_add.add_argument("server", help="Server name (e.g., ts1.x3.europe.travian.com)")
     parser_add.set_defaults(func=cmd_add)
 
     parser_remove = subparsers.add_parser("remove", help="Remove a server")
@@ -302,9 +237,7 @@ def main() -> int:
     parser_remove.set_defaults(func=cmd_remove)
 
     parser_update = subparsers.add_parser("update", help="Update server data")
-    parser_update.add_argument(
-        "servers", nargs="*", help="Servers to update (empty for all)"
-    )
+    parser_update.add_argument("servers", nargs="*", help="Servers to update (empty for all)")
     parser_update.set_defaults(func=cmd_update)
 
     args = parser.parse_args()
@@ -315,8 +248,13 @@ def main() -> int:
 
     try:
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
-        connect()
-        args.func(args)
+        db = sqlite3.connect("../data/travmap.sqlite")
+        if args.func == cmd_add:
+            cmd_add(db, args.server)
+        if args.func == cmd_remove:
+            cmd_remove(db, args.server)
+        if args.func == cmd_update:
+            cmd_update(db, args.servers)
         return 0
     except KeyboardInterrupt:
         set_global_status("Interrupted")
