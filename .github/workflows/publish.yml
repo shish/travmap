@@ -18,7 +18,7 @@ jobs:
       - name: Publish
         uses: elgohr/Publish-Docker-Github-Action@main
         with:
-          name: ${{ vars.DOCKER_USERNAME }}/${GITHUB_REPOSITORY##*/}
+          name: ${{ vars.DOCKER_USERNAME }}/${{ github.event.repository.name }}
           username: ${{ vars.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           buildargs: BUILD_TIME,BUILD_HASH
@@ -34,4 +34,4 @@ jobs:
         with:
           url: https://watchtower.shish.io/v1/update
           api_token: ${{ secrets.WATCHTOWER_TOKEN }}
-          images: ${{ vars.DOCKER_USERNAME }}/${GITHUB_REPOSITORY##*/}
+          images: ${{ vars.DOCKER_USERNAME }}/${{ github.event.repository.name }}
