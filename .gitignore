@@ -5,5 +5,4 @@ vendor
 htdocs/status.txt
 .venv
 __pycache__
-uv.lock
 data
