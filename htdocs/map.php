@@ -70,7 +70,7 @@ function town2xy($name) {
 	global $table, $casen, $zx, $db;
 
 	$xy = Array();
-	
+
 	if(preg_match("/^id:\d+$/", $name)) {
 		$id = (int)substr($name, 3);
 		$za2 = $db->query("SELECT x,y FROM $table WHERE town_id=$id LIMIT 1")->fetch();
@@ -94,14 +94,14 @@ $zx = 0; $zy = 0; $zz = 500.0 / $size;
 
 if($zoom) {
 	$za = array_map("trim", explode(",", $zoom));
-	
+
 	switch(count($za)) {
-		case 3: 
+		case 3:
 			// x, y, z
 			if(is_numeric($za[0])) {
-				$zx = (int)$za[0]; 
+				$zx = (int)$za[0];
 				$zy = (int)$za[1];
-				$zz = (float)$za[2]; 
+				$zz = (float)$za[2];
 			}
 			break;
 		case 2:
@@ -109,7 +109,7 @@ if($zoom) {
 			if(is_numeric($za[0])) {
 				$zx = (int)$za[0];
 				$zy = (int)$za[1];
-				$zz = 1; 
+				$zz = 1;
 			}
 			// name, z
 			else {
@@ -123,7 +123,7 @@ if($zoom) {
 			// z
 			if(is_numeric($za[0])) {
 				$zx = 0;
-				$zy = 0; 
+				$zy = 0;
 				$zz = (float)$za[0];
 			}
 			// name
@@ -162,13 +162,13 @@ else {
 }
 
 $query = "
-	SELECT x, y, x-y AS diag, population, race, 
+	SELECT x, y, x-y AS diag, population, race,
 		owner_name, owner_id,
 		guild_name, guild_id,
 		town_name, town_id,
 		$guild_group
 	FROM $table
-	WHERE 1=1 
+	WHERE 1=1
 ";
 // }}}
 
@@ -187,7 +187,7 @@ function list2query(?string $str, string $pre): ?string {
 	$ids = Array();
 
 	$list = quotesplit(",", $str);
-		
+
 	foreach($list as $al) {
 		if(preg_match("/^id:\d+$/", $al)) $ids[] = substr($al, 3);
 		else {
@@ -196,14 +196,14 @@ function list2query(?string $str, string $pre): ?string {
 			else $names[] = "'$al'";
 		}
 	}
-	
+
 	$q = "";
 
-	if(count($names) > 0) 
+	if(count($names) > 0)
 		$q .= "{$pre}_name IN(".join(", ", $names).")";
 	if(count($names) > 0 && count($ids) > 0)
 		$q .= " OR ";
-	if(count($ids) > 0) 
+	if(count($ids) > 0)
 		$q .= "{$pre}_id IN(".join(", ", $ids).")";
 
 	return strlen($q) > 0 ? $q : null;
@@ -347,28 +347,32 @@ foreach($result->fetchAll() as $row) {
  * Initialise image
  */
 putenv('GDFONTPATH=' . realpath('.'));
-$im = $imagecreatetruecolor(768, 512);
+if($_GET["format"] == "svg" || $_GET["format"] == "SVG") {
+	$im = new AimaSVGImage(768, 512);
+} else {
+	$im = new AimaGDImage(768, 512);
+}
 # FIXME: $imagecustom(javascript)
 # imageantialias($im, true);
-$white = $imagecolorallocate($im, 255, 255, 255);
-$wgrey = $imagecolorallocate($im, 240, 240, 240);
-$lgrey = $imagecolorallocate($im, 220, 220, 220);
-$mgrey = $imagecolorallocate($im, 180, 180, 180);
-$grey  = $imagecolorallocate($im, 127, 127, 127);
-$dgrey = $imagecolorallocate($im, 63,  63,  63);
-$black = $imagecolorallocate($im, 0,   0,   0);
-$imagefill($im, 0, 0, $white);
+$white = $im->colorAllocate(255, 255, 255);
+$wgrey = $im->colorAllocate(240, 240, 240);
+$lgrey = $im->colorAllocate(220, 220, 220);
+$mgrey = $im->colorAllocate(180, 180, 180);
+$grey  = $im->colorAllocate(127, 127, 127);
+$dgrey = $im->colorAllocate(63,  63,  63);
+$black = $im->colorAllocate(0,   0,   0);
+$im->fill(0, 0, $white);
 
 /*
  * Hardcode our own colour table, spiralling through HSV space
  */
 $ct = Array();
-$s = 1.0; $v = 1.0;  for($h=0.00; $h<0.99; $h+=0.166) {$ct[] = $imagecolorallocate_hsv($im, $h, $s, $v);}
-$s = 1.0; $v = 0.75; for($h=0.00; $h<0.99; $h+=0.166) {$ct[] = $imagecolorallocate_hsv($im, $h, $s, $v);}
-$s = 0.5; $v = 1.0;  for($h=0.00; $h<0.99; $h+=0.166) {$ct[] = $imagecolorallocate_hsv($im, $h, $s, $v);}
-$s = 1.0; $v = 1.0;  for($h=0.08; $h<0.99; $h+=0.166) {$ct[] = $imagecolorallocate_hsv($im, $h, $s, $v);}
-$s = 1.0; $v = 0.75; for($h=0.08; $h<0.99; $h+=0.166) {$ct[] = $imagecolorallocate_hsv($im, $h, $s, $v);}
-$s = 0.5; $v = 1.0;  for($h=0.08; $h<0.99; $h+=0.166) {$ct[] = $imagecolorallocate_hsv($im, $h, $s, $v);}
+$s = 1.0; $v = 1.0;  for($h=0.00; $h<0.99; $h+=0.166) {$ct[] = $im->colorAllocateHSV($h, $s, $v);}
+$s = 1.0; $v = 0.75; for($h=0.00; $h<0.99; $h+=0.166) {$ct[] = $im->colorAllocateHSV($h, $s, $v);}
+$s = 0.5; $v = 1.0;  for($h=0.00; $h<0.99; $h+=0.166) {$ct[] = $im->colorAllocateHSV($h, $s, $v);}
+$s = 1.0; $v = 1.0;  for($h=0.08; $h<0.99; $h+=0.166) {$ct[] = $im->colorAllocateHSV($h, $s, $v);}
+$s = 1.0; $v = 0.75; for($h=0.08; $h<0.99; $h+=0.166) {$ct[] = $im->colorAllocateHSV($h, $s, $v);}
+$s = 0.5; $v = 1.0;  for($h=0.08; $h<0.99; $h+=0.166) {$ct[] = $im->colorAllocateHSV($h, $s, $v);}
 
 /*
  * Render globals
@@ -397,7 +401,7 @@ if($azoom) {
 	}
 	$zx = ($minx+$maxx)/2;
 	$zy = ($miny+$maxy)/2;
-	
+
 	$bigdiff = (($maxx-$minx) > ($maxy-$miny)) ? ($maxx-$minx) : ($maxy-$miny);
 	if($bigdiff == 0) $bigdiff = 5;
 	$zz = (450/$bigdiff);
@@ -478,18 +482,18 @@ function get_gridline_color($pos) {
 	elseif($pos % 100 == 0) $col = $mgrey;
 	elseif($pos % 10 == 0) $col = $lgrey;
 	elseif($pos % 1 == 0) $col = $wgrey;
-	
+
 	return $col;
 }
 
 function draw_grid_lines($image, $mapradius, $drawradius) {
-	global $zz, $zx, $zy, $cx, $cy, $imageline;
+	global $zz, $zx, $zy, $cx, $cy;
 
 	$inc = ($zz >= 10) ? 1 : 10;
 
 	for($v=-$mapradius; $v<=$mapradius; $v+=$inc) {
 		$col = get_gridline_color($v);
-	
+
 		$x = ($v-$zx)*$zz;
 		$y = ($v+$zy)*$zz;
 
@@ -497,14 +501,14 @@ function draw_grid_lines($image, $mapradius, $drawradius) {
 		$y2 = bound(  ($mapradius+$zy)*$zz, -$drawradius, $drawradius-1);
 		$x1 = bound(-(-$mapradius+$zx)*$zz, -$drawradius, $drawradius-1);
 		$x2 = bound( -($mapradius+$zx)*$zz, -$drawradius, $drawradius-1);
-		if(in($x, -$drawradius, $drawradius)) $imageline($image, (int)($cx+$x), (int)($cy+$y1), (int)($cx+$x), (int)($cy+$y2), $col);
-		if(in($y, -$drawradius, $drawradius)) $imageline($image, (int)($cx+$x1), (int)($cy+$y), (int)($cx+$x2), (int)($cy+$y), $col);
+		if(in($x, -$drawradius, $drawradius)) $image->line((int)($cx+$x), (int)($cy+$y1), (int)($cx+$x), (int)($cy+$y2), $col);
+		if(in($y, -$drawradius, $drawradius)) $image->line((int)($cx+$x1), (int)($cy+$y), (int)($cx+$x2), (int)($cy+$y), $col);
 	}
 }
 
 function draw_grid_labels($image, $mapradius, $drawradius) {
-	global $zz, $zx, $zy, $cx, $cy, $imagestring, $mgrey;
-	
+	global $zz, $zx, $zy, $cx, $cy, $mgrey;
+
 	if($zz >= 10) $inc = 10;
 	else if($zz <= 0.75) $inc = 100;
 	else $inc = 50;
@@ -513,8 +517,8 @@ function draw_grid_labels($image, $mapradius, $drawradius) {
 	$y = bound( $zy*$zz, -$drawradius, $drawradius-10);
 
 	for($v=-$mapradius; $v<=$mapradius; $v+=$inc) {
-		$imagestring($image, 3, (int)($cx+$x+2), (int)($cy-($v-$zy)*$zz+1), $v, $mgrey);
-		$imagestring($image, 3, (int)($cx+($v-$zx)*$zz+2), (int)($cy+$y+1), $v, $mgrey);
+		$image->string(3, (int)($cx+$x+2), (int)($cy-($v-$zy)*$zz+1), $v, $mgrey);
+		$image->string(3, (int)($cx+($v-$zx)*$zz+2), (int)($cy+$y+1), $v, $mgrey);
 	}
 }
 
@@ -532,29 +536,29 @@ $stamp2 = substr($server_info['updated'], 0, 16);
 /*
  * Draw the rectangles
  */
-$imagerectangle($im, $cx-256, $cy-256, $cx+255, $cy+255, $black);
+$im->rectangle($cx-256, $cy-256, $cx+255, $cy+255, $black);
 $caption_bounds = imagettfbbox(15, 0, "arialuni", $caption);
 if($layout == "spread") {
-	$imagefilledrectangle($im, 0, 0, 124, 511, $white);
-	$imagefilledrectangle($im, 643, 0, 767, 511, $white);
-	$imagerectangle($im, 0, 0, 124, 511, $black);
-	$imagerectangle($im, 643, 0, 767, 511, $black);
-//	$imagestring($im, 3, 704-strlen($caption)*3.45, 10, $caption, $black);
-//	$imagestring($im, 3, 64-strlen($caption)*3.45, 10, $caption, $black);
-	$imagettftext($im, 15, 0, (int)(706-$caption_bounds[2]/2), 25, $black, "arialuni", $caption);
-	$imagettftext($im, 15, 0, (int)(64-$caption_bounds[2]/2), 25, $black, "arialuni", $caption);
+	$im->filledRectangle(0, 0, 124, 511, $white);
+	$im->filledRectangle(643, 0, 767, 511, $white);
+	$im->rectangle(0, 0, 124, 511, $black);
+	$im->rectangle(643, 0, 767, 511, $black);
+//	$im->string(3, 704-strlen($caption)*3.45, 10, $caption, $black);
+//	$im->string(3, 64-strlen($caption)*3.45, 10, $caption, $black);
+	$im->ttfText(15, 0, (int)(706-$caption_bounds[2]/2), 25, $black, "arialuni", $caption);
+	$im->ttfText(15, 0, (int)(64-$caption_bounds[2]/2), 25, $black, "arialuni", $caption);
 
 	$stamp2_bounds = imagettfbbox(10, 0, "arialuni", $stamp2);
-	$imagettftext($im, 10, 0, (int)(706-$stamp2_bounds[2]/2), 508, $grey, "arialuni", $stamp2);
+	$im->ttfText(10, 0, (int)(706-$stamp2_bounds[2]/2), 508, $grey, "arialuni", $stamp2);
 }
 else {
-	$imagefilledrectangle($im, 515, 0, 767, 511, $white);
-	$imagerectangle($im, 515, 0, 767, 511, $black);
-//	$imagestring($im, 3, 640-strlen($caption)*3.45, 10, $caption, $black);
-	$imagettftext($im, 15, 0, (int)(640-$caption_bounds[2]/2), 25, $black, "arialuni", $caption);
+	$im->filledRectangle(515, 0, 767, 511, $white);
+	$im->rectangle(515, 0, 767, 511, $black);
+//	$im->string(3, 640-strlen($caption)*3.45, 10, $caption, $black);
+	$im->ttfText(15, 0, (int)(640-$caption_bounds[2]/2), 25, $black, "arialuni", $caption);
 
 	$stamp_bounds = imagettfbbox(10, 0, "arialuni", "$stamp1 $stamp2");
-	$imagettftext($im, 10, 0, (int)(640-$stamp_bounds[2]/2), 508, $grey, "arialuni", "$stamp1 $stamp2");
+	$im->ttfText(10, 0, (int)(640-$stamp_bounds[2]/2), 508, $grey, "arialuni", "$stamp1 $stamp2");
 }
 // }}}
 
@@ -566,29 +570,27 @@ $cals = Array();
 $ca = 0;
 
 function draw_entity_label($image, $entity, $colour) {
-	global $server, $white, $imagettftext, $imagecustom;
-	
-	$imagecustom($image, "<a xlink:href='http://$server/".$entity['link']."'>");
-	if(is_a($image, "AimaImage")) {
-		aimafilledrectangle($image,
-				$entity['x']+7, $entity['y']-7,
-				$entity['x']+90, $entity['y']+7, $white);
-	}
+	global $server, $white;
+
+	$image->custom("<a xlink:href='http://$server/".$entity['link']."'>");
+	$image->filledRectangle(
+			$entity['x']+7, $entity['y']-7,
+			$entity['x']+90, $entity['y']+7, $white);
 	dot($image, $entity['dx'], $entity['dy'], $colour);
 	$entity_name = $entity["name"];
 	$count = $entity['count'];
 	$title = ($count ? "$entity_name (".($count+1).")" : $entity_name);
-	$imagettftext($image, 10, 0, $entity['x'], $entity['y']+5, $colour, "arialuni", $title);
-	$imagecustom($image, "</a>");
+	$image->ttfText(10, 0, $entity['x'], $entity['y']+5, $colour, "arialuni", $title);
+	$image->custom("</a>");
 }
 
 function draw_village_marker($image, $entity, $village, $colour) {
-	global $server, $cx, $cy, $zx, $zy, $zz, $lines, $imageline, $imagecustom, $dotsize;
-	
+	global $server, $cx, $cy, $zx, $zy, $zz, $lines, $dotsize;
+
 	$vx =  ($village['x']-$zx)*$zz;
 	$vy = -($village['y']-$zy)*$zz;
-	if($lines) $imageline($image, $entity['dx'], $entity['dy'], (int)($cx+$vx), (int)($cy+$vy), $colour);
-	
+	if($lines) $image->line($entity['dx'], $entity['dy'], (int)($cx+$vx), (int)($cy+$vy), $colour);
+
 	$name = $village['name'];
 	$owner = $village['owner'];
 	$guild = $village['guild'];
@@ -604,9 +606,9 @@ function draw_village_marker($image, $entity, $village, $colour) {
 		$dfz = " ($dist away)";
 	}
 	$tip = svgentities("$name ($x, $y)$dfz, $pop, ($owner, $guild)");
-	$imagecustom($image, "<a xlink:href='http://$server/karte.php?z=$cohash' xlink:title='$tip'>");
+	$image->custom("<a xlink:href='http://$server/karte.php?z=$cohash' xlink:title='$tip'>");
 	dot($image, $cx+$vx, $cy+$vy, $colour, (log($pop+1)+1)*$dotsize);
-	$imagecustom($image, "</a>");
+	$image->custom("</a>");
 }
 
 function get_entity_colour($entity) {
@@ -639,37 +641,37 @@ foreach($entities as $entity_id => $entity) {
 // navigator widget for SVG {{{
 if($_GET["format"] == "svg") {
 	$base_query = preg_replace("/&amp;zoom=[^&$]+/", "", str_replace("&", "&amp;", $_SERVER["QUERY_STRING"]));
-	
-	$tzz = $zz == 0 ? 1 : $zz; // stop divide by zeroes
-	
-	$imagecustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=".($zx-100/$tzz).",$zy,$zz' xlink:title='west'>");
-	dot($im, $cx+230-9, $cy+230+0, $white);
-	$imagecustom($im, "</a>");
-	
-	$imagecustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,".($zy+100/$tzz).",$zz' xlink:title='north'>");
-	dot($im, $cx+230+0, $cy+230-9, $white);
-	$imagecustom($im, "</a>");
-	
-	$imagecustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,".($zy-100/$tzz).",$zz' xlink:title='south'>");
-	dot($im, $cx+230+0, $cy+230+9, $white);
-	$imagecustom($im, "</a>");
-	
-	$imagecustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=".($zx+100/$tzz).",$zy,$zz' xlink:title='east'>");
-	dot($im, $cx+230+9, $cy+230-0, $white);
-	$imagecustom($im, "</a>");
 
-	
-	$imagecustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,$zy,".($zz-2)."' xlink:title='zoom out'>");
+	$tzz = $zz == 0 ? 1 : $zz; // stop divide by zeroes
+
+	$im->custom("<a xlink:href='map.php?$base_query&amp;zoom=".($zx-100/$tzz).",$zy,$zz' xlink:title='west'>");
+	dot($im, $cx+230-9, $cy+230+0, $white);
+	$im->custom("</a>");
+
+	$im->custom("<a xlink:href='map.php?$base_query&amp;zoom=$zx,".($zy+100/$tzz).",$zz' xlink:title='north'>");
+	dot($im, $cx+230+0, $cy+230-9, $white);
+	$im->custom("</a>");
+
+	$im->custom("<a xlink:href='map.php?$base_query&amp;zoom=$zx,".($zy-100/$tzz).",$zz' xlink:title='south'>");
+	dot($im, $cx+230+0, $cy+230+9, $white);
+	$im->custom("</a>");
+
+	$im->custom("<a xlink:href='map.php?$base_query&amp;zoom=".($zx+100/$tzz).",$zy,$zz' xlink:title='east'>");
+	dot($im, $cx+230+9, $cy+230-0, $white);
+	$im->custom("</a>");
+
+
+	$im->custom("<a xlink:href='map.php?$base_query&amp;zoom=$zx,$zy,".($zz-2)."' xlink:title='zoom out'>");
 //	dot($im, $cx+230+15, $cy+245, $ct[($ca++)%count($ct)]);
 	dot($im, $cx+230+15, $cy+245, $white);
-	$imageline($im, $cx+230+12, $cy+245, $cx+230+18, $cy+245, $black);
-	$imagecustom($im, "</a>");
-	
-	$imagecustom($im, "<a xlink:href='map.php?$base_query&amp;zoom=$zx,$zy,".($zz+2)."' xlink:title='zoom in'>");
+	$im->line($cx+230+12, $cy+245, $cx+230+18, $cy+245, $black);
+	$im->custom("</a>");
+
+	$im->custom("<a xlink:href='map.php?$base_query&amp;zoom=$zx,$zy,".($zz+2)."' xlink:title='zoom in'>");
 	dot($im, $cx+230-15, $cy+245, $white);
-	$imageline($im, $cx+230-18, $cy+245, $cx+230-12, $cy+245, $black);
-	$imageline($im, $cx+230-15, $cy+242, $cx+230-15, $cy+248, $black);
-	$imagecustom($im, "</a>");
+	$im->line($cx+230-18, $cy+245, $cx+230-12, $cy+245, $black);
+	$im->line($cx+230-15, $cy+242, $cx+230-15, $cy+248, $black);
+	$im->custom("</a>");
 }
 // }}}
 
@@ -677,15 +679,15 @@ if(!getBool("debug"))
 switch($_GET["format"]) {
 	case "PNG": case "png": default:
 		header("Content-type: image/png");
-		imagepng($im);
+		$im->output();
 		break;
 	case "JPEG": case "jpeg":
 		header("Content-type: image/jpeg");
-		imagejpeg($im);
+		$im->output();
 		break;
 	case "SVG": case "svg":
 		header("Content-type: image/svg+xml");
-		imagesvg($im);
+		$im->output();
 		break;
 }
-$imagedestroy($im);
+$im->destroy();
