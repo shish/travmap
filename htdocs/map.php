@@ -649,7 +649,7 @@ foreach($entities as $entity_id => $entity) {
 
 // navigator widget for SVG {{{
 if($_GET["format"] == "svg") {
-	$base_query = preg_replace("/&amp;zoom=[^&$]+/", "", str_replace("&", "&amp;", $_SERVER["QUERY_STRING"]));
+	$base_query = preg_replace("/&zoom=[^&$]+/", "", $_SERVER["QUERY_STRING"]);
 
 	$tzz = $zz == 0 ? 1 : $zz; // stop divide by zeroes
 
