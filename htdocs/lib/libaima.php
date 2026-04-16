@@ -15,7 +15,7 @@ class AimaImage {
 		$this->h = $h;
 		$this->buffer = <<<EOD
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Created with Aima (http://trac.shishnet.org/phplibs/) -->
 <svg width="$w" height="$h" version="1.1"
@@ -128,9 +128,9 @@ function imagesvg(AimaImage $im): void {aimasvg($im);}
 function aimadestroy(AimaImage $im): void {}
 
 function svgentities(string $text): string {
+	$text = str_replace("&", "&amp;", $text);
 	$text = str_replace("<", "&lt;", $text);
 	$text = str_replace(">", "&gt;", $text);
-	$text = str_replace("&", "&amp;", $text);
 	$text = str_replace("'", "", $text);
 	$text = str_replace("\"", "", $text);
 	return $text;
