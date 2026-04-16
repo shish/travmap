@@ -5,7 +5,6 @@
  * call each of the parts of the map generation process
  */
 
-require_once "lib/liblogerr.php";
 require_once "lib/libaima.php";
 require_once "lib/util.php";
 require_once "lib/database.php";
