@@ -4,15 +4,16 @@
 # update.py (c) Shish 2015
 #
 
-import re
-import os
-import sys
 import argparse
-import requests
+import os
+import re
 import sqlite3
+import sys
+import typing as t
 from contextlib import closing
 from datetime import datetime
-import typing as t
+
+import requests
 
 
 def set_global_status(text: str) -> None:
@@ -213,10 +214,10 @@ def cmd_update(conn: sqlite3.Connection, servers: list[str]) -> None:
     with closing(conn.cursor()) as cur:
         protected_tables = {"servers"}
 
-        valid_servers = {row[0] for row in cur.execute("SELECT name FROM servers").fetchall()}
+        valid_table_names = {Server(conn, row[0]).dbname for row in cur.execute("SELECT name FROM servers").fetchall()}
 
         for (tablename,) in cur.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall():
-            if tablename not in protected_tables and tablename not in valid_servers:
+            if tablename not in protected_tables and tablename not in valid_table_names:
                 cur.execute(f"DROP TABLE {tablename}")
 
         conn.commit()
