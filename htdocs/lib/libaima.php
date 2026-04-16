@@ -91,7 +91,7 @@ class AimaSVGImage extends AimaImage {
 		parent::__construct($w, $h);
 
 		$this->dom = new DOMDocument('1.0', 'UTF-8');
-		$this->dom->formatOutput = false;
+		$this->dom->formatOutput = true;
 
 		// Create DOCTYPE
 		$implementation = new DOMImplementation();
@@ -163,9 +163,9 @@ class AimaSVGImage extends AimaImage {
 		// Create SVG <a> element with xlink:href
 		$link = $this->dom->createElement('a');
 		// Escape the href for safety
-		$link->setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', htmlspecialchars($href, ENT_QUOTES | ENT_XML1, 'UTF-8'));
+		$link->setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', $href);
 		if ($title !== null) {
-			$link->setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:title', htmlspecialchars($title, ENT_QUOTES | ENT_XML1, 'UTF-8'));
+			$link->setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:title', $title);
 		}
 		$this->getActiveContext()->appendChild($link);
 		$this->linkStack[] = $link;

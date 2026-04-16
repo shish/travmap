@@ -1,7 +1,7 @@
 <?php
 require_once "lib/localise.php";
 
-$version = "0.13.4";
+$version = "0.13.5";
 $build_time = getenv("BUILD_TIME");
 $build_hash = substr(getenv("BUILD_HASH") ?: "", 0, 7);
 $words = get_words();
