@@ -56,6 +56,7 @@ help3=birlik, oyuncu ve köy isimlerini Yaklaştırma Faktörü olarak kullanır
 help4=Oyuncu ve birlik isimleri türkçe karakter içeriyorsa bunun yerine ID kodlarını kullanabilirsiniz., örnek <code>id:123</code>. ID kodlarını <a href="links1.png">village</a> linkinden ve <a href="links2.png">statistics</a> sayfasından görebilirsiniz. 
 help5=Hızlı sayfalama -- her harita gün içinde ilk oluşturulacagı zaman biraz zaman alır, daha sonra önbelleðe atýlýr, ve tekrar yüklenecegi zaman daha hızlı yüklenir. 
 help6=Gruplama Birlik 2 = Bir birlige dahil olmayan tüm oyuncular ayrı ayrı gösterilir 
+help7=.
 
 servertime=Haritaların son güncelleme saati 1:30AM, þu anda saat 
 report bugs=<a href="https://github.com/shish/travmap">Report</a> þu anda düzeltilmemiþ bazý hatalar bulunabilir.
