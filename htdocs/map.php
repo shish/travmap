@@ -572,16 +572,17 @@ $ca = 0;
 function draw_entity_label($image, $entity, $colour) {
 	global $server, $white;
 
-	$image->custom("<a xlink:href='http://$server/".$entity['link']."'>");
-	$image->filledRectangle(
-			$entity['x']+7, $entity['y']-7,
-			$entity['x']+90, $entity['y']+7, $white);
-	dot($image, $entity['dx'], $entity['dy'], $colour);
 	$entity_name = $entity["name"];
 	$count = $entity['count'];
 	$title = ($count ? "$entity_name (".($count+1).")" : $entity_name);
-	$image->ttfText(10, 0, $entity['x'], $entity['y']+5, $colour, "arialuni", $title);
-	$image->custom("</a>");
+
+	$image->addLink("http://$server/".$entity['link'], function($img) use ($entity, $colour, $white, $title) {
+		$img->filledRectangle(
+				$entity['x']+7, $entity['y']-7,
+				$entity['x']+90, $entity['y']+7, $white);
+		$img->dot($entity['dx'], $entity['dy'], $colour);
+		$img->ttfText(10, 0, $entity['x'], $entity['y']+5, $colour, "arialuni", $title);
+	});
 }
 
 function draw_village_marker($image, $entity, $village, $colour) {
@@ -605,10 +606,11 @@ function draw_village_marker($image, $entity, $village, $colour) {
 		$dist = (int)sqrt($dx*$dx + $dy*$dy);
 		$dfz = " ($dist away)";
 	}
-	$tip = svgentities("$name ($x, $y)$dfz, $pop, ($owner, $guild)");
-	$image->custom("<a xlink:href='http://$server/karte.php?z=$cohash' xlink:title='$tip'>");
-	dot($image, $cx+$vx, $cy+$vy, $colour, (log($pop+1)+1)*$dotsize);
-	$image->custom("</a>");
+	$tip = "$name ($x, $y)$dfz, $pop, ($owner, $guild)";
+
+	$image->addLink("http://$server/karte.php?z=$cohash", function($img) use ($cx, $vx, $cy, $vy, $colour, $pop, $dotsize) {
+		$img->dot($cx+$vx, $cy+$vy, $colour, (log($pop+1)+1)*$dotsize);
+	}, $tip);
 }
 
 function get_entity_colour($entity) {
@@ -644,34 +646,34 @@ if($_GET["format"] == "svg") {
 
 	$tzz = $zz == 0 ? 1 : $zz; // stop divide by zeroes
 
-	$im->custom("<a xlink:href='map.php?$base_query&amp;zoom=".($zx-100/$tzz).",$zy,$zz' xlink:title='west'>");
-	dot($im, $cx+230-9, $cy+230+0, $white);
-	$im->custom("</a>");
+	$im->addLink("map.php?$base_query&zoom=".($zx-100/$tzz).",$zy,$zz", function($img) use ($cx, $cy, $white) {
+		$img->dot($cx+230-9, $cy+230+0, $white);
+	}, 'west');
 
-	$im->custom("<a xlink:href='map.php?$base_query&amp;zoom=$zx,".($zy+100/$tzz).",$zz' xlink:title='north'>");
-	dot($im, $cx+230+0, $cy+230-9, $white);
-	$im->custom("</a>");
+	$im->addLink("map.php?$base_query&zoom=$zx,".($zy+100/$tzz).",$zz", function($img) use ($cx, $cy, $white) {
+		$img->dot($cx+230+0, $cy+230-9, $white);
+	}, 'north');
 
-	$im->custom("<a xlink:href='map.php?$base_query&amp;zoom=$zx,".($zy-100/$tzz).",$zz' xlink:title='south'>");
-	dot($im, $cx+230+0, $cy+230+9, $white);
-	$im->custom("</a>");
+	$im->addLink("map.php?$base_query&zoom=$zx,".($zy-100/$tzz).",$zz", function($img) use ($cx, $cy, $white) {
+		$img->dot($cx+230+0, $cy+230+9, $white);
+	}, 'south');
 
-	$im->custom("<a xlink:href='map.php?$base_query&amp;zoom=".($zx+100/$tzz).",$zy,$zz' xlink:title='east'>");
-	dot($im, $cx+230+9, $cy+230-0, $white);
-	$im->custom("</a>");
+	$im->addLink("map.php?$base_query&zoom=".($zx+100/$tzz).",$zy,$zz", function($img) use ($cx, $cy, $white) {
+		$img->dot($cx+230+9, $cy+230-0, $white);
+	}, 'east');
 
 
-	$im->custom("<a xlink:href='map.php?$base_query&amp;zoom=$zx,$zy,".($zz-2)."' xlink:title='zoom out'>");
-//	dot($im, $cx+230+15, $cy+245, $ct[($ca++)%count($ct)]);
-	dot($im, $cx+230+15, $cy+245, $white);
-	$im->line($cx+230+12, $cy+245, $cx+230+18, $cy+245, $black);
-	$im->custom("</a>");
+	$im->addLink("map.php?$base_query&zoom=$zx,$zy,".($zz-2), function($img) use ($cx, $cy, $white, $black) {
+//	$img->dot($cx+230+15, $cy+245, $ct[($ca++)%count($ct)]);
+		$img->dot($cx+230+15, $cy+245, $white);
+		$img->line($cx+230+12, $cy+245, $cx+230+18, $cy+245, $black);
+	}, 'zoom out');
 
-	$im->custom("<a xlink:href='map.php?$base_query&amp;zoom=$zx,$zy,".($zz+2)."' xlink:title='zoom in'>");
-	dot($im, $cx+230-15, $cy+245, $white);
-	$im->line($cx+230-18, $cy+245, $cx+230-12, $cy+245, $black);
-	$im->line($cx+230-15, $cy+242, $cx+230-15, $cy+248, $black);
-	$im->custom("</a>");
+	$im->addLink("map.php?$base_query&zoom=$zx,$zy,".($zz+2), function($img) use ($cx, $cy, $white, $black) {
+		$img->dot($cx+230-15, $cy+245, $white);
+		$img->line($cx+230-18, $cy+245, $cx+230-12, $cy+245, $black);
+		$img->line($cx+230-15, $cy+242, $cx+230-15, $cy+248, $black);
+	}, 'zoom in');
 }
 // }}}
 

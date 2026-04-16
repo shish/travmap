@@ -130,17 +130,6 @@ function in($v, $min, $max) {return ($v >= $min && $v <= $max);}
 function bound($v, $min, $max) {return ( in($v, $min, $max) ? $v : ($v < $min ? $min : $max) );}
 
 
-/*
- * Draw a village / key entry's marker
- */
-function dot($im, float $x, float $y, $col, float $s=5) {
-	global $black;
-	$s *= 2;
-	$im->filledEllipse((int)$x, (int)$y, (int)$s, (int)$s, $col);
-	$im->ellipse((int)$x, (int)$y, (int)$s, (int)$s, $black);
-}
-
-
 function wwwcmp($a, $b) {
 	$as = explode(".", $a);
 	$bs = explode(".", $b);
