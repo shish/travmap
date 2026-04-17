@@ -41,12 +41,12 @@ $minpop = getInt("minpop", null);
 
 $table = preg_replace("/[^a-zA-Z0-9]/", "_", $server);
 $st = $db->prepare("SELECT * FROM servers WHERE name=:server");
-$st->bindParam(':server', $server, PDO::PARAM_STR);
-$st->execute();
+$st->execute(['server' => $server]);
 $server_info = $st->fetch();
 
-// Check if the table exists
-$table_check = $db->query("SELECT name FROM sqlite_master WHERE type='table' AND name='$table'")->fetch();
+$st_table = $db->prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=:table");
+$st_table->execute(['table' => $table]);
+$table_check = $st_table->fetch();
 
 if(!$server_info || !$table_check) {
 	http_response_code(404);
