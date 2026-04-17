@@ -1,6 +1,7 @@
 <pre>
 <?php
 if(!preg_match("/^[a-z][a-z0-9\.\-]+$/", $_GET["server"])) {
+    http_response_code(400);
 	die("Invalid server name");
 }
 

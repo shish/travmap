@@ -44,15 +44,15 @@ $st = $db->prepare("SELECT * FROM servers WHERE name=:server");
 $st->bindParam(':server', $server, PDO::PARAM_STR);
 $st->execute();
 $server_info = $st->fetch();
-if(!$server_info) {
-	http_response_code(404);
-	die("No registered server $server");
-}
 
 // Check if the table exists
 $table_check = $db->query("SELECT name FROM sqlite_master WHERE type='table' AND name='$table'")->fetch();
-if(!$table_check) {
+
+if(!$server_info || !$table_check) {
 	http_response_code(404);
+	$user_agent = $_SERVER['HTTP_USER_AGENT'] ?? 'unknown';
+	$referer = $_SERVER['HTTP_REFERER'] ?? 'unknown';
+	error_log("Invalid server request: $server (User-Agent: $user_agent, Referer: $referer)");
 	die("No data available for server $server");
 }
 // }}}
