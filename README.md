@@ -12,7 +12,7 @@ A mapping tool for the online game Travian, displaying players, alliances, and v
 ## General use
 
 ```bash
-cd htdocs && php -S 127.0.0.1:8000
+cd htdocs && php -S 127.0.0.1:8000 router.php
 ./manage.py add ts1.x3.europe.travian.com
 ./manage.py remove ts1.x3.europe.travian.com
 ./manage.py update

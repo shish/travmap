@@ -19,4 +19,4 @@ ARG BUILD_TIME=unknown
 ENV BUILD_TIME=${BUILD_TIME}
 
 WORKDIR /htdocs
-CMD ["/bin/sh", "-c", "exec /usr/bin/php -S 0.0.0.0:8000 2>&1 | grep --line-buffered -vE ' (Accepted|Closing)'"]
+CMD ["/bin/sh", "-c", "exec /usr/bin/php -S 0.0.0.0:8000 router.php 2>&1 | grep --line-buffered -vE ' (Accepted|Closing)'"]
