@@ -684,19 +684,7 @@ if($_GET["format"] == "svg") {
 }
 // }}}
 
-if(!getBool("debug"))
-switch($_GET["format"]) {
-	case "PNG": case "png": default:
-		header("Content-type: image/png");
-		$im->output();
-		break;
-	case "JPEG": case "jpeg":
-		header("Content-type: image/jpeg");
-		$im->output();
-		break;
-	case "SVG": case "svg":
-		header("Content-type: image/svg+xml");
-		$im->output();
-		break;
+if(!getBool("debug")) {
+    $im->output(strtolower($format));
 }
 $im->destroy();

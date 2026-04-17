@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * libaima.php (c) Shish 2026
  *
@@ -251,7 +253,8 @@ class AimaSVGImage extends AimaImage {
 		$this->ellipse($x, $y, $rx, $ry, $stroke, $fill);
 	}
 
-	public function output(): void {
+	public function output(string $format): void {
+	    header("Content-type: image/svg+xml");
 		print $this->__toString();
 	}
 
@@ -329,8 +332,7 @@ class AimaGDImage extends AimaImage {
 		}
 	}
 
-	public function output(): void {
-		$format = $_GET['format'] ?? 'png';
+	public function output(string $format): void {
 		switch(strtolower($format)) {
 			case 'jpeg':
 			case 'jpg':
@@ -357,6 +359,9 @@ class AimaGDImage extends AimaImage {
 		return ob_get_clean();
 	}
 
+	/**
+	 * @return resource|false
+	 */
 	public function getGDResource() {
 		return $this->gd;
 	}
