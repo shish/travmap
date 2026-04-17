@@ -1,6 +1,9 @@
 <?php
+declare(strict_types=1);
+
 require_once "lib/database.php";
 require_once "lib/util.php";
+require_once "lib/localise.php";
 
 // totals {{{
 $res = $db->query("
@@ -11,10 +14,6 @@ $res = $db->query("
 		SUM(population) AS population
 	FROM servers");
 $row = $res->fetch();
-$total_villages = $row['villages'];
-$total_guilds = $row['guilds'];
-$total_owners = $row['owners'];
-$total_population = $row['population'];
 $totals = "
 			<tr><th colspan='7'>Totals</th></tr>
 			<tr>
@@ -30,67 +29,62 @@ $totals = "
 				<td>-</td>
 				<td>-</td>
 				<td>-</td>
-				<td>$total_guilds</td>
-				<td>$total_owners</td>
-				<td>$total_villages</td>
-				<td>$total_population</td>
+				<td>" . h((int)($row['guilds'] ?? 0)) . "</td>
+				<td>" . h((int)($row['owners'] ?? 0)) . "</td>
+				<td>" . h((int)($row['villages'] ?? 0)) . "</td>
+				<td>" . h((int)($row['population'] ?? 0)) . "</td>
 			</tr>
 ";
 // }}}
 
 // rows {{{
-$m = date("m"); // Month value
-$d = date("d"); //today's date
-$y = date("Y"); // Year value
 $today = date('Y-m-d');
-$yesterday = date('Y-m-d', mktime(0,0,0,$m,($d-1),$y));
+$yesterday = date('Y-m-d', strtotime('-1 day'));
 
-$rows = array();
-$links = array();
+$rows = [];
+$links = [];
 $last_country = "";
 $dbrows = [];
 $res = $db->query("
-	SELECT name,villages,updated,status,owners,guilds,population
+	SELECT name, villages, updated, status, owners, guilds, population
 	FROM servers
 	ORDER BY name
 ");
 foreach($res->fetchAll() as $row) {
-    $dbrows[$row["name"]] = $row;
+	$dbrows[$row["name"]] = $row;
 }
 uksort($dbrows, "wwwcmp");
 foreach($dbrows as $row) {
 	$name = $row['name'];
 	$country = getSubdomain($name);
-	$villages = $row['villages'];
-	$updated = $row['updated'];
-	$status = $row['status'];
+	$villages = (int)$row['villages'];
+	$updated = (string)$row['updated'];
+	$status = (string)$row['status'];
 
-	if($status == "ok" || $status == "map.sql downloaded" || $status == "karte.sql downloaded") {
-		$status = "<font color='green'>$status</font>";
-	}
-	else {
-		$status = "<font color='red'>$status</font>";
+	if ($status === "ok" || $status === "map.sql downloaded" || $status === "karte.sql downloaded") {
+		$status = "<span class='status-good'>" . h($status) . "</span>";
+	} else {
+		$status = "<span class='status-bad'>" . h($status) . "</span>";
 	}
 
 	$updated = substr($updated, 0, 16);
-	if(substr($updated, 0, 10) == $today) {
-		$updated = "<font color='green'>$updated</font>";
-	}
-	elseif(substr($updated, 0, 10) == $yesterday) {
-		$updated = "<font color='orange'>$updated</font>";
-	}
-	else {
-		$updated = "<font color='red'>$updated</font>";
+	if (substr($updated, 0, 10) === $today) {
+		$updated = "<span class='updated-today'>" . h($updated) . "</span>";
+	} elseif (substr($updated, 0, 10) === $yesterday) {
+		$updated = "<span class='updated-yesterday'>" . h($updated) . "</span>";
+	} else {
+		$updated = "<span class='updated-old'>" . h($updated) . "</span>";
 	}
 
-	$players = $row['owners'];
-	$guilds = $row['guilds'];
-	$population = $row['population'];
+	$players = (int)$row['owners'];
+	$guilds = (int)$row['guilds'];
+	$population = (int)$row['population'];
 
-	if($country != $last_country) {
-		$links[] = "<a href='#$country'>$country</a>";
+	if ($country !== $last_country) {
+		$links[] = "<a href='#" . ha($country) . "'>" . h($country) . "</a>";
+		$rows[] = "<tr><td colspan='7'>&nbsp;</td></tr>";
 		$rows[] = "
-			<tr><th colspan='7'><a name='$country'>$country</a></th></tr>
+			<tr><th colspan='7'><a id='" . ha($country) . "'>" . h($country) . "</a></th></tr>
 			<tr>
 				<td>Server</td>
 				<td>Updated</td>
@@ -105,46 +99,33 @@ foreach($dbrows as $row) {
 	}
 	$rows[] = "
 		<tr>
-			<td><a href='http://$name/'>$name</a></td>
+			<td><a href='http://" . ha($name) . "/'>" . h($name) . "</a></td>
 			<td>$updated</td>
 			<td>$status</td>
-			<td>$guilds</td>
-			<td>$players</td>
-			<td>$villages</td>
-			<td>$population</td>
+			<td>" . h($guilds) . "</td>
+			<td>" . h($players) . "</td>
+			<td>" . h($villages) . "</td>
+			<td>" . h($population) . "</td>
 		</tr>
 	";
 }
 // }}}
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>TravMap Server List</title>
-		<style>
-BODY {
-	background: #EEE;
-	font-family: "Arial", sans-serif;
-	font-size: 14px;
-}
-TH {
-	background: #DDD;
-}
-TD {
-	vertical-align: top;
-	text-align: center;
-	padding: 0px 10px 0px 10px;
-}
-		</style>
-		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<link rel="stylesheet" href="style.css" type="text/css">
 	</head>
 	<body>
-		<?php print implode(", ", $links); ?>
-		<p>
-		<table border="1" align="center">
-			<?php print $totals; ?>
-			<?php print implode("\n", $rows); ?>
+		<?php echo implode(", ", $links); ?>
+		<p></p>
+		<table border="1" id="server-list">
+			<?php echo $totals; ?>
+			<?php echo implode("\n", $rows); ?>
 		</table>
 	</body>
 </html>

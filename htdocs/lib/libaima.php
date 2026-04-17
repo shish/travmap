@@ -11,6 +11,7 @@ declare(strict_types=1);
 abstract class AimaImage {
 	public int $w;
 	public int $h;
+	private ?AimaColor $blackColor = null;
 
 	public function __construct(int $w, int $h) {
 		$this->w = $w;
@@ -27,7 +28,7 @@ abstract class AimaImage {
 	abstract public function ellipse(int $x, int $y, int $rx, int $ry, ?AimaColor $stroke = null, ?AimaColor $fill = null): void;
 	abstract public function filledEllipse(int $x, int $y, int $rx, int $ry, ?AimaColor $fill = null, ?AimaColor $stroke = null): void;
 	abstract public function addLink(string $href, callable $callback, ?string $title = null): void;
-	abstract public function output(): void;
+	abstract public function output(string $format): void;
 	abstract public function destroy(): void;
 	abstract public function __toString(): string;
 
@@ -39,10 +40,12 @@ abstract class AimaImage {
 	 * @param float $size Size of the dot (default 5)
 	 */
 	public function dot(float $x, float $y, AimaColor $col, float $size = 5): void {
-		$black = $this->colorAllocate(0, 0, 0);
+		if ($this->blackColor === null) {
+			$this->blackColor = $this->colorAllocate(0, 0, 0);
+		}
 		$diameter = $size * 2;
 		$this->filledEllipse((int)$x, (int)$y, (int)$diameter, (int)$diameter, $col);
-		$this->ellipse((int)$x, (int)$y, (int)$diameter, (int)$diameter, $black);
+		$this->ellipse((int)$x, (int)$y, (int)$diameter, (int)$diameter, $this->blackColor);
 	}
 
 	public function colorAllocateHSV(float $H, float $S, float $V): AimaColor {
@@ -125,12 +128,12 @@ class AimaSVGImage extends AimaImage {
 		$this->svg->appendChild($title);
 
 		// Initialize none color
-		$this->noneColor = new AimaColor(0, 0, 0);
-		$this->noneColor->col = "none";
+		$this->noneColor = new AimaColor("none", null);
 	}
 
 	public function colorAllocate(int $r, int $g, int $b): AimaColor {
-		return new AimaColor($r, $g, $b);
+		$svgColor = sprintf("#%02X%02X%02X", $r, $g, $b);
+		return new AimaColor($svgColor, null);
 	}
 
 	public function fill(int $x, int $y, AimaColor $col): void {
@@ -277,8 +280,9 @@ class AimaGDImage extends AimaImage {
 	}
 
 	public function colorAllocate(int $r, int $g, int $b): AimaColor {
+		$svgColor = sprintf("#%02X%02X%02X", $r, $g, $b);
 		$gdColor = imagecolorallocate($this->gd, $r, $g, $b);
-		return new AimaColor($r, $g, $b, $gdColor);
+		return new AimaColor($svgColor, $gdColor);
 	}
 
 	public function addLink(string $href, callable $callback, ?string $title = null): void {
@@ -368,11 +372,11 @@ class AimaGDImage extends AimaImage {
 }
 
 class AimaColor {
-	public string $col; // public just to set to "none"
+	public string $col; // SVG color (hex or "none")
 	public ?int $gdColor = null; // For GD backend
 
-	public function __construct(int $r, int $g, int $b, ?int $gdColor = null) {
-		$this->col = sprintf("#%02X%02X%02X", $r, $g, $b);
+	public function __construct(?string $svgColor, ?int $gdColor) {
+		$this->col = $svgColor ?? "none";
 		$this->gdColor = $gdColor;
 	}
 

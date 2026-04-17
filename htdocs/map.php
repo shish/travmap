@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * map.php (c) Shish 2006
  *
@@ -32,14 +34,14 @@ $lines = getBool("lines");
 $casen = getBool("casen");
 $azoom = getBool("azoom");
 
-$dotsize = getFloat("dotsize", 1);
+$dotsize = getFloat("dotsize", 1.0);
 
 $maxdist = getInt("maxdist", null);
 $mindist = getInt("mindist", null);
 $maxpop = getInt("maxpop", null);
 $minpop = getInt("minpop", null);
 
-$table = preg_replace("/[^a-zA-Z0-9]/", "_", $server);
+$table = preg_replace("/[^a-zA-Z0-9]/", "_", $server ?? "");
 $st = $db->prepare("SELECT * FROM servers WHERE name=:server");
 $st->execute(['server' => $server]);
 $server_info = $st->fetch();
@@ -73,10 +75,13 @@ else {
  * z(a, x, y, p) = zoom (array, x, y, player)
  */
 
-function town2xy($name) {
+/**
+ * @return array{0: int, 1: int}
+ */
+function town2xy(string $name): array {
 	global $table, $casen, $zx, $db;
 
-	$xy = Array();
+	$xy = [];
 
 	if(preg_match("/^id:\d+$/", $name)) {
 		$id = (int)substr($name, 3);
@@ -90,13 +95,13 @@ function town2xy($name) {
 		$za2 = $st->fetch();
 	}
 	if($zx < -256) $zx = -256;
-	$xy[0] = $za2['x'] ? $za2['x'] : 0;
-	$xy[1] = $za2['y'] ? $za2['y'] : 0;
+	$xy[0] = $za2['x'] ?? 0;
+	$xy[1] = $za2['y'] ?? 0;
 
 	return $xy;
 }
 
-$size = max(max($server_info['height'], $server_info['width']), 1);
+$size = max(max((int)$server_info['height'], (int)$server_info['width']), 1);
 $zx = 0; $zy = 0; $zz = 500.0 / $size;
 
 if($zoom) {
@@ -190,8 +195,8 @@ $query = "
  */
 function list2query(?string $str, string $pre): ?string {
 	if(is_null($str)) return null;
-	$names = Array();
-	$ids = Array();
+	$names = [];
+	$ids = [];
 
 	$list = quotesplit(",", $str);
 
@@ -292,8 +297,8 @@ if(getBool("debug")) {
 /*
  * Run query
  */
-$entities = Array();
-$races = Array($words["roman"], $words["teuton"], $words["gaul"]);
+$entities = [];
+$races = [$words["roman"], $words["teuton"], $words["gaul"]];
 
 
 /*
@@ -354,7 +359,8 @@ foreach($result->fetchAll() as $row) {
  * Initialise image
  */
 putenv('GDFONTPATH=' . realpath('.'));
-if($_GET["format"] == "svg" || $_GET["format"] == "SVG") {
+$format = getString("format", "png");
+if($format == "svg" || $format == "SVG") {
 	$im = new AimaSVGImage(768, 512);
 } else {
 	$im = new AimaGDImage(768, 512);
@@ -373,7 +379,7 @@ $im->fill(0, 0, $white);
 /*
  * Hardcode our own colour table, spiralling through HSV space
  */
-$ct = Array();
+$ct = [];
 $s = 1.0; $v = 1.0;  for($h=0.00; $h<0.99; $h+=0.166) {$ct[] = $im->colorAllocateHSV($h, $s, $v);}
 $s = 1.0; $v = 0.75; for($h=0.00; $h<0.99; $h+=0.166) {$ct[] = $im->colorAllocateHSV($h, $s, $v);}
 $s = 0.5; $v = 1.0;  for($h=0.00; $h<0.99; $h+=0.166) {$ct[] = $im->colorAllocateHSV($h, $s, $v);}
@@ -384,7 +390,7 @@ $s = 0.5; $v = 1.0;  for($h=0.08; $h<0.99; $h+=0.166) {$ct[] = $im->colorAllocat
 /*
  * Render globals
  */
-$races = Array($words["roman"], $words["teuton"], $words["gaul"]);
+$races = [$words["roman"], $words["teuton"], $words["gaul"]];
 $kcount = 0;
 $kcount1 = 0; $kcount2 = 0; $kcount3 = 0; $kcount4 = 0;
 $minx = 512; $miny = 512; $maxx = -512; $maxy = -512;
@@ -482,7 +488,7 @@ foreach($entities as $entity_name => $entity) {
 // }}}
 
 // grid {{{
-function get_gridline_color($pos) {
+function get_gridline_color(float $pos): AimaColor {
 	global $grey, $mgrey, $lgrey, $wgrey;
 
 		if($pos % 1000 == 0) $col = $grey;
@@ -493,13 +499,13 @@ function get_gridline_color($pos) {
 	return $col;
 }
 
-function draw_grid_lines($image, $mapradius, $drawradius) {
+function draw_grid_lines(object $image, int $mapradius, int $drawradius): void {
 	global $zz, $zx, $zy, $cx, $cy;
 
 	$inc = ($zz >= 10) ? 1 : 10;
 
 	for($v=-$mapradius; $v<=$mapradius; $v+=$inc) {
-		$col = get_gridline_color($v);
+		$col = get_gridline_color((float)$v);
 
 		$x = ($v-$zx)*$zz;
 		$y = ($v+$zy)*$zz;
@@ -513,7 +519,7 @@ function draw_grid_lines($image, $mapradius, $drawradius) {
 	}
 }
 
-function draw_grid_labels($image, $mapradius, $drawradius) {
+function draw_grid_labels(object $image, int $mapradius, int $drawradius): void {
 	global $zz, $zx, $zy, $cx, $cy, $mgrey;
 
 	if($zz >= 10) $inc = 10;
@@ -524,12 +530,12 @@ function draw_grid_labels($image, $mapradius, $drawradius) {
 	$y = bound( $zy*$zz, -$drawradius, $drawradius-10);
 
 	for($v=-$mapradius; $v<=$mapradius; $v+=$inc) {
-		$image->string(3, (int)($cx+$x+2), (int)($cy-($v-$zy)*$zz+1), $v, $mgrey);
-		$image->string(3, (int)($cx+($v-$zx)*$zz+2), (int)($cy+$y+1), $v, $mgrey);
+		$image->string(3, (int)($cx+$x+2), (int)($cy-($v-$zy)*$zz+1), (string)$v, $mgrey);
+		$image->string(3, (int)($cx+($v-$zx)*$zz+2), (int)($cy+$y+1), (string)$v, $mgrey);
 	}
 }
 
-function draw_grid($image, $mapradius, $drawradius) {
+function draw_grid(object $image, int $mapradius, int $drawradius): void {
 	draw_grid_lines($image, $mapradius, $drawradius);
 	draw_grid_labels($image, $mapradius, $drawradius);
 }
@@ -538,13 +544,13 @@ draw_grid($im, 500, 256);
 
 date_default_timezone_set("America/Los_Angeles");
 $stamp1 = $words["last update"];
-$stamp2 = substr($server_info['updated'], 0, 16);
+$stamp2 = substr((string)$server_info['updated'], 0, 16);
 
 /*
  * Draw the rectangles
  */
 $im->rectangle($cx-256, $cy-256, $cx+255, $cy+255, $black);
-$caption_bounds = imagettfbbox(15, 0, "arialuni", $caption);
+$caption_bounds = imagettfbbox(15, 0, "arialuni", $caption ?? "");
 if($layout == "spread") {
 	$im->filledRectangle(0, 0, 124, 511, $white);
 	$im->filledRectangle(643, 0, 767, 511, $white);
@@ -552,8 +558,8 @@ if($layout == "spread") {
 	$im->rectangle(643, 0, 767, 511, $black);
 //	$im->string(3, 704-strlen($caption)*3.45, 10, $caption, $black);
 //	$im->string(3, 64-strlen($caption)*3.45, 10, $caption, $black);
-	$im->ttfText(15, 0, (int)(706-$caption_bounds[2]/2), 25, $black, "arialuni", $caption);
-	$im->ttfText(15, 0, (int)(64-$caption_bounds[2]/2), 25, $black, "arialuni", $caption);
+	$im->ttfText(15, 0, (int)(706-$caption_bounds[2]/2), 25, $black, "arialuni", $caption ?? "");
+	$im->ttfText(15, 0, (int)(64-$caption_bounds[2]/2), 25, $black, "arialuni", $caption ?? "");
 
 	$stamp2_bounds = imagettfbbox(10, 0, "arialuni", $stamp2);
 	$im->ttfText(10, 0, (int)(706-$stamp2_bounds[2]/2), 508, $grey, "arialuni", $stamp2);
@@ -562,7 +568,7 @@ else {
 	$im->filledRectangle(515, 0, 767, 511, $white);
 	$im->rectangle(515, 0, 767, 511, $black);
 //	$im->string(3, 640-strlen($caption)*3.45, 10, $caption, $black);
-	$im->ttfText(15, 0, (int)(640-$caption_bounds[2]/2), 25, $black, "arialuni", $caption);
+	$im->ttfText(15, 0, (int)(640-$caption_bounds[2]/2), 25, $black, "arialuni", $caption ?? "");
 
 	$stamp_bounds = imagettfbbox(10, 0, "arialuni", "$stamp1 $stamp2");
 	$im->ttfText(10, 0, (int)(640-$stamp_bounds[2]/2), 508, $grey, "arialuni", "$stamp1 $stamp2");
@@ -573,10 +579,13 @@ else {
 /*
  * Draw each entity, its villages, and its key entry
  */
-$cals = Array();
+$cals = [];
 $ca = 0;
 
-function draw_entity_label($image, $entity, $colour) {
+/**
+ * @param array<string, mixed> $entity
+ */
+function draw_entity_label(object $image, array $entity, AimaColor $colour): void {
 	global $server, $white;
 
 	$entity_name = $entity["name"];
@@ -592,7 +601,11 @@ function draw_entity_label($image, $entity, $colour) {
 	});
 }
 
-function draw_village_marker($image, $entity, $village, $colour) {
+/**
+ * @param array<string, mixed> $entity
+ * @param array<string, mixed> $village
+ */
+function draw_village_marker(object $image, array $entity, array $village, AimaColor $colour): void {
 	global $server, $cx, $cy, $zx, $zy, $zz, $lines, $dotsize;
 
 	$vx =  ($village['x']-$zx)*$zz;
@@ -620,7 +633,10 @@ function draw_village_marker($image, $entity, $village, $colour) {
 	}, $tip);
 }
 
-function get_entity_colour($entity) {
+/**
+ * @param array<string, mixed> $entity
+ */
+function get_entity_colour(array $entity): AimaColor {
 	global $colby, $cals, $ct, $ca;
 
 	if($colby == "alliance") {
@@ -648,8 +664,8 @@ foreach($entities as $entity_id => $entity) {
 // }}}
 
 // navigator widget for SVG {{{
-if($_GET["format"] == "svg") {
-	$base_query = preg_replace("/&zoom=[^&$]+/", "", $_SERVER["QUERY_STRING"]);
+if($format == "svg") {
+	$base_query = preg_replace("/&zoom=[^&$]+/", "", $_SERVER["QUERY_STRING"] ?? "");
 
 	$tzz = $zz == 0 ? 1 : $zz; // stop divide by zeroes
 

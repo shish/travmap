@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * util.php (c) Shish 2006
  *
@@ -12,12 +14,15 @@
 function getString(string $name, ?string $default): ?string {
 	return (isset($_GET[$name]) && strlen($_GET[$name]) > 0) ? $_GET[$name] : $default;
 }
+
 function getFloat(string $name, ?float $default): ?float {
 	return (isset($_GET[$name]) && strlen($_GET[$name]) > 0) ? (float)$_GET[$name] : $default;
 }
+
 function getInt(string $name, ?int $default): ?int {
 	return (isset($_GET[$name])) ? (int)$_GET[$name] : $default;
 }
+
 function getBool(string $name): bool {
 	return (isset($_GET[$name]) && ($_GET[$name] == "on"));
 }
@@ -43,8 +48,8 @@ function getSubdomain(string $serverName): string {
 }
 
 
-function quotesplit(string $splitter=",", string $string=""): array {
-	$result = Array();
+function quotesplit(string $splitter = ",", string $string = ""): array {
+	$result = [];
 	$parts = explode($splitter, $string);
 	$instring = 0;
 
@@ -93,57 +98,69 @@ function quotesplit(string $splitter=",", string $string=""): array {
  * get a list of all things in a column (eg user, alliance) which match a
  * query, and return them in a form suitable for putting in an IN(...)
  * statement
+ *
+ * SECURITY: Uses parameterized queries to prevent SQL injection
  */
-function getMatches($col, $name) {
+function getMatches(string $col, string $name): string {
 	global $casen, $table, $db;
 
-	if($casen) return "'$name'";
+	if($casen) {
+		return $db->quote($name);
+	}
 
+	// Normalize the name for case-insensitive matching
 	$name = urlencode($name);
 	$name = str_replace("%C2", "", $name);
 	$name = str_replace("%E2%84", "", $name);
-	foreach(Array("[", "]", "{", "}", "(", ")", "<", ">", "\\", "/",
-	              ".", ",", "?", "!", "$", "^", "&", "*", "-", "_",
- 	              "+", "=", ":", ";", "@", "~", "#", "%", " ") as $ok) {
+
+	$allowed_chars = ["[", "]", "{", "}", "(", ")", "<", ">", "\\", "/",
+	                  ".", ",", "?", "!", "$", "^", "&", "*", "-", "_",
+	                  "+", "=", ":", ";", "@", "~", "#", "%", " "];
+
+	foreach($allowed_chars as $ok) {
 		$name = str_replace(urlencode($ok), $ok, $name);
 	}
 	$name = preg_replace("/%[0-9A-F][0-9A-F]/", "_", $name);
 
-	/* no matching characters = no point matching */
-	/* if(strpos($name, "%") === false && strpos($name, "_") === false) return "'$name'"; */
+	// Use parameterized query to prevent SQL injection
+	$stmt = $db->prepare("SELECT $col FROM $table WHERE $col LIKE :name GROUP BY $col");
+	$stmt->execute(['name' => $name]);
 
-	$result = $db->query("SELECT $col FROM $table WHERE $col LIKE '$name' GROUP BY $col");
-	$ret = "";
-	$n = 0;
-	foreach($result->fetchAll() as $row) {
-		if($n++) $ret .= ", ";
-		$ret .= "'{$row[$col]}'";
+	$matches = [];
+	foreach($stmt->fetchAll() as $row) {
+		$matches[] = $db->quote($row[$col]);
 	}
-	return $ret;
+
+	return count($matches) > 0 ? implode(", ", $matches) : $db->quote($name);
 }
 
 
 /*
  * some maths
  */
-function in($v, $min, $max) {return ($v >= $min && $v <= $max);}
-function bound($v, $min, $max) {return ( in($v, $min, $max) ? $v : ($v < $min ? $min : $max) );}
+function in(float $v, float $min, float $max): bool {
+	return ($v >= $min && $v <= $max);
+}
+
+function bound(float $v, float $min, float $max): float {
+	return ( in($v, $min, $max) ? $v : ($v < $min ? $min : $max) );
+}
 
 
-function wwwcmp($a, $b) {
+function wwwcmp(string $a, string $b): int {
 	$as = explode(".", $a);
 	$bs = explode(".", $b);
 	$ae = count($as)-1;
 	$be = count($bs)-1;
-    for ($i = min($ae, $be); $i >= 0; $i--) {
-        # if segment matches "x\d+", skip it
-        if (preg_match('/^x\d+$/', $as[$i]) && preg_match('/^x\d+$/', $bs[$i])) {
-            continue;
-        }
-        $cmp = strcmp($as[$i], $bs[$i]);
-        if ($cmp !== 0) {
-            return $cmp;
-        }
-    }
-    return 0;
+	for ($i = min($ae, $be); $i >= 0; $i--) {
+		# if segment matches "x\d+", skip it
+		if (preg_match('/^x\d+$/', $as[$i]) && preg_match('/^x\d+$/', $bs[$i])) {
+			continue;
+		}
+		$cmp = strcmp($as[$i], $bs[$i]);
+		if ($cmp !== 0) {
+			return $cmp;
+		}
+	}
+	return 0;
 }

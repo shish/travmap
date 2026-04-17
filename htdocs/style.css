@@ -1,43 +1,80 @@
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
+
 BODY {
 	background: #EEE;
 	font-family: "Arial", sans-serif;
 	font-size: 14px;
 }
+
 H1, H3 {
 	border: 1px solid black;
 	background: #DDD;
 	text-align: center;
 }
+
 H1 {
-	margin-top: 0px;
-	margin-bottom: 0px;
+	margin-top: 0;
+	margin-bottom: 0;
 	padding: 2px;
 }
+
 H3 {
 	margin-top: 32px;
 	padding: 1px;
 }
+
 TD {
 	vertical-align: top;
 	text-align: center;
 }
+
 TD INPUT[type="submit"],
 TD INPUT[type="text"],
-TD SELECT {width: 100%;}
+TD SELECT {
+	width: 100%;
+}
+
+TABLE.page {
+	margin: 0 auto;
+}
+
+/* Sidebar */
+.sidebar {
+	width: 175px;
+}
+
+.block-link {
+	display: block;
+	margin: 8px;
+}
+
+/* Main content area */
+.main-content {
+	width: 768px;
+}
 
 #map {
 	width: 768px;
 	height: 512px;
+	display: none;
 }
+
 #about, #inst {
-	display: block;
 	font-size: 0.9em;
 	width: 768px;
 	height: 512px;
 }
+
+#about {
+	display: none;
+}
+
+#inst {
+	display: block;
+}
+
 #about P, #inst P {
 	text-align: left;
 	width: 400px;
@@ -46,6 +83,55 @@ TD SELECT {width: 100%;}
 	margin-left: auto;
 	margin-right: auto;
 }
+
+#link {
+	width: 512px;
+}
+
+.notice-separator {
+	width: 400px;
+}
+
+.contact-info {
+	text-align: center;
+}
+
+/* Advanced/Output sections - hidden by default */
+#advanced, #output {
+	display: none;
+}
+
+/* Add server form */
+.add-server-form {
+	margin: 0;
+}
+
+.add-server-table {
+	margin: auto;
+	width: 30em;
+}
+
+.add-server-table .label-col {
+	width: 7em;
+}
+
+.server-example {
+	text-align: left;
+}
+
+.example-good {
+	color: green;
+}
+
+.example-bad {
+	color: red;
+}
+
+/* Language links */
+.language-links {
+	font-size: 0.9em;
+}
+
 #footer {
 	clear: both;
 	padding-top: 8px;
@@ -53,18 +139,79 @@ TD SELECT {width: 100%;}
 	text-align: center;
 }
 
-*[onclick] {cursor: pointer;}
-IMG {border: none;}
-FORM {margin: 0px;}
-CODE {font-size: 0.9em; background: #CCC;}
-.left {text-align: left; width: 500px; margin: auto;}
+/* Interactive elements */
+a[href="#"] {
+	cursor: pointer;
+}
 
-#graphs A {display: block;}
-#graphs IMG {display: block;}
+IMG {
+	border: none;
+}
 
+FORM {
+	margin: 0;
+}
+
+CODE {
+	font-size: 0.9em;
+	background: #CCC;
+}
+
+.left {
+	text-align: left;
+	width: 500px;
+	margin: auto;
+}
+
+#graphs A {
+	display: block;
+}
+
+#graphs IMG {
+	display: block;
+}
+
+/* Form validation */
 input:required:invalid {
 	background-color: #FEE;
 }
+
 input:required:valid {
 	background-color: #EFE;
+}
+
+/* Server List (status.php) */
+#server-list {
+	margin: 0 auto;
+	border-collapse: collapse;
+}
+
+#server-list TH {
+	background: #DDD;
+}
+
+#server-list TD {
+	vertical-align: top;
+	text-align: center;
+	padding: 0 10px;
+}
+
+#server-list .status-good {
+	color: green;
+}
+
+#server-list .status-bad {
+	color: red;
+}
+
+#server-list .updated-today {
+	color: green;
+}
+
+#server-list .updated-yesterday {
+	color: orange;
+}
+
+#server-list .updated-old {
+	color: red;
 }

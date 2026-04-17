@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * localise.php (c) Shish 2006
  *
@@ -11,7 +13,7 @@ function valid_lang(string $lang): bool {
     return file_exists("./lang/$lang.txt");
 }
 
-function get_lang() {
+function get_lang(): string {
 	$lang = null;
 
 	// allow ?lang=xx to override browser settings, but only if the file exists
@@ -48,14 +50,36 @@ function get_lang() {
 	return $lang;
 }
 
-function get_words() {
+/**
+ * @return array<string, string>
+ */
+function get_words(): array {
 	$lang = get_lang();
-	$words = Array();
+	$words = [];
 	$fp = fopen("./lang/$lang.txt", "r");
+	if ($fp === false) {
+		return [];
+	}
 	while($line = fgets($fp)) {
 		$row = explode("=", $line, 2);
-		if(isset($row[1])) $words[$row[0]] = trim($row[1]);
+		if(isset($row[1])) {
+			$words[$row[0]] = trim($row[1]);
+		}
 	}
 	fclose($fp);
 	return $words;
+}
+
+/**
+ * Escape HTML to prevent XSS attacks
+ */
+function h(string|int|bool $text): string {
+	return htmlspecialchars((string)$text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+}
+
+/**
+ * Escape HTML attribute value
+ */
+function ha(string|int|bool $text): string {
+	return htmlspecialchars((string)$text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
 }
