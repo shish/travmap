@@ -30,8 +30,8 @@ jobs:
       - build
     steps:
       - name: Deploy
-        uses: shish/watchtower-update@main
-        with:
-          url: https://watchtower.shish.io/v1/update
-          api_token: ${{ secrets.WATCHTOWER_TOKEN }}
-          images: ${{ vars.DOCKER_USERNAME }}/${{ github.event.repository.name }}
+        run: |
+          IMG="${{ vars.DOCKER_USERNAME }}/${{ github.event.repository.name }}"
+          curl -sS -X POST \
+            -H "Authorization: Bearer ${{ secrets.WATCHTOWER_TOKEN }}" \
+            "https://watchtower.shish.io/v1/update?images=$IMG"
