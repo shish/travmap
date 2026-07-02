@@ -4,18 +4,18 @@ updates:
   directory: /
   schedule:
     interval: monthly
+  groups:
+    bumps:
+      patterns:
+      - '*'
 - package-ecosystem: pip
   directory: /utils
   schedule:
     interval: monthly
   groups:
-    minor-bumps:
-      applies-to: version-updates
+    bumps:
       patterns:
       - '*'
-      update-types:
-      - minor
-      - patch
 - package-ecosystem: docker
   directory: /
   schedule:
