@@ -17,5 +17,8 @@ dev = [
 [tool.ruff]
 line-length = 120
 
+[tool.ruff.lint]
+ignore = ["BLE001", "DTZ005"]
+
 [tool.pytest]
 addopts = ["--doctest-modules"]

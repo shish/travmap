@@ -17,9 +17,10 @@ import requests
 
 
 def set_global_status(text: str) -> None:
-    text += " at %s" % str(datetime.now())[:16]
+    text += f" at {str(datetime.now())[:16]}"
     print(f"[Global] {text}")
-    open("../htdocs/status.txt", "w").write(text)
+    with open("../htdocs/status.txt", "w") as fp:
+        fp.write(text)
 
 
 @t.final
@@ -39,7 +40,7 @@ class Server:
             self.conn.commit()
 
     def update(self) -> None:
-        set_global_status("Updating %s" % self.name)
+        set_global_status(f"Updating {self.name}")
         self.set_status("downloading sql...")
         text = requests.get(f"http://{self.name}/map.sql").text
         self.set_status("map.sql downloaded")
