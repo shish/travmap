@@ -1,16 +1,16 @@
-FROM debian:trixie
-EXPOSE 8000
-RUN apt update && apt install -y curl
+FROM dunglas/frankenphp
 HEALTHCHECK --start-period=30s --start-interval=5s --interval=5m --timeout=3s \
-    CMD curl --fail http://127.0.0.1:8000/ || exit 1
+    CMD curl --fail http://127.0.0.1:80/ || exit 1
 VOLUME /data
 
 ENV PYTHONUNBUFFERED=1
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN=true
-# pcre fails to compile regexes if the packages aren't manually installed?
-RUN apt update && apt install -y php-cli php-gd php-sqlite3 php-xml python3-requests libpcre2-16-0 libpcre2-8-0 libpcre2-32-0 sqlite3 rsync
 
+RUN install-php-extensions gd sqlite3 xml
+RUN apt-get update && apt-get install -y curl python3-requests sqlite3 rsync
+
+COPY utils/Caddyfile /etc/frankenphp/Caddyfile
 COPY htdocs /htdocs
 COPY utils /utils
 
@@ -18,6 +18,3 @@ ARG BUILD_HASH=unknown
 ENV BUILD_HASH=${BUILD_HASH}
 ARG BUILD_TIME=unknown
 ENV BUILD_TIME=${BUILD_TIME}
-
-WORKDIR /htdocs
-CMD ["/bin/sh", "-c", "exec /usr/bin/php -S 0.0.0.0:8000 router.php 2>&1 | grep --line-buffered -vE ' (Accepted|Closing)'"]

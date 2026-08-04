@@ -10,7 +10,7 @@
 ## General use
 
 ```bash
-cd htdocs && php -S 127.0.0.1:8000 router.php
+cd htdocs && php -S 127.0.0.1:8000
 ./manage.py add ts1.x3.europe.travian.com
 ./manage.py update
 ./manage.py remove ts1.x3.europe.travian.com

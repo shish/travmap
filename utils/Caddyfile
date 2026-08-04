@@ -1,0 +1,19 @@
+{
+    frankenphp {
+        num_threads 2
+        max_threads auto
+    }
+    servers {
+        trusted_proxies static 172.16.0.0/12
+        client_ip_headers X-Forwarded-For X-Real-IP
+    }
+}
+
+:80 {
+    log {
+        output stdout
+        format console
+    }
+    root * /htdocs
+    php_server
+}
