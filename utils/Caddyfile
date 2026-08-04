@@ -10,10 +10,6 @@
 }
 
 :80 {
-    log {
-        output stdout
-        format console
-    }
     root * /htdocs
     php_server
 }
