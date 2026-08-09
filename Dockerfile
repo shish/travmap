@@ -3,6 +3,11 @@ HEALTHCHECK --start-period=30s --start-interval=5s --interval=5m --timeout=3s \
     CMD curl --fail http://127.0.0.1:80/ || exit 1
 VOLUME /data
 
+# By default caddy stores data in /data
+ENV XDG_DATA_HOME=/var/lib/frankenphp/data
+ENV XDG_CONFIG_HOME=/var/lib/frankenphp/config
+RUN mkdir -p /var/lib/frankenphp/data /var/lib/frankenphp/config
+
 ENV PYTHONUNBUFFERED=1
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN=true
